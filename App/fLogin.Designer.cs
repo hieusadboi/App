@@ -37,6 +37,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.txbUser = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -44,6 +45,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.btnExit);
             this.panel1.Controls.Add(this.btnLogin);
             this.panel1.Controls.Add(this.panel3);
@@ -51,49 +53,57 @@
             this.panel1.Location = new System.Drawing.Point(13, 14);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(605, 177);
+            this.panel1.Size = new System.Drawing.Size(690, 328);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnExit
             // 
+            this.btnExit.BackColor = System.Drawing.Color.IndianRed;
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.Location = new System.Drawing.Point(449, 143);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.Location = new System.Drawing.Point(456, 255);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(4);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(100, 28);
+            this.btnExit.Size = new System.Drawing.Size(144, 45);
             this.btnExit.TabIndex = 4;
             this.btnExit.Text = "Thoát";
-            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(283, 143);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogin.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Location = new System.Drawing.Point(280, 255);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(96, 28);
+            this.btnLogin.Size = new System.Drawing.Size(144, 45);
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Đăng nhập";
-            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // panel3
             // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.txbPass);
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Location = new System.Drawing.Point(13, 79);
+            this.panel3.Location = new System.Drawing.Point(80, 176);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(575, 58);
+            this.panel3.Size = new System.Drawing.Size(520, 58);
             this.panel3.TabIndex = 1;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // txbPass
             // 
-            this.txbPass.Location = new System.Drawing.Point(199, 18);
+            this.txbPass.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txbPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbPass.Location = new System.Drawing.Point(199, 14);
             this.txbPass.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbPass.Name = "txbPass";
-            this.txbPass.Size = new System.Drawing.Size(336, 22);
+            this.txbPass.Size = new System.Drawing.Size(268, 27);
             this.txbPass.TabIndex = 2;
             this.txbPass.Text = "admin";
             this.txbPass.UseSystemPasswordChar = true;
@@ -112,20 +122,24 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.txbUser);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(13, 16);
+            this.panel2.Location = new System.Drawing.Point(80, 105);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(575, 58);
+            this.panel2.Size = new System.Drawing.Size(520, 58);
             this.panel2.TabIndex = 0;
             // 
             // txbUser
             // 
-            this.txbUser.Location = new System.Drawing.Point(199, 18);
+            this.txbUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txbUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbUser.Location = new System.Drawing.Point(199, 13);
             this.txbUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbUser.Name = "txbUser";
-            this.txbUser.Size = new System.Drawing.Size(336, 22);
+            this.txbUser.Size = new System.Drawing.Size(268, 28);
             this.txbUser.TabIndex = 1;
             this.txbUser.Text = "admin";
             this.txbUser.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -141,13 +155,27 @@
             this.label1.Text = "Tên đăng nhập:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.Info;
+            this.label3.Font = new System.Drawing.Font("Arial Black", 14F);
+            this.label3.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label3.Location = new System.Drawing.Point(12, 43);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(642, 33);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Chào mừng bạn đến với hệ thống quản lý quán ăn";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
             // fLogin
             // 
             this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(635, 204);
+            this.ClientSize = new System.Drawing.Size(715, 352);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "fLogin";
@@ -156,6 +184,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fLogin_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -175,6 +204,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Label label3;
     }
 }
 

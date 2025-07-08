@@ -50,9 +50,10 @@
             // 
             // panel2
             // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.txbUserName);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(15, 14);
+            this.panel2.Location = new System.Drawing.Point(15, 26);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(476, 55);
@@ -79,9 +80,10 @@
             // 
             // panel3
             // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.txbPassWord);
             this.panel3.Controls.Add(this.label3);
-            this.panel3.Location = new System.Drawing.Point(15, 73);
+            this.panel3.Location = new System.Drawing.Point(15, 85);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(476, 55);
@@ -108,9 +110,10 @@
             // 
             // panel4
             // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.txbNewPass);
             this.panel4.Controls.Add(this.label4);
-            this.panel4.Location = new System.Drawing.Point(15, 132);
+            this.panel4.Location = new System.Drawing.Point(15, 144);
             this.panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(476, 55);
@@ -136,9 +139,10 @@
             // 
             // panel5
             // 
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.txbReEnterPass);
             this.panel5.Controls.Add(this.label5);
-            this.panel5.Location = new System.Drawing.Point(12, 191);
+            this.panel5.Location = new System.Drawing.Point(15, 203);
             this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(476, 55);
@@ -164,17 +168,20 @@
             // 
             // btnUpdate
             // 
+            this.btnUpdate.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.Location = new System.Drawing.Point(196, 276);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(109, 41);
             this.btnUpdate.TabIndex = 6;
             this.btnUpdate.Text = "Cập nhật";
-            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnExit
             // 
+            this.btnExit.BackColor = System.Drawing.Color.IndianRed;
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.Location = new System.Drawing.Point(365, 276);
             this.btnExit.Margin = new System.Windows.Forms.Padding(4);
@@ -182,7 +189,7 @@
             this.btnExit.Size = new System.Drawing.Size(109, 41);
             this.btnExit.TabIndex = 7;
             this.btnExit.Text = "Thoát";
-            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.UseVisualStyleBackColor = false;
             // 
             // fAccountProfle
             // 

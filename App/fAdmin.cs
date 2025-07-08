@@ -131,5 +131,20 @@ namespace App
         {
             LoadDoanhThu(dtpkFromDate.Value, dtpkToDate.Value);
         }
+
+        private void dtgvCategory_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tpBill_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel19_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
