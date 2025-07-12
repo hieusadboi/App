@@ -6,11 +6,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Menu = App.DTO.Menu;
 
 namespace App
 {
@@ -53,26 +55,34 @@ namespace App
         }
         #region Method
 
-        void LoadTable()
+        private void LoadTable()
         {
             List<Table> tableList = TableDAO.Instance.LoadTableList();
 
-            // Load ảnh bàn
+            // Load ảnh bàn nếu có
             string imagePath = Path.Combine(Application.StartupPath, "table.png");
             Image tableImage = null;
             if (File.Exists(imagePath))
                 tableImage = Image.FromFile(imagePath);
 
-            // Thiết lập FlowLayoutPanel cho đẹp
-            flpTable.Controls.Clear();
-            flpTable.WrapContents = true;
-            flpTable.AutoScroll = true;
-            flpTable.Padding = new Padding(10);
-            flpTable.Margin = new Padding(10);
+            // Xóa bàn cũ
+            flowLayoutNormalTables.Controls.Clear();
+            flowLayoutVipTables.Controls.Clear();
+
+            int buttonWidth = 110;
+            int spacing = 15;
 
             foreach (Table item in tableList)
             {
-                Button btn = new Button()
+                // Tạo panel chứa nút và tên bàn
+                Panel panel = new Panel
+                {
+                    Width = buttonWidth + spacing,
+                    Height = 150,
+                    Margin = new Padding(10)
+                };
+
+                Button btn = new Button
                 {
                     Width = 110,
                     Height = 110,
@@ -80,10 +90,10 @@ namespace App
                     Text = "",
                     Tag = item,
                     BackColor = Color.White,
-                    Margin = new Padding(10), // mỗi nút cách nhau 10px
+                    Location = new Point(0, 0)
                 };
 
-                // Làm hình tròn
+                // Làm nút tròn
                 GraphicsPath path = new GraphicsPath();
                 path.AddEllipse(0, 0, btn.Width, btn.Height);
                 btn.Region = new Region(path);
@@ -95,44 +105,90 @@ namespace App
                     Graphics g = e.Graphics;
                     g.SmoothingMode = SmoothingMode.AntiAlias;
 
-                    // Viền bàn (dày 5px)
                     using (Pen pen = new Pen(table.Status == "Trống" ? Color.DodgerBlue : Color.Red, 5))
                     {
                         g.DrawEllipse(pen, 1, 1, btn.Width - 3, btn.Height - 3);
                     }
 
-                    // Ảnh ở giữa
                     if (tableImage != null)
                     {
                         int imgSize = 40;
                         int imgX = (btn.Width - imgSize) / 2;
-                        int imgY = 10;
+                        int imgY = (btn.Height - imgSize) / 2;
                         g.DrawImage(tableImage, new Rectangle(imgX, imgY, imgSize, imgSize));
-                    }
-
-                    // Tên bàn ở dưới
-                    using (Font font = new Font("Segoe UI", 9, FontStyle.Bold))
-                    using (Brush brush = new SolidBrush(Color.Black))
-                    using (StringFormat sf = new StringFormat() { Alignment = StringAlignment.Center })
-                    {
-                        RectangleF textRect = new RectangleF(0, 55, btn.Width, 30);
-                        g.DrawString(table.Name, font, brush, textRect, sf);
                     }
                 };
 
-                // Xử lý khi click
                 btn.Click += Btn_Click;
+                btn.Tag = item; // Gán đối tượng Table vào Tag của nút
 
-                // Thêm vào FlowLayoutPanel
-                flpTable.Controls.Add(btn);
+                Label lblTableName = new Label
+                {
+                    Text = item.Name,
+                    Width = buttonWidth,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Font = new Font("Segoe UI", 9, FontStyle.Bold),
+                    ForeColor = Color.Black,
+                    Location = new Point(0, btn.Height + 5)
+                };
+
+                panel.Controls.Add(btn);
+                panel.Controls.Add(lblTableName);
+
+                // Gán đúng panel tương ứng
+                if (item.Name.ToLower().Contains("vip"))
+                    flowLayoutVipTables.Controls.Add(panel);
+                else
+                    flowLayoutNormalTables.Controls.Add(panel);
             }
         }
 
+
+        // Hiển thị tin hóa đơn 
+        //void ShowBill(int id)
+        //{
+        //    lsvBill.Items.Clear();
+
+        //    List<BillInfo> listBillInfo = BillInfoDAO.Instance.GetListBillInfo(BillDAO.Instance.GetUncheckBillIDByTableID(id));
+
+        //    foreach (BillInfo item in listBillInfo)
+        //    {
+        //        ListViewItem lsvItem = new ListViewItem(item.FoodID.ToString());
+        //        lsvItem.SubItems.Add(item.Count.ToString());
+
+        //        lsvBill.Items.Add(lsvItem);
+        //    }
+        //}
+
+        void ShowBill(int id)
+        {
+            lsvBill.Items.Clear();
+            float totalPrice = 0; // Biến để lưu tổng giá tiền
+            CultureInfo culture = new CultureInfo("vi-VN");
+
+            List<Menu> listBillInfo = MenuDAO.Instance.GetListMenuByTable(id);
+
+            foreach (Menu item in listBillInfo)
+            {
+                // Cộng dồn tổng giá tiền
+                totalPrice += item.TotalPrice;
+
+                ListViewItem lsvItem = new ListViewItem(item.FoodName.ToString());
+                lsvItem.SubItems.Add(item.Count.ToString());
+                lsvItem.SubItems.Add(item.Price.ToString("c", culture)); // Hiển thị giá theo định dạng tiền tệ
+                lsvItem.SubItems.Add(item.TotalPrice.ToString("c", culture)); // Hiển thị tổng giá theo định dạng tiền tệ
+                lsvItem.SubItems.Add(item.IdBill.ToString()); // Thêm ID hóa đơn nếu cần
+                lsvBill.Items.Add(lsvItem);
+            }
+
+            txbtotalPrice.Text = totalPrice.ToString("c", culture); // Hiển thị tổng giá tiền theo định dạng tiền tệ
+        }
+
+        // Xlý sự kiện khi nút bàn được nhấn
         private void Btn_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
-            Table table = btn.Tag as Table;
-            MessageBox.Show($"Bạn đã chọn {table.Name}");
+            int tableID = ((sender as Button).Tag as Table).ID;
+            ShowBill(tableID);
         }
 
         #endregion
@@ -158,6 +214,11 @@ namespace App
         #endregion
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
         {
 
         }
