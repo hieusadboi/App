@@ -38,5 +38,20 @@ namespace App.DAO
             return tableList;
         }
 
+        // Lấy thông tin bàn theo ID
+        public Table GetTableByID(int id)
+        {
+            Table table = null;
+            string query = "SELECT idTable, tableName, status FROM dbo.TableFood WHERE idTable = " + id;
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                table = new Table(item);
+                break; // Chỉ lấy bản ghi đầu tiên (vì idTable là PK, không lặp)
+            }
+            return table;
+        }
+
+
     }
 }

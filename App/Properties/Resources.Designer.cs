@@ -59,15 +59,5 @@ namespace App.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Ảnh_chụp_màn_hình_2025_06_21_221551 {
-            get {
-                object obj = ResourceManager.GetObject("Ảnh chụp màn hình 2025-06-21 221551", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

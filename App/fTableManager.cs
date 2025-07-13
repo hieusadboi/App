@@ -18,6 +18,8 @@ namespace App
 {
     public partial class fTableManager : Form
     {
+        private Button selectedTableButton; // Biến lưu button của bàn đang chọn
+
         public fTableManager()
         {
             InitializeComponent();
@@ -47,9 +49,7 @@ namespace App
                 // Lấy ID hóa đơn mới tạo
                 idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
 
-                //idBill = BillDAO.Instance.GetMaxIDBill(); // Lấy ID hóa đơn mới nhất (bị ảnh hưởng khi nhiều user dùng cùng lúc)
                 BillInfoDAO.Instance.InsertBillInfo(idBill, idFood, count);
-
             }
             else
             {
@@ -58,8 +58,7 @@ namespace App
             }
 
             ShowBill(table.ID);
-            LoadTable(); // Cập nhật lại giao diện bàn
-
+            UpdateSingleTable(table.ID); // Cập nhật chỉ bàn đang chọn
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -69,13 +68,13 @@ namespace App
 
         private void btnCheckOut_Click(object sender, EventArgs e)
         {
-            Table table = lsvBill.Tag as Table; 
+            Table table = lsvBill.Tag as Table;
 
             int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
 
             if (idBill != -1)
             {
-                if(MessageBox.Show(string.Format("Thanh toán " + table.Name), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (MessageBox.Show(string.Format("Thanh toán " + table.Name), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     // Lấy tổng giá tiền từ lsvBill
                     float totalPrice = 0;
@@ -89,7 +88,7 @@ namespace App
                     // Thêm vào bảng Bill
                     BillDAO.Instance.CheckOut(idBill);
                     // Cập nhật lại giao diện
-                    LoadTable();
+                    UpdateSingleTable(table.ID); // Cập nhật chỉ bàn đang chọn
                     ShowBill(table.ID);
                 }
             }
@@ -104,6 +103,7 @@ namespace App
         {
 
         }
+
         #region Method
 
         private void LoadTable()
@@ -111,10 +111,14 @@ namespace App
             List<Table> tableList = TableDAO.Instance.LoadTableList();
 
             // Load ảnh bàn nếu có
-            string imagePath = Path.Combine(Application.StartupPath, "table.png");
-            Image tableImage = null;
-            if (File.Exists(imagePath))
-                tableImage = Image.FromFile(imagePath);
+            string defaultImagePath = Path.Combine(Application.StartupPath, "table.png");
+            string vipImagePath = Path.Combine(Application.StartupPath, "tablevip.png");
+            Image defaultTableImage = null;
+            Image vipTableImage = null;
+            if (File.Exists(defaultImagePath))
+                defaultTableImage = Image.FromFile(defaultImagePath);
+            if (File.Exists(vipImagePath))
+                vipTableImage = Image.FromFile(vipImagePath);
 
             // Xóa bàn cũ
             flowLayoutNormalTables.Controls.Clear();
@@ -130,7 +134,8 @@ namespace App
                 {
                     Width = buttonWidth + spacing,
                     Height = 150,
-                    Margin = new Padding(10)
+                    Margin = new Padding(10),
+                    Tag = item.ID // Lưu ID bàn để tìm kiếm dễ hơn
                 };
 
                 Button btn = new Button
@@ -156,14 +161,30 @@ namespace App
                     Graphics g = e.Graphics;
                     g.SmoothingMode = SmoothingMode.AntiAlias;
 
-                    using (Pen pen = new Pen(table.Status == "Trống" ? Color.DodgerBlue : Color.Red, 5))
+                    // Xác định màu viền
+                    Color borderColor = table.Status == "Trống" ? Color.DodgerBlue : Color.Red;
+                    if (s == selectedTableButton)
+                        borderColor = Color.Green; // Bàn được chọn có viền xanh lá
+
+                    using (Pen pen = new Pen(borderColor, 5))
                     {
                         g.DrawEllipse(pen, 1, 1, btn.Width - 3, btn.Height - 3);
                     }
 
+                    // Dùng hình ảnh phù hợp
+                    string imagePath = null;
+                    if(item.Name.ToLower().Contains("vip"))
+                        imagePath = vipImagePath;
+                    else
+                        imagePath = defaultImagePath;
+
+                    Image tableImage = item.Name.ToLower().Contains("vip") ? vipTableImage : defaultTableImage;
+                    if (File.Exists(imagePath))
+                        tableImage = Image.FromFile(imagePath);
+
                     if (tableImage != null)
                     {
-                        int imgSize = 40;
+                        int imgSize = 80;
                         int imgX = (btn.Width - imgSize) / 2;
                         int imgY = (btn.Height - imgSize) / 2;
                         g.DrawImage(tableImage, new Rectangle(imgX, imgY, imgSize, imgSize));
@@ -194,22 +215,28 @@ namespace App
             }
         }
 
-
-        // Hiển thị tin hóa đơn 
-        //void ShowBill(int id)
-        //{
-        //    lsvBill.Items.Clear();
-
-        //    List<BillInfo> listBillInfo = BillInfoDAO.Instance.GetListBillInfo(BillDAO.Instance.GetUncheckBillIDByTableID(id));
-
-        //    foreach (BillInfo item in listBillInfo)
-        //    {
-        //        ListViewItem lsvItem = new ListViewItem(item.FoodID.ToString());
-        //        lsvItem.SubItems.Add(item.Count.ToString());
-
-        //        lsvBill.Items.Add(lsvItem);
-        //    }
-        //}
+        private void UpdateSingleTable(int tableID)
+        {
+            // Tìm panel chứa bàn có ID tương ứng
+            foreach (Control panel in flowLayoutNormalTables.Controls.Cast<Control>().Concat(flowLayoutVipTables.Controls.Cast<Control>()))
+            {
+                if (panel is Panel && (int)panel.Tag == tableID)
+                {
+                    // Tìm button trong panel
+                    Button btn = panel.Controls.OfType<Button>().FirstOrDefault();
+                    if (btn != null)
+                    {
+                        Table updatedTable = TableDAO.Instance.GetTableByID(tableID); // Sử dụng GetTableByID
+                        if (updatedTable != null)
+                        {
+                            btn.Tag = updatedTable; // Cập nhật dữ liệu bàn
+                            btn.Invalidate(); // Vẽ lại button để cập nhật giao diện
+                        }
+                        break;
+                    }
+                }
+            }
+        }
 
         void ShowBill(int id)
         {
@@ -235,27 +262,37 @@ namespace App
             txbtotalPrice.Text = totalPrice.ToString("c", culture); // Hiển thị tổng giá tiền theo định dạng tiền tệ
         }
 
-
-
-        // Xlý sự kiện khi nút bàn được nhấn
+        // Xử lý sự kiện khi nút bàn được nhấn
         private void Btn_Click(object sender, EventArgs e)
         {
-            int tableID = ((sender as Button).Tag as Table).ID; 
-            lsvBill.Tag = (sender as Button).Tag; // Lưu thông tin bàn vào lsvBill.Tag
+            Button clickedButton = sender as Button;
+            int tableID = (clickedButton.Tag as Table).ID;
+            lsvBill.Tag = clickedButton.Tag; // Lưu thông tin bàn vào lsvBill.Tag
+
+            // Bỏ highlight bàn trước đó
+            if (selectedTableButton != null)
+            {
+                selectedTableButton.BackColor = Color.White;
+                selectedTableButton.Invalidate(); // Vẽ lại để dùng hình và viền mặc định
+            }
+
+            // Highlight bàn được chọn
+            selectedTableButton = clickedButton;
+            selectedTableButton.BackColor = Color.LightGreen; // Nền xanh nhạt cho bàn được chọn
+            selectedTableButton.Invalidate(); // Vẽ lại để dùng hình và viền xanh lá
+
             ShowBill(tableID);
         }
 
-
         void LoadCategoryList(int id)
         {
-           List<Category> listCategory = CategoryDAO.Instance.GetListCategory();
+            List<Category> listCategory = CategoryDAO.Instance.GetListCategory();
             cbCategory.DataSource = listCategory;
             cbCategory.DisplayMember = "CategoryName"; // Hiển thị tên danh mục
         }
 
-
         void LoadFoodListByCategoryID(int id)
-        { 
+        {
             List<Food> listFood = FoodDAO.Instance.GetListFoodByCategoryID(id);
             cbFood.DataSource = listFood;
             cbFood.DisplayMember = "foodName"; // Hiển thị tên món ăn
@@ -263,7 +300,7 @@ namespace App
 
         #endregion
 
-            #region events handlers for menu items
+        #region events handlers for menu items
         private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fAccountProfle f = new fAccountProfle();
@@ -306,7 +343,4 @@ namespace App
             LoadFoodListByCategoryID(id);
         }
     }
-
-    // Assuming the Table class exists
-
 }
