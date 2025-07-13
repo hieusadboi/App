@@ -136,10 +136,10 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.lsvBill);
-            this.panel2.Location = new System.Drawing.Point(816, 193);
+            this.panel2.Location = new System.Drawing.Point(816, 188);
             this.panel2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(696, 417);
+            this.panel2.Size = new System.Drawing.Size(696, 422);
             this.panel2.TabIndex = 2;
             // 
             // label1
@@ -167,10 +167,10 @@
             this.lsvBill.FullRowSelect = true;
             this.lsvBill.GridLines = true;
             this.lsvBill.HideSelection = false;
-            this.lsvBill.Location = new System.Drawing.Point(2, 70);
+            this.lsvBill.Location = new System.Drawing.Point(-1, 70);
             this.lsvBill.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.lsvBill.Name = "lsvBill";
-            this.lsvBill.Size = new System.Drawing.Size(687, 341);
+            this.lsvBill.Size = new System.Drawing.Size(696, 351);
             this.lsvBill.TabIndex = 0;
             this.lsvBill.UseCompatibleStateImageBehavior = false;
             this.lsvBill.View = System.Windows.Forms.View.Details;
@@ -277,7 +277,7 @@
             this.ptnCheckOut.TabIndex = 3;
             this.ptnCheckOut.Text = "Thanh toán";
             this.ptnCheckOut.UseVisualStyleBackColor = false;
-            this.ptnCheckOut.Click += new System.EventHandler(this.button1_Click_1);
+            this.ptnCheckOut.Click += new System.EventHandler(this.btnCheckOut_Click);
             // 
             // panel4
             // 
@@ -289,7 +289,7 @@
             this.panel4.Location = new System.Drawing.Point(816, 37);
             this.panel4.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(696, 134);
+            this.panel4.Size = new System.Drawing.Size(696, 143);
             this.panel4.TabIndex = 4;
             // 
             // panel5
@@ -297,9 +297,9 @@
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.nmFoodCount);
-            this.panel5.Location = new System.Drawing.Point(3, 84);
+            this.panel5.Location = new System.Drawing.Point(3, 96);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(490, 43);
+            this.panel5.Size = new System.Drawing.Size(490, 42);
             this.panel5.TabIndex = 10;
             this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
             // 
@@ -308,7 +308,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.SystemColors.MenuBar;
             this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 9);
+            this.label4.Location = new System.Drawing.Point(3, 8);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(112, 24);
             this.label4.TabIndex = 6;
@@ -316,15 +316,16 @@
             // 
             // nmFoodCount
             // 
-            this.nmFoodCount.Location = new System.Drawing.Point(144, 9);
+            this.nmFoodCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nmFoodCount.Location = new System.Drawing.Point(141, 4);
             this.nmFoodCount.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.nmFoodCount.Minimum = new decimal(new int[] {
-            1,
+            10,
             0,
             0,
-            0});
+            -2147483648});
             this.nmFoodCount.Name = "nmFoodCount";
-            this.nmFoodCount.Size = new System.Drawing.Size(292, 24);
+            this.nmFoodCount.Size = new System.Drawing.Size(292, 28);
             this.nmFoodCount.TabIndex = 3;
             this.nmFoodCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nmFoodCount.Value = new decimal(new int[] {
@@ -341,7 +342,7 @@
             this.panel1.Controls.Add(this.cbCategory);
             this.panel1.Location = new System.Drawing.Point(3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(490, 34);
+            this.panel1.Size = new System.Drawing.Size(490, 41);
             this.panel1.TabIndex = 7;
             // 
             // label2
@@ -349,7 +350,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.SystemColors.MenuBar;
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 4);
+            this.label2.Location = new System.Drawing.Point(3, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(124, 24);
             this.label2.TabIndex = 4;
@@ -357,21 +358,26 @@
             // 
             // cbCategory
             // 
+            this.cbCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCategory.FormattingEnabled = true;
-            this.cbCategory.Location = new System.Drawing.Point(144, 4);
+            this.cbCategory.Location = new System.Drawing.Point(141, 4);
             this.cbCategory.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.cbCategory.Name = "cbCategory";
-            this.cbCategory.Size = new System.Drawing.Size(292, 26);
+            this.cbCategory.Size = new System.Drawing.Size(292, 30);
             this.cbCategory.TabIndex = 0;
+            this.cbCategory.SelectedIndexChanged += new System.EventHandler(this.CbCategory_SelectedIndexChanged);
             // 
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel6.Controls.Add(this.label3);
             this.panel6.Controls.Add(this.cbFood);
-            this.panel6.Location = new System.Drawing.Point(3, 44);
+            this.panel6.Location = new System.Drawing.Point(2, 51);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(490, 34);
+            this.panel6.Size = new System.Drawing.Size(490, 39);
             this.panel6.TabIndex = 9;
             // 
             // label3
@@ -379,7 +385,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.SystemColors.MenuBar;
             this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 5);
+            this.label3.Location = new System.Drawing.Point(4, 10);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(131, 24);
             this.label3.TabIndex = 5;
@@ -387,25 +393,26 @@
             // 
             // cbFood
             // 
+            this.cbFood.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbFood.FormattingEnabled = true;
-            this.cbFood.Location = new System.Drawing.Point(144, 5);
+            this.cbFood.Location = new System.Drawing.Point(142, 4);
             this.cbFood.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.cbFood.Name = "cbFood";
-            this.cbFood.Size = new System.Drawing.Size(292, 26);
+            this.cbFood.Size = new System.Drawing.Size(292, 30);
             this.cbFood.TabIndex = 1;
             // 
             // bnAddFood
             // 
             this.bnAddFood.BackColor = System.Drawing.Color.NavajoWhite;
             this.bnAddFood.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bnAddFood.Location = new System.Drawing.Point(522, 23);
+            this.bnAddFood.Location = new System.Drawing.Point(522, 31);
             this.bnAddFood.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.bnAddFood.Name = "bnAddFood";
             this.bnAddFood.Size = new System.Drawing.Size(150, 76);
             this.bnAddFood.TabIndex = 2;
             this.bnAddFood.Text = "Thêm món";
             this.bnAddFood.UseVisualStyleBackColor = false;
-            this.bnAddFood.Click += new System.EventHandler(this.button1_Click);
+            this.bnAddFood.Click += new System.EventHandler(this.btnAddFood_Click);
             // 
             // flpTable
             // 

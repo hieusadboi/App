@@ -17,6 +17,8 @@ namespace App
             InitializeComponent();
         }
 
+        public static string LoggedInUserName { get; private set; }
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -66,6 +68,7 @@ namespace App
             string password = txbPass.Text;
             if (Login(userName, password))
             {
+                LoggedInUserName = userName; // Lưu lại userName
                 fTableManager f = new fTableManager();
                 this.Hide();
                 f.ShowDialog();

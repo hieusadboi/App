@@ -22,6 +22,7 @@ namespace App
         {
             InitializeComponent();
             LoadTable();
+            LoadCategoryList(0); // Load danh mục ban đầu
         }
 
         private void fTableManager_Load(object sender, EventArgs e)
@@ -29,8 +30,35 @@ namespace App
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        // Xử lý sự kiện khi nút "Thêm món ăn" được nhấn
+        private void btnAddFood_Click(object sender, EventArgs e)
         {
+            Table table = lsvBill.Tag as Table;
+
+            int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
+            int idFood = (cbFood.SelectedItem as Food).IdFood;
+            int count = (int)nmFoodCount.Value;
+
+            if (idBill == -1) // Nếu không có hóa đơn chưa thanh toán, tạo mới
+            {
+                string createdBy = fLogin.LoggedInUserName;
+                BillDAO.Instance.InsertBill(table.ID, createdBy);
+
+                // Lấy ID hóa đơn mới tạo
+                idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
+
+                //idBill = BillDAO.Instance.GetMaxIDBill(); // Lấy ID hóa đơn mới nhất (bị ảnh hưởng khi nhiều user dùng cùng lúc)
+                BillInfoDAO.Instance.InsertBillInfo(idBill, idFood, count);
+
+            }
+            else
+            {
+                // Nếu đã có hóa đơn chưa thanh toán, chỉ cần thêm món ăn vào hóa đơn đó
+                BillInfoDAO.Instance.InsertBillInfo(idBill, idFood, count);
+            }
+
+            ShowBill(table.ID);
+            LoadTable(); // Cập nhật lại giao diện bàn
 
         }
 
@@ -39,9 +67,32 @@ namespace App
 
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void btnCheckOut_Click(object sender, EventArgs e)
         {
+            Table table = lsvBill.Tag as Table; 
 
+            int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
+
+            if (idBill != -1)
+            {
+                if(MessageBox.Show(string.Format("Thanh toán " + table.Name), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    // Lấy tổng giá tiền từ lsvBill
+                    float totalPrice = 0;
+                    foreach (ListViewItem item in lsvBill.Items)
+                    {
+                        if (item.SubItems.Count >= 4) // Đảm bảo có đủ cột
+                        {
+                            totalPrice += float.Parse(item.SubItems[3].Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
+                        }
+                    }
+                    // Thêm vào bảng Bill
+                    BillDAO.Instance.CheckOut(idBill);
+                    // Cập nhật lại giao diện
+                    LoadTable();
+                    ShowBill(table.ID);
+                }
+            }
         }
 
         private void button1_Click_2(object sender, EventArgs e)
@@ -184,16 +235,35 @@ namespace App
             txbtotalPrice.Text = totalPrice.ToString("c", culture); // Hiển thị tổng giá tiền theo định dạng tiền tệ
         }
 
+
+
         // Xlý sự kiện khi nút bàn được nhấn
         private void Btn_Click(object sender, EventArgs e)
         {
-            int tableID = ((sender as Button).Tag as Table).ID;
+            int tableID = ((sender as Button).Tag as Table).ID; 
+            lsvBill.Tag = (sender as Button).Tag; // Lưu thông tin bàn vào lsvBill.Tag
             ShowBill(tableID);
+        }
+
+
+        void LoadCategoryList(int id)
+        {
+           List<Category> listCategory = CategoryDAO.Instance.GetListCategory();
+            cbCategory.DataSource = listCategory;
+            cbCategory.DisplayMember = "CategoryName"; // Hiển thị tên danh mục
+        }
+
+
+        void LoadFoodListByCategoryID(int id)
+        { 
+            List<Food> listFood = FoodDAO.Instance.GetListFoodByCategoryID(id);
+            cbFood.DataSource = listFood;
+            cbFood.DisplayMember = "foodName"; // Hiển thị tên món ăn
         }
 
         #endregion
 
-        #region events handlers for menu items
+            #region events handlers for menu items
         private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fAccountProfle f = new fAccountProfle();
@@ -221,6 +291,19 @@ namespace App
         private void panel5_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void CbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id = 0;
+            ComboBox cb = sender as ComboBox;
+            if (cb.SelectedItem == null) return; // Kiểm tra nếu không có mục nào được chọn
+            Category selectedCategory = cb.SelectedItem as Category;
+            if (selectedCategory != null)
+            {
+                id = selectedCategory.IdCategory; // Lấy ID của danh mục được chọn
+            }
+            LoadFoodListByCategoryID(id);
         }
     }
 
