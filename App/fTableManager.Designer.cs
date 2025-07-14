@@ -45,8 +45,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.txbtotalPrice = new System.Windows.Forms.TextBox();
             this.textboxtongtien = new System.Windows.Forms.Label();
-            this.nmDiscount = new System.Windows.Forms.NumericUpDown();
-            this.btnDiscount = new System.Windows.Forms.Button();
             this.ptnCheckOut = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -64,10 +62,10 @@
             this.flowLayoutNormalTables = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBoxVipTables = new System.Windows.Forms.GroupBox();
             this.flowLayoutVipTables = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnPrintBill = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nmDiscount)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmFoodCount)).BeginInit();
@@ -209,10 +207,9 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.btnPrintBill);
             this.panel3.Controls.Add(this.txbtotalPrice);
             this.panel3.Controls.Add(this.textboxtongtien);
-            this.panel3.Controls.Add(this.nmDiscount);
-            this.panel3.Controls.Add(this.btnDiscount);
             this.panel3.Controls.Add(this.ptnCheckOut);
             this.panel3.Location = new System.Drawing.Point(823, 686);
             this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -225,7 +222,7 @@
             this.txbtotalPrice.BackColor = System.Drawing.Color.Thistle;
             this.txbtotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbtotalPrice.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.txbtotalPrice.Location = new System.Drawing.Point(11, 60);
+            this.txbtotalPrice.Location = new System.Drawing.Point(246, 60);
             this.txbtotalPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txbtotalPrice.Name = "txbtotalPrice";
             this.txbtotalPrice.Size = new System.Drawing.Size(270, 30);
@@ -239,37 +236,13 @@
             this.textboxtongtien.BackColor = System.Drawing.Color.Thistle;
             this.textboxtongtien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textboxtongtien.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textboxtongtien.Location = new System.Drawing.Point(11, 4);
+            this.textboxtongtien.Location = new System.Drawing.Point(246, 8);
             this.textboxtongtien.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.textboxtongtien.Name = "textboxtongtien";
             this.textboxtongtien.Size = new System.Drawing.Size(270, 50);
             this.textboxtongtien.TabIndex = 6;
             this.textboxtongtien.Text = "Tổng tiền cần thanh toán ";
             this.textboxtongtien.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // nmDiscount
-            // 
-            this.nmDiscount.AutoSize = true;
-            this.nmDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nmDiscount.Location = new System.Drawing.Point(322, 60);
-            this.nmDiscount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.nmDiscount.Name = "nmDiscount";
-            this.nmDiscount.Size = new System.Drawing.Size(124, 30);
-            this.nmDiscount.TabIndex = 5;
-            this.nmDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nmDiscount.ValueChanged += new System.EventHandler(this.nmDiscount_ValueChanged);
-            // 
-            // btnDiscount
-            // 
-            this.btnDiscount.BackColor = System.Drawing.Color.Aquamarine;
-            this.btnDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDiscount.Location = new System.Drawing.Point(322, 4);
-            this.btnDiscount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnDiscount.Name = "btnDiscount";
-            this.btnDiscount.Size = new System.Drawing.Size(124, 50);
-            this.btnDiscount.TabIndex = 4;
-            this.btnDiscount.Text = "Giảm giá";
-            this.btnDiscount.UseVisualStyleBackColor = false;
             // 
             // ptnCheckOut
             // 
@@ -483,6 +456,19 @@
             this.flowLayoutVipTables.Size = new System.Drawing.Size(764, 254);
             this.flowLayoutVipTables.TabIndex = 0;
             // 
+            // btnPrintBill
+            // 
+            this.btnPrintBill.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnPrintBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintBill.Location = new System.Drawing.Point(38, 8);
+            this.btnPrintBill.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPrintBill.Name = "btnPrintBill";
+            this.btnPrintBill.Size = new System.Drawing.Size(150, 86);
+            this.btnPrintBill.TabIndex = 8;
+            this.btnPrintBill.Text = "In Hóa Đơn ";
+            this.btnPrintBill.UseVisualStyleBackColor = false;
+            this.btnPrintBill.Click += new System.EventHandler(this.btnPrintBill_Click);
+            // 
             // fTableManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -506,7 +492,6 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nmDiscount)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
@@ -537,8 +522,6 @@
         private System.Windows.Forms.NumericUpDown nmFoodCount;
         private System.Windows.Forms.FlowLayoutPanel flpTable;
         private System.Windows.Forms.Button ptnCheckOut;
-        private System.Windows.Forms.NumericUpDown nmDiscount;
-        private System.Windows.Forms.Button btnDiscount;
         private System.Windows.Forms.ToolStripMenuItem thôngTinCáNhânToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem đăngXuấtToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nhậpNguyênLiệuToolStripMenuItem;
@@ -560,5 +543,6 @@
         private System.Windows.Forms.ColumnHeader IdBill;
         private System.Windows.Forms.Label textboxtongtien;
         private System.Windows.Forms.TextBox txbtotalPrice;
+        private System.Windows.Forms.Button btnPrintBill;
     }
 }

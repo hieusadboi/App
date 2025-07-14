@@ -1,5 +1,6 @@
 ﻿using App.DAO;
 using App.DTO;
+using App.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,8 @@ namespace App
 {
     public partial class fTableManager : Form
     {
+        private List<Menu> currentBillItems = new List<Menu>(); // biến lưu hóa đơn 
+
         private Button selectedTableButton; // Biến lưu button của bàn đang chọn
 
         public fTableManager()
@@ -66,33 +69,106 @@ namespace App
 
         }
 
+        //private void btnCheckOut_Click(object sender, EventArgs e)
+        //{
+        //    Table table = lsvBill.Tag as Table;
+
+        //    int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
+
+        //    if (idBill != -1)
+        //    {
+        //        if (MessageBox.Show(string.Format("Thanh toán " + table.Name), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+        //        {
+        //            // Lấy tổng giá tiền từ lsvBill
+        //            float totalPrice = 0;
+        //            foreach (ListViewItem item in lsvBill.Items)
+        //            {
+        //                if (item.SubItems.Count >= 4) // Đảm bảo có đủ cột
+        //                {
+        //                    totalPrice += float.Parse(item.SubItems[3].Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
+        //                }
+        //            }
+        //            // Thêm vào bảng Bill
+        //            BillDAO.Instance.CheckOut(idBill);
+        //            // Cập nhật lại giao diện
+        //            UpdateSingleTable(table.ID); // Cập nhật chỉ bàn đang chọn
+        //            ShowBill(table.ID);
+        //        }
+        //    }
+        //}
+
+        //private void btnCheckOut_Click(object sender, EventArgs e)
+        //{
+        //    Table table = lsvBill.Tag as Table;
+        //    if (table == null) return;
+
+        //    int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
+        //    if (idBill != -1)
+        //    {
+        //        if (MessageBox.Show($"Thanh toán {table.Name}?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
+        //        {
+        //            // Tính tổng
+        //            float totalPrice = 0;
+        //            foreach (ListViewItem item in lsvBill.Items)
+        //            {
+        //                if (item.SubItems.Count >= 4)
+        //                {
+        //                    totalPrice += float.Parse(item.SubItems[3].Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
+        //                }
+        //            }
+
+        //            // ✅ Hỏi in trước khi CheckOut
+        //            bool userWantsPrint = MessageBox.Show("Bạn có muốn in hóa đơn không?", "In hóa đơn", MessageBoxButtons.YesNo) == DialogResult.Yes;
+
+        //            if (userWantsPrint)
+        //            {
+        //                string filePath = InvoiceFileHelper.GetInvoiceFilePath(true);
+        //                PDFExporter.ExportBillToPDF(lsvBill, table, fLogin.LoggedInUserName, txbtotalPrice.Text, filePath, true); // isPaid = true
+        //            }
+
+        //            // ✅ Sau khi in mới thực hiện cập nhật trạng thái hóa đơn
+        //            BillDAO.Instance.CheckOut(idBill);
+        //            UpdateSingleTable(table.ID);
+        //            ShowBill(table.ID); // Sau khi thanh toán sẽ không còn hóa đơn nên sẽ clear ListView
+        //        }
+        //    }
+        //}
+
         private void btnCheckOut_Click(object sender, EventArgs e)
         {
             Table table = lsvBill.Tag as Table;
+            if (table == null) return;
 
             int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
-
             if (idBill != -1)
             {
-                if (MessageBox.Show(string.Format("Thanh toán " + table.Name), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (MessageBox.Show($"Thanh toán {table.Name}?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    // Lấy tổng giá tiền từ lsvBill
                     float totalPrice = 0;
                     foreach (ListViewItem item in lsvBill.Items)
                     {
-                        if (item.SubItems.Count >= 4) // Đảm bảo có đủ cột
+                        if (item.SubItems.Count >= 4)
                         {
                             totalPrice += float.Parse(item.SubItems[3].Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
                         }
                     }
-                    // Thêm vào bảng Bill
+
+                    bool userWantsPrint = MessageBox.Show("Bạn có muốn in hóa đơn không?", "In hóa đơn", MessageBoxButtons.YesNo) == DialogResult.Yes;
+
+                    if (userWantsPrint)
+                    {
+                        string filePath = InvoiceFileHelper.GetInvoiceFilePath(true);
+                        string fullDisplayName = BillDAO.Instance.GetDisplayNameByBillID(idBill);
+                        PDFExporter.ExportBillToPDF(lsvBill, table, fullDisplayName, txbtotalPrice.Text, filePath, true);
+                    }
+
                     BillDAO.Instance.CheckOut(idBill);
-                    // Cập nhật lại giao diện
-                    UpdateSingleTable(table.ID); // Cập nhật chỉ bàn đang chọn
+                    UpdateSingleTable(table.ID);
                     ShowBill(table.ID);
                 }
             }
         }
+
 
         private void button1_Click_2(object sender, EventArgs e)
         {
@@ -246,6 +322,9 @@ namespace App
 
             List<Menu> listBillInfo = MenuDAO.Instance.GetListMenuByTable(id);
 
+            currentBillItems = MenuDAO.Instance.GetListMenuByTable(id); // Gán Bill vào biến
+
+
             foreach (Menu item in listBillInfo)
             {
                 // Cộng dồn tổng giá tiền
@@ -342,5 +421,46 @@ namespace App
             }
             LoadFoodListByCategoryID(id);
         }
+
+        //private void btnPrintBill_Click(object sender, EventArgs e)
+        //{
+        //    //if (lsvBill.Tag is Table table)
+        //    //{
+        //    //    SaveFileDialog sfd = new SaveFileDialog();
+        //    //    sfd.Filter = "PDF file (*.pdf)|*.pdf";
+        //    //    sfd.FileName = $"HoaDon_{table.Name}_{DateTime.Now:yyyyMMdd_HHmm}.pdf";
+
+        //    //    if (sfd.ShowDialog() == DialogResult.OK)
+        //    //    {
+        //    //        string filePath = sfd.FileName;
+        //    //        string userName = fLogin.LoggedInUserName;
+        //    //        string totalPrice = txbtotalPrice.Text;
+
+        //    //        App.Utils.PDFExporter.ExportBillToPDF(lsvBill, table, userName, totalPrice, filePath);
+        //    //        MessageBox.Show("In hóa đơn thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //    //    }
+        //    //}
+        //}
+
+        private void btnPrintBill_Click(object sender, EventArgs e)
+        {
+            Table table = lsvBill.Tag as Table;
+            if (table == null) return;
+
+            int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
+            if (idBill == -1)
+            {
+                MessageBox.Show("Chưa có hóa đơn để in!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string filePath = InvoiceFileHelper.GetInvoiceFilePath(false);
+            PDFExporter.ExportBillToPDF(lsvBill, table, fLogin.LoggedInUserName, txbtotalPrice.Text, filePath, false); // isPaid = false
+
+
+            MessageBox.Show("Đã tạo hóa đơn tạm.", "Thông báo");
+        }
+
+
     }
 }

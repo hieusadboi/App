@@ -275,6 +275,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.dtgvDoanhThu = new System.Windows.Forms.DataGridView();
             this.table = new System.Windows.Forms.TabControl();
+            this.btnXemNhapHang = new System.Windows.Forms.Button();
             this.tabControl2.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.panel75.SuspendLayout();
@@ -2927,6 +2928,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btnXemNhapHang);
             this.panel2.Controls.Add(this.panel81);
             this.panel2.Controls.Add(this.panel80);
             this.panel2.Controls.Add(this.btnXemDoanhThu);
@@ -3002,12 +3004,12 @@
             // 
             this.btnXemDoanhThu.BackColor = System.Drawing.Color.LightYellow;
             this.btnXemDoanhThu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnXemDoanhThu.Location = new System.Drawing.Point(1157, 20);
+            this.btnXemDoanhThu.Location = new System.Drawing.Point(1093, 20);
             this.btnXemDoanhThu.Margin = new System.Windows.Forms.Padding(4);
             this.btnXemDoanhThu.Name = "btnXemDoanhThu";
             this.btnXemDoanhThu.Size = new System.Drawing.Size(175, 70);
             this.btnXemDoanhThu.TabIndex = 2;
-            this.btnXemDoanhThu.Text = "Thống kê";
+            this.btnXemDoanhThu.Text = "Thống kê doanh thu";
             this.btnXemDoanhThu.UseVisualStyleBackColor = false;
             this.btnXemDoanhThu.Click += new System.EventHandler(this.btnXemDoanhThu_Click);
             // 
@@ -3023,10 +3025,11 @@
             // 
             // dtgvDoanhThu
             // 
-            this.dtgvDoanhThu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtgvDoanhThu.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dtgvDoanhThu.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dtgvDoanhThu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvDoanhThu.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.dtgvDoanhThu.ColumnHeadersHeight = 29;
+            this.dtgvDoanhThu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dtgvDoanhThu.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dtgvDoanhThu.Location = new System.Drawing.Point(4, 4);
             this.dtgvDoanhThu.Margin = new System.Windows.Forms.Padding(4);
             this.dtgvDoanhThu.Name = "dtgvDoanhThu";
@@ -3054,6 +3057,19 @@
             this.table.SelectedIndex = 0;
             this.table.Size = new System.Drawing.Size(1507, 778);
             this.table.TabIndex = 2;
+            // 
+            // btnXemNhapHang
+            // 
+            this.btnXemNhapHang.BackColor = System.Drawing.Color.LightYellow;
+            this.btnXemNhapHang.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnXemNhapHang.Location = new System.Drawing.Point(1276, 20);
+            this.btnXemNhapHang.Margin = new System.Windows.Forms.Padding(4);
+            this.btnXemNhapHang.Name = "btnXemNhapHang";
+            this.btnXemNhapHang.Size = new System.Drawing.Size(175, 70);
+            this.btnXemNhapHang.TabIndex = 7;
+            this.btnXemNhapHang.Text = "Thống kê nhập hàng";
+            this.btnXemNhapHang.UseVisualStyleBackColor = false;
+            this.btnXemNhapHang.Click += new System.EventHandler(this.btnXemNhapHang_Click);
             // 
             // fAdmin
             // 
@@ -3477,5 +3493,6 @@
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Panel panel80;
         private System.Windows.Forms.Panel panel81;
+        private System.Windows.Forms.Button btnXemNhapHang;
     }
 }

@@ -91,12 +91,130 @@ namespace App
         }
 
 
+        //void LoadDoanhThu(DateTime fromDate, DateTime toDate)
+        //{
+        //    string query = "EXEC GetThuChi_OneTable_WithNote @FromDate , @ToDate";
+        //    dtgvDoanhThu.DataSource = DataProvider.Instance.ExecuteQuery(query, new object[] { fromDate, toDate });
+        //}
+
+        // Gọi một lần ở Form_Load hoặc khởi tạo
+        void InitDoanhThuColumns()
+        {
+            dtgvDoanhThu.Columns.Clear();
+            dtgvDoanhThu.AutoGenerateColumns = false;
+
+            dtgvDoanhThu.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Ngay",
+                HeaderText = "Ngày",
+                DataPropertyName = "Ngày",
+                Width = 160,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Font = new Font("Segoe UI", 10),
+                    Alignment = DataGridViewContentAlignment.MiddleLeft
+                }
+            });
+
+            dtgvDoanhThu.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Loai",
+                HeaderText = "Loại",
+                DataPropertyName = "Loại",
+                Width = 100,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Font = new Font("Segoe UI", 10),
+                    Alignment = DataGridViewContentAlignment.MiddleCenter
+                }
+            });
+
+            dtgvDoanhThu.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "TenHang",
+                HeaderText = "Tên Hàng",
+                DataPropertyName = "Tên Hàng",
+                Width = 250,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Font = new Font("Segoe UI", 10)
+                }
+            });
+
+            dtgvDoanhThu.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "SoLuong",
+                HeaderText = "Số Lượng",
+                DataPropertyName = "Số Lượng",
+                Width = 70,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Font = new Font("Segoe UI", 10),
+                    Alignment = DataGridViewContentAlignment.MiddleCenter
+                }
+            });
+
+            dtgvDoanhThu.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "DonGia",
+                HeaderText = "Đơn Giá",
+                DataPropertyName = "Đơn Giá",
+                Width = 100,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Font = new Font("Segoe UI", 10),
+                    Format = "N0",
+                    Alignment = DataGridViewContentAlignment.MiddleRight
+                }
+            });
+
+            dtgvDoanhThu.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "ThanhTien",
+                HeaderText = "Thành Tiền",
+                DataPropertyName = "Thành Tiền",
+                Width = 120,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Font = new Font("Segoe UI", 10),
+                    Format = "N0",
+                    Alignment = DataGridViewContentAlignment.MiddleRight
+                }
+            });
+
+            dtgvDoanhThu.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "GhiChu",
+                HeaderText = "Ghi Chú",
+                DataPropertyName = "Ghi Chú",
+                Width = 650,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Font = new Font("Segoe UI", 10),
+                    Alignment = DataGridViewContentAlignment.MiddleLeft
+                }
+            });
+
+            // Font cho hàng tiêu đề (header): In đậm
+            dtgvDoanhThu.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dtgvDoanhThu.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dtgvDoanhThu.EnableHeadersVisualStyles = false;
+        }
+
+
         void LoadDoanhThu(DateTime fromDate, DateTime toDate)
         {
+            InitDoanhThuColumns();
             string query = "EXEC GetThuChi_OneTable_WithNote @FromDate , @ToDate";
             dtgvDoanhThu.DataSource = DataProvider.Instance.ExecuteQuery(query, new object[] { fromDate, toDate });
         }
 
+
+        void LoadNhapHang(DateTime fromDate, DateTime toDate)
+        {
+            string query = "EXEC GetThongKeNhapHang @FromDate , @ToDate";
+            dtgvDoanhThu.DataSource = DataProvider.Instance.ExecuteQuery(query, new object[] { fromDate, toDate });
+        }
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -132,6 +250,11 @@ namespace App
             LoadDoanhThu(dtpkFromDate.Value, dtpkToDate.Value);
         }
 
+        private void btnXemNhapHang_Click(object sender, EventArgs e)
+        {
+            LoadNhapHang(dtpkFromDate.Value, dtpkToDate.Value);
+        }
+
         private void dtgvCategory_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -146,5 +269,6 @@ namespace App
         {
 
         }
+
     }
 }

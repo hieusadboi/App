@@ -68,5 +68,30 @@ namespace App.DAO
             DataProvider.Instance.ExecuteNonQuery(query);
         }
 
+        public bool IsBillPaid(int idBill)
+        {
+            string query = "SELECT status FROM Bill WHERE idBill = @id";
+            DataTable dt = DataProvider.Instance.ExecuteQuery(query, new object[] { idBill });
+            if (dt.Rows.Count > 0)
+            {
+                return Convert.ToInt32(dt.Rows[0]["status"]) == 1;
+            }
+            return false;
+        }
+
+        public string GetDisplayNameByBillID(int billId)
+        {
+            string query = @"
+        SELECT s.fullName + ' (' + a.UserName + ')' AS displayName
+        FROM Bill b
+        JOIN Account a ON b.createdBy = a.UserName
+        JOIN Staff s ON a.UserName = s.accountUserName
+        WHERE b.idBill = @billId";
+
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { billId });
+
+            return result?.ToString() ?? "Không rõ";
+        }
+
     }
 }
