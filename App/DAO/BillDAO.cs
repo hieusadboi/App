@@ -68,16 +68,6 @@ namespace App.DAO
             DataProvider.Instance.ExecuteNonQuery(query);
         }
 
-        public bool IsBillPaid(int idBill)
-        {
-            string query = "SELECT status FROM Bill WHERE idBill = @id";
-            DataTable dt = DataProvider.Instance.ExecuteQuery(query, new object[] { idBill });
-            if (dt.Rows.Count > 0)
-            {
-                return Convert.ToInt32(dt.Rows[0]["status"]) == 1;
-            }
-            return false;
-        }
 
         public string GetDisplayNameByBillID(int billId)
         {

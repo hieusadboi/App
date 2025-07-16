@@ -32,7 +32,9 @@ namespace App.DAO
             foreach (DataRow item in data.Rows)
             {
                 Table table = new Table(item);
-                tableList.Add(table);
+                // Chỉ thêm bàn nếu tên không phải là "Mang về"
+                if (table.Name != "Mang về")
+                    tableList.Add(table);
             }
 
             return tableList;
@@ -52,6 +54,16 @@ namespace App.DAO
             return table;
         }
 
+        public Table GetTakeAwayTable()
+        {
+            string query = "SELECT * FROM TableFood WHERE tableName = N'Mang về'";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            if (data.Rows.Count > 0)
+            {
+                return new Table(data.Rows[0]);
+            }
+            return null;
+        }
 
     }
 }

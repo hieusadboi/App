@@ -18,6 +18,29 @@ namespace App
         {
             InitializeComponent();
             
+            //LoadAccountList();
+
+            //LoadFoodList();
+
+            //LoadCategoryList();
+
+            //LoadTableFood();
+
+            //LoadIngredient();
+
+            //LoadStaff();
+
+            //LoadFoodIngredient();
+
+            //LoadSupplier();
+
+            //LoadDoanhThu(DateTime.Now, DateTime.Now);
+
+            LoadALL();
+        }
+
+        void LoadALL()
+        {
             LoadAccountList();
 
             LoadFoodList();
@@ -36,11 +59,10 @@ namespace App
 
             LoadDoanhThu(DateTime.Now, DateTime.Now);
         }
-
+        
         void LoadFoodList()
         {
-            string query = "SELECT \r\n    F.idFood AS [Mã món],\r\n   C.categoryName AS [Danh mục],\r\n    F.foodName AS [Tên món],\r\n      F.price AS [Giá]\r\nFROM \r\n    Food F\r\nINNER JOIN FoodCategory C ON F.idCategory = C.idCategory\r\nORDER BY \r\n    C.categoryName, F.foodName;\r\n";
-            dtgvFood.DataSource = DataProvider.Instance.ExecuteQuery(query);
+            dtgvFood.DataSource = FoodDAO.Instance.GetListFood();
         }
 
         void LoadAccountList()
@@ -49,8 +71,6 @@ namespace App
 
             dtgvAccount.DataSource = DataProvider.Instance.ExecuteQuery(query);
         }
-
-
 
         void LoadCategoryList()
         {
@@ -146,7 +166,7 @@ namespace App
                 Name = "SoLuong",
                 HeaderText = "Số Lượng",
                 DataPropertyName = "Số Lượng",
-                Width = 70,
+                Width = 90,
                 DefaultCellStyle = new DataGridViewCellStyle
                 {
                     Font = new Font("Segoe UI", 10),
@@ -164,7 +184,7 @@ namespace App
                 {
                     Font = new Font("Segoe UI", 10),
                     Format = "N0",
-                    Alignment = DataGridViewContentAlignment.MiddleRight
+                    Alignment = DataGridViewContentAlignment.MiddleCenter
                 }
             });
 
@@ -215,20 +235,13 @@ namespace App
             string query = "EXEC GetThongKeNhapHang @FromDate , @ToDate";
             dtgvDoanhThu.DataSource = DataProvider.Instance.ExecuteQuery(query, new object[] { fromDate, toDate });
         }
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void txbUser_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -240,10 +253,6 @@ namespace App
 
         }
 
-        private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void btnXemDoanhThu_Click(object sender, EventArgs e)
         {
@@ -266,6 +275,56 @@ namespace App
         }
 
         private void panel19_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnShowFood_Click(object sender, EventArgs e)
+        {
+            LoadFoodList();
+        }
+
+        private void btnShowCategory_Click(object sender, EventArgs e)
+        {
+            LoadCategoryList();
+        }
+
+        private void btnShowTable_Click(object sender, EventArgs e)
+        {
+            LoadTableFood();
+        }
+
+        private void btnShowAccount_Click(object sender, EventArgs e)
+        {
+            LoadAccountList();
+        }
+
+        private void btnShowIngredient_Click(object sender, EventArgs e)
+        {
+            LoadIngredient();
+        }
+
+        private void btnShowFoodIngredient_Click(object sender, EventArgs e)
+        {
+            LoadFoodIngredient();
+        }
+
+        private void btnShowStaff_Click(object sender, EventArgs e)
+        {
+            LoadStaff();
+        }
+
+        private void btnShowSuplier_Click(object sender, EventArgs e)
+        {
+            LoadSupplier();
+        }
+
+        private void btnShowImportReceipt_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnShowImportDetail_Click(object sender, EventArgs e)
         {
 
         }

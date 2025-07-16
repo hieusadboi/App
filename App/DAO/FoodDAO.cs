@@ -32,5 +32,19 @@ namespace App.DAO
             return listFood;
         }
 
+        // Lấy danh sách món ăn
+        public List<Food> GetListFood()
+        {
+            List<Food> listFood = new List<Food>();
+            string query = "SELECT * FROM Food";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                Food food = new Food(item);
+                listFood.Add(food);
+            }
+            return listFood;
+        }
+
     }
 }

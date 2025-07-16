@@ -48,7 +48,7 @@
             this.panel62 = new System.Windows.Forms.Panel();
             this.dtgvImportDetail = new System.Windows.Forms.DataGridView();
             this.panel61 = new System.Windows.Forms.Panel();
-            this.button29 = new System.Windows.Forms.Button();
+            this.btnShowImportDetail = new System.Windows.Forms.Button();
             this.button30 = new System.Windows.Forms.Button();
             this.button31 = new System.Windows.Forms.Button();
             this.button32 = new System.Windows.Forms.Button();
@@ -59,7 +59,7 @@
             this.panel66 = new System.Windows.Forms.Panel();
             this.dtgvImport = new System.Windows.Forms.DataGridView();
             this.panel65 = new System.Windows.Forms.Panel();
-            this.button17 = new System.Windows.Forms.Button();
+            this.btnShowImportReceipt = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
@@ -96,7 +96,7 @@
             this.panel52 = new System.Windows.Forms.Panel();
             this.dtgvSuplier = new System.Windows.Forms.DataGridView();
             this.panel51 = new System.Windows.Forms.Panel();
-            this.button13 = new System.Windows.Forms.Button();
+            this.btnShowSuplier = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
@@ -105,7 +105,7 @@
             this.textBox27 = new System.Windows.Forms.TextBox();
             this.button26 = new System.Windows.Forms.Button();
             this.panel47 = new System.Windows.Forms.Panel();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btnShowStaff = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
@@ -150,7 +150,7 @@
             this.panel35 = new System.Windows.Forms.Panel();
             this.dtgvFoodIngredient = new System.Windows.Forms.DataGridView();
             this.panel34 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnShowFoodIngredient = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
@@ -161,7 +161,7 @@
             this.panel33 = new System.Windows.Forms.Panel();
             this.dtgvIngredient = new System.Windows.Forms.DataGridView();
             this.panel32 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnShowIngredient = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -242,7 +242,7 @@
             this.tpFood = new System.Windows.Forms.TabPage();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.nmPriceFood = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.cbFoodCategory = new System.Windows.Forms.ComboBox();
@@ -265,6 +265,7 @@
             this.dtgvFood = new System.Windows.Forms.DataGridView();
             this.tpBill = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnXemNhapHang = new System.Windows.Forms.Button();
             this.panel81 = new System.Windows.Forms.Panel();
             this.dtpkFromDate = new System.Windows.Forms.DateTimePicker();
             this.label39 = new System.Windows.Forms.Label();
@@ -275,7 +276,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.dtgvDoanhThu = new System.Windows.Forms.DataGridView();
             this.table = new System.Windows.Forms.TabControl();
-            this.btnXemNhapHang = new System.Windows.Forms.Button();
             this.tabControl2.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.panel75.SuspendLayout();
@@ -369,7 +369,7 @@
             this.tpFood.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmPriceFood)).BeginInit();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -594,7 +594,7 @@
             // panel61
             // 
             this.panel61.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel61.Controls.Add(this.button29);
+            this.panel61.Controls.Add(this.btnShowImportDetail);
             this.panel61.Controls.Add(this.button30);
             this.panel61.Controls.Add(this.button31);
             this.panel61.Controls.Add(this.button32);
@@ -604,15 +604,16 @@
             this.panel61.Size = new System.Drawing.Size(1048, 75);
             this.panel61.TabIndex = 15;
             // 
-            // button29
+            // btnShowImportDetail
             // 
-            this.button29.Location = new System.Drawing.Point(428, 4);
-            this.button29.Margin = new System.Windows.Forms.Padding(4);
-            this.button29.Name = "button29";
-            this.button29.Size = new System.Drawing.Size(132, 68);
-            this.button29.TabIndex = 3;
-            this.button29.Text = "Xem";
-            this.button29.UseVisualStyleBackColor = true;
+            this.btnShowImportDetail.Location = new System.Drawing.Point(428, 4);
+            this.btnShowImportDetail.Margin = new System.Windows.Forms.Padding(4);
+            this.btnShowImportDetail.Name = "btnShowImportDetail";
+            this.btnShowImportDetail.Size = new System.Drawing.Size(132, 68);
+            this.btnShowImportDetail.TabIndex = 3;
+            this.btnShowImportDetail.Text = "Tải lại";
+            this.btnShowImportDetail.UseVisualStyleBackColor = true;
+            this.btnShowImportDetail.Click += new System.EventHandler(this.btnShowImportDetail_Click);
             // 
             // button30
             // 
@@ -713,7 +714,7 @@
             // panel65
             // 
             this.panel65.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel65.Controls.Add(this.button17);
+            this.panel65.Controls.Add(this.btnShowImportReceipt);
             this.panel65.Controls.Add(this.button18);
             this.panel65.Controls.Add(this.button19);
             this.panel65.Controls.Add(this.button20);
@@ -723,15 +724,16 @@
             this.panel65.Size = new System.Drawing.Size(1038, 75);
             this.panel65.TabIndex = 14;
             // 
-            // button17
+            // btnShowImportReceipt
             // 
-            this.button17.Location = new System.Drawing.Point(428, 4);
-            this.button17.Margin = new System.Windows.Forms.Padding(4);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(132, 68);
-            this.button17.TabIndex = 3;
-            this.button17.Text = "Xem";
-            this.button17.UseVisualStyleBackColor = true;
+            this.btnShowImportReceipt.Location = new System.Drawing.Point(428, 4);
+            this.btnShowImportReceipt.Margin = new System.Windows.Forms.Padding(4);
+            this.btnShowImportReceipt.Name = "btnShowImportReceipt";
+            this.btnShowImportReceipt.Size = new System.Drawing.Size(132, 68);
+            this.btnShowImportReceipt.TabIndex = 3;
+            this.btnShowImportReceipt.Text = "Tải lại";
+            this.btnShowImportReceipt.UseVisualStyleBackColor = true;
+            this.btnShowImportReceipt.Click += new System.EventHandler(this.btnShowImportReceipt_Click);
             // 
             // button18
             // 
@@ -1100,7 +1102,7 @@
             // panel51
             // 
             this.panel51.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel51.Controls.Add(this.button13);
+            this.panel51.Controls.Add(this.btnShowSuplier);
             this.panel51.Controls.Add(this.button14);
             this.panel51.Controls.Add(this.button15);
             this.panel51.Controls.Add(this.button16);
@@ -1110,15 +1112,16 @@
             this.panel51.Size = new System.Drawing.Size(1043, 75);
             this.panel51.TabIndex = 10;
             // 
-            // button13
+            // btnShowSuplier
             // 
-            this.button13.Location = new System.Drawing.Point(428, 4);
-            this.button13.Margin = new System.Windows.Forms.Padding(4);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(132, 68);
-            this.button13.TabIndex = 3;
-            this.button13.Text = "Xem";
-            this.button13.UseVisualStyleBackColor = true;
+            this.btnShowSuplier.Location = new System.Drawing.Point(428, 4);
+            this.btnShowSuplier.Margin = new System.Windows.Forms.Padding(4);
+            this.btnShowSuplier.Name = "btnShowSuplier";
+            this.btnShowSuplier.Size = new System.Drawing.Size(132, 68);
+            this.btnShowSuplier.TabIndex = 3;
+            this.btnShowSuplier.Text = "Tải lại";
+            this.btnShowSuplier.UseVisualStyleBackColor = true;
+            this.btnShowSuplier.Click += new System.EventHandler(this.btnShowSuplier_Click);
             // 
             // button14
             // 
@@ -1197,7 +1200,7 @@
             // panel47
             // 
             this.panel47.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel47.Controls.Add(this.button9);
+            this.panel47.Controls.Add(this.btnShowStaff);
             this.panel47.Controls.Add(this.button10);
             this.panel47.Controls.Add(this.button11);
             this.panel47.Controls.Add(this.button12);
@@ -1207,15 +1210,16 @@
             this.panel47.Size = new System.Drawing.Size(1040, 75);
             this.panel47.TabIndex = 9;
             // 
-            // button9
+            // btnShowStaff
             // 
-            this.button9.Location = new System.Drawing.Point(428, 4);
-            this.button9.Margin = new System.Windows.Forms.Padding(4);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(132, 68);
-            this.button9.TabIndex = 3;
-            this.button9.Text = "Xem";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnShowStaff.Location = new System.Drawing.Point(428, 4);
+            this.btnShowStaff.Margin = new System.Windows.Forms.Padding(4);
+            this.btnShowStaff.Name = "btnShowStaff";
+            this.btnShowStaff.Size = new System.Drawing.Size(132, 68);
+            this.btnShowStaff.TabIndex = 3;
+            this.btnShowStaff.Text = "Tải lại";
+            this.btnShowStaff.UseVisualStyleBackColor = true;
+            this.btnShowStaff.Click += new System.EventHandler(this.btnShowStaff_Click);
             // 
             // button10
             // 
@@ -1267,7 +1271,6 @@
             this.dtgvStaff.RowHeadersWidth = 51;
             this.dtgvStaff.Size = new System.Drawing.Size(1030, 635);
             this.dtgvStaff.TabIndex = 0;
-            this.dtgvStaff.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellContentClick);
             // 
             // panel37
             // 
@@ -1677,7 +1680,7 @@
             // panel34
             // 
             this.panel34.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel34.Controls.Add(this.button5);
+            this.panel34.Controls.Add(this.btnShowFoodIngredient);
             this.panel34.Controls.Add(this.button6);
             this.panel34.Controls.Add(this.button7);
             this.panel34.Controls.Add(this.button8);
@@ -1687,15 +1690,16 @@
             this.panel34.Size = new System.Drawing.Size(1044, 75);
             this.panel34.TabIndex = 6;
             // 
-            // button5
+            // btnShowFoodIngredient
             // 
-            this.button5.Location = new System.Drawing.Point(428, 4);
-            this.button5.Margin = new System.Windows.Forms.Padding(4);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(132, 68);
-            this.button5.TabIndex = 3;
-            this.button5.Text = "Xem";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnShowFoodIngredient.Location = new System.Drawing.Point(428, 4);
+            this.btnShowFoodIngredient.Margin = new System.Windows.Forms.Padding(4);
+            this.btnShowFoodIngredient.Name = "btnShowFoodIngredient";
+            this.btnShowFoodIngredient.Size = new System.Drawing.Size(132, 68);
+            this.btnShowFoodIngredient.TabIndex = 3;
+            this.btnShowFoodIngredient.Text = "Tải lại";
+            this.btnShowFoodIngredient.UseVisualStyleBackColor = true;
+            this.btnShowFoodIngredient.Click += new System.EventHandler(this.btnShowFoodIngredient_Click);
             // 
             // button6
             // 
@@ -1796,7 +1800,7 @@
             // panel32
             // 
             this.panel32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel32.Controls.Add(this.button1);
+            this.panel32.Controls.Add(this.btnShowIngredient);
             this.panel32.Controls.Add(this.button2);
             this.panel32.Controls.Add(this.button3);
             this.panel32.Controls.Add(this.button4);
@@ -1806,15 +1810,16 @@
             this.panel32.Size = new System.Drawing.Size(1048, 75);
             this.panel32.TabIndex = 5;
             // 
-            // button1
+            // btnShowIngredient
             // 
-            this.button1.Location = new System.Drawing.Point(428, 4);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(132, 68);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Xem";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnShowIngredient.Location = new System.Drawing.Point(428, 4);
+            this.btnShowIngredient.Margin = new System.Windows.Forms.Padding(4);
+            this.btnShowIngredient.Name = "btnShowIngredient";
+            this.btnShowIngredient.Size = new System.Drawing.Size(132, 68);
+            this.btnShowIngredient.TabIndex = 3;
+            this.btnShowIngredient.Text = "Tải lại";
+            this.btnShowIngredient.UseVisualStyleBackColor = true;
+            this.btnShowIngredient.Click += new System.EventHandler(this.btnShowIngredient_Click);
             // 
             // button2
             // 
@@ -2075,8 +2080,9 @@
             this.btnShowAccount.Name = "btnShowAccount";
             this.btnShowAccount.Size = new System.Drawing.Size(132, 68);
             this.btnShowAccount.TabIndex = 3;
-            this.btnShowAccount.Text = "Xem";
+            this.btnShowAccount.Text = "Tải lại";
             this.btnShowAccount.UseVisualStyleBackColor = true;
+            this.btnShowAccount.Click += new System.EventHandler(this.btnShowAccount_Click);
             // 
             // btnDeleteAccount
             // 
@@ -2421,8 +2427,9 @@
             this.btnShowTable.Name = "btnShowTable";
             this.btnShowTable.Size = new System.Drawing.Size(132, 68);
             this.btnShowTable.TabIndex = 3;
-            this.btnShowTable.Text = "Xem";
+            this.btnShowTable.Text = "Tải lại";
             this.btnShowTable.UseVisualStyleBackColor = true;
+            this.btnShowTable.Click += new System.EventHandler(this.btnShowTable_Click);
             // 
             // btnDeleteTable
             // 
@@ -2617,8 +2624,9 @@
             this.btnShowCategory.Name = "btnShowCategory";
             this.btnShowCategory.Size = new System.Drawing.Size(132, 68);
             this.btnShowCategory.TabIndex = 3;
-            this.btnShowCategory.Text = "Xem";
+            this.btnShowCategory.Text = "Tải lại";
             this.btnShowCategory.UseVisualStyleBackColor = true;
+            this.btnShowCategory.Click += new System.EventHandler(this.btnShowCategory_Click);
             // 
             // btnDeleteCategory
             // 
@@ -2681,7 +2689,7 @@
             // panel10
             // 
             this.panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel10.Controls.Add(this.numericUpDown1);
+            this.panel10.Controls.Add(this.nmPriceFood);
             this.panel10.Controls.Add(this.label4);
             this.panel10.Location = new System.Drawing.Point(4, 210);
             this.panel10.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -2689,18 +2697,23 @@
             this.panel10.Size = new System.Drawing.Size(415, 58);
             this.panel10.TabIndex = 4;
             // 
-            // numericUpDown1
+            // nmPriceFood
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(148, 12);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.nmPriceFood.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nmPriceFood.Location = new System.Drawing.Point(148, 12);
+            this.nmPriceFood.Margin = new System.Windows.Forms.Padding(4);
+            this.nmPriceFood.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(268, 27);
-            this.numericUpDown1.TabIndex = 1;
+            this.nmPriceFood.Name = "nmPriceFood";
+            this.nmPriceFood.Size = new System.Drawing.Size(260, 27);
+            this.nmPriceFood.TabIndex = 1;
             // 
             // label4
             // 
@@ -2721,7 +2734,7 @@
             this.panel9.Location = new System.Drawing.Point(4, 137);
             this.panel9.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(417, 70);
+            this.panel9.Size = new System.Drawing.Size(415, 70);
             this.panel9.TabIndex = 3;
             // 
             // cbFoodCategory
@@ -2730,7 +2743,7 @@
             this.cbFoodCategory.Location = new System.Drawing.Point(148, 20);
             this.cbFoodCategory.Margin = new System.Windows.Forms.Padding(4);
             this.cbFoodCategory.Name = "cbFoodCategory";
-            this.cbFoodCategory.Size = new System.Drawing.Size(264, 28);
+            this.cbFoodCategory.Size = new System.Drawing.Size(260, 28);
             this.cbFoodCategory.TabIndex = 1;
             // 
             // label3
@@ -2752,7 +2765,7 @@
             this.panel8.Location = new System.Drawing.Point(4, 68);
             this.panel8.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(417, 62);
+            this.panel8.Size = new System.Drawing.Size(415, 62);
             this.panel8.TabIndex = 2;
             // 
             // txbFoodName
@@ -2760,7 +2773,7 @@
             this.txbFoodName.Location = new System.Drawing.Point(148, 20);
             this.txbFoodName.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txbFoodName.Name = "txbFoodName";
-            this.txbFoodName.Size = new System.Drawing.Size(264, 27);
+            this.txbFoodName.Size = new System.Drawing.Size(260, 27);
             this.txbFoodName.TabIndex = 1;
             // 
             // label2
@@ -2782,7 +2795,7 @@
             this.panel7.Location = new System.Drawing.Point(4, 4);
             this.panel7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(417, 60);
+            this.panel7.Size = new System.Drawing.Size(415, 60);
             this.panel7.TabIndex = 1;
             // 
             // txbFoodID
@@ -2855,8 +2868,9 @@
             this.btnShowFood.Name = "btnShowFood";
             this.btnShowFood.Size = new System.Drawing.Size(132, 68);
             this.btnShowFood.TabIndex = 3;
-            this.btnShowFood.Text = "Xem";
+            this.btnShowFood.Text = "Tải lại";
             this.btnShowFood.UseVisualStyleBackColor = true;
+            this.btnShowFood.Click += new System.EventHandler(this.btnShowFood_Click);
             // 
             // btnDelete
             // 
@@ -2938,6 +2952,19 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1483, 111);
             this.panel2.TabIndex = 1;
+            // 
+            // btnXemNhapHang
+            // 
+            this.btnXemNhapHang.BackColor = System.Drawing.Color.LightYellow;
+            this.btnXemNhapHang.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnXemNhapHang.Location = new System.Drawing.Point(1276, 20);
+            this.btnXemNhapHang.Margin = new System.Windows.Forms.Padding(4);
+            this.btnXemNhapHang.Name = "btnXemNhapHang";
+            this.btnXemNhapHang.Size = new System.Drawing.Size(175, 70);
+            this.btnXemNhapHang.TabIndex = 7;
+            this.btnXemNhapHang.Text = "Thống kê nhập hàng";
+            this.btnXemNhapHang.UseVisualStyleBackColor = false;
+            this.btnXemNhapHang.Click += new System.EventHandler(this.btnXemNhapHang_Click);
             // 
             // panel81
             // 
@@ -3057,19 +3084,6 @@
             this.table.SelectedIndex = 0;
             this.table.Size = new System.Drawing.Size(1507, 778);
             this.table.TabIndex = 2;
-            // 
-            // btnXemNhapHang
-            // 
-            this.btnXemNhapHang.BackColor = System.Drawing.Color.LightYellow;
-            this.btnXemNhapHang.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnXemNhapHang.Location = new System.Drawing.Point(1276, 20);
-            this.btnXemNhapHang.Margin = new System.Windows.Forms.Padding(4);
-            this.btnXemNhapHang.Name = "btnXemNhapHang";
-            this.btnXemNhapHang.Size = new System.Drawing.Size(175, 70);
-            this.btnXemNhapHang.TabIndex = 7;
-            this.btnXemNhapHang.Text = "Thống kê nhập hàng";
-            this.btnXemNhapHang.UseVisualStyleBackColor = false;
-            this.btnXemNhapHang.Click += new System.EventHandler(this.btnXemNhapHang_Click);
             // 
             // fAdmin
             // 
@@ -3220,7 +3234,7 @@
             this.panel6.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmPriceFood)).EndInit();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             this.panel8.ResumeLayout(false);
@@ -3266,7 +3280,6 @@
         private System.Windows.Forms.Panel panel62;
         private System.Windows.Forms.DataGridView dtgvImportDetail;
         private System.Windows.Forms.Panel panel61;
-        private System.Windows.Forms.Button button29;
         private System.Windows.Forms.Button button30;
         private System.Windows.Forms.Button button31;
         private System.Windows.Forms.Button button32;
@@ -3277,7 +3290,6 @@
         private System.Windows.Forms.Panel panel66;
         private System.Windows.Forms.DataGridView dtgvImport;
         private System.Windows.Forms.Panel panel65;
-        private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Button button20;
@@ -3314,7 +3326,6 @@
         private System.Windows.Forms.Panel panel52;
         private System.Windows.Forms.DataGridView dtgvSuplier;
         private System.Windows.Forms.Panel panel51;
-        private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button16;
@@ -3323,7 +3334,6 @@
         private System.Windows.Forms.TextBox textBox27;
         private System.Windows.Forms.Button button26;
         private System.Windows.Forms.Panel panel47;
-        private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
@@ -3368,7 +3378,6 @@
         private System.Windows.Forms.Panel panel35;
         private System.Windows.Forms.DataGridView dtgvFoodIngredient;
         private System.Windows.Forms.Panel panel34;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
@@ -3379,7 +3388,6 @@
         private System.Windows.Forms.Panel panel33;
         private System.Windows.Forms.DataGridView dtgvIngredient;
         private System.Windows.Forms.Panel panel32;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
@@ -3403,7 +3411,6 @@
         private System.Windows.Forms.Panel panel28;
         private System.Windows.Forms.DataGridView dtgvAccount;
         private System.Windows.Forms.Panel panel27;
-        private System.Windows.Forms.Button btnShowAccount;
         private System.Windows.Forms.Button btnDeleteAccount;
         private System.Windows.Forms.Button btnEditAccount;
         private System.Windows.Forms.Button btnAddAccount;
@@ -3435,7 +3442,6 @@
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.DataGridView dtgvTableFood;
         private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.Button btnShowTable;
         private System.Windows.Forms.Button btnDeleteTable;
         private System.Windows.Forms.Button btnEditTable;
         private System.Windows.Forms.Button btnAddTable;
@@ -3453,14 +3459,13 @@
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.DataGridView dtgvCategory;
         private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Button btnShowCategory;
         private System.Windows.Forms.Button btnDeleteCategory;
         private System.Windows.Forms.Button btnEditCategory;
         private System.Windows.Forms.Button btnAddCategory;
         private System.Windows.Forms.TabPage tpFood;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown nmPriceFood;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.ComboBox cbFoodCategory;
@@ -3475,7 +3480,6 @@
         private System.Windows.Forms.TextBox txbSearchFoodName;
         private System.Windows.Forms.Button btnSearchFood;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button btnShowFood;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEditFood;
         private System.Windows.Forms.Button btnAddFood;
@@ -3494,5 +3498,15 @@
         private System.Windows.Forms.Panel panel80;
         private System.Windows.Forms.Panel panel81;
         private System.Windows.Forms.Button btnXemNhapHang;
+        private System.Windows.Forms.Button btnShowImportDetail;
+        private System.Windows.Forms.Button btnShowImportReceipt;
+        private System.Windows.Forms.Button btnShowSuplier;
+        private System.Windows.Forms.Button btnShowStaff;
+        private System.Windows.Forms.Button btnShowFoodIngredient;
+        private System.Windows.Forms.Button btnShowIngredient;
+        private System.Windows.Forms.Button btnShowAccount;
+        private System.Windows.Forms.Button btnShowTable;
+        private System.Windows.Forms.Button btnShowCategory;
+        private System.Windows.Forms.Button btnShowFood;
     }
 }

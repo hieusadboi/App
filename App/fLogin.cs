@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -62,28 +63,59 @@ namespace App
             }
         }
 
+        //private void btnLogin_Click(object sender, EventArgs e)
+        //{
+        //    string userName = txbUser.Text;
+        //    string password = txbPass.Text;
+        //    if (Login(userName, password))
+        //    {
+        //        LoggedInUserName = userName; // Lưu lại userName
+        //        fTableManager f = new fTableManager();
+        //        this.Hide();
+        //        f.ShowDialog();
+        //        this.Show();
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string userName = txbUser.Text;
             string password = txbPass.Text;
-            if (Login(userName, password))
+            int loginResult = DAO.AccountDAO.Instance.Login(userName, password);
+
+            switch (loginResult)
             {
-                LoggedInUserName = userName; // Lưu lại userName
-                fTableManager f = new fTableManager();
-                this.Hide();
-                f.ShowDialog();
-                this.Show();
-            }
-            else
-            {
-                MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                case 1: // Thành công
+                    LoggedInUserName = userName;
+                    Account loginAccount = DAO.AccountDAO.Instance.GetAccountByUsername(userName);
+                    fTableManager f = new fTableManager(loginAccount); // Lưu tài khoản đăng nhập vào fTableManager
+                    this.Hide();
+                    f.ShowDialog();
+                    this.Show();
+                    break;
+
+                case 0:
+                    MessageBox.Show("Tài khoản này đã bị vô hiệu hóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+
+                case -1:
+                    MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+
+                default:
+                    MessageBox.Show("Lỗi không xác định. Vui lòng thử lại sau.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
             }
         }
 
-        bool Login(string userName, string password)
-        {
-            return DAO.AccountDAO.Instance.Login(userName, password);
-        }
+        //int Login(string userName, string password)
+        //{
+        //    return DAO.AccountDAO.Instance.Login(userName, password);
+        //}
 
         private void label3_Click(object sender, EventArgs e)
         {

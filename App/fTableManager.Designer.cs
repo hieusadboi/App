@@ -31,6 +31,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thôngTinTàiKhoảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updatethongtincanhan = new System.Windows.Forms.ToolStripMenuItem();
             this.thôngTinCáNhânToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đăngXuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nhậpNguyênLiệuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +44,7 @@
             this.ThanhTien = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.IdBill = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnPrintBill = new System.Windows.Forms.Button();
             this.txbtotalPrice = new System.Windows.Forms.TextBox();
             this.textboxtongtien = new System.Windows.Forms.Label();
             this.ptnCheckOut = new System.Windows.Forms.Button();
@@ -62,7 +64,6 @@
             this.flowLayoutNormalTables = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBoxVipTables = new System.Windows.Forms.GroupBox();
             this.flowLayoutVipTables = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnPrintBill = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -102,18 +103,26 @@
             // thôngTinTàiKhoảnToolStripMenuItem
             // 
             this.thôngTinTàiKhoảnToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.updatethongtincanhan,
             this.thôngTinCáNhânToolStripMenuItem,
             this.đăngXuấtToolStripMenuItem});
             this.thôngTinTàiKhoảnToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.thôngTinTàiKhoảnToolStripMenuItem.Name = "thôngTinTàiKhoảnToolStripMenuItem";
-            this.thôngTinTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(182, 27);
-            this.thôngTinTàiKhoảnToolStripMenuItem.Text = "Thông tin tài khoản";
+            this.thôngTinTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(102, 27);
+            this.thôngTinTàiKhoảnToolStripMenuItem.Text = "Thông tin";
+            // 
+            // updatethongtincanhan
+            // 
+            this.updatethongtincanhan.Name = "updatethongtincanhan";
+            this.updatethongtincanhan.Size = new System.Drawing.Size(238, 28);
+            this.updatethongtincanhan.Text = "Thông tin cá nhân";
+            this.updatethongtincanhan.Click += new System.EventHandler(this.updatethongtincanhan_Click);
             // 
             // thôngTinCáNhânToolStripMenuItem
             // 
             this.thôngTinCáNhânToolStripMenuItem.Name = "thôngTinCáNhânToolStripMenuItem";
             this.thôngTinCáNhânToolStripMenuItem.Size = new System.Drawing.Size(238, 28);
-            this.thôngTinCáNhânToolStripMenuItem.Text = "Thông tin cá nhân";
+            this.thôngTinCáNhânToolStripMenuItem.Text = "Đổi mật khẩu";
             this.thôngTinCáNhânToolStripMenuItem.Click += new System.EventHandler(this.thôngTinCáNhânToolStripMenuItem_Click);
             // 
             // đăngXuấtToolStripMenuItem
@@ -136,7 +145,7 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.lsvBill);
             this.panel2.Location = new System.Drawing.Point(823, 209);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(696, 468);
             this.panel2.TabIndex = 2;
@@ -150,7 +159,7 @@
             this.label1.Location = new System.Drawing.Point(218, 22);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(314, 42);
+            this.label1.Size = new System.Drawing.Size(309, 40);
             this.label1.TabIndex = 1;
             this.label1.Text = "Thông tin hóa đơn";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -168,7 +177,7 @@
             this.lsvBill.GridLines = true;
             this.lsvBill.HideSelection = false;
             this.lsvBill.Location = new System.Drawing.Point(-1, 78);
-            this.lsvBill.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lsvBill.Margin = new System.Windows.Forms.Padding(4);
             this.lsvBill.Name = "lsvBill";
             this.lsvBill.Size = new System.Drawing.Size(696, 390);
             this.lsvBill.TabIndex = 0;
@@ -212,10 +221,23 @@
             this.panel3.Controls.Add(this.textboxtongtien);
             this.panel3.Controls.Add(this.ptnCheckOut);
             this.panel3.Location = new System.Drawing.Point(823, 686);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(696, 107);
             this.panel3.TabIndex = 3;
+            // 
+            // btnPrintBill
+            // 
+            this.btnPrintBill.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnPrintBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintBill.Location = new System.Drawing.Point(38, 8);
+            this.btnPrintBill.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPrintBill.Name = "btnPrintBill";
+            this.btnPrintBill.Size = new System.Drawing.Size(150, 86);
+            this.btnPrintBill.TabIndex = 8;
+            this.btnPrintBill.Text = "In Hóa Đơn ";
+            this.btnPrintBill.UseVisualStyleBackColor = false;
+            this.btnPrintBill.Click += new System.EventHandler(this.btnPrintBill_Click);
             // 
             // txbtotalPrice
             // 
@@ -223,7 +245,7 @@
             this.txbtotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbtotalPrice.ForeColor = System.Drawing.SystemColors.MenuText;
             this.txbtotalPrice.Location = new System.Drawing.Point(246, 60);
-            this.txbtotalPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbtotalPrice.Margin = new System.Windows.Forms.Padding(2);
             this.txbtotalPrice.Name = "txbtotalPrice";
             this.txbtotalPrice.Size = new System.Drawing.Size(270, 30);
             this.txbtotalPrice.TabIndex = 7;
@@ -249,7 +271,7 @@
             this.ptnCheckOut.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ptnCheckOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ptnCheckOut.Location = new System.Drawing.Point(522, 4);
-            this.ptnCheckOut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ptnCheckOut.Margin = new System.Windows.Forms.Padding(4);
             this.ptnCheckOut.Name = "ptnCheckOut";
             this.ptnCheckOut.Size = new System.Drawing.Size(150, 86);
             this.ptnCheckOut.TabIndex = 3;
@@ -265,7 +287,7 @@
             this.panel4.Controls.Add(this.panel6);
             this.panel4.Controls.Add(this.bnAddFood);
             this.panel4.Location = new System.Drawing.Point(823, 41);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(696, 160);
             this.panel4.TabIndex = 4;
@@ -276,7 +298,7 @@
             this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.nmFoodCount);
             this.panel5.Location = new System.Drawing.Point(2, 106);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(490, 46);
             this.panel5.TabIndex = 10;
@@ -298,7 +320,7 @@
             // 
             this.nmFoodCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nmFoodCount.Location = new System.Drawing.Point(141, 4);
-            this.nmFoodCount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nmFoodCount.Margin = new System.Windows.Forms.Padding(4);
             this.nmFoodCount.Minimum = new decimal(new int[] {
             10,
             0,
@@ -321,7 +343,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.cbCategory);
             this.panel1.Location = new System.Drawing.Point(2, 4);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(490, 44);
             this.panel1.TabIndex = 7;
@@ -346,7 +368,7 @@
             this.cbCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCategory.FormattingEnabled = true;
             this.cbCategory.Location = new System.Drawing.Point(141, 4);
-            this.cbCategory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbCategory.Margin = new System.Windows.Forms.Padding(4);
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(292, 30);
             this.cbCategory.TabIndex = 0;
@@ -358,7 +380,7 @@
             this.panel6.Controls.Add(this.label3);
             this.panel6.Controls.Add(this.cbFood);
             this.panel6.Location = new System.Drawing.Point(2, 58);
-            this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(490, 43);
             this.panel6.TabIndex = 9;
@@ -380,7 +402,7 @@
             this.cbFood.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbFood.FormattingEnabled = true;
             this.cbFood.Location = new System.Drawing.Point(142, 4);
-            this.cbFood.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbFood.Margin = new System.Windows.Forms.Padding(4);
             this.cbFood.Name = "cbFood";
             this.cbFood.Size = new System.Drawing.Size(292, 30);
             this.cbFood.TabIndex = 1;
@@ -390,7 +412,7 @@
             this.bnAddFood.BackColor = System.Drawing.Color.NavajoWhite;
             this.bnAddFood.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bnAddFood.Location = new System.Drawing.Point(522, 34);
-            this.bnAddFood.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bnAddFood.Margin = new System.Windows.Forms.Padding(4);
             this.bnAddFood.Name = "bnAddFood";
             this.bnAddFood.Size = new System.Drawing.Size(150, 84);
             this.bnAddFood.TabIndex = 2;
@@ -406,7 +428,7 @@
             this.flpTable.Controls.Add(this.groupBoxNormalTables);
             this.flpTable.Controls.Add(this.groupBoxVipTables);
             this.flpTable.Location = new System.Drawing.Point(20, 41);
-            this.flpTable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flpTable.Margin = new System.Windows.Forms.Padding(4);
             this.flpTable.Name = "flpTable";
             this.flpTable.Size = new System.Drawing.Size(786, 751);
             this.flpTable.TabIndex = 5;
@@ -416,9 +438,9 @@
             this.groupBoxNormalTables.Controls.Add(this.flowLayoutNormalTables);
             this.groupBoxNormalTables.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxNormalTables.Location = new System.Drawing.Point(2, 2);
-            this.groupBoxNormalTables.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxNormalTables.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxNormalTables.Name = "groupBoxNormalTables";
-            this.groupBoxNormalTables.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxNormalTables.Padding = new System.Windows.Forms.Padding(2);
             this.groupBoxNormalTables.Size = new System.Drawing.Size(772, 440);
             this.groupBoxNormalTables.TabIndex = 1;
             this.groupBoxNormalTables.TabStop = false;
@@ -429,7 +451,7 @@
             this.flowLayoutNormalTables.AutoScroll = true;
             this.flowLayoutNormalTables.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutNormalTables.Location = new System.Drawing.Point(2, 25);
-            this.flowLayoutNormalTables.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutNormalTables.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutNormalTables.Name = "flowLayoutNormalTables";
             this.flowLayoutNormalTables.Size = new System.Drawing.Size(768, 413);
             this.flowLayoutNormalTables.TabIndex = 0;
@@ -439,9 +461,9 @@
             this.groupBoxVipTables.Controls.Add(this.flowLayoutVipTables);
             this.groupBoxVipTables.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxVipTables.Location = new System.Drawing.Point(2, 446);
-            this.groupBoxVipTables.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxVipTables.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxVipTables.Name = "groupBoxVipTables";
-            this.groupBoxVipTables.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxVipTables.Padding = new System.Windows.Forms.Padding(2);
             this.groupBoxVipTables.Size = new System.Drawing.Size(772, 286);
             this.groupBoxVipTables.TabIndex = 0;
             this.groupBoxVipTables.TabStop = false;
@@ -451,23 +473,10 @@
             // 
             this.flowLayoutVipTables.AutoScroll = true;
             this.flowLayoutVipTables.Location = new System.Drawing.Point(6, 26);
-            this.flowLayoutVipTables.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutVipTables.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutVipTables.Name = "flowLayoutVipTables";
             this.flowLayoutVipTables.Size = new System.Drawing.Size(764, 254);
             this.flowLayoutVipTables.TabIndex = 0;
-            // 
-            // btnPrintBill
-            // 
-            this.btnPrintBill.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnPrintBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrintBill.Location = new System.Drawing.Point(38, 8);
-            this.btnPrintBill.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPrintBill.Name = "btnPrintBill";
-            this.btnPrintBill.Size = new System.Drawing.Size(150, 86);
-            this.btnPrintBill.TabIndex = 8;
-            this.btnPrintBill.Text = "In Hóa Đơn ";
-            this.btnPrintBill.UseVisualStyleBackColor = false;
-            this.btnPrintBill.Click += new System.EventHandler(this.btnPrintBill_Click);
             // 
             // fTableManager
             // 
@@ -481,7 +490,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "fTableManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Phần mềm quản lý quán ăn";
@@ -523,7 +532,7 @@
         private System.Windows.Forms.FlowLayoutPanel flpTable;
         private System.Windows.Forms.Button ptnCheckOut;
         private System.Windows.Forms.ToolStripMenuItem thôngTinCáNhânToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem đăngXuấtToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updatethongtincanhan;
         private System.Windows.Forms.ToolStripMenuItem nhậpNguyênLiệuToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBoxVipTables;
@@ -544,5 +553,6 @@
         private System.Windows.Forms.Label textboxtongtien;
         private System.Windows.Forms.TextBox txbtotalPrice;
         private System.Windows.Forms.Button btnPrintBill;
+        private System.Windows.Forms.ToolStripMenuItem đăngXuấtToolStripMenuItem;
     }
 }

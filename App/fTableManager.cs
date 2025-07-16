@@ -19,15 +19,32 @@ namespace App
 {
     public partial class fTableManager : Form
     {
+
         private List<Menu> currentBillItems = new List<Menu>(); // biến lưu hóa đơn 
 
         private Button selectedTableButton; // Biến lưu button của bàn đang chọn
 
-        public fTableManager()
+        private Account loginAccount;
+
+        public Account LoginAccount { 
+            get => loginAccount;
+            set             {
+                loginAccount = value;
+                changeAccount(loginAccount.Type); // Cập nhật giao diện dựa trên loại tài khoản
+            }
+        }
+
+        public fTableManager(Account acc)
         {
             InitializeComponent();
+            this.LoginAccount = acc;
             LoadTable();
             LoadCategoryList(0); // Load danh mục ban đầu
+        }
+
+        void changeAccount(int type)
+        {
+            adminToolStripMenuItem.Enabled = type == 1; // Chỉ hiển thị Admin nếu là tài khoản quản trị
         }
 
         private void fTableManager_Load(object sender, EventArgs e)
@@ -39,6 +56,18 @@ namespace App
         private void btnAddFood_Click(object sender, EventArgs e)
         {
             Table table = lsvBill.Tag as Table;
+
+            // Nếu chưa có bàn, mặc định gán bàn "Mang Về"
+            if (table == null)
+            {
+                table = TableDAO.Instance.GetTakeAwayTable();
+                if (table == null)
+                {
+                    MessageBox.Show("Không tìm thấy bàn 'Mang Về' trong hệ thống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                lsvBill.Tag = table;
+            }
 
             int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
             int idFood = (cbFood.SelectedItem as Food).IdFood;
@@ -167,17 +196,6 @@ namespace App
                     ShowBill(table.ID);
                 }
             }
-        }
-
-
-        private void button1_Click_2(object sender, EventArgs e)
-        {
-
-        }
-
-        private void nmDiscount_ValueChanged(object sender, EventArgs e)
-        {
-
         }
 
         #region Method
@@ -382,7 +400,7 @@ namespace App
         #region events handlers for menu items
         private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fAccountProfle f = new fAccountProfle();
+            fAccountProfle f = new fAccountProfle(loginAccount);
             f.ShowDialog();
         }
 
@@ -461,6 +479,10 @@ namespace App
             MessageBox.Show("Đã tạo hóa đơn tạm.", "Thông báo");
         }
 
-
+        private void updatethongtincanhan_Click(object sender, EventArgs e)
+        {
+            Infomation f = new Infomation(LoginAccount.Username);
+            f.ShowDialog();
+        }
     }
 }
