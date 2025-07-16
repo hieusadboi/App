@@ -46,5 +46,19 @@ namespace App.DAO
             return listFood;
         }
 
+        public bool InsertFood(string foodName, int idCategory, float price)
+        {
+            string query = "INSERT INTO Food (foodName, idCategory, price) VALUES (N'" + foodName + "', " + idCategory + ", " + price + ")";
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public bool UpdateFood(int idFood, string foodName, int idCategory, float price)
+        {
+            string query = "UPDATE Food SET foodName = N'" + foodName + "', idCategory = " + idCategory + ", price = " + price + " WHERE idFood = " + idFood;
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
     }
 }

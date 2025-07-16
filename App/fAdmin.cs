@@ -1,4 +1,5 @@
 ﻿using App.DAO;
+using App.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,12 +9,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 
 namespace App
 {
     public partial class fAdmin : Form
     {
+        BindingSource foodList = new BindingSource();
         public fAdmin()
         {
             InitializeComponent();
@@ -43,7 +46,10 @@ namespace App
         {
             LoadAccountList();
 
+            dtgvFood.DataSource = foodList;
             LoadFoodList();
+            AddFoodBinding();
+            LoadCategoryIntoComboBox(cbFoodCategory);
 
             LoadCategoryList();
 
@@ -62,7 +68,7 @@ namespace App
         
         void LoadFoodList()
         {
-            dtgvFood.DataSource = FoodDAO.Instance.GetListFood();
+            foodList .DataSource = FoodDAO.Instance.GetListFood();
         }
 
         void LoadAccountList()
@@ -236,13 +242,6 @@ namespace App
             dtgvDoanhThu.DataSource = DataProvider.Instance.ExecuteQuery(query, new object[] { fromDate, toDate });
         }
 
-
-        private void txbUser_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -329,5 +328,82 @@ namespace App
 
         }
 
+        // Binding 
+
+        void AddFoodBinding()
+        {
+            txbFoodID.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "IdFood", true, DataSourceUpdateMode.Never));
+            txbFoodName.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "FoodName", true, DataSourceUpdateMode.Never));
+            nmPriceFood.DataBindings.Add(new Binding("Value", dtgvFood.DataSource, "Price", true, DataSourceUpdateMode.Never));
+
+            // Binding IDCategory với SelectedValue của ComboBox
+            cbFoodCategory.DataBindings.Add(new Binding("SelectedValue", dtgvFood.DataSource, "IdCategory", true, DataSourceUpdateMode.Never));
+        }
+
+        void LoadCategoryIntoComboBox(ComboBox cb)
+        {
+            cb.DataSource = CategoryDAO.Instance.GetListCategory();
+            cb.DisplayMember = "categoryName";  // hiển thị tên
+            cb.ValueMember = "IdCategory";      // dùng giá trị Id để binding
+        }
+
+
+        public void txbFoodID_TextChanged(object sender, EventArgs e)
+        {
+            if (dtgvFood.SelectedCells.Count > 0)
+            {
+                int idCategory = (int)dtgvFood.SelectedCells[0].OwningRow.Cells["IdCategory"].Value;
+                Category category = CategoryDAO.Instance.GetCategoryById(idCategory);
+                cbFoodCategory.SelectedItem = category;
+
+                int index = -1;
+                int i = 0;
+                foreach (Category item in cbFoodCategory.Items)
+                {
+                    if (item.IdCategory == idCategory)
+                    {
+                        index = i;
+                        break;
+                    }
+                    i++;
+                }
+            }
+        }
+
+        private void btnAddFood_Click(object sender, EventArgs e)
+        {
+            string foodName = txbFoodName.Text;
+            int idCategory = (cbFoodCategory.SelectedItem as Category).IdCategory;
+            float price = (float)nmPriceFood.Value;
+
+            if (FoodDAO.Instance.InsertFood(foodName, idCategory, price))
+            {
+                MessageBox.Show("Thêm món ăn thành công!");
+                LoadFoodList();
+            }
+            else
+            {
+                MessageBox.Show("Thêm món ăn thất bại!");
+            }
+        }
+
+        private void btnEditFood_Click(object sender, EventArgs e)
+        {
+            int idFood = Convert.ToInt32(txbFoodID.Text);
+            string foodName = txbFoodName.Text;
+            int idCategory = (cbFoodCategory.SelectedItem as Category).IdCategory;
+            float price = (float)nmPriceFood.Value;
+
+            if (FoodDAO.Instance.UpdateFood(idFood ,foodName, idCategory, price))
+            {
+                MessageBox.Show("Sửa món ăn thành công!");
+                LoadFoodList();
+            }
+            else
+            {
+                MessageBox.Show("Sửa món ăn thất bại!");
+            }
+
+        }
     }
 }
