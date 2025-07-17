@@ -19,11 +19,15 @@ namespace App
         BindingSource foodList = new BindingSource();
         BindingSource categoryList = new BindingSource();
         BindingSource tableList = new BindingSource();
+        BindingSource accountList = new BindingSource();
+        BindingSource ingredientList = new BindingSource();
+        BindingSource staffList = new BindingSource();
+        BindingSource supplierList = new BindingSource();
 
         public fAdmin()
         {
             InitializeComponent();
-            
+
             //LoadAccountList();
 
             //LoadFoodList();
@@ -47,28 +51,36 @@ namespace App
 
         void LoadALL()
         {
+            //dtgvAccount.DataSource = accountList;
             LoadAccountList();
+            AddAccountBinding();
 
-            dtgvFood.DataSource = foodList;
+            //dtgvFood.DataSource = foodList;
             LoadFoodList();
             AddFoodBinding();
             LoadCategoryIntoComboBox(cbFoodCategory);
 
-            dtgvCategory.DataSource = categoryList;
+            //dtgvCategory.DataSource = categoryList;
             LoadCategoryList();
             AddCategoryBinding();
 
-            dtgvTableFood.DataSource = tableList;
+            //dtgvTableFood.DataSource = tableList;
             LoadTableFood();
             AddTableFoodBinding();
 
+            //dtgvIngredient.DataSource = ingredientList;
             LoadIngredient();
+            AddIngredientBinding();
 
+            //dtgvStaff.DataSource = staffList;
             LoadStaff();
+            AddBindingStaff();
 
             LoadFoodIngredient();
 
+            //dtgvSuplier.DataSource = supplierList;
             LoadSupplier();
+            AddSupplierBinding();
 
             LoadDoanhThu(DateTime.Now, DateTime.Now);
         }
@@ -77,9 +89,8 @@ namespace App
         void LoadFoodList()
         {
             foodList.DataSource = FoodDAO.Instance.GetListFood();
-
             dtgvFood.DataSource = foodList;
-            // Cấu hình header text cho DataGridView
+
             dtgvFood.Columns["IdFood"].HeaderText = "Mã Món";
             dtgvFood.Columns["FoodName"].HeaderText = "Tên Món";
             dtgvFood.Columns["Price"].HeaderText = "Giá";
@@ -88,27 +99,21 @@ namespace App
 
         void LoadAccountList()
         {
-            string query = "EXEC dbo.USP_GetAccount";
+            accountList.DataSource = AccountDAO.Instance.GetListAccount();
+            dtgvAccount.DataSource = accountList;
 
-            dtgvAccount.DataSource = DataProvider.Instance.ExecuteQuery(query);
+            dtgvAccount.Columns["UserName"].HeaderText = "Tên Tài Khoản";
+            dtgvAccount.Columns["Type"].HeaderText = "Loại Tài Khoản";
+            dtgvAccount.Columns["isActive"].HeaderText = "Trạng Thái Hoạt Động";
         }
 
-        // dùng proc để load 
-        //void LoadCategoryList()
-        //{
-        //    string query = "USP_GetFoodCategory";
-        //    //dtgvCategory.DataSource = DataProvider.Instance.ExecuteQuery(query);
-        //    categoryList.DataSource = DataProvider.Instance.ExecuteQuery(query);
-        //}
 
-        // dùng hàm GetListCategory trong CategoryDAO để load
+
         void LoadCategoryList()
         {
             categoryList.DataSource = CategoryDAO.Instance.GetListCategory();
-
             dtgvCategory.DataSource = categoryList;
 
-            // Cấu hình header text cho DataGridView
             dtgvCategory.Columns["idCategory"].HeaderText = "Mã Danh Mục";
             dtgvCategory.Columns["categoryName"].HeaderText = "Tên Danh Mục";
         }
@@ -116,10 +121,8 @@ namespace App
         void LoadTableFood()
         {
             tableList.DataSource = TableDAO.Instance.LoadTableList();
-
             dtgvTableFood.DataSource = tableList;
 
-            // Cấu hình header text cho DataGridView
             dtgvTableFood.Columns["id"].HeaderText = "Mã Bàn";
             dtgvTableFood.Columns["Name"].HeaderText = "Tên Bàn";
             dtgvTableFood.Columns["status"].HeaderText = "Trạng Thái";
@@ -127,15 +130,28 @@ namespace App
 
         void LoadIngredient()
         {
-            string query = "EXEC USP_GetIngredient";
-            dtgvIngredient.DataSource = DataProvider.Instance.ExecuteQuery(query);
+            ingredientList.DataSource = IngredientDAO.Instance.GetListIngredient();
+            dtgvIngredient.DataSource = ingredientList;
+
+            dtgvIngredient.Columns["idIngredient"].HeaderText = "Mã Nguyên Liệu";
+            dtgvIngredient.Columns["ingredientName"].HeaderText = "Tên Nguyên Liệu";
+            dtgvIngredient.Columns["unit"].HeaderText = "Đơn Vị Tính";
+            dtgvIngredient.Columns["quantity"].HeaderText = "Số Lượng Tồn Kho";
         }
 
 
         void LoadStaff()
         {
-            string query = "EXEC USP_GetStaff";
-            dtgvStaff.DataSource = DataProvider.Instance.ExecuteQuery(query);
+            staffList.DataSource = StaffDAO.Instance.GetAllStaff();
+            dtgvStaff.DataSource = staffList;
+
+            dtgvStaff.Columns["IdStaff"].HeaderText = "Mã Nhân Viên";
+            dtgvStaff.Columns["FullName"].HeaderText = "Họ và Tên";
+            dtgvStaff.Columns["Gender"].HeaderText = "Giới tính";
+            dtgvStaff.Columns["BirthDate"].HeaderText = "Ngày Sinh";
+            dtgvStaff.Columns["Phone"].HeaderText = "Số Điện Thoại";
+            dtgvStaff.Columns["Email"].HeaderText = "Email";
+            dtgvStaff.Columns["AccountUserName"].HeaderText = "Tên Tài Khoản";
         }
 
 
@@ -147,8 +163,14 @@ namespace App
 
         void LoadSupplier()
         {
-            string query = "USP_GetSupplier";
-            dtgvSuplier.DataSource = DataProvider.Instance.ExecuteQuery(query);
+            supplierList.DataSource = SupplierDAO.Instance.GetAllSuppliers();
+            dtgvSuplier.DataSource = supplierList;
+
+            dtgvSuplier.Columns["idSupplier"].HeaderText = "Mã Nhà Cung Cấp";
+            dtgvSuplier.Columns["supplierName"].HeaderText = "Tên Nhà Cung Cấp";
+            dtgvSuplier.Columns["phone"].HeaderText = "Số Điện Thoại";
+            dtgvSuplier.Columns["email"].HeaderText = "Email";
+            dtgvSuplier.Columns["address"].HeaderText = "Địa Chỉ";
         }
 
 
@@ -406,6 +428,99 @@ namespace App
             cbTableStatus.DataBindings.Add("SelectedItem", dtgvTableFood.DataSource, "status", true, DataSourceUpdateMode.Never);
         }
 
+
+        void AddAccountBinding()
+        {
+            txbUserNameAccount.DataBindings.Clear();
+            cbTypeAccount.DataBindings.Clear();
+            cbIsActive.DataBindings.Clear();
+
+            cbTypeAccount.Items.Clear();
+            cbIsActive.Items.Clear();
+
+            txbUserNameAccount.DataBindings.Add("Text", dtgvAccount.DataSource, "UserName", true, DataSourceUpdateMode.Never);
+
+            // Thêm giá trị hiển thị tương ứng
+            cbTypeAccount.Items.Add("Nhân viên"); // index 0
+            cbTypeAccount.Items.Add("Quản lý"); // index 1
+
+            cbIsActive.Items.Add("Không khả dụng");    // index 0
+            cbIsActive.Items.Add("Khả dụng");     // index 1
+
+            // Binding SelectedIndex với dữ liệu số nguyên
+            cbTypeAccount.DataBindings.Add("SelectedIndex", dtgvAccount.DataSource, "Type", true, DataSourceUpdateMode.Never);
+            cbIsActive.DataBindings.Add("SelectedIndex", dtgvAccount.DataSource, "isActive", true, DataSourceUpdateMode.Never);
+        }
+
+        void AddIngredientBinding()
+        {
+            txbIdIngredient.DataBindings.Clear();
+            txbIngredientName.DataBindings.Clear();
+            // Lấy danh sách các đơn vị duy nhất từ Ingredient
+            List<string> units = IngredientDAO.Instance.GetAllUnits();
+
+            // Xóa & thêm lại danh sách đơn vị
+            cbUnitIngredient.Items.Clear();
+            cbUnitIngredient.Items.AddRange(units.ToArray()); nmQuantity.DataBindings.Clear();
+            txbIdIngredient.DataBindings.Add("Text", dtgvIngredient.DataSource, "idIngredient", true, DataSourceUpdateMode.Never);
+            txbIngredientName.DataBindings.Add("Text", dtgvIngredient.DataSource, "ingredientName", true, DataSourceUpdateMode.Never);
+            cbUnitIngredient.DataBindings.Add("SelectedItem", dtgvIngredient.DataSource, "unit", true, DataSourceUpdateMode.Never);
+            nmQuantity.DataBindings.Add("Value", dtgvIngredient.DataSource, "quantity", true, DataSourceUpdateMode.Never);
+        }
+
+        void AddBindingStaff()
+        {
+            // Clear old bindings to avoid duplication errors
+            txbIdStaff.DataBindings.Clear();
+            txbFullName.DataBindings.Clear(); // Sử dụng txbFullName thay vì txbNameStaff
+            cbGender.DataBindings.Clear();
+            dtpkBirthDateStaff.DataBindings.Clear();
+            txbPhoneStaff.DataBindings.Clear();
+            txbEmailStaff.DataBindings.Clear();
+            cbAccountStaff.DataBindings.Clear();
+
+            // Khởi tạo danh sách item cho cbGender (giả định "Nam" và "Nữ")
+            cbGender.Items.Clear();
+            cbGender.Items.Add("Nam");
+            cbGender.Items.Add("Nữ");
+
+            // Khởi tạo danh sách item cho cbAccountStaff từ bảng Account
+            cbAccountStaff.Items.Clear();
+            var accountList = AccountDAO.Instance.GetListAccount(); // Lấy danh sách tài khoản
+            foreach (DataRow row in accountList.Rows)
+            {
+                string username = row["UserName"].ToString();
+                if (!string.IsNullOrEmpty(username)) // Kiểm tra giá trị không rỗng
+                {
+                    cbAccountStaff.Items.Add(username);
+                }
+            }
+
+            // Add new bindings from DataGridView's DataSource
+            txbIdStaff.DataBindings.Add("Text", dtgvStaff.DataSource, "IdStaff", true, DataSourceUpdateMode.Never);
+            txbFullName.DataBindings.Add("Text", dtgvStaff.DataSource, "FullName", true, DataSourceUpdateMode.Never);
+            cbGender.DataBindings.Add("SelectedItem", dtgvStaff.DataSource, "Gender", true, DataSourceUpdateMode.Never);
+            dtpkBirthDateStaff.DataBindings.Add("Value", dtgvStaff.DataSource, "BirthDate", true, DataSourceUpdateMode.Never);
+            txbPhoneStaff.DataBindings.Add("Text", dtgvStaff.DataSource, "Phone", true, DataSourceUpdateMode.Never);
+            txbEmailStaff.DataBindings.Add("Text", dtgvStaff.DataSource, "Email", true, DataSourceUpdateMode.Never);
+            cbAccountStaff.DataBindings.Add("SelectedItem", dtgvStaff.DataSource, "AccountUserName", true, DataSourceUpdateMode.Never);
+        }
+
+        void AddSupplierBinding()
+        {
+            txbIdSupplier.DataBindings.Clear();
+            txbSupplierName.DataBindings.Clear();
+            txbPhone.DataBindings.Clear();
+            txbEmail.DataBindings.Clear();
+            txbAddress.DataBindings.Clear();
+
+            txbIdSupplier.DataBindings.Add("Text", dtgvSuplier.DataSource, "idSupplier", true, DataSourceUpdateMode.Never);
+            txbSupplierName.DataBindings.Add("Text", dtgvSuplier.DataSource, "supplierName", true, DataSourceUpdateMode.Never);
+            txbPhone.DataBindings.Add("Text", dtgvSuplier.DataSource, "phone", true, DataSourceUpdateMode.Never);
+            txbEmail.DataBindings.Add("Text", dtgvSuplier.DataSource, "email", true, DataSourceUpdateMode.Never);
+            txbAddress.DataBindings.Add("Text", dtgvSuplier.DataSource, "address", true, DataSourceUpdateMode.Never);
+        }
+
         void LoadCategoryIntoComboBox(ComboBox cb)
         {
             cb.DataSource = CategoryDAO.Instance.GetListCategory();
@@ -413,7 +528,7 @@ namespace App
             cb.ValueMember = "IdCategory";      // dùng giá trị Id để binding
         }
 
-        
+
 
 
         public void txbFoodID_TextChanged(object sender, EventArgs e)
@@ -548,6 +663,8 @@ namespace App
 
         private void btnDeleteCategory_Click(object sender, EventArgs e)
         {
+            this.Validate(); // hoặc gọi WriteValue() từng cái
+
             int idCategory = Convert.ToInt32(txbIdCategory.Text);
 
             // Xác nhận xóa
@@ -633,7 +750,366 @@ namespace App
             {
                 LoadTableFood();
             }
-            
+
         }
+
+        private void btnAddAccount_Click(object sender, EventArgs e)
+        {
+            string username = txbUserNameAccount.Text;
+            int type = cbTypeAccount.SelectedIndex; // 1: Admin, 0: Staff
+            bool isActive = cbIsActive.SelectedIndex == 1; // True: 1, False: 0
+
+            if (AccountDAO.Instance.InsertAccount(username, type, isActive))
+            {
+                MessageBox.Show("Thêm tài khoản thành công!");
+                LoadAccountList(); // reload lại DataGridView
+            }
+            else
+            {
+                MessageBox.Show("Thêm tài khoản thất bại!");
+            }
+        }
+
+        private void btnEditAccount_Click(object sender, EventArgs e)
+        {
+            string username = txbUserNameAccount.Text;
+            int type = cbTypeAccount.SelectedIndex; // 1: Admin, 0: Staff
+            bool isActive = cbIsActive.SelectedIndex == 1; // True: 1, False: 0
+
+            if (AccountDAO.Instance.UpdateAccount(username, type, isActive))
+            {
+                MessageBox.Show("Sửa tài khoản thành công!");
+                LoadAccountList(); // reload lại DataGridView
+            }
+            else
+            {
+                MessageBox.Show("Sửa tài khoản thất bại!");
+            }
+        }
+
+        private void btnAddIngredient_Click(object sender, EventArgs e)
+        {
+            string name = txbIngredientName.Text.Trim();
+            string unit = cbUnitIngredient.Text.Trim();
+            decimal quantity = nmQuantity.Value;
+
+            // Kiểm tra rỗng
+            if (string.IsNullOrEmpty(name))
+            {
+                MessageBox.Show("Vui lòng nhập tên nguyên liệu!");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(unit))
+            {
+                MessageBox.Show("Vui lòng chọn đơn vị!");
+                return;
+            }
+
+            if (quantity <= 0)
+            {
+                MessageBox.Show("Số lượng phải lớn hơn 0!");
+                return;
+            }
+
+            if (IngredientDAO.Instance.InsertIngredient(name, unit, quantity))
+            {
+                MessageBox.Show("Thêm nguyên liệu thành công!");
+                LoadIngredient(); // Reload lại datagrid
+            }
+            else
+            {
+                MessageBox.Show("Thêm nguyên liệu thất bại!");
+            }
+        }
+
+        private void btnEditIngredient_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(txbIdIngredient.Text, out int id))
+            {
+                MessageBox.Show("ID không hợp lệ!");
+                return;
+            }
+
+            if (!IngredientDAO.Instance.IsIngredientExist(id))
+            {
+                MessageBox.Show("Không tìm thấy nguyên liệu có ID này!");
+                return;
+            }
+
+            string name = txbIngredientName.Text;
+            string unit = cbUnitIngredient.Text;
+            decimal quantity = nmQuantity.Value;
+
+            if (IngredientDAO.Instance.UpdateIngredient(id, name, unit, quantity))
+            {
+                MessageBox.Show("Cập nhật nguyên liệu thành công!");
+                LoadIngredient();
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật thất bại!");
+            }
+        }
+
+        private void btnDeleteIngredient_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(txbIdIngredient.Text, out int id))
+            {
+                MessageBox.Show("ID không hợp lệ!");
+                return;
+            }
+
+            if (!IngredientDAO.Instance.IsIngredientExist(id))
+            {
+                MessageBox.Show("Không tìm thấy nguyên liệu có ID này!");
+                return;
+            }
+
+            if (MessageBox.Show("Bạn có chắc muốn xóa nguyên liệu này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (IngredientDAO.Instance.DeleteIngredient(id))
+                {
+                    MessageBox.Show("Xóa thành công!");
+                    LoadIngredient();
+                }
+                else
+                {
+                    MessageBox.Show("Xóa thất bại!");
+                }
+            }
+        }
+
+
+        private void btnLoadUnusedAccounts_Click(object sender, EventArgs e)
+        {
+            UpdateAccountComboBox();
+            MessageBox.Show("Đã cập nhật danh sách tài khoản trống!");
+        }
+
+        // Phương thức hỗ trợ để cập nhật ComboBox tài khoản
+        private void UpdateAccountComboBox()
+        {
+            cbAccountStaff.Items.Clear();
+            var unusedAccounts = StaffDAO.Instance.GetAccountsWithoutStaff();
+            foreach (string username in unusedAccounts)
+            {
+                if (!string.IsNullOrEmpty(username))
+                {
+                    cbAccountStaff.Items.Add(username);
+                }
+            }
+        }
+
+        private void btnAddStaff_Click_1(object sender, EventArgs e)
+        {
+            this.Validate(); // Đảm bảo dữ liệu được đồng bộ từ binding
+
+            string fullName = txbFullName.Text;
+            string gender = cbGender.SelectedItem?.ToString();
+            DateTime birthDate = dtpkBirthDateStaff.Value;
+            string phone = txbPhoneStaff.Text;
+            string email = txbEmailStaff.Text;
+            string accountUserName = cbAccountStaff.SelectedItem?.ToString();
+
+            // Kiểm tra các trường bắt buộc
+            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(gender) || string.IsNullOrEmpty(accountUserName))
+            {
+                MessageBox.Show("Họ và tên, giới tính, và tài khoản không được để trống!");
+                return;
+            }
+
+            if (StaffDAO.Instance.InsertStaff(new Staff
+            {
+                FullName = fullName,
+                Gender = gender,
+                BirthDate = birthDate,
+                Phone = phone,
+                Email = email,
+                AccountUserName = accountUserName
+            }))
+            {
+                MessageBox.Show("Thêm nhân viên thành công!");
+                LoadStaff();
+                AddBindingStaff(); // Cập nhật binding sau khi thêm
+            }
+            else
+            {
+                MessageBox.Show("Thêm nhân viên thất bại!");
+            }
+        }
+
+        private void btnUpdateStaff_Click_1(object sender, EventArgs e)
+        {
+            this.Validate(); // Đảm bảo dữ liệu được đồng bộ từ binding
+
+            int idStaff = Convert.ToInt32(txbIdStaff.Text);
+            string fullName = txbFullName.Text;
+            string gender = cbGender.SelectedItem?.ToString();
+            DateTime birthDate = dtpkBirthDateStaff.Value;
+            string phone = txbPhoneStaff.Text;
+            string email = txbEmailStaff.Text;
+            string accountUserName = cbAccountStaff.SelectedItem?.ToString();
+
+            if (StaffDAO.Instance.UpdateStaff(new Staff
+            {
+                IdStaff = idStaff,
+                FullName = fullName,
+                Gender = gender,
+                BirthDate = birthDate,
+                Phone = phone,
+                Email = email,
+                AccountUserName = accountUserName
+            }))
+            {
+                MessageBox.Show("Sửa nhân viên thành công!");
+                LoadStaff();
+                AddBindingStaff(); // Cập nhật binding sau khi sửa
+            }
+            else
+            {
+                MessageBox.Show("Sửa nhân viên thất bại!");
+            }
+        }
+
+        private void btnDeleteStaff_Click_1(object sender, EventArgs e)
+        {
+            this.Validate();
+
+            int idStaff = Convert.ToInt32(txbIdStaff.Text);
+
+            DialogResult result = MessageBox.Show(
+                $"Bạn có chắc chắn muốn xóa nhân viên với ID {idStaff} không?\n\n" +
+                "⚠️ Việc xóa sẽ dẫn đến mất toàn bộ thông tin liên quan.",
+                "Xác nhận xóa nhân viên",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                if (StaffDAO.Instance.DeleteStaffById(idStaff))
+                {
+                    MessageBox.Show("Đã xóa nhân viên thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadStaff();
+                    AddBindingStaff(); // Cập nhật binding sau khi xóa
+                }
+                else
+                {
+                    MessageBox.Show("Xóa nhân viên thất bại. Vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Đã hủy thao tác xóa nhân viên.", "Đã hủy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+
+        private void btnAddSupplier_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+
+            string supplierName = txbSupplierName.Text;
+            string phone = txbPhone.Text;
+            string email = txbEmail.Text;
+            string address = txbAddress.Text;
+
+            if (string.IsNullOrEmpty(supplierName))
+            {
+                MessageBox.Show("Tên nhà cung cấp không được để trống!");
+                return;
+            }
+
+            if (SupplierDAO.Instance.InsertSupplier(new Supplier
+            {
+                SupplierName = supplierName,
+                Phone = phone,
+                Email = email,
+                Address = address
+            }))
+            {
+                MessageBox.Show("Thêm nhà cung cấp thành công!");
+                LoadSupplier();
+                AddSupplierBinding();
+            }
+            else
+            {
+                MessageBox.Show("Thêm nhà cung cấp thất bại!");
+            }
+        }
+
+        private void btnUpdateSupplier_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+
+            int idSupplier = Convert.ToInt32(txbIdSupplier.Text);
+            string supplierName = txbSupplierName.Text;
+            string phone = txbPhone.Text;
+            string email = txbEmail.Text;
+            string address = txbAddress.Text;
+
+            if (string.IsNullOrEmpty(supplierName))
+            {
+                MessageBox.Show("Tên nhà cung cấp không được để trống!");
+                return;
+            }
+
+            if (SupplierDAO.Instance.UpdateSupplier(new Supplier
+            {
+                IdSupplier = idSupplier,
+                SupplierName = supplierName,
+                Phone = phone,
+                Email = email,
+                Address = address
+            }))
+            {
+                MessageBox.Show("Sửa nhà cung cấp thành công!");
+                LoadSupplier();
+                AddSupplierBinding();
+            }
+            else
+            {
+                MessageBox.Show("Sửa nhà cung cấp thất bại!");
+            }
+        }
+
+        private void btnDeleteSupplier_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+
+            int idSupplier = Convert.ToInt32(txbIdSupplier.Text);
+
+            DialogResult result = MessageBox.Show(
+                $"Bạn có chắc chắn muốn xóa nhà cung cấp với ID {idSupplier} không?\n\n" +
+                "⚠️ Việc xóa sẽ dẫn đến mất toàn bộ thông tin liên quan.",
+                "Xác nhận xóa nhà cung cấp",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                if (SupplierDAO.Instance.DeleteSupplier(idSupplier))
+                {
+                    MessageBox.Show("Đã xóa nhà cung cấp thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadSupplier();
+                    AddSupplierBinding();
+                }
+                else
+                {
+                    MessageBox.Show("Xóa nhà cung cấp thất bại. Vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Đã hủy thao tác xóa nhà cung cấp.", "Đã hủy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+
+
+
+
     }
 }

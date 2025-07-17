@@ -41,5 +41,29 @@ namespace App.DAO
             return null; // Không tìm thấy tài khoản
         }
 
+        public DataTable GetListAccount()
+        {
+            string query = "SELECT UserName ,Type , isActive FROM dbo.Account";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            
+            return data;
+        }
+
+        public bool InsertAccount(string username, int type, bool isActive)
+        {
+            string query = $"INSERT INTO Account (UserName, Type, isActive) " +
+                           $"VALUES (N'{username}', {type}, {(isActive ? 1 : 0)})";
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public bool UpdateAccount(string username, int type, bool isActive)
+        {
+            string query = $"UPDATE Account SET Type = {type}, isActive = {(isActive ? 1 : 0)} WHERE UserName = N'{username}'";
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+
     }
 }

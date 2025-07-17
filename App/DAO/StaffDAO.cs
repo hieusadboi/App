@@ -19,6 +19,22 @@ namespace App.DAO
 
         private StaffDAO() { }
 
+
+        public List<Staff> GetAllStaff()
+        {
+            List<Staff> list = new List<Staff>();
+            string query = "SELECT * FROM Staff";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow row in data.Rows)
+            {
+                list.Add(new Staff(row));
+            }
+
+            return list;
+        }
+
+
         public Staff GetStaffByAccount(string userName)
         {
             string query = "SELECT * FROM Staff WHERE accountUserName = @userName";
@@ -45,5 +61,52 @@ namespace App.DAO
 
             return result > 0;
         }
+
+        public List<string> GetAccountsWithoutStaff()
+        {
+            string query = @"
+        SELECT UserName 
+        FROM Account 
+        WHERE UserName NOT IN (SELECT accountUserName FROM Staff)";
+
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            List<string> list = new List<string>();
+            foreach (DataRow row in data.Rows)
+            {
+                list.Add(row["UserName"].ToString());
+            }
+            return list;
+        }
+
+        public bool InsertStaff(Staff staff)
+        {
+            // Check nếu tài khoản đã có staff thì không cho thêm
+            if (GetStaffByAccount(staff.AccountUserName) != null)
+                return false;
+
+            string query = @"
+        INSERT INTO Staff ( fullName , gender , birthDate , phone , email , accountUserName )
+        VALUES ( @fullName , @gender , @birthDate , @phone , @email , @accountUserName )";
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[]
+            {
+        staff.FullName,
+        staff.Gender,
+        staff.BirthDate,
+        staff.Phone,
+        staff.Email,
+        staff.AccountUserName
+            });
+
+            return result > 0;
+        }
+
+        public bool DeleteStaffById(int id)
+        {
+            string query = "DELETE FROM Staff WHERE idStaff = @id";
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { id });
+            return result > 0;
+        }
+
+
     }
 }

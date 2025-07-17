@@ -79,56 +79,60 @@
             this.button27 = new System.Windows.Forms.Button();
             this.panel53 = new System.Windows.Forms.Panel();
             this.panel58 = new System.Windows.Forms.Panel();
-            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.txbAddress = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.panel55 = new System.Windows.Forms.Panel();
-            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.txbEmail = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.panel54 = new System.Windows.Forms.Panel();
-            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.txbPhone = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.panel56 = new System.Windows.Forms.Panel();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.txbSupplierName = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.panel57 = new System.Windows.Forms.Panel();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.txbIdSupplier = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.panel52 = new System.Windows.Forms.Panel();
             this.dtgvSuplier = new System.Windows.Forms.DataGridView();
             this.panel51 = new System.Windows.Forms.Panel();
             this.btnShowSuplier = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
+            this.btnDeleteSuplier = new System.Windows.Forms.Button();
+            this.btnEditSuplier = new System.Windows.Forms.Button();
+            this.btnAddSuplier = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.panel72 = new System.Windows.Forms.Panel();
             this.textBox27 = new System.Windows.Forms.TextBox();
             this.button26 = new System.Windows.Forms.Button();
             this.panel47 = new System.Windows.Forms.Panel();
             this.btnShowStaff = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
+            this.btnDeleteStaff = new System.Windows.Forms.Button();
+            this.btnUpdateStaff = new System.Windows.Forms.Button();
+            this.btnAddStaff = new System.Windows.Forms.Button();
             this.panel46 = new System.Windows.Forms.Panel();
             this.dtgvStaff = new System.Windows.Forms.DataGridView();
             this.panel37 = new System.Windows.Forms.Panel();
+            this.btnLoadUnusedAccounts = new System.Windows.Forms.Button();
+            this.panel82 = new System.Windows.Forms.Panel();
+            this.dtpkBirthDateStaff = new System.Windows.Forms.DateTimePicker();
+            this.label41 = new System.Windows.Forms.Label();
             this.panel50 = new System.Windows.Forms.Panel();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
+            this.cbGender = new System.Windows.Forms.ComboBox();
             this.label26 = new System.Windows.Forms.Label();
             this.panel49 = new System.Windows.Forms.Panel();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.txbEmailStaff = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.panel38 = new System.Windows.Forms.Panel();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.txbPhoneStaff = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.panel48 = new System.Windows.Forms.Panel();
-            this.txbDisplayName = new System.Windows.Forms.TextBox();
+            this.txbFullName = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.panel39 = new System.Windows.Forms.Panel();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.cbAccountStaff = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.panel40 = new System.Windows.Forms.Panel();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txbIdStaff = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel71 = new System.Windows.Forms.Panel();
@@ -162,21 +166,21 @@
             this.dtgvIngredient = new System.Windows.Forms.DataGridView();
             this.panel32 = new System.Windows.Forms.Panel();
             this.btnShowIngredient = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnDeleteIngredient = new System.Windows.Forms.Button();
+            this.btnEditIngredient = new System.Windows.Forms.Button();
+            this.btnAddIngredient = new System.Windows.Forms.Button();
             this.panel23 = new System.Windows.Forms.Panel();
             this.panel25 = new System.Windows.Forms.Panel();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.nmQuantity = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.panel29 = new System.Windows.Forms.Panel();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbUnitIngredient = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.panel30 = new System.Windows.Forms.Panel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txbIngredientName = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.panel31 = new System.Windows.Forms.Panel();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txbIdIngredient = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.tpAccount = new System.Windows.Forms.TabPage();
             this.panel69 = new System.Windows.Forms.Panel();
@@ -186,19 +190,18 @@
             this.dtgvAccount = new System.Windows.Forms.DataGridView();
             this.panel27 = new System.Windows.Forms.Panel();
             this.btnShowAccount = new System.Windows.Forms.Button();
-            this.btnDeleteAccount = new System.Windows.Forms.Button();
             this.btnEditAccount = new System.Windows.Forms.Button();
             this.btnAddAccount = new System.Windows.Forms.Button();
             this.panel22 = new System.Windows.Forms.Panel();
             this.button33 = new System.Windows.Forms.Button();
             this.panel36 = new System.Windows.Forms.Panel();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cbIsActive = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.panel24 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbTypeAccount = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.panel26 = new System.Windows.Forms.Panel();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txbUserNameAccount = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.tpTable = new System.Windows.Forms.TabPage();
             this.panel68 = new System.Windows.Forms.Panel();
@@ -312,6 +315,7 @@
             this.panel46.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvStaff)).BeginInit();
             this.panel37.SuspendLayout();
+            this.panel82.SuspendLayout();
             this.panel50.SuspendLayout();
             this.panel49.SuspendLayout();
             this.panel38.SuspendLayout();
@@ -336,7 +340,7 @@
             this.panel32.SuspendLayout();
             this.panel23.SuspendLayout();
             this.panel25.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmQuantity)).BeginInit();
             this.panel29.SuspendLayout();
             this.panel30.SuspendLayout();
             this.panel31.SuspendLayout();
@@ -930,21 +934,21 @@
             // panel58
             // 
             this.panel58.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel58.Controls.Add(this.textBox16);
+            this.panel58.Controls.Add(this.txbAddress);
             this.panel58.Controls.Add(this.label31);
-            this.panel58.Location = new System.Drawing.Point(4, 254);
+            this.panel58.Location = new System.Drawing.Point(3, 194);
             this.panel58.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel58.Name = "panel58";
             this.panel58.Size = new System.Drawing.Size(417, 54);
             this.panel58.TabIndex = 7;
             // 
-            // textBox16
+            // txbAddress
             // 
-            this.textBox16.Location = new System.Drawing.Point(164, 18);
-            this.textBox16.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(243, 27);
-            this.textBox16.TabIndex = 1;
+            this.txbAddress.Location = new System.Drawing.Point(93, 18);
+            this.txbAddress.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbAddress.Name = "txbAddress";
+            this.txbAddress.Size = new System.Drawing.Size(314, 27);
+            this.txbAddress.TabIndex = 1;
             // 
             // label31
             // 
@@ -960,21 +964,21 @@
             // panel55
             // 
             this.panel55.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel55.Controls.Add(this.textBox15);
+            this.panel55.Controls.Add(this.txbEmail);
             this.panel55.Controls.Add(this.label28);
-            this.panel55.Location = new System.Drawing.Point(4, 194);
+            this.panel55.Location = new System.Drawing.Point(3, 134);
             this.panel55.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel55.Name = "panel55";
             this.panel55.Size = new System.Drawing.Size(418, 54);
             this.panel55.TabIndex = 6;
             // 
-            // textBox15
+            // txbEmail
             // 
-            this.textBox15.Location = new System.Drawing.Point(164, 18);
-            this.textBox15.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(243, 27);
-            this.textBox15.TabIndex = 1;
+            this.txbEmail.Location = new System.Drawing.Point(93, 18);
+            this.txbEmail.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbEmail.Name = "txbEmail";
+            this.txbEmail.Size = new System.Drawing.Size(314, 27);
+            this.txbEmail.TabIndex = 1;
             // 
             // label28
             // 
@@ -990,21 +994,21 @@
             // panel54
             // 
             this.panel54.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel54.Controls.Add(this.textBox14);
+            this.panel54.Controls.Add(this.txbPhone);
             this.panel54.Controls.Add(this.label27);
-            this.panel54.Location = new System.Drawing.Point(4, 135);
+            this.panel54.Location = new System.Drawing.Point(4, 252);
             this.panel54.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel54.Name = "panel54";
             this.panel54.Size = new System.Drawing.Size(417, 54);
             this.panel54.TabIndex = 5;
             // 
-            // textBox14
+            // txbPhone
             // 
-            this.textBox14.Location = new System.Drawing.Point(164, 18);
-            this.textBox14.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(243, 27);
-            this.textBox14.TabIndex = 1;
+            this.txbPhone.Location = new System.Drawing.Point(153, 17);
+            this.txbPhone.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbPhone.Name = "txbPhone";
+            this.txbPhone.Size = new System.Drawing.Size(253, 27);
+            this.txbPhone.TabIndex = 1;
             // 
             // label27
             // 
@@ -1020,7 +1024,7 @@
             // panel56
             // 
             this.panel56.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel56.Controls.Add(this.textBox12);
+            this.panel56.Controls.Add(this.txbSupplierName);
             this.panel56.Controls.Add(this.label29);
             this.panel56.Location = new System.Drawing.Point(4, 68);
             this.panel56.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -1028,13 +1032,13 @@
             this.panel56.Size = new System.Drawing.Size(417, 62);
             this.panel56.TabIndex = 2;
             // 
-            // textBox12
+            // txbSupplierName
             // 
-            this.textBox12.Location = new System.Drawing.Point(208, 20);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(204, 27);
-            this.textBox12.TabIndex = 1;
+            this.txbSupplierName.Location = new System.Drawing.Point(93, 20);
+            this.txbSupplierName.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbSupplierName.Name = "txbSupplierName";
+            this.txbSupplierName.Size = new System.Drawing.Size(313, 27);
+            this.txbSupplierName.TabIndex = 1;
             // 
             // label29
             // 
@@ -1043,14 +1047,14 @@
             this.label29.Location = new System.Drawing.Point(0, 23);
             this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(187, 24);
+            this.label29.Size = new System.Drawing.Size(59, 24);
             this.label29.TabIndex = 0;
-            this.label29.Text = "Tên nhà cung cấp:";
+            this.label29.Text = "Tên :";
             // 
             // panel57
             // 
             this.panel57.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel57.Controls.Add(this.textBox13);
+            this.panel57.Controls.Add(this.txbIdSupplier);
             this.panel57.Controls.Add(this.label30);
             this.panel57.Location = new System.Drawing.Point(4, 4);
             this.panel57.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -1058,13 +1062,13 @@
             this.panel57.Size = new System.Drawing.Size(417, 60);
             this.panel57.TabIndex = 1;
             // 
-            // textBox13
+            // txbIdSupplier
             // 
-            this.textBox13.Location = new System.Drawing.Point(201, 18);
-            this.textBox13.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(208, 27);
-            this.textBox13.TabIndex = 1;
+            this.txbIdSupplier.Location = new System.Drawing.Point(191, 18);
+            this.txbIdSupplier.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbIdSupplier.Name = "txbIdSupplier";
+            this.txbIdSupplier.Size = new System.Drawing.Size(215, 27);
+            this.txbIdSupplier.TabIndex = 1;
             // 
             // label30
             // 
@@ -1103,9 +1107,9 @@
             // 
             this.panel51.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel51.Controls.Add(this.btnShowSuplier);
-            this.panel51.Controls.Add(this.button14);
-            this.panel51.Controls.Add(this.button15);
-            this.panel51.Controls.Add(this.button16);
+            this.panel51.Controls.Add(this.btnDeleteSuplier);
+            this.panel51.Controls.Add(this.btnEditSuplier);
+            this.panel51.Controls.Add(this.btnAddSuplier);
             this.panel51.Location = new System.Drawing.Point(7, 7);
             this.panel51.Margin = new System.Windows.Forms.Padding(4);
             this.panel51.Name = "panel51";
@@ -1123,35 +1127,38 @@
             this.btnShowSuplier.UseVisualStyleBackColor = true;
             this.btnShowSuplier.Click += new System.EventHandler(this.btnShowSuplier_Click);
             // 
-            // button14
+            // btnDeleteSuplier
             // 
-            this.button14.Location = new System.Drawing.Point(287, 4);
-            this.button14.Margin = new System.Windows.Forms.Padding(4);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(132, 68);
-            this.button14.TabIndex = 2;
-            this.button14.Text = "Xóa";
-            this.button14.UseVisualStyleBackColor = true;
+            this.btnDeleteSuplier.Location = new System.Drawing.Point(287, 4);
+            this.btnDeleteSuplier.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteSuplier.Name = "btnDeleteSuplier";
+            this.btnDeleteSuplier.Size = new System.Drawing.Size(132, 68);
+            this.btnDeleteSuplier.TabIndex = 2;
+            this.btnDeleteSuplier.Text = "Xóa";
+            this.btnDeleteSuplier.UseVisualStyleBackColor = true;
+            this.btnDeleteSuplier.Click += new System.EventHandler(this.btnDeleteSupplier_Click);
             // 
-            // button15
+            // btnEditSuplier
             // 
-            this.button15.Location = new System.Drawing.Point(145, 4);
-            this.button15.Margin = new System.Windows.Forms.Padding(4);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(132, 68);
-            this.button15.TabIndex = 1;
-            this.button15.Text = "Sửa";
-            this.button15.UseVisualStyleBackColor = true;
+            this.btnEditSuplier.Location = new System.Drawing.Point(145, 4);
+            this.btnEditSuplier.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEditSuplier.Name = "btnEditSuplier";
+            this.btnEditSuplier.Size = new System.Drawing.Size(132, 68);
+            this.btnEditSuplier.TabIndex = 1;
+            this.btnEditSuplier.Text = "Sửa";
+            this.btnEditSuplier.UseVisualStyleBackColor = true;
+            this.btnEditSuplier.Click += new System.EventHandler(this.btnUpdateSupplier_Click);
             // 
-            // button16
+            // btnAddSuplier
             // 
-            this.button16.Location = new System.Drawing.Point(4, 4);
-            this.button16.Margin = new System.Windows.Forms.Padding(4);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(132, 68);
-            this.button16.TabIndex = 0;
-            this.button16.Text = "Thêm";
-            this.button16.UseVisualStyleBackColor = true;
+            this.btnAddSuplier.Location = new System.Drawing.Point(4, 4);
+            this.btnAddSuplier.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddSuplier.Name = "btnAddSuplier";
+            this.btnAddSuplier.Size = new System.Drawing.Size(132, 68);
+            this.btnAddSuplier.TabIndex = 0;
+            this.btnAddSuplier.Text = "Thêm";
+            this.btnAddSuplier.UseVisualStyleBackColor = true;
+            this.btnAddSuplier.Click += new System.EventHandler(this.btnAddSupplier_Click);
             // 
             // tabPage5
             // 
@@ -1201,9 +1208,9 @@
             // 
             this.panel47.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel47.Controls.Add(this.btnShowStaff);
-            this.panel47.Controls.Add(this.button10);
-            this.panel47.Controls.Add(this.button11);
-            this.panel47.Controls.Add(this.button12);
+            this.panel47.Controls.Add(this.btnDeleteStaff);
+            this.panel47.Controls.Add(this.btnUpdateStaff);
+            this.panel47.Controls.Add(this.btnAddStaff);
             this.panel47.Location = new System.Drawing.Point(7, 7);
             this.panel47.Margin = new System.Windows.Forms.Padding(4);
             this.panel47.Name = "panel47";
@@ -1221,35 +1228,38 @@
             this.btnShowStaff.UseVisualStyleBackColor = true;
             this.btnShowStaff.Click += new System.EventHandler(this.btnShowStaff_Click);
             // 
-            // button10
+            // btnDeleteStaff
             // 
-            this.button10.Location = new System.Drawing.Point(287, 4);
-            this.button10.Margin = new System.Windows.Forms.Padding(4);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(132, 68);
-            this.button10.TabIndex = 2;
-            this.button10.Text = "Xóa";
-            this.button10.UseVisualStyleBackColor = true;
+            this.btnDeleteStaff.Location = new System.Drawing.Point(287, 4);
+            this.btnDeleteStaff.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteStaff.Name = "btnDeleteStaff";
+            this.btnDeleteStaff.Size = new System.Drawing.Size(132, 68);
+            this.btnDeleteStaff.TabIndex = 2;
+            this.btnDeleteStaff.Text = "Xóa";
+            this.btnDeleteStaff.UseVisualStyleBackColor = true;
+            this.btnDeleteStaff.Click += new System.EventHandler(this.btnDeleteStaff_Click_1);
             // 
-            // button11
+            // btnUpdateStaff
             // 
-            this.button11.Location = new System.Drawing.Point(145, 4);
-            this.button11.Margin = new System.Windows.Forms.Padding(4);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(132, 68);
-            this.button11.TabIndex = 1;
-            this.button11.Text = "Sửa";
-            this.button11.UseVisualStyleBackColor = true;
+            this.btnUpdateStaff.Location = new System.Drawing.Point(145, 4);
+            this.btnUpdateStaff.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateStaff.Name = "btnUpdateStaff";
+            this.btnUpdateStaff.Size = new System.Drawing.Size(132, 68);
+            this.btnUpdateStaff.TabIndex = 1;
+            this.btnUpdateStaff.Text = "Sửa";
+            this.btnUpdateStaff.UseVisualStyleBackColor = true;
+            this.btnUpdateStaff.Click += new System.EventHandler(this.btnUpdateStaff_Click_1);
             // 
-            // button12
+            // btnAddStaff
             // 
-            this.button12.Location = new System.Drawing.Point(4, 4);
-            this.button12.Margin = new System.Windows.Forms.Padding(4);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(132, 68);
-            this.button12.TabIndex = 0;
-            this.button12.Text = "Thêm";
-            this.button12.UseVisualStyleBackColor = true;
+            this.btnAddStaff.Location = new System.Drawing.Point(4, 4);
+            this.btnAddStaff.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddStaff.Name = "btnAddStaff";
+            this.btnAddStaff.Size = new System.Drawing.Size(132, 68);
+            this.btnAddStaff.TabIndex = 0;
+            this.btnAddStaff.Text = "Thêm";
+            this.btnAddStaff.UseVisualStyleBackColor = true;
+            this.btnAddStaff.Click += new System.EventHandler(this.btnAddStaff_Click_1);
             // 
             // panel46
             // 
@@ -1263,7 +1273,9 @@
             // 
             // dtgvStaff
             // 
+            this.dtgvStaff.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvStaff.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dtgvStaff.CausesValidation = false;
             this.dtgvStaff.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvStaff.Location = new System.Drawing.Point(4, 4);
             this.dtgvStaff.Margin = new System.Windows.Forms.Padding(4);
@@ -1275,6 +1287,8 @@
             // panel37
             // 
             this.panel37.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel37.Controls.Add(this.btnLoadUnusedAccounts);
+            this.panel37.Controls.Add(this.panel82);
             this.panel37.Controls.Add(this.panel50);
             this.panel37.Controls.Add(this.panel49);
             this.panel37.Controls.Add(this.panel38);
@@ -1287,10 +1301,50 @@
             this.panel37.Size = new System.Drawing.Size(436, 645);
             this.panel37.TabIndex = 5;
             // 
+            // btnLoadUnusedAccounts
+            // 
+            this.btnLoadUnusedAccounts.Location = new System.Drawing.Point(287, 465);
+            this.btnLoadUnusedAccounts.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLoadUnusedAccounts.Name = "btnLoadUnusedAccounts";
+            this.btnLoadUnusedAccounts.Size = new System.Drawing.Size(132, 68);
+            this.btnLoadUnusedAccounts.TabIndex = 8;
+            this.btnLoadUnusedAccounts.Text = "Liệt kê tài khoản trống";
+            this.btnLoadUnusedAccounts.UseVisualStyleBackColor = true;
+            this.btnLoadUnusedAccounts.Click += new System.EventHandler(this.btnLoadUnusedAccounts_Click);
+            // 
+            // panel82
+            // 
+            this.panel82.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel82.Controls.Add(this.dtpkBirthDateStaff);
+            this.panel82.Controls.Add(this.label41);
+            this.panel82.Location = new System.Drawing.Point(4, 253);
+            this.panel82.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel82.Name = "panel82";
+            this.panel82.Size = new System.Drawing.Size(415, 54);
+            this.panel82.TabIndex = 7;
+            // 
+            // dtpkBirthDateStaff
+            // 
+            this.dtpkBirthDateStaff.Location = new System.Drawing.Point(164, 17);
+            this.dtpkBirthDateStaff.Name = "dtpkBirthDateStaff";
+            this.dtpkBirthDateStaff.Size = new System.Drawing.Size(243, 27);
+            this.dtpkBirthDateStaff.TabIndex = 1;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(4, 20);
+            this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(111, 24);
+            this.label41.TabIndex = 0;
+            this.label41.Text = "Ngày sinh:";
+            // 
             // panel50
             // 
             this.panel50.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel50.Controls.Add(this.comboBox7);
+            this.panel50.Controls.Add(this.cbGender);
             this.panel50.Controls.Add(this.label26);
             this.panel50.Location = new System.Drawing.Point(4, 191);
             this.panel50.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -1298,14 +1352,14 @@
             this.panel50.Size = new System.Drawing.Size(415, 58);
             this.panel50.TabIndex = 6;
             // 
-            // comboBox7
+            // cbGender
             // 
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(164, 18);
-            this.comboBox7.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(243, 28);
-            this.comboBox7.TabIndex = 5;
+            this.cbGender.FormattingEnabled = true;
+            this.cbGender.Location = new System.Drawing.Point(164, 18);
+            this.cbGender.Margin = new System.Windows.Forms.Padding(4);
+            this.cbGender.Name = "cbGender";
+            this.cbGender.Size = new System.Drawing.Size(243, 28);
+            this.cbGender.TabIndex = 5;
             // 
             // label26
             // 
@@ -1321,21 +1375,21 @@
             // panel49
             // 
             this.panel49.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel49.Controls.Add(this.textBox11);
+            this.panel49.Controls.Add(this.txbEmailStaff);
             this.panel49.Controls.Add(this.label25);
-            this.panel49.Location = new System.Drawing.Point(4, 318);
+            this.panel49.Location = new System.Drawing.Point(4, 383);
             this.panel49.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel49.Name = "panel49";
             this.panel49.Size = new System.Drawing.Size(415, 54);
             this.panel49.TabIndex = 5;
             // 
-            // textBox11
+            // txbEmailStaff
             // 
-            this.textBox11.Location = new System.Drawing.Point(164, 18);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(243, 27);
-            this.textBox11.TabIndex = 1;
+            this.txbEmailStaff.Location = new System.Drawing.Point(164, 17);
+            this.txbEmailStaff.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbEmailStaff.Name = "txbEmailStaff";
+            this.txbEmailStaff.Size = new System.Drawing.Size(244, 27);
+            this.txbEmailStaff.TabIndex = 1;
             // 
             // label25
             // 
@@ -1351,21 +1405,21 @@
             // panel38
             // 
             this.panel38.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel38.Controls.Add(this.textBox9);
+            this.panel38.Controls.Add(this.txbPhoneStaff);
             this.panel38.Controls.Add(this.label17);
-            this.panel38.Location = new System.Drawing.Point(4, 258);
+            this.panel38.Location = new System.Drawing.Point(4, 323);
             this.panel38.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel38.Name = "panel38";
             this.panel38.Size = new System.Drawing.Size(415, 54);
             this.panel38.TabIndex = 4;
             // 
-            // textBox9
+            // txbPhoneStaff
             // 
-            this.textBox9.Location = new System.Drawing.Point(164, 18);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(243, 27);
-            this.textBox9.TabIndex = 1;
+            this.txbPhoneStaff.Location = new System.Drawing.Point(164, 18);
+            this.txbPhoneStaff.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbPhoneStaff.Name = "txbPhoneStaff";
+            this.txbPhoneStaff.Size = new System.Drawing.Size(243, 27);
+            this.txbPhoneStaff.TabIndex = 1;
             // 
             // label17
             // 
@@ -1381,7 +1435,7 @@
             // panel48
             // 
             this.panel48.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel48.Controls.Add(this.txbDisplayName);
+            this.panel48.Controls.Add(this.txbFullName);
             this.panel48.Controls.Add(this.label24);
             this.panel48.Location = new System.Drawing.Point(4, 132);
             this.panel48.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -1389,13 +1443,13 @@
             this.panel48.Size = new System.Drawing.Size(415, 54);
             this.panel48.TabIndex = 3;
             // 
-            // txbDisplayName
+            // txbFullName
             // 
-            this.txbDisplayName.Location = new System.Drawing.Point(164, 18);
-            this.txbDisplayName.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.txbDisplayName.Name = "txbDisplayName";
-            this.txbDisplayName.Size = new System.Drawing.Size(243, 27);
-            this.txbDisplayName.TabIndex = 1;
+            this.txbFullName.Location = new System.Drawing.Point(164, 18);
+            this.txbFullName.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbFullName.Name = "txbFullName";
+            this.txbFullName.Size = new System.Drawing.Size(243, 27);
+            this.txbFullName.TabIndex = 1;
             // 
             // label24
             // 
@@ -1411,7 +1465,7 @@
             // panel39
             // 
             this.panel39.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel39.Controls.Add(this.textBox10);
+            this.panel39.Controls.Add(this.cbAccountStaff);
             this.panel39.Controls.Add(this.label18);
             this.panel39.Location = new System.Drawing.Point(4, 68);
             this.panel39.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -1419,13 +1473,14 @@
             this.panel39.Size = new System.Drawing.Size(417, 60);
             this.panel39.TabIndex = 2;
             // 
-            // textBox10
+            // cbAccountStaff
             // 
-            this.textBox10.Location = new System.Drawing.Point(164, 18);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(244, 27);
-            this.textBox10.TabIndex = 1;
+            this.cbAccountStaff.FormattingEnabled = true;
+            this.cbAccountStaff.Location = new System.Drawing.Point(164, 18);
+            this.cbAccountStaff.Margin = new System.Windows.Forms.Padding(4);
+            this.cbAccountStaff.Name = "cbAccountStaff";
+            this.cbAccountStaff.Size = new System.Drawing.Size(243, 28);
+            this.cbAccountStaff.TabIndex = 6;
             // 
             // label18
             // 
@@ -1441,7 +1496,7 @@
             // panel40
             // 
             this.panel40.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel40.Controls.Add(this.textBox8);
+            this.panel40.Controls.Add(this.txbIdStaff);
             this.panel40.Controls.Add(this.label19);
             this.panel40.Location = new System.Drawing.Point(4, 4);
             this.panel40.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -1449,14 +1504,14 @@
             this.panel40.Size = new System.Drawing.Size(417, 60);
             this.panel40.TabIndex = 1;
             // 
-            // textBox8
+            // txbIdStaff
             // 
-            this.textBox8.Location = new System.Drawing.Point(164, 18);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(244, 27);
-            this.textBox8.TabIndex = 1;
+            this.txbIdStaff.Location = new System.Drawing.Point(164, 18);
+            this.txbIdStaff.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbIdStaff.Name = "txbIdStaff";
+            this.txbIdStaff.ReadOnly = true;
+            this.txbIdStaff.Size = new System.Drawing.Size(244, 27);
+            this.txbIdStaff.TabIndex = 1;
             // 
             // label19
             // 
@@ -1801,9 +1856,9 @@
             // 
             this.panel32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel32.Controls.Add(this.btnShowIngredient);
-            this.panel32.Controls.Add(this.button2);
-            this.panel32.Controls.Add(this.button3);
-            this.panel32.Controls.Add(this.button4);
+            this.panel32.Controls.Add(this.btnDeleteIngredient);
+            this.panel32.Controls.Add(this.btnEditIngredient);
+            this.panel32.Controls.Add(this.btnAddIngredient);
             this.panel32.Location = new System.Drawing.Point(7, 7);
             this.panel32.Margin = new System.Windows.Forms.Padding(4);
             this.panel32.Name = "panel32";
@@ -1821,35 +1876,38 @@
             this.btnShowIngredient.UseVisualStyleBackColor = true;
             this.btnShowIngredient.Click += new System.EventHandler(this.btnShowIngredient_Click);
             // 
-            // button2
+            // btnDeleteIngredient
             // 
-            this.button2.Location = new System.Drawing.Point(287, 4);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(132, 68);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Xóa";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnDeleteIngredient.Location = new System.Drawing.Point(287, 4);
+            this.btnDeleteIngredient.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteIngredient.Name = "btnDeleteIngredient";
+            this.btnDeleteIngredient.Size = new System.Drawing.Size(132, 68);
+            this.btnDeleteIngredient.TabIndex = 2;
+            this.btnDeleteIngredient.Text = "Xóa";
+            this.btnDeleteIngredient.UseVisualStyleBackColor = true;
+            this.btnDeleteIngredient.Click += new System.EventHandler(this.btnDeleteIngredient_Click);
             // 
-            // button3
+            // btnEditIngredient
             // 
-            this.button3.Location = new System.Drawing.Point(145, 4);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(132, 68);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Sửa";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnEditIngredient.Location = new System.Drawing.Point(145, 4);
+            this.btnEditIngredient.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEditIngredient.Name = "btnEditIngredient";
+            this.btnEditIngredient.Size = new System.Drawing.Size(132, 68);
+            this.btnEditIngredient.TabIndex = 1;
+            this.btnEditIngredient.Text = "Sửa";
+            this.btnEditIngredient.UseVisualStyleBackColor = true;
+            this.btnEditIngredient.Click += new System.EventHandler(this.btnEditIngredient_Click);
             // 
-            // button4
+            // btnAddIngredient
             // 
-            this.button4.Location = new System.Drawing.Point(4, 4);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(132, 68);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "Thêm";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnAddIngredient.Location = new System.Drawing.Point(4, 4);
+            this.btnAddIngredient.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddIngredient.Name = "btnAddIngredient";
+            this.btnAddIngredient.Size = new System.Drawing.Size(132, 68);
+            this.btnAddIngredient.TabIndex = 0;
+            this.btnAddIngredient.Text = "Thêm";
+            this.btnAddIngredient.UseVisualStyleBackColor = true;
+            this.btnAddIngredient.Click += new System.EventHandler(this.btnAddIngredient_Click);
             // 
             // panel23
             // 
@@ -1867,7 +1925,7 @@
             // panel25
             // 
             this.panel25.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel25.Controls.Add(this.numericUpDown2);
+            this.panel25.Controls.Add(this.nmQuantity);
             this.panel25.Controls.Add(this.label10);
             this.panel25.Location = new System.Drawing.Point(4, 210);
             this.panel25.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -1875,18 +1933,18 @@
             this.panel25.Size = new System.Drawing.Size(415, 58);
             this.panel25.TabIndex = 4;
             // 
-            // numericUpDown2
+            // nmQuantity
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(215, 15);
-            this.numericUpDown2.Margin = new System.Windows.Forms.Padding(4);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.nmQuantity.Location = new System.Drawing.Point(215, 15);
+            this.nmQuantity.Margin = new System.Windows.Forms.Padding(4);
+            this.nmQuantity.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(199, 27);
-            this.numericUpDown2.TabIndex = 1;
+            this.nmQuantity.Name = "nmQuantity";
+            this.nmQuantity.Size = new System.Drawing.Size(199, 27);
+            this.nmQuantity.TabIndex = 1;
             // 
             // label10
             // 
@@ -1902,7 +1960,7 @@
             // panel29
             // 
             this.panel29.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel29.Controls.Add(this.comboBox2);
+            this.panel29.Controls.Add(this.cbUnitIngredient);
             this.panel29.Controls.Add(this.label12);
             this.panel29.Location = new System.Drawing.Point(4, 137);
             this.panel29.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -1910,15 +1968,15 @@
             this.panel29.Size = new System.Drawing.Size(417, 70);
             this.panel29.TabIndex = 3;
             // 
-            // comboBox2
+            // cbUnitIngredient
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(175, 20);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(237, 28);
-            this.comboBox2.TabIndex = 1;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.cbUnitIngredient.FormattingEnabled = true;
+            this.cbUnitIngredient.Location = new System.Drawing.Point(175, 20);
+            this.cbUnitIngredient.Margin = new System.Windows.Forms.Padding(4);
+            this.cbUnitIngredient.Name = "cbUnitIngredient";
+            this.cbUnitIngredient.Size = new System.Drawing.Size(237, 28);
+            this.cbUnitIngredient.TabIndex = 1;
+            this.cbUnitIngredient.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label12
             // 
@@ -1934,7 +1992,7 @@
             // panel30
             // 
             this.panel30.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel30.Controls.Add(this.textBox5);
+            this.panel30.Controls.Add(this.txbIngredientName);
             this.panel30.Controls.Add(this.label14);
             this.panel30.Location = new System.Drawing.Point(4, 68);
             this.panel30.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -1942,13 +2000,13 @@
             this.panel30.Size = new System.Drawing.Size(417, 62);
             this.panel30.TabIndex = 2;
             // 
-            // textBox5
+            // txbIngredientName
             // 
-            this.textBox5.Location = new System.Drawing.Point(172, 20);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(240, 27);
-            this.textBox5.TabIndex = 1;
+            this.txbIngredientName.Location = new System.Drawing.Point(172, 20);
+            this.txbIngredientName.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbIngredientName.Name = "txbIngredientName";
+            this.txbIngredientName.Size = new System.Drawing.Size(240, 27);
+            this.txbIngredientName.TabIndex = 1;
             // 
             // label14
             // 
@@ -1964,7 +2022,7 @@
             // panel31
             // 
             this.panel31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel31.Controls.Add(this.textBox7);
+            this.panel31.Controls.Add(this.txbIdIngredient);
             this.panel31.Controls.Add(this.label15);
             this.panel31.Location = new System.Drawing.Point(4, 4);
             this.panel31.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -1972,14 +2030,14 @@
             this.panel31.Size = new System.Drawing.Size(417, 60);
             this.panel31.TabIndex = 1;
             // 
-            // textBox7
+            // txbIdIngredient
             // 
-            this.textBox7.Location = new System.Drawing.Point(175, 18);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(232, 27);
-            this.textBox7.TabIndex = 1;
+            this.txbIdIngredient.Location = new System.Drawing.Point(175, 18);
+            this.txbIdIngredient.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbIdIngredient.Name = "txbIdIngredient";
+            this.txbIdIngredient.ReadOnly = true;
+            this.txbIdIngredient.Size = new System.Drawing.Size(232, 27);
+            this.txbIdIngredient.TabIndex = 1;
             // 
             // label15
             // 
@@ -2064,7 +2122,6 @@
             // 
             this.panel27.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel27.Controls.Add(this.btnShowAccount);
-            this.panel27.Controls.Add(this.btnDeleteAccount);
             this.panel27.Controls.Add(this.btnEditAccount);
             this.panel27.Controls.Add(this.btnAddAccount);
             this.panel27.Location = new System.Drawing.Point(8, 7);
@@ -2075,7 +2132,7 @@
             // 
             // btnShowAccount
             // 
-            this.btnShowAccount.Location = new System.Drawing.Point(428, 4);
+            this.btnShowAccount.Location = new System.Drawing.Point(285, 4);
             this.btnShowAccount.Margin = new System.Windows.Forms.Padding(4);
             this.btnShowAccount.Name = "btnShowAccount";
             this.btnShowAccount.Size = new System.Drawing.Size(132, 68);
@@ -2083,16 +2140,6 @@
             this.btnShowAccount.Text = "Tải lại";
             this.btnShowAccount.UseVisualStyleBackColor = true;
             this.btnShowAccount.Click += new System.EventHandler(this.btnShowAccount_Click);
-            // 
-            // btnDeleteAccount
-            // 
-            this.btnDeleteAccount.Location = new System.Drawing.Point(287, 4);
-            this.btnDeleteAccount.Margin = new System.Windows.Forms.Padding(4);
-            this.btnDeleteAccount.Name = "btnDeleteAccount";
-            this.btnDeleteAccount.Size = new System.Drawing.Size(132, 68);
-            this.btnDeleteAccount.TabIndex = 2;
-            this.btnDeleteAccount.Text = "Xóa";
-            this.btnDeleteAccount.UseVisualStyleBackColor = true;
             // 
             // btnEditAccount
             // 
@@ -2103,6 +2150,7 @@
             this.btnEditAccount.TabIndex = 1;
             this.btnEditAccount.Text = "Sửa";
             this.btnEditAccount.UseVisualStyleBackColor = true;
+            this.btnEditAccount.Click += new System.EventHandler(this.btnEditAccount_Click);
             // 
             // btnAddAccount
             // 
@@ -2113,6 +2161,7 @@
             this.btnAddAccount.TabIndex = 0;
             this.btnAddAccount.Text = "Thêm";
             this.btnAddAccount.UseVisualStyleBackColor = true;
+            this.btnAddAccount.Click += new System.EventHandler(this.btnAddAccount_Click);
             // 
             // panel22
             // 
@@ -2144,7 +2193,7 @@
             // panel36
             // 
             this.panel36.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel36.Controls.Add(this.comboBox3);
+            this.panel36.Controls.Add(this.cbIsActive);
             this.panel36.Controls.Add(this.label16);
             this.panel36.Location = new System.Drawing.Point(4, 142);
             this.panel36.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -2152,14 +2201,14 @@
             this.panel36.Size = new System.Drawing.Size(417, 70);
             this.panel36.TabIndex = 4;
             // 
-            // comboBox3
+            // cbIsActive
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(220, 20);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(192, 28);
-            this.comboBox3.TabIndex = 1;
+            this.cbIsActive.FormattingEnabled = true;
+            this.cbIsActive.Location = new System.Drawing.Point(220, 20);
+            this.cbIsActive.Margin = new System.Windows.Forms.Padding(4);
+            this.cbIsActive.Name = "cbIsActive";
+            this.cbIsActive.Size = new System.Drawing.Size(192, 28);
+            this.cbIsActive.TabIndex = 1;
             // 
             // label16
             // 
@@ -2175,7 +2224,7 @@
             // panel24
             // 
             this.panel24.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel24.Controls.Add(this.comboBox1);
+            this.panel24.Controls.Add(this.cbTypeAccount);
             this.panel24.Controls.Add(this.label11);
             this.panel24.Location = new System.Drawing.Point(4, 68);
             this.panel24.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -2183,14 +2232,14 @@
             this.panel24.Size = new System.Drawing.Size(417, 70);
             this.panel24.TabIndex = 3;
             // 
-            // comboBox1
+            // cbTypeAccount
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(164, 20);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(248, 28);
-            this.comboBox1.TabIndex = 1;
+            this.cbTypeAccount.FormattingEnabled = true;
+            this.cbTypeAccount.Location = new System.Drawing.Point(164, 20);
+            this.cbTypeAccount.Margin = new System.Windows.Forms.Padding(4);
+            this.cbTypeAccount.Name = "cbTypeAccount";
+            this.cbTypeAccount.Size = new System.Drawing.Size(248, 28);
+            this.cbTypeAccount.TabIndex = 1;
             // 
             // label11
             // 
@@ -2206,7 +2255,7 @@
             // panel26
             // 
             this.panel26.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel26.Controls.Add(this.textBox6);
+            this.panel26.Controls.Add(this.txbUserNameAccount);
             this.panel26.Controls.Add(this.label13);
             this.panel26.Location = new System.Drawing.Point(4, 4);
             this.panel26.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -2214,14 +2263,13 @@
             this.panel26.Size = new System.Drawing.Size(417, 60);
             this.panel26.TabIndex = 1;
             // 
-            // textBox6
+            // txbUserNameAccount
             // 
-            this.textBox6.Location = new System.Drawing.Point(164, 18);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(244, 27);
-            this.textBox6.TabIndex = 1;
+            this.txbUserNameAccount.Location = new System.Drawing.Point(164, 18);
+            this.txbUserNameAccount.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbUserNameAccount.Name = "txbUserNameAccount";
+            this.txbUserNameAccount.Size = new System.Drawing.Size(244, 27);
+            this.txbUserNameAccount.TabIndex = 1;
             // 
             // label13
             // 
@@ -3157,6 +3205,8 @@
             this.panel46.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvStaff)).EndInit();
             this.panel37.ResumeLayout(false);
+            this.panel82.ResumeLayout(false);
+            this.panel82.PerformLayout();
             this.panel50.ResumeLayout(false);
             this.panel50.PerformLayout();
             this.panel49.ResumeLayout(false);
@@ -3194,7 +3244,7 @@
             this.panel23.ResumeLayout(false);
             this.panel25.ResumeLayout(false);
             this.panel25.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmQuantity)).EndInit();
             this.panel29.ResumeLayout(false);
             this.panel29.PerformLayout();
             this.panel30.ResumeLayout(false);
@@ -3318,54 +3368,53 @@
         private System.Windows.Forms.Button button27;
         private System.Windows.Forms.Panel panel53;
         private System.Windows.Forms.Panel panel58;
-        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.TextBox txbAddress;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Panel panel55;
-        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox txbEmail;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Panel panel54;
-        private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.TextBox txbPhone;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Panel panel56;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox txbSupplierName;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Panel panel57;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox txbIdSupplier;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Panel panel52;
         private System.Windows.Forms.DataGridView dtgvSuplier;
         private System.Windows.Forms.Panel panel51;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button btnDeleteSuplier;
+        private System.Windows.Forms.Button btnEditSuplier;
+        private System.Windows.Forms.Button btnAddSuplier;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.Panel panel72;
         private System.Windows.Forms.TextBox textBox27;
         private System.Windows.Forms.Button button26;
         private System.Windows.Forms.Panel panel47;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button btnDeleteStaff;
+        private System.Windows.Forms.Button btnUpdateStaff;
+        private System.Windows.Forms.Button btnAddStaff;
         private System.Windows.Forms.Panel panel46;
         private System.Windows.Forms.DataGridView dtgvStaff;
         private System.Windows.Forms.Panel panel37;
         private System.Windows.Forms.Panel panel50;
-        private System.Windows.Forms.ComboBox comboBox7;
+        private System.Windows.Forms.ComboBox cbGender;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Panel panel49;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox txbEmailStaff;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Panel panel38;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox txbPhoneStaff;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Panel panel48;
-        private System.Windows.Forms.TextBox txbDisplayName;
+        private System.Windows.Forms.TextBox txbFullName;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Panel panel39;
-        private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Panel panel40;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txbIdStaff;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Panel panel71;
@@ -3397,21 +3446,21 @@
         private System.Windows.Forms.Panel panel33;
         private System.Windows.Forms.DataGridView dtgvIngredient;
         private System.Windows.Forms.Panel panel32;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnDeleteIngredient;
+        private System.Windows.Forms.Button btnEditIngredient;
+        private System.Windows.Forms.Button btnAddIngredient;
         private System.Windows.Forms.Panel panel23;
         private System.Windows.Forms.Panel panel25;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown nmQuantity;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel29;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbUnitIngredient;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel30;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txbIngredientName;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panel31;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txbIdIngredient;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TabPage tpAccount;
         private System.Windows.Forms.Panel panel69;
@@ -3420,19 +3469,18 @@
         private System.Windows.Forms.Panel panel28;
         private System.Windows.Forms.DataGridView dtgvAccount;
         private System.Windows.Forms.Panel panel27;
-        private System.Windows.Forms.Button btnDeleteAccount;
         private System.Windows.Forms.Button btnEditAccount;
         private System.Windows.Forms.Button btnAddAccount;
         private System.Windows.Forms.Panel panel22;
         private System.Windows.Forms.Button button33;
         private System.Windows.Forms.Panel panel36;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cbIsActive;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Panel panel24;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbTypeAccount;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel26;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txbUserNameAccount;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TabPage tpTable;
         private System.Windows.Forms.Panel panel68;
@@ -3517,5 +3565,10 @@
         private System.Windows.Forms.Button btnShowTable;
         private System.Windows.Forms.Button btnShowCategory;
         private System.Windows.Forms.Button btnShowFood;
+        private System.Windows.Forms.Panel panel82;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.DateTimePicker dtpkBirthDateStaff;
+        private System.Windows.Forms.ComboBox cbAccountStaff;
+        private System.Windows.Forms.Button btnLoadUnusedAccounts;
     }
 }
