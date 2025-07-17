@@ -60,5 +60,12 @@ namespace App.DAO
             return result > 0;
         }
 
+        public bool DeleteFood(int idFood)
+        {
+            string query = "DELETE FROM Food WHERE idFood = " + idFood;
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
     }
 }

@@ -18,7 +18,7 @@ namespace App.DAO
         }
         private CategoryDAO() { }
 
-
+        /// <summary>   
         public List<DTO.Category> GetListCategory()
         {
             List<DTO.Category> listCategory = new List<DTO.Category>();
@@ -48,5 +48,36 @@ namespace App.DAO
             return category;
         }
 
+        public bool InsertCategory(string categoryName)
+        {
+            string query = "INSERT dbo.FoodCategory (categoryName) VALUES (N'" + categoryName + "')";
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public bool UpdateCategory(int idCategory, string categoryName)
+        {
+            string query = "UPDATE dbo.FoodCategory SET categoryName = N'" + categoryName + "' WHERE idCategory = " + idCategory;
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public bool HasFoodInCategory(int idCategory)
+        {
+            string query = "SELECT COUNT(*) FROM Food WHERE idCategory = @idCategory";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { idCategory });
+            return Convert.ToInt32(result) > 0;
+        }
+
+        public bool DeleteCategory(int idCategory)
+        {
+            if (HasFoodInCategory(idCategory))
+            {
+                return false; 
+            }
+            string query = "DELETE FROM dbo.FoodCategory WHERE idCategory = " + idCategory;
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
     }
 }

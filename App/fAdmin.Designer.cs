@@ -206,13 +206,13 @@
             this.button22 = new System.Windows.Forms.Button();
             this.panel18 = new System.Windows.Forms.Panel();
             this.panel21 = new System.Windows.Forms.Panel();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.cbTableStatus = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.panel19 = new System.Windows.Forms.Panel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txbTableName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel20 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txbIdTable = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
             this.dtgvTableFood = new System.Windows.Forms.DataGridView();
@@ -227,10 +227,10 @@
             this.button21 = new System.Windows.Forms.Button();
             this.panel13 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txbCategoryName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel17 = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txbIdCategory = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
             this.dtgvCategory = new System.Windows.Forms.DataGridView();
@@ -2293,7 +2293,7 @@
             // panel21
             // 
             this.panel21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel21.Controls.Add(this.comboBox4);
+            this.panel21.Controls.Add(this.cbTableStatus);
             this.panel21.Controls.Add(this.label9);
             this.panel21.Location = new System.Drawing.Point(4, 143);
             this.panel21.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -2301,14 +2301,14 @@
             this.panel21.Size = new System.Drawing.Size(417, 70);
             this.panel21.TabIndex = 4;
             // 
-            // comboBox4
+            // cbTableStatus
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(169, 20);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(240, 28);
-            this.comboBox4.TabIndex = 5;
+            this.cbTableStatus.FormattingEnabled = true;
+            this.cbTableStatus.Location = new System.Drawing.Point(169, 20);
+            this.cbTableStatus.Margin = new System.Windows.Forms.Padding(4);
+            this.cbTableStatus.Name = "cbTableStatus";
+            this.cbTableStatus.Size = new System.Drawing.Size(240, 28);
+            this.cbTableStatus.TabIndex = 5;
             // 
             // label9
             // 
@@ -2324,7 +2324,7 @@
             // panel19
             // 
             this.panel19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel19.Controls.Add(this.textBox3);
+            this.panel19.Controls.Add(this.txbTableName);
             this.panel19.Controls.Add(this.label5);
             this.panel19.Location = new System.Drawing.Point(4, 68);
             this.panel19.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -2333,13 +2333,13 @@
             this.panel19.TabIndex = 3;
             this.panel19.Paint += new System.Windows.Forms.PaintEventHandler(this.panel19_Paint);
             // 
-            // textBox3
+            // txbTableName
             // 
-            this.textBox3.Location = new System.Drawing.Point(172, 23);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(240, 27);
-            this.textBox3.TabIndex = 2;
+            this.txbTableName.Location = new System.Drawing.Point(172, 23);
+            this.txbTableName.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbTableName.Name = "txbTableName";
+            this.txbTableName.Size = new System.Drawing.Size(240, 27);
+            this.txbTableName.TabIndex = 2;
             // 
             // label5
             // 
@@ -2355,7 +2355,7 @@
             // panel20
             // 
             this.panel20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel20.Controls.Add(this.textBox1);
+            this.panel20.Controls.Add(this.txbIdTable);
             this.panel20.Controls.Add(this.label7);
             this.panel20.Location = new System.Drawing.Point(4, 4);
             this.panel20.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -2363,14 +2363,14 @@
             this.panel20.Size = new System.Drawing.Size(417, 60);
             this.panel20.TabIndex = 1;
             // 
-            // textBox1
+            // txbIdTable
             // 
-            this.textBox1.Location = new System.Drawing.Point(169, 18);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(240, 27);
-            this.textBox1.TabIndex = 1;
+            this.txbIdTable.Location = new System.Drawing.Point(169, 18);
+            this.txbIdTable.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbIdTable.Name = "txbIdTable";
+            this.txbIdTable.ReadOnly = true;
+            this.txbIdTable.Size = new System.Drawing.Size(240, 27);
+            this.txbIdTable.TabIndex = 1;
             // 
             // label7
             // 
@@ -2441,6 +2441,7 @@
             this.btnDeleteTable.TabIndex = 2;
             this.btnDeleteTable.Text = "Xóa";
             this.btnDeleteTable.UseVisualStyleBackColor = true;
+            this.btnDeleteTable.Click += new System.EventHandler(this.btnDeleteTable_Click);
             // 
             // btnEditTable
             // 
@@ -2452,6 +2453,7 @@
             this.btnEditTable.TabIndex = 1;
             this.btnEditTable.Text = "Sửa";
             this.btnEditTable.UseVisualStyleBackColor = true;
+            this.btnEditTable.Click += new System.EventHandler(this.btnEditTable_Click);
             // 
             // btnAddTable
             // 
@@ -2463,6 +2465,7 @@
             this.btnAddTable.TabIndex = 0;
             this.btnAddTable.Text = "Thêm";
             this.btnAddTable.UseVisualStyleBackColor = true;
+            this.btnAddTable.Click += new System.EventHandler(this.btnAddTable_Click);
             // 
             // tpFoodCategory
             // 
@@ -2522,7 +2525,7 @@
             // panel15
             // 
             this.panel15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel15.Controls.Add(this.textBox4);
+            this.panel15.Controls.Add(this.txbCategoryName);
             this.panel15.Controls.Add(this.label6);
             this.panel15.Location = new System.Drawing.Point(4, 68);
             this.panel15.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -2530,13 +2533,13 @@
             this.panel15.Size = new System.Drawing.Size(417, 70);
             this.panel15.TabIndex = 3;
             // 
-            // textBox4
+            // txbCategoryName
             // 
-            this.textBox4.Location = new System.Drawing.Point(172, 23);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(240, 27);
-            this.textBox4.TabIndex = 3;
+            this.txbCategoryName.Location = new System.Drawing.Point(172, 23);
+            this.txbCategoryName.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbCategoryName.Name = "txbCategoryName";
+            this.txbCategoryName.Size = new System.Drawing.Size(240, 27);
+            this.txbCategoryName.TabIndex = 3;
             // 
             // label6
             // 
@@ -2552,7 +2555,7 @@
             // panel17
             // 
             this.panel17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel17.Controls.Add(this.textBox2);
+            this.panel17.Controls.Add(this.txbIdCategory);
             this.panel17.Controls.Add(this.label8);
             this.panel17.Location = new System.Drawing.Point(4, 4);
             this.panel17.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -2560,14 +2563,14 @@
             this.panel17.Size = new System.Drawing.Size(417, 60);
             this.panel17.TabIndex = 1;
             // 
-            // textBox2
+            // txbIdCategory
             // 
-            this.textBox2.Location = new System.Drawing.Point(169, 18);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(240, 27);
-            this.textBox2.TabIndex = 1;
+            this.txbIdCategory.Location = new System.Drawing.Point(169, 18);
+            this.txbIdCategory.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbIdCategory.Name = "txbIdCategory";
+            this.txbIdCategory.ReadOnly = true;
+            this.txbIdCategory.Size = new System.Drawing.Size(240, 27);
+            this.txbIdCategory.TabIndex = 1;
             // 
             // label8
             // 
@@ -2637,6 +2640,7 @@
             this.btnDeleteCategory.TabIndex = 2;
             this.btnDeleteCategory.Text = "Xóa";
             this.btnDeleteCategory.UseVisualStyleBackColor = true;
+            this.btnDeleteCategory.Click += new System.EventHandler(this.btnDeleteCategory_Click);
             // 
             // btnEditCategory
             // 
@@ -2647,6 +2651,7 @@
             this.btnEditCategory.TabIndex = 1;
             this.btnEditCategory.Text = "Sửa";
             this.btnEditCategory.UseVisualStyleBackColor = true;
+            this.btnEditCategory.Click += new System.EventHandler(this.btnEditCategory_Click);
             // 
             // btnAddCategory
             // 
@@ -2657,6 +2662,7 @@
             this.btnAddCategory.TabIndex = 0;
             this.btnAddCategory.Text = "Thêm";
             this.btnAddCategory.UseVisualStyleBackColor = true;
+            this.btnAddCategory.Click += new System.EventHandler(this.btnAddCategory_Click);
             // 
             // tpFood
             // 
@@ -2881,6 +2887,7 @@
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDeleteFood_Click);
             // 
             // btnEditFood
             // 
@@ -3433,13 +3440,13 @@
         private System.Windows.Forms.Button button22;
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.Panel panel21;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox cbTableStatus;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel19;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txbTableName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel20;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txbIdTable;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.DataGridView dtgvTableFood;
@@ -3453,10 +3460,10 @@
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txbCategoryName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel17;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txbIdCategory;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.DataGridView dtgvCategory;
