@@ -46,6 +46,7 @@ namespace App.DAO
             return listFood;
         }
 
+
         public bool InsertFood(string foodName, int idCategory, float price)
         {
             string query = "INSERT INTO Food (foodName, idCategory, price) VALUES (N'" + foodName + "', " + idCategory + ", " + price + ")";

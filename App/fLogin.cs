@@ -63,23 +63,6 @@ namespace App
             }
         }
 
-        //private void btnLogin_Click(object sender, EventArgs e)
-        //{
-        //    string userName = txbUser.Text;
-        //    string password = txbPass.Text;
-        //    if (Login(userName, password))
-        //    {
-        //        LoggedInUserName = userName; // Lưu lại userName
-        //        fTableManager f = new fTableManager();
-        //        this.Hide();
-        //        f.ShowDialog();
-        //        this.Show();
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
 
         private void btnLogin_Click(object sender, EventArgs e)
         {

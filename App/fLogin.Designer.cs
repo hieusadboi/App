@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -37,7 +38,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.txbUser = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -59,13 +59,25 @@
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // label3
+            // 
+            this.label3.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(235, 31);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(355, 48);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Quản Lý Quán Ăn";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // btnExit
             // 
             this.btnExit.BackColor = System.Drawing.Color.IndianRed;
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.Location = new System.Drawing.Point(548, 305);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(5);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(180, 56);
             this.btnExit.TabIndex = 4;
@@ -78,7 +90,7 @@
             this.btnLogin.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.Location = new System.Drawing.Point(338, 305);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(5);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(180, 56);
             this.btnLogin.TabIndex = 3;
@@ -158,17 +170,6 @@
             this.label1.Text = "Tên đăng nhập:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(235, 31);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(355, 48);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Quản Lý Quán Ăn";
-            // 
             // fLogin
             // 
             this.AcceptButton = this.btnLogin;
@@ -185,7 +186,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fLogin_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);

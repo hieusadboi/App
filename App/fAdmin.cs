@@ -23,28 +23,13 @@ namespace App
         BindingSource ingredientList = new BindingSource();
         BindingSource staffList = new BindingSource();
         BindingSource supplierList = new BindingSource();
+        BindingSource foodList1 = new BindingSource(); // Binding cho FoodIngredient
+        BindingSource ingredientBinding = new BindingSource();
+
 
         public fAdmin()
         {
             InitializeComponent();
-
-            //LoadAccountList();
-
-            //LoadFoodList();
-
-            //LoadCategoryList();
-
-            //LoadTableFood();
-
-            //LoadIngredient();
-
-            //LoadStaff();
-
-            //LoadFoodIngredient();
-
-            //LoadSupplier();
-
-            //LoadDoanhThu(DateTime.Now, DateTime.Now);
 
             LoadALL();
         }
@@ -82,6 +67,7 @@ namespace App
             LoadSupplier();
             AddSupplierBinding();
 
+
             LoadDoanhThu(DateTime.Now, DateTime.Now);
         }
 
@@ -90,7 +76,6 @@ namespace App
         {
             foodList.DataSource = FoodDAO.Instance.GetListFood();
             dtgvFood.DataSource = foodList;
-
             dtgvFood.Columns["IdFood"].HeaderText = "Mã Món";
             dtgvFood.Columns["FoodName"].HeaderText = "Tên Món";
             dtgvFood.Columns["Price"].HeaderText = "Giá";
@@ -157,8 +142,92 @@ namespace App
 
         void LoadFoodIngredient()
         {
-            string query = "EXEC GetFoodIngredientSummary";
-            dtgvFoodIngredient.DataSource = DataProvider.Instance.ExecuteQuery(query);
+            // Load danh sách món ăn
+            foodList1.DataSource = FoodDAO.Instance.GetListFood();
+            dtgvFood1.DataSource = foodList1;
+            dtgvFood1.Columns["IdFood"].HeaderText = "Mã Món";
+            dtgvFood1.Columns["FoodName"].HeaderText = "Tên Món";
+            dtgvFood1.Columns["Price"].Visible = false;
+            dtgvFood1.Columns["IdCategory"].Visible = false;
+            dtgvFood1.Columns["IdFood"].Width = 120;
+            dtgvFood1.Columns["FoodName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+
+            // Binding món ăn vào ComboBox và TextBox
+            LoadFoodNameToComboBox();
+            AddFoodBinding1();
+
+            // Load nguyên liệu của món đầu tiên (nếu có)
+            if (dtgvFood1.Rows.Count > 0)
+            {
+                dtgvFood1.Rows[0].Selected = true;
+                LoadFoodIngredientDetail_ByCurrentSelection();
+            }
+            else
+            {
+                ingredientBinding.DataSource = null;
+                dtgvFoodIngredient.DataSource = null;
+            }
+
+            // Binding nguyên liệu
+            AddIngredientBinding1();
+        }
+
+
+
+
+        void LoadFoodIngredientDetail_ByCurrentSelection()
+        {
+            if (!string.IsNullOrEmpty(txbIdFoodIngredient.Text) && int.TryParse(txbIdFoodIngredient.Text, out int idFood))
+            {
+                List<FoodIngredient> ingredientList = FoodIngredientDAO.Instance.GetIngredientsByFoodId(idFood);
+                if (ingredientList != null && ingredientList.Count > 0)
+                {
+                    // Debug: Kiểm tra dữ liệu
+                    Console.WriteLine("Danh sách nguyên liệu:");
+                    foreach (var item in ingredientList)
+                    {
+                        Console.WriteLine($"IdIngredient: {item.IdIngredient}, Name: {item.IngredientName}, Unit: {item.Unit}, Quantity: {item.Quantity}");
+                    }
+
+                    ingredientBinding.DataSource = ingredientList;
+                    dtgvFoodIngredient.DataSource = ingredientBinding;
+                    dtgvFoodIngredient.Columns["IdIngredient"].HeaderText = "Mã Nguyên Liệu";
+                    dtgvFoodIngredient.Columns["IngredientName"].HeaderText = "Tên Nguyên Liệu";
+                    dtgvFoodIngredient.Columns["Unit"].HeaderText = "Đơn Vị";
+                    dtgvFoodIngredient.Columns["Quantity"].HeaderText = "Số Lượng";
+                    dtgvFoodIngredient.Columns["IdFood"].Visible = false; // Ẩn cột IdFood nếu không cần thiết
+                }
+                else
+                {
+                    // Xóa dữ liệu cũ và làm mới DataGridView
+                    dtgvFoodIngredient.Rows.Clear(); // Xóa các hàng hiển thị
+                    dtgvFoodIngredient.Refresh();   // Làm mới giao diện
+
+                    // Reset các control về trạng thái trống
+                    txbIdbingredient.Text = "";
+                    cbNameIngredient.SelectedIndex = -1;
+                    cbUnitIngredient1.SelectedIndex = -1;
+                    nmQuantityFoodIngredient.Value = 0;
+
+                    MessageBox.Show("Không có nguyên liệu nào cho món ăn này!", "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                ingredientBinding.DataSource = null;
+                dtgvFoodIngredient.DataSource = null;
+                dtgvFoodIngredient.Rows.Clear();
+                dtgvFoodIngredient.Refresh();
+
+                // Reset các control về trạng thái trống
+                txbIdbingredient.Text = "";
+                cbNameIngredient.SelectedIndex = -1;
+                cbUnitIngredient1.SelectedIndex = -1;
+                nmQuantityFoodIngredient.Value = 1;
+
+                //MessageBox.Show("Vui lòng chọn một món ăn hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         void LoadSupplier()
@@ -173,12 +242,33 @@ namespace App
             dtgvSuplier.Columns["address"].HeaderText = "Địa Chỉ";
         }
 
-
-        //void LoadDoanhThu(DateTime fromDate, DateTime toDate)
+        //private void dtgvFood1_CellClick(object sender, DataGridViewCellEventArgs e)
         //{
-        //    string query = "EXEC GetThuChi_OneTable_WithNote @FromDate , @ToDate";
-        //    dtgvDoanhThu.DataSource = DataProvider.Instance.ExecuteQuery(query, new object[] { fromDate, toDate });
+        //    LoadFoodIngredientDetail_ByCurrentSelection();
+        //    AddIngredientBinding1();
         //}
+
+        //private void dtgvFood1_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (e.RowIndex >= 0) // Ensure a valid row is selected
+        //    {
+        //        this.Validate(); // Synchronize bindings
+        //        MessageBox.Show($"Selected IdFood: {txbIdFoodIngredient.Text}"); // For debugging
+        //        LoadFoodIngredientDetail_ByCurrentSelection();
+        //        AddIngredientBinding1();
+        //    }
+        //}
+
+        private void dtgvFood1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                this.Validate();
+                LoadFoodIngredientDetail_ByCurrentSelection();
+                AddIngredientBinding1();
+            }
+        }
+
 
         // Gọi một lần ở Form_Load hoặc khởi tạo
         void InitDoanhThuColumns()
@@ -287,8 +377,8 @@ namespace App
 
         void LoadDoanhThu(DateTime fromDate, DateTime toDate)
         {
-            InitDoanhThuColumns();
-            string query = "EXEC GetThuChi_OneTable_WithNote @FromDate , @ToDate";
+            //InitDoanhThuColumns();
+            string query = "EXEC DoanhThu @FromDate , @ToDate";
             dtgvDoanhThu.DataSource = DataProvider.Instance.ExecuteQuery(query, new object[] { fromDate, toDate });
         }
 
@@ -506,6 +596,108 @@ namespace App
             cbAccountStaff.DataBindings.Add("SelectedItem", dtgvStaff.DataSource, "AccountUserName", true, DataSourceUpdateMode.Never);
         }
 
+        void LoadFoodNameToComboBox()
+        {
+            List<Food> foodList = FoodDAO.Instance.GetListFood();
+            cbNameFoodIngredient.DataSource = foodList;
+
+            cbNameFoodIngredient.DisplayMember = "FoodName"; // Tên hiển thị
+            cbNameFoodIngredient.ValueMember = "IdFood";     // Giá trị thực tế
+        }
+
+        // cho định lượng nguyên liệu của món ăn
+        void AddFoodBinding1()
+        {
+            txbIdFoodIngredient.DataBindings.Clear();
+            cbNameFoodIngredient.DataBindings.Clear();
+
+            // Binding ID món
+            txbIdFoodIngredient.DataBindings.Add("Text", dtgvFood1.DataSource, "IdFood", true, DataSourceUpdateMode.Never);
+
+            cbNameFoodIngredient.DataBindings.Add("SelectedValue", dtgvFood1.DataSource, "IdFood", true, DataSourceUpdateMode.Never);
+        }
+
+        // cho định lượng nguyên liệu của món ăn
+        void AddIngredientBinding1()
+        {
+            // Xóa tất cả binding cũ
+            txbIdbingredient.DataBindings.Clear();
+            cbNameIngredient.DataBindings.Clear();
+            cbUnitIngredient1.DataBindings.Clear();
+            nmQuantityFoodIngredient.DataBindings.Clear();
+
+            // Reset ComboBox DataSource và Items
+            cbNameIngredient.DataSource = null;
+            cbUnitIngredient1.Items.Clear();
+
+            // Load danh sách nguyên liệu và đơn vị vào ComboBox
+            List<Ingredient> ingredientList = IngredientDAO.Instance.GetListIngredient();
+            cbNameIngredient.DataSource = ingredientList;
+            cbNameIngredient.DisplayMember = "IngredientName";
+            cbNameIngredient.ValueMember = "IdIngredient";
+
+            List<string> units = IngredientDAO.Instance.GetAllUnits();
+            cbUnitIngredient1.Items.AddRange(units.ToArray());
+
+            // Binding nếu DataSource không rỗng
+            if (dtgvFoodIngredient.DataSource != null && dtgvFoodIngredient.Rows.Count > 0)
+            {
+                try
+                {
+                    txbIdbingredient.DataBindings.Add("Text", dtgvFoodIngredient.DataSource, "IdIngredient", true, DataSourceUpdateMode.Never);
+                    cbNameIngredient.DataBindings.Add("SelectedValue", dtgvFoodIngredient.DataSource, "IdIngredient", true, DataSourceUpdateMode.Never);
+                    cbUnitIngredient1.DataBindings.Add("SelectedItem", dtgvFoodIngredient.DataSource, "Unit", true, DataSourceUpdateMode.Never);
+                    nmQuantityFoodIngredient.DataBindings.Add("Value", dtgvFoodIngredient.DataSource, "Quantity", true, DataSourceUpdateMode.Never);
+
+                    // Đặt giá trị ban đầu cho ComboBox
+                    if (dtgvFoodIngredient.CurrentRow != null)
+                    {
+                        cbNameIngredient.SelectedValue = dtgvFoodIngredient.CurrentRow.Cells["IdIngredient"].Value;
+                        cbUnitIngredient1.SelectedItem = dtgvFoodIngredient.CurrentRow.Cells["Unit"].Value?.ToString();
+                    }
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show($"Lỗi binding: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                // Reset tất cả control về trạng thái trống khi không có dữ liệu
+                txbIdbingredient.Text = "";
+                cbNameIngredient.SelectedIndex = -1;  // Bỏ chọn nguyên liệu
+                cbUnitIngredient1.SelectedIndex = -1; // Bỏ chọn đơn vị
+                nmQuantityFoodIngredient.Value = 1;
+                //MessageBox.Show("Không có dữ liệu nguyên liệu để binding!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            // Gắn sự kiện cho cbNameIngredient
+            cbNameIngredient.SelectedIndexChanged += (sender, e) => LoadIngredientDetails();
+        }
+
+        private void LoadIngredientDetails()
+        {
+            if (cbNameIngredient.SelectedItem != null)
+            {
+                int idIngredient = (int)cbNameIngredient.SelectedValue;
+                txbIdbingredient.Text = idIngredient.ToString();
+
+                // Lấy danh sách nguyên liệu từ DAO
+                List<Ingredient> ingredientList = IngredientDAO.Instance.GetListIngredient();
+                var selectedIngredient = ingredientList.FirstOrDefault(i => i.IdIngredient == idIngredient);
+
+                if (selectedIngredient != null)
+                {
+                    cbUnitIngredient1.SelectedItem = selectedIngredient.Unit;
+                }
+                else
+                {
+                    cbUnitIngredient1.SelectedIndex = -1;
+                    MessageBox.Show("Không tìm thấy thông tin đơn vị cho nguyên liệu này!", "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
         void AddSupplierBinding()
         {
             txbIdSupplier.DataBindings.Clear();
@@ -527,8 +719,6 @@ namespace App
             cb.DisplayMember = "categoryName";  // hiển thị tên
             cb.ValueMember = "IdCategory";      // dùng giá trị Id để binding
         }
-
-
 
 
         public void txbFoodID_TextChanged(object sender, EventArgs e)
@@ -635,7 +825,7 @@ namespace App
 
             if (CategoryDAO.Instance.InsertCategory(categoryName))
             {
-                MessageBox.Show("Thêm doanh mục món ăn  thành công!");
+                MessageBox.Show("Thêm doanh mục món ăn thành công!");
                 LoadCategoryList();
             }
             else
@@ -791,7 +981,7 @@ namespace App
         {
             string name = txbIngredientName.Text.Trim();
             string unit = cbUnitIngredient.Text.Trim();
-            decimal quantity = nmQuantity.Value;
+            decimal quantity = 0;
 
             // Kiểm tra rỗng
             if (string.IsNullOrEmpty(name))
@@ -806,11 +996,11 @@ namespace App
                 return;
             }
 
-            if (quantity <= 0)
-            {
-                MessageBox.Show("Số lượng phải lớn hơn 0!");
-                return;
-            }
+            //if (quantity <= -1)
+            //{
+            //    MessageBox.Show("Số lượng phải lớn hơn 0!");
+            //    return;
+            //}
 
             if (IngredientDAO.Instance.InsertIngredient(name, unit, quantity))
             {
@@ -1082,7 +1272,7 @@ namespace App
 
             DialogResult result = MessageBox.Show(
                 $"Bạn có chắc chắn muốn xóa nhà cung cấp với ID {idSupplier} không?\n\n" +
-                "⚠️ Việc xóa sẽ dẫn đến mất toàn bộ thông tin liên quan.",
+                "Việc xóa sẽ dẫn đến mất toàn bộ thông tin liên quan.",
                 "Xác nhận xóa nhà cung cấp",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning
@@ -1107,7 +1297,111 @@ namespace App
             }
         }
 
+        // thêm sửa xóa cho định lượng nguyên liệu của món ăn
+        private void btnAddFoodIngredient_Click(object sender, EventArgs e)
+        {
+            this.Validate();
 
+            int idFood = Convert.ToInt32(txbIdFoodIngredient.Text);
+            int idIngredient = Convert.ToInt32(txbIdbingredient.Text);  // sửa thiếu .Text
+            if (!decimal.TryParse(nmQuantityFoodIngredient.Text, out decimal quantity))
+            {
+                MessageBox.Show("Số lượng không hợp lệ!");
+                return;
+            }
+
+            var foodIngredient = new FoodIngredient
+            {
+                IdFood = idFood,
+                IdIngredient = idIngredient,
+                Quantity = quantity
+            };
+
+            if (FoodIngredientDAO.Instance.InsertFoodIngredient(foodIngredient))
+            {
+                MessageBox.Show("Thêm nguyên liệu thành công!");
+                LoadFoodIngredient();
+            }
+            else
+            {
+                MessageBox.Show("Thêm nguyên liệu thất bại!");
+            }
+        }
+
+
+        private void btnEditFoodIngredient_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+
+            int idFood = Convert.ToInt32(txbIdFoodIngredient.Text);
+            int idIngredient = Convert.ToInt32(txbIdbingredient.Text);
+            if (!decimal.TryParse(nmQuantityFoodIngredient.Text, out decimal quantity))
+            {
+                MessageBox.Show("Số lượng không hợp lệ!");
+                return;
+            }
+
+            var foodIngredient = new FoodIngredient
+            {
+                IdFood = idFood,
+                IdIngredient = idIngredient,
+                Quantity = quantity
+            };
+
+            if (FoodIngredientDAO.Instance.UpdateFoodIngredient(foodIngredient))
+            {
+                MessageBox.Show("Cập nhật thành công!");
+                LoadFoodIngredient();
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật thất bại!");
+            }
+        }
+
+
+        private void btnDeleteFoodIngredient_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có chắc muốn xóa nguyên liệu này không?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+
+            int idFood = Convert.ToInt32(txbIdFoodIngredient.Text);
+            int idIngredient = Convert.ToInt32(txbIdbingredient.Text);
+
+            if (FoodIngredientDAO.Instance.DeleteFoodIngredient(idFood, idIngredient))
+            {
+                MessageBox.Show("Xóa thành công!");
+                LoadFoodIngredient();
+            }
+            else
+            {
+                MessageBox.Show("Xóa thất bại!");
+            }
+        }
+
+
+        private void btnDeleteAllIngredients_Click(object sender, EventArgs e)
+        {
+            int idFood = Convert.ToInt32(txbIdFoodIngredient.Text);
+
+            DialogResult result = MessageBox.Show(
+                $"Bạn có chắc chắn muốn xóa tất cả nguyên liệu của món có mã: {idFood} không?\n\n" +
+                "Việc xóa sẽ dẫn đến mất toàn bộ thông tin về nguyên liệu của món này.",
+                "Xác nhận xóa tất cả nguyên liệu cho món ăn này!",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (FoodIngredientDAO.Instance.DeleteAllIngredientsOfFood(idFood))
+            {
+                MessageBox.Show("Đã xóa toàn bộ nguyên liệu của món!");
+                LoadFoodIngredient();
+            }
+            else
+            {
+                MessageBox.Show("Không có nguyên liệu nào để xóa hoặc lỗi xảy ra.");
+            }
+        }
 
 
 

@@ -484,5 +484,10 @@ namespace App
             Infomation f = new Infomation(LoginAccount.Username);
             f.ShowDialog();
         }
+
+        private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }
