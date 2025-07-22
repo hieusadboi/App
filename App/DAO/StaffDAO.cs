@@ -145,6 +145,12 @@ namespace App.DAO
             return result > 0;
         }
 
+        public DataTable SearchStaffByName(string name)
+        {
+            string query = "SELECT * FROM Staff WHERE fullName LIKE @name";
+            return DataProvider.Instance.ExecuteQuery(query, new object[] { "%" + name + "%" });
+        }
+
 
     }
 }

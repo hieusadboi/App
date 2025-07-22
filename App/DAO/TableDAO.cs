@@ -128,5 +128,21 @@ namespace App.DAO
             }
         }
 
+
+        public List<Table> SearchTableByName(string name)
+        {
+            List<Table> list = new List<Table>();
+            string query = "SELECT * FROM TableFood WHERE tableName LIKE @name";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { "%" + name + "%" });
+
+            foreach (DataRow row in data.Rows)
+            {
+                list.Add(new Table(row));
+            }
+
+            return list;
+        }
+
+
     }
 }

@@ -125,6 +125,7 @@ namespace App
             dtgvIngredient.Columns["ingredientName"].HeaderText = "Tên Nguyên Liệu";
             dtgvIngredient.Columns["unit"].HeaderText = "Đơn Vị Tính";
             dtgvIngredient.Columns["quantity"].HeaderText = "Số Lượng Tồn Kho";
+            fTableManager.ShowLowStockWarning();
         }
 
 
@@ -308,6 +309,21 @@ namespace App
 
 
         #region Binding Food, Category, Table, Account, Ingredient, Staff, Supplier
+        //void AddFoodBinding()
+        //{
+        //    txbFoodID.DataBindings.Clear();
+        //    txbFoodName.DataBindings.Clear();
+        //    nmPriceFood.DataBindings.Clear();
+        //    cbFoodCategory.DataBindings.Clear();
+
+        //    txbFoodID.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "IdFood", true, DataSourceUpdateMode.Never));
+        //    txbFoodName.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "FoodName", true, DataSourceUpdateMode.Never));
+        //    nmPriceFood.DataBindings.Add(new Binding("Value", dtgvFood.DataSource, "Price", true, DataSourceUpdateMode.Never));
+
+        //    // Binding IDCategory với SelectedValue của ComboBox
+        //    cbFoodCategory.DataBindings.Add(new Binding("SelectedValue", dtgvFood.DataSource, "IdCategory", true, DataSourceUpdateMode.Never));
+        //}
+
         void AddFoodBinding()
         {
             txbFoodID.DataBindings.Clear();
@@ -315,13 +331,12 @@ namespace App
             nmPriceFood.DataBindings.Clear();
             cbFoodCategory.DataBindings.Clear();
 
-            txbFoodID.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "IdFood", true, DataSourceUpdateMode.Never));
-            txbFoodName.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "FoodName", true, DataSourceUpdateMode.Never));
-            nmPriceFood.DataBindings.Add(new Binding("Value", dtgvFood.DataSource, "Price", true, DataSourceUpdateMode.Never));
-
-            // Binding IDCategory với SelectedValue của ComboBox
-            cbFoodCategory.DataBindings.Add(new Binding("SelectedValue", dtgvFood.DataSource, "IdCategory", true, DataSourceUpdateMode.Never));
+            txbFoodID.DataBindings.Add("Text", foodList, "IdFood", true, DataSourceUpdateMode.Never);
+            txbFoodName.DataBindings.Add("Text", foodList, "FoodName", true, DataSourceUpdateMode.Never);
+            nmPriceFood.DataBindings.Add("Value", foodList, "Price", true, DataSourceUpdateMode.Never);
+            cbFoodCategory.DataBindings.Add("SelectedValue", foodList, "IdCategory", true, DataSourceUpdateMode.Never);
         }
+
 
         // khi đổi chọn món ăn trong DataGridView, cập nhật Category tương ứng
         public void txbFoodID_TextChanged(object sender, EventArgs e)
@@ -346,15 +361,23 @@ namespace App
             }
         }
 
+        //void AddCategoryBinding()
+        //{
+        //    txbIdCategory.DataBindings.Clear();
+        //    txbCategoryName.DataBindings.Clear();
+
+        //    txbIdCategory.DataBindings.Add("Text", dtgvCategory.DataSource, "idCategory", true, DataSourceUpdateMode.Never);
+        //    txbCategoryName.DataBindings.Add("Text", dtgvCategory.DataSource, "categoryName", true, DataSourceUpdateMode.Never);
+        //}
         void AddCategoryBinding()
         {
             txbIdCategory.DataBindings.Clear();
             txbCategoryName.DataBindings.Clear();
 
-            txbIdCategory.DataBindings.Add("Text", dtgvCategory.DataSource, "idCategory", true, DataSourceUpdateMode.Never);
-            txbCategoryName.DataBindings.Add("Text", dtgvCategory.DataSource, "categoryName", true, DataSourceUpdateMode.Never);
+            // Dùng categoryList thay vì dtgvCategory.DataSource
+            txbIdCategory.DataBindings.Add("Text", categoryList, "idCategory", true, DataSourceUpdateMode.Never);
+            txbCategoryName.DataBindings.Add("Text", categoryList, "categoryName", true, DataSourceUpdateMode.Never);
         }
-
 
         void AddTableFoodBinding()
         {
@@ -373,28 +396,43 @@ namespace App
         }
 
 
+        //void AddAccountBinding()
+        //{
+        //    txbUserNameAccount.DataBindings.Clear();
+        //    cbTypeAccount.DataBindings.Clear();
+        //    cbIsActive.DataBindings.Clear();
+
+        //    cbTypeAccount.Items.Clear();
+        //    cbIsActive.Items.Clear();
+
+        //    txbUserNameAccount.DataBindings.Add("Text", dtgvAccount.DataSource, "UserName", true, DataSourceUpdateMode.Never);
+
+        //    // Thêm giá trị hiển thị tương ứng
+        //    cbTypeAccount.Items.Add("Nhân viên"); // index 0
+        //    cbTypeAccount.Items.Add("Quản lý"); // index 1
+
+        //    cbIsActive.Items.Add("Không khả dụng");    // index 0
+        //    cbIsActive.Items.Add("Khả dụng");     // index 1
+
+        //    // Binding SelectedIndex với dữ liệu số nguyên
+        //    cbTypeAccount.DataBindings.Add("SelectedIndex", dtgvAccount.DataSource, "Type", true, DataSourceUpdateMode.Never);
+        //    cbIsActive.DataBindings.Add("SelectedIndex", dtgvAccount.DataSource, "isActive", true, DataSourceUpdateMode.Never);
+        //}
+
         void AddAccountBinding()
         {
             txbUserNameAccount.DataBindings.Clear();
-            cbTypeAccount.DataBindings.Clear();
-            cbIsActive.DataBindings.Clear();
-
-            cbTypeAccount.Items.Clear();
-            cbIsActive.Items.Clear();
-
             txbUserNameAccount.DataBindings.Add("Text", dtgvAccount.DataSource, "UserName", true, DataSourceUpdateMode.Never);
 
-            // Thêm giá trị hiển thị tương ứng
-            cbTypeAccount.Items.Add("Nhân viên"); // index 0
-            cbTypeAccount.Items.Add("Quản lý"); // index 1
+            cbTypeAccount.Items.Clear();
+            cbTypeAccount.Items.Add("Nhân viên"); // 0
+            cbTypeAccount.Items.Add("Quản lý");   // 1
 
-            cbIsActive.Items.Add("Không khả dụng");    // index 0
-            cbIsActive.Items.Add("Khả dụng");     // index 1
-
-            // Binding SelectedIndex với dữ liệu số nguyên
-            cbTypeAccount.DataBindings.Add("SelectedIndex", dtgvAccount.DataSource, "Type", true, DataSourceUpdateMode.Never);
-            cbIsActive.DataBindings.Add("SelectedIndex", dtgvAccount.DataSource, "isActive", true, DataSourceUpdateMode.Never);
+            cbIsActive.Items.Clear();
+            cbIsActive.Items.Add("Không khả dụng"); // 0
+            cbIsActive.Items.Add("Khả dụng");       // 1
         }
+
 
         void AddBindingStaff()
         {
@@ -449,21 +487,40 @@ namespace App
             txbAddress.DataBindings.Add("Text", dtgvSuplier.DataSource, "address", true, DataSourceUpdateMode.Never);
         }
 
+        //void AddIngredientBinding()
+        //{
+        //    txbIdIngredient.DataBindings.Clear();
+        //    txbIngredientName.DataBindings.Clear();
+        //    // Lấy danh sách các đơn vị duy nhất từ Ingredient
+        //    List<string> units = IngredientDAO.Instance.GetAllUnits();
+
+        //    // Xóa & thêm lại danh sách đơn vị
+        //    cbUnitIngredient.Items.Clear();
+        //    cbUnitIngredient.Items.AddRange(units.ToArray()); nmQuantity.DataBindings.Clear();
+        //    txbIdIngredient.DataBindings.Add("Text", dtgvIngredient.DataSource, "idIngredient", true, DataSourceUpdateMode.Never);
+        //    txbIngredientName.DataBindings.Add("Text", dtgvIngredient.DataSource, "ingredientName", true, DataSourceUpdateMode.Never);
+        //    cbUnitIngredient.DataBindings.Add("SelectedItem", dtgvIngredient.DataSource, "unit", true, DataSourceUpdateMode.Never);
+        //    nmQuantity.DataBindings.Add("Value", dtgvIngredient.DataSource, "quantity", true, DataSourceUpdateMode.Never);
+        //}
+
         void AddIngredientBinding()
         {
             txbIdIngredient.DataBindings.Clear();
             txbIngredientName.DataBindings.Clear();
+            cbUnitIngredient.DataBindings.Clear();
+            nmQuantity.DataBindings.Clear();
+
             // Lấy danh sách các đơn vị duy nhất từ Ingredient
             List<string> units = IngredientDAO.Instance.GetAllUnits();
-
-            // Xóa & thêm lại danh sách đơn vị
             cbUnitIngredient.Items.Clear();
-            cbUnitIngredient.Items.AddRange(units.ToArray()); nmQuantity.DataBindings.Clear();
+            cbUnitIngredient.Items.AddRange(units.ToArray());
+
             txbIdIngredient.DataBindings.Add("Text", dtgvIngredient.DataSource, "idIngredient", true, DataSourceUpdateMode.Never);
             txbIngredientName.DataBindings.Add("Text", dtgvIngredient.DataSource, "ingredientName", true, DataSourceUpdateMode.Never);
             cbUnitIngredient.DataBindings.Add("SelectedItem", dtgvIngredient.DataSource, "unit", true, DataSourceUpdateMode.Never);
             nmQuantity.DataBindings.Add("Value", dtgvIngredient.DataSource, "quantity", true, DataSourceUpdateMode.Never);
         }
+
         #endregion
 
 
@@ -1808,6 +1865,120 @@ namespace App
         }
 
         #endregion
+
+        #region Các chức năng tìm kiếm
+
+        private void btnFindTable_Click(object sender, EventArgs e)
+        {
+            string keyword = txbSearchTable.Text.Trim();
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                tableList.DataSource = TableDAO.Instance.LoadTableList();
+            }
+            else
+            {
+                tableList.DataSource = TableDAO.Instance.SearchTableByName(keyword);
+            }
+
+            // Không cần gọi lại AddTableFoodBinding()
+        }
+
+        private void btnSearchCategory_Click(object sender, EventArgs e)
+        {
+            string keyword = txbSearchCategory.Text.Trim();
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                categoryList.DataSource = CategoryDAO.Instance.GetListCategory();
+            }
+            else
+            {
+                categoryList.DataSource = CategoryDAO.Instance.SearchCategoryByName(keyword);
+            }
+        }
+
+        private void btnSearchFood_Click(object sender, EventArgs e)
+        {
+            string keyword = txbSearchFood.Text.Trim();
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                foodList.DataSource = FoodDAO.Instance.GetListFood(); // Hiển thị lại toàn bộ
+            }
+            else
+            {
+                foodList.DataSource = FoodDAO.Instance.SearchFoodByName(keyword);
+            }
+        }
+
+        private void btnSearchAccount_Click(object sender, EventArgs e)
+        {
+            string keyword = txbSearchAccount.Text.Trim();
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                accountList.DataSource = AccountDAO.Instance.GetListAccount(); // Hiển thị toàn bộ
+            }
+            else
+            {
+                accountList.DataSource = AccountDAO.Instance.SearchAccountByUsername(keyword);
+            }
+
+            dtgvAccount.DataSource = accountList;     // Cập nhật DataGridView
+            AddAccountBinding();                      // Cập nhật lại Binding
+        }
+
+        private void DtgvAccount_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dtgvAccount.Columns.Contains("Password"))
+            {
+                dtgvAccount.Columns["Password"].Visible = false;
+            }
+            if (dtgvAccount.SelectedCells.Count > 0)
+            {
+                int rowIndex = dtgvAccount.SelectedCells[0].RowIndex;
+                if (rowIndex < 0 || rowIndex >= dtgvAccount.Rows.Count) return;
+
+                DataGridViewRow row = dtgvAccount.Rows[rowIndex];
+                foreach (DataGridViewColumn col in dtgvAccount.Columns)
+                {
+                    Console.WriteLine(col.Name);
+                }
+                if (row.Cells["Type"].Value != DBNull.Value)
+                {
+                    int type = Convert.ToInt32(row.Cells["Type"].Value);
+                    cbTypeAccount.SelectedIndex = type;
+                }
+
+                if (row.Cells["isActive"].Value != DBNull.Value)
+                {
+                    bool isActive = Convert.ToBoolean(row.Cells["isActive"].Value);
+                    cbIsActive.SelectedIndex = isActive ? 1 : 0;
+                }
+            }
+        }
+
+        private void btnSearchStaff_Click(object sender, EventArgs e)
+        {
+            string name = txbSearchStaff.Text.Trim();
+            dtgvStaff.DataSource = StaffDAO.Instance.SearchStaffByName(name);
+            AddBindingStaff(); // cập nhật lại binding theo dữ liệu mới
+        }
+
+        private void btnSearchIngredient_Click(object sender, EventArgs e)
+        {
+            string name = txbSearchIngredient.Text.Trim();
+            dtgvIngredient.DataSource = IngredientDAO.Instance.SearchIngredientByName(name);
+            AddIngredientBinding(); // nếu bạn có binding thì nên cập nhật lại
+        }
+
+
+
+        #endregion
+
+
+
     }
 }
 

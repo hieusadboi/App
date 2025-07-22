@@ -16,19 +16,7 @@ namespace App.DAO
 
         private FoodIngredientDAO() { }
 
-        //public List<FoodIngredient> GetIngredientsByFoodId(int idFood)
-        //{
-        //    List<FoodIngredient> list = new List<FoodIngredient>();
-        //    string query = "SELECT * FROM FoodIngredient WHERE idFood = @idFood";
-        //    DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { idFood });
-
-        //    foreach (DataRow row in data.Rows)
-        //    {
-        //        list.Add(new FoodIngredient(row));
-        //    }
-
-        //    return list;
-        //}
+        
 
         public List<FoodIngredient> GetIngredientsByFoodId(int idFood)
         {
@@ -46,6 +34,7 @@ namespace App.DAO
 
             return list;
         }
+
         public DataTable GetFoodIngredientDetail(int idFood)
         {
             string query = @"

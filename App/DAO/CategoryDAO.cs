@@ -79,5 +79,18 @@ namespace App.DAO
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
+
+        public List<Category> SearchCategoryByName(string name)
+        {
+            List<Category> listCategory = new List<Category>();
+            string query = "SELECT * FROM dbo.FoodCategory WHERE categoryName LIKE N'%" + name + "%'";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                Category category = new Category(item);
+                listCategory.Add(category);
+            }
+            return listCategory;
+        }
     }
 }

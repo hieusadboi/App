@@ -21,6 +21,7 @@ namespace App.DTO
             this.username = row["UserName"].ToString();
             this.password = row["Password"].ToString();
             this.type = Convert.ToInt32(row["Type"]);
+            this.isactive = Convert.ToBoolean(row["isActive"]);
         }
 
         private string username;
@@ -31,6 +32,6 @@ namespace App.DTO
         public string Username { get => username; set => username = value; }
         public string Password { get => password; set => password = value; }
         public int Type { get => type; set => type = value; }
-        public bool Isactive1 { get => isactive; set => isactive = value; }
+        public bool Isactive { get => isactive; set => isactive = value; }
     }
 }

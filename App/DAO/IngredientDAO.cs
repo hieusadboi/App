@@ -76,6 +76,76 @@ namespace App.DAO
             return data.Rows.Count > 0 ? data.Rows[0]["unit"].ToString() : null;
         }
 
+        public Ingredient GetIngredientByID(int id)
+        {
+            string query = "SELECT * FROM Ingredient WHERE idIngredient = " + id;
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            if (data.Rows.Count > 0)
+            {
+                return new Ingredient(data.Rows[0]);
+            }
+            return null;
+        }
+        public List<FoodIngredient> GetNotEnoughIngredients(int foodId, int count)
+        {
+            var result = new List<FoodIngredient>();
+
+            var requiredIngredients = FoodIngredientDAO.Instance.GetIngredientsByFoodId(foodId);
+
+            foreach (var item in requiredIngredients)
+            {
+                Ingredient current = IngredientDAO.Instance.GetIngredientByID(item.IdIngredient);
+                decimal requiredAmount = item.Quantity * count;
+
+                if (current == null || current.Quantity < requiredAmount)
+                {
+                    result.Add(item);
+                }
+            }
+
+            return result;
+        }
+
+
+
+        public List<Ingredient> GetLowStockIngredients()
+        {
+            List<Ingredient> list = new List<Ingredient>();
+
+            string query = "SELECT * FROM Ingredient";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow row in data.Rows)
+            {
+                Ingredient ingredient = new Ingredient(row);
+                decimal threshold = GetThresholdByUnit(ingredient.Unit);
+
+                if (ingredient.Quantity <= threshold)
+                {
+                    list.Add(ingredient);
+                }
+            }
+
+            return list;
+        }
+
+        private decimal GetThresholdByUnit(string unit)
+        {
+            switch (unit.ToLower())
+            {
+                case "gram": return 500;
+                case "ml": return 30;
+                case "kg": return 0.5m;
+                case "cái":
+                case "miếng":
+                case "trái":
+                case "chai":
+                case "gói":
+                    return 10;
+                default: return 1;
+            }
+        }
+
 
         public bool InsertIngredient(string name, string unit, decimal quantity)
         {
@@ -97,5 +167,12 @@ namespace App.DAO
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
+
+        public DataTable SearchIngredientByName(string name)
+        {
+            string query = "SELECT * FROM Ingredient WHERE ingredientName LIKE @name";
+            return DataProvider.Instance.ExecuteQuery(query, new object[] { "%" + name + "%" });
+        }
+
     }
 }

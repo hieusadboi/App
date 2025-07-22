@@ -67,6 +67,18 @@ namespace App.DAO
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
-
+        
+        public List<Food> SearchFoodByName(string name)
+        {
+            List<Food> listFood = new List<Food>();
+            string query = "SELECT * FROM Food WHERE foodName LIKE N'%" + name + "%'";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                Food food = new Food(item);
+                listFood.Add(food);
+            }
+            return listFood;
+        }
     }
 }

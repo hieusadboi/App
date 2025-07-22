@@ -46,7 +46,13 @@
             this.button19 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
             this.panel59 = new System.Windows.Forms.Panel();
+            this.panel62 = new System.Windows.Forms.Panel();
+            this.txbTongChi = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
             this.panel61 = new System.Windows.Forms.Panel();
+            this.txbUnit = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
             this.panel85 = new System.Windows.Forms.Panel();
             this.nmGiaNhap = new System.Windows.Forms.NumericUpDown();
@@ -96,7 +102,7 @@
             this.btnAddSuplier = new System.Windows.Forms.Button();
             this.tpStaff = new System.Windows.Forms.TabPage();
             this.panel72 = new System.Windows.Forms.Panel();
-            this.textBox27 = new System.Windows.Forms.TextBox();
+            this.txbSearchStaff = new System.Windows.Forms.TextBox();
             this.button26 = new System.Windows.Forms.Button();
             this.panel47 = new System.Windows.Forms.Panel();
             this.btnShowStaff = new System.Windows.Forms.Button();
@@ -164,7 +170,7 @@
             this.button8 = new System.Windows.Forms.Button();
             this.tpIngredient = new System.Windows.Forms.TabPage();
             this.panel70 = new System.Windows.Forms.Panel();
-            this.textBox25 = new System.Windows.Forms.TextBox();
+            this.txbSearchIngredient = new System.Windows.Forms.TextBox();
             this.button24 = new System.Windows.Forms.Button();
             this.panel33 = new System.Windows.Forms.Panel();
             this.dtgvIngredient = new System.Windows.Forms.DataGridView();
@@ -189,7 +195,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.tpAccount = new System.Windows.Forms.TabPage();
             this.panel69 = new System.Windows.Forms.Panel();
-            this.textBox24 = new System.Windows.Forms.TextBox();
+            this.txbSearchAccount = new System.Windows.Forms.TextBox();
             this.button23 = new System.Windows.Forms.Button();
             this.panel28 = new System.Windows.Forms.Panel();
             this.dtgvAccount = new System.Windows.Forms.DataGridView();
@@ -211,8 +217,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.tpTable = new System.Windows.Forms.TabPage();
             this.panel68 = new System.Windows.Forms.Panel();
-            this.textBox23 = new System.Windows.Forms.TextBox();
-            this.button22 = new System.Windows.Forms.Button();
+            this.txbSearchTable = new System.Windows.Forms.TextBox();
+            this.btnFindTable = new System.Windows.Forms.Button();
             this.panel18 = new System.Windows.Forms.Panel();
             this.label44 = new System.Windows.Forms.Label();
             this.panel21 = new System.Windows.Forms.Panel();
@@ -233,8 +239,8 @@
             this.btnAddTable = new System.Windows.Forms.Button();
             this.tpFoodCategory = new System.Windows.Forms.TabPage();
             this.panel67 = new System.Windows.Forms.Panel();
-            this.textBox22 = new System.Windows.Forms.TextBox();
-            this.button21 = new System.Windows.Forms.Button();
+            this.txbSearchCategory = new System.Windows.Forms.TextBox();
+            this.btnSearchCategory = new System.Windows.Forms.Button();
             this.panel13 = new System.Windows.Forms.Panel();
             this.label43 = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
@@ -266,7 +272,7 @@
             this.txbFoodID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.txbSearchFoodName = new System.Windows.Forms.TextBox();
+            this.txbSearchFood = new System.Windows.Forms.TextBox();
             this.btnSearchFood = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnShowFood = new System.Windows.Forms.Button();
@@ -287,12 +293,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.dtgvDoanhThu = new System.Windows.Forms.DataGridView();
             this.table = new System.Windows.Forms.TabControl();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.panel62 = new System.Windows.Forms.Panel();
-            this.txbTongChi = new System.Windows.Forms.TextBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.txbUnit = new System.Windows.Forms.TextBox();
             this.tabControl2.SuspendLayout();
             this.tpImport.SuspendLayout();
             this.panel74.SuspendLayout();
@@ -301,6 +301,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgvImportReceipt)).BeginInit();
             this.panel65.SuspendLayout();
             this.panel59.SuspendLayout();
+            this.panel62.SuspendLayout();
             this.panel61.SuspendLayout();
             this.panel85.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmGiaNhap)).BeginInit();
@@ -403,7 +404,6 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvDoanhThu)).BeginInit();
             this.table.SuspendLayout();
-            this.panel62.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl2
@@ -619,6 +619,63 @@
             this.panel59.Size = new System.Drawing.Size(438, 645);
             this.panel59.TabIndex = 13;
             // 
+            // panel62
+            // 
+            this.panel62.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel62.Controls.Add(this.txbTongChi);
+            this.panel62.Controls.Add(this.label37);
+            this.panel62.Location = new System.Drawing.Point(5, 575);
+            this.panel62.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel62.Name = "panel62";
+            this.panel62.Size = new System.Drawing.Size(428, 62);
+            this.panel62.TabIndex = 15;
+            // 
+            // txbTongChi
+            // 
+            this.txbTongChi.Location = new System.Drawing.Point(220, 20);
+            this.txbTongChi.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbTongChi.Name = "txbTongChi";
+            this.txbTongChi.ReadOnly = true;
+            this.txbTongChi.Size = new System.Drawing.Size(194, 27);
+            this.txbTongChi.TabIndex = 9;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(0, 23);
+            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(100, 24);
+            this.label37.TabIndex = 0;
+            this.label37.Text = "Tổng chi:";
+            // 
+            // label36
+            // 
+            this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label36.Location = new System.Drawing.Point(8, 253);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(425, 36);
+            this.label36.TabIndex = 14;
+            this.label36.Text = "Thông tin nguyên liệu nhập";
+            this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label34
+            // 
+            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label34.Location = new System.Drawing.Point(37, 4);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(371, 36);
+            this.label34.TabIndex = 10;
+            this.label34.Text = "Thông tin phiếu nhập";
+            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // panel61
             // 
             this.panel61.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -629,6 +686,15 @@
             this.panel61.Name = "panel61";
             this.panel61.Size = new System.Drawing.Size(428, 62);
             this.panel61.TabIndex = 9;
+            // 
+            // txbUnit
+            // 
+            this.txbUnit.Location = new System.Drawing.Point(220, 20);
+            this.txbUnit.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbUnit.Name = "txbUnit";
+            this.txbUnit.ReadOnly = true;
+            this.txbUnit.Size = new System.Drawing.Size(189, 27);
+            this.txbUnit.TabIndex = 10;
             // 
             // label33
             // 
@@ -1175,7 +1241,7 @@
             // panel72
             // 
             this.panel72.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel72.Controls.Add(this.textBox27);
+            this.panel72.Controls.Add(this.txbSearchStaff);
             this.panel72.Controls.Add(this.button26);
             this.panel72.Location = new System.Drawing.Point(1055, 7);
             this.panel72.Margin = new System.Windows.Forms.Padding(4);
@@ -1183,13 +1249,13 @@
             this.panel72.Size = new System.Drawing.Size(436, 75);
             this.panel72.TabIndex = 10;
             // 
-            // textBox27
+            // txbSearchStaff
             // 
-            this.textBox27.Location = new System.Drawing.Point(28, 23);
-            this.textBox27.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox27.Name = "textBox27";
-            this.textBox27.Size = new System.Drawing.Size(232, 27);
-            this.textBox27.TabIndex = 5;
+            this.txbSearchStaff.Location = new System.Drawing.Point(28, 23);
+            this.txbSearchStaff.Margin = new System.Windows.Forms.Padding(4);
+            this.txbSearchStaff.Name = "txbSearchStaff";
+            this.txbSearchStaff.Size = new System.Drawing.Size(232, 27);
+            this.txbSearchStaff.TabIndex = 5;
             // 
             // button26
             // 
@@ -1200,6 +1266,7 @@
             this.button26.TabIndex = 4;
             this.button26.Text = "Tìm";
             this.button26.UseVisualStyleBackColor = true;
+            this.button26.Click += new System.EventHandler(this.btnSearchStaff_Click);
             // 
             // panel47
             // 
@@ -1926,7 +1993,7 @@
             // panel70
             // 
             this.panel70.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel70.Controls.Add(this.textBox25);
+            this.panel70.Controls.Add(this.txbSearchIngredient);
             this.panel70.Controls.Add(this.button24);
             this.panel70.Location = new System.Drawing.Point(1068, 7);
             this.panel70.Margin = new System.Windows.Forms.Padding(4);
@@ -1934,13 +2001,13 @@
             this.panel70.Size = new System.Drawing.Size(423, 75);
             this.panel70.TabIndex = 8;
             // 
-            // textBox25
+            // txbSearchIngredient
             // 
-            this.textBox25.Location = new System.Drawing.Point(28, 23);
-            this.textBox25.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(232, 27);
-            this.textBox25.TabIndex = 5;
+            this.txbSearchIngredient.Location = new System.Drawing.Point(28, 23);
+            this.txbSearchIngredient.Margin = new System.Windows.Forms.Padding(4);
+            this.txbSearchIngredient.Name = "txbSearchIngredient";
+            this.txbSearchIngredient.Size = new System.Drawing.Size(232, 27);
+            this.txbSearchIngredient.TabIndex = 5;
             // 
             // button24
             // 
@@ -1951,6 +2018,7 @@
             this.button24.TabIndex = 4;
             this.button24.Text = "Tìm";
             this.button24.UseVisualStyleBackColor = true;
+            this.button24.Click += new System.EventHandler(this.btnSearchIngredient_Click);
             // 
             // panel33
             // 
@@ -2201,7 +2269,7 @@
             // 
             this.panel69.BackColor = System.Drawing.Color.Transparent;
             this.panel69.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel69.Controls.Add(this.textBox24);
+            this.panel69.Controls.Add(this.txbSearchAccount);
             this.panel69.Controls.Add(this.button23);
             this.panel69.Location = new System.Drawing.Point(1068, 7);
             this.panel69.Margin = new System.Windows.Forms.Padding(4);
@@ -2209,13 +2277,13 @@
             this.panel69.Size = new System.Drawing.Size(423, 75);
             this.panel69.TabIndex = 7;
             // 
-            // textBox24
+            // txbSearchAccount
             // 
-            this.textBox24.Location = new System.Drawing.Point(28, 23);
-            this.textBox24.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox24.Name = "textBox24";
-            this.textBox24.Size = new System.Drawing.Size(232, 27);
-            this.textBox24.TabIndex = 5;
+            this.txbSearchAccount.Location = new System.Drawing.Point(28, 23);
+            this.txbSearchAccount.Margin = new System.Windows.Forms.Padding(4);
+            this.txbSearchAccount.Name = "txbSearchAccount";
+            this.txbSearchAccount.Size = new System.Drawing.Size(232, 27);
+            this.txbSearchAccount.TabIndex = 5;
             // 
             // button23
             // 
@@ -2226,6 +2294,7 @@
             this.button23.TabIndex = 4;
             this.button23.Text = "Tìm";
             this.button23.UseVisualStyleBackColor = true;
+            this.button23.Click += new System.EventHandler(this.btnSearchAccount_Click);
             // 
             // panel28
             // 
@@ -2249,6 +2318,7 @@
             this.dtgvAccount.RowHeadersWidth = 51;
             this.dtgvAccount.Size = new System.Drawing.Size(1042, 637);
             this.dtgvAccount.TabIndex = 0;
+            this.dtgvAccount.SelectionChanged += new System.EventHandler(this.DtgvAccount_SelectionChanged);
             // 
             // panel27
             // 
@@ -2448,31 +2518,32 @@
             // panel68
             // 
             this.panel68.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel68.Controls.Add(this.textBox23);
-            this.panel68.Controls.Add(this.button22);
+            this.panel68.Controls.Add(this.txbSearchTable);
+            this.panel68.Controls.Add(this.btnFindTable);
             this.panel68.Location = new System.Drawing.Point(1068, 7);
             this.panel68.Margin = new System.Windows.Forms.Padding(4);
             this.panel68.Name = "panel68";
             this.panel68.Size = new System.Drawing.Size(423, 75);
             this.panel68.TabIndex = 6;
             // 
-            // textBox23
+            // txbSearchTable
             // 
-            this.textBox23.Location = new System.Drawing.Point(28, 23);
-            this.textBox23.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(232, 27);
-            this.textBox23.TabIndex = 5;
+            this.txbSearchTable.Location = new System.Drawing.Point(28, 23);
+            this.txbSearchTable.Margin = new System.Windows.Forms.Padding(4);
+            this.txbSearchTable.Name = "txbSearchTable";
+            this.txbSearchTable.Size = new System.Drawing.Size(232, 27);
+            this.txbSearchTable.TabIndex = 5;
             // 
-            // button22
+            // btnFindTable
             // 
-            this.button22.Location = new System.Drawing.Point(287, 4);
-            this.button22.Margin = new System.Windows.Forms.Padding(4);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(132, 68);
-            this.button22.TabIndex = 4;
-            this.button22.Text = "Tìm";
-            this.button22.UseVisualStyleBackColor = true;
+            this.btnFindTable.Location = new System.Drawing.Point(287, 4);
+            this.btnFindTable.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFindTable.Name = "btnFindTable";
+            this.btnFindTable.Size = new System.Drawing.Size(132, 68);
+            this.btnFindTable.TabIndex = 4;
+            this.btnFindTable.Text = "Tìm theo tên bàn";
+            this.btnFindTable.UseVisualStyleBackColor = true;
+            this.btnFindTable.Click += new System.EventHandler(this.btnFindTable_Click);
             // 
             // panel18
             // 
@@ -2694,31 +2765,32 @@
             // panel67
             // 
             this.panel67.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel67.Controls.Add(this.textBox22);
-            this.panel67.Controls.Add(this.button21);
+            this.panel67.Controls.Add(this.txbSearchCategory);
+            this.panel67.Controls.Add(this.btnSearchCategory);
             this.panel67.Location = new System.Drawing.Point(1068, 7);
             this.panel67.Margin = new System.Windows.Forms.Padding(4);
             this.panel67.Name = "panel67";
             this.panel67.Size = new System.Drawing.Size(423, 75);
             this.panel67.TabIndex = 5;
             // 
-            // textBox22
+            // txbSearchCategory
             // 
-            this.textBox22.Location = new System.Drawing.Point(37, 25);
-            this.textBox22.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(232, 27);
-            this.textBox22.TabIndex = 5;
+            this.txbSearchCategory.Location = new System.Drawing.Point(37, 25);
+            this.txbSearchCategory.Margin = new System.Windows.Forms.Padding(4);
+            this.txbSearchCategory.Name = "txbSearchCategory";
+            this.txbSearchCategory.Size = new System.Drawing.Size(232, 27);
+            this.txbSearchCategory.TabIndex = 5;
             // 
-            // button21
+            // btnSearchCategory
             // 
-            this.button21.Location = new System.Drawing.Point(277, 4);
-            this.button21.Margin = new System.Windows.Forms.Padding(4);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(132, 68);
-            this.button21.TabIndex = 4;
-            this.button21.Text = "Tìm";
-            this.button21.UseVisualStyleBackColor = true;
+            this.btnSearchCategory.Location = new System.Drawing.Point(277, 4);
+            this.btnSearchCategory.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSearchCategory.Name = "btnSearchCategory";
+            this.btnSearchCategory.Size = new System.Drawing.Size(132, 68);
+            this.btnSearchCategory.TabIndex = 4;
+            this.btnSearchCategory.Text = "Tìm";
+            this.btnSearchCategory.UseVisualStyleBackColor = true;
+            this.btnSearchCategory.Click += new System.EventHandler(this.btnSearchCategory_Click);
             // 
             // panel13
             // 
@@ -3061,7 +3133,7 @@
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.txbSearchFoodName);
+            this.panel5.Controls.Add(this.txbSearchFood);
             this.panel5.Controls.Add(this.btnSearchFood);
             this.panel5.Location = new System.Drawing.Point(1068, 7);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
@@ -3069,13 +3141,13 @@
             this.panel5.Size = new System.Drawing.Size(423, 75);
             this.panel5.TabIndex = 2;
             // 
-            // txbSearchFoodName
+            // txbSearchFood
             // 
-            this.txbSearchFoodName.Location = new System.Drawing.Point(28, 23);
-            this.txbSearchFoodName.Margin = new System.Windows.Forms.Padding(4);
-            this.txbSearchFoodName.Name = "txbSearchFoodName";
-            this.txbSearchFoodName.Size = new System.Drawing.Size(232, 27);
-            this.txbSearchFoodName.TabIndex = 5;
+            this.txbSearchFood.Location = new System.Drawing.Point(28, 23);
+            this.txbSearchFood.Margin = new System.Windows.Forms.Padding(4);
+            this.txbSearchFood.Name = "txbSearchFood";
+            this.txbSearchFood.Size = new System.Drawing.Size(232, 27);
+            this.txbSearchFood.TabIndex = 5;
             // 
             // btnSearchFood
             // 
@@ -3086,6 +3158,7 @@
             this.btnSearchFood.TabIndex = 4;
             this.btnSearchFood.Text = "Tìm";
             this.btnSearchFood.UseVisualStyleBackColor = true;
+            this.btnSearchFood.Click += new System.EventHandler(this.btnSearchFood_Click);
             // 
             // panel4
             // 
@@ -3315,72 +3388,6 @@
             this.table.Size = new System.Drawing.Size(1507, 778);
             this.table.TabIndex = 2;
             // 
-            // label34
-            // 
-            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label34.Location = new System.Drawing.Point(37, 4);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(371, 36);
-            this.label34.TabIndex = 10;
-            this.label34.Text = "Thông tin phiếu nhập";
-            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label36
-            // 
-            this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label36.Location = new System.Drawing.Point(8, 253);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(425, 36);
-            this.label36.TabIndex = 14;
-            this.label36.Text = "Thông tin nguyên liệu nhập";
-            this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel62
-            // 
-            this.panel62.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel62.Controls.Add(this.txbTongChi);
-            this.panel62.Controls.Add(this.label37);
-            this.panel62.Location = new System.Drawing.Point(5, 575);
-            this.panel62.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.panel62.Name = "panel62";
-            this.panel62.Size = new System.Drawing.Size(428, 62);
-            this.panel62.TabIndex = 15;
-            // 
-            // txbTongChi
-            // 
-            this.txbTongChi.Location = new System.Drawing.Point(220, 20);
-            this.txbTongChi.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.txbTongChi.Name = "txbTongChi";
-            this.txbTongChi.ReadOnly = true;
-            this.txbTongChi.Size = new System.Drawing.Size(194, 27);
-            this.txbTongChi.TabIndex = 9;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(0, 23);
-            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(100, 24);
-            this.label37.TabIndex = 0;
-            this.label37.Text = "Tổng chi:";
-            // 
-            // txbUnit
-            // 
-            this.txbUnit.Location = new System.Drawing.Point(220, 20);
-            this.txbUnit.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.txbUnit.Name = "txbUnit";
-            this.txbUnit.ReadOnly = true;
-            this.txbUnit.Size = new System.Drawing.Size(189, 27);
-            this.txbUnit.TabIndex = 10;
-            // 
             // fAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -3402,6 +3409,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgvImportReceipt)).EndInit();
             this.panel65.ResumeLayout(false);
             this.panel59.ResumeLayout(false);
+            this.panel62.ResumeLayout(false);
+            this.panel62.PerformLayout();
             this.panel61.ResumeLayout(false);
             this.panel61.PerformLayout();
             this.panel85.ResumeLayout(false);
@@ -3556,8 +3565,6 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvDoanhThu)).EndInit();
             this.table.ResumeLayout(false);
-            this.panel62.ResumeLayout(false);
-            this.panel62.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3629,7 +3636,7 @@
         private System.Windows.Forms.Button btnAddSuplier;
         private System.Windows.Forms.TabPage tpStaff;
         private System.Windows.Forms.Panel panel72;
-        private System.Windows.Forms.TextBox textBox27;
+        private System.Windows.Forms.TextBox txbSearchStaff;
         private System.Windows.Forms.Button button26;
         private System.Windows.Forms.Panel panel47;
         private System.Windows.Forms.Button btnShowStaff;
@@ -3697,7 +3704,7 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.TabPage tpIngredient;
         private System.Windows.Forms.Panel panel70;
-        private System.Windows.Forms.TextBox textBox25;
+        private System.Windows.Forms.TextBox txbSearchIngredient;
         private System.Windows.Forms.Button button24;
         private System.Windows.Forms.Panel panel33;
         private System.Windows.Forms.DataGridView dtgvIngredient;
@@ -3722,7 +3729,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TabPage tpAccount;
         private System.Windows.Forms.Panel panel69;
-        private System.Windows.Forms.TextBox textBox24;
+        private System.Windows.Forms.TextBox txbSearchAccount;
         private System.Windows.Forms.Button button23;
         private System.Windows.Forms.Panel panel28;
         private System.Windows.Forms.DataGridView dtgvAccount;
@@ -3744,8 +3751,8 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TabPage tpTable;
         private System.Windows.Forms.Panel panel68;
-        private System.Windows.Forms.TextBox textBox23;
-        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.TextBox txbSearchTable;
+        private System.Windows.Forms.Button btnFindTable;
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Panel panel21;
@@ -3766,8 +3773,8 @@
         private System.Windows.Forms.Button btnAddTable;
         private System.Windows.Forms.TabPage tpFoodCategory;
         private System.Windows.Forms.Panel panel67;
-        private System.Windows.Forms.TextBox textBox22;
-        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.TextBox txbSearchCategory;
+        private System.Windows.Forms.Button btnSearchCategory;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Panel panel15;
@@ -3799,7 +3806,7 @@
         private System.Windows.Forms.TextBox txbFoodID;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.TextBox txbSearchFoodName;
+        private System.Windows.Forms.TextBox txbSearchFood;
         private System.Windows.Forms.Button btnSearchFood;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnShowFood;

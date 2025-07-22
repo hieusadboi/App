@@ -72,6 +72,18 @@ namespace App
             int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
             int idFood = (cbFood.SelectedItem as Food).IdFood;
             int count = (int)nmFoodCount.Value;
+            var notEnough = GetNotEnoughIngredients(idFood, count);
+            if (notEnough.Count > 0)
+            {
+                StringBuilder msg = new StringBuilder();
+                msg.AppendLine("❌ Không đủ nguyên liệu để chế biến:");
+                foreach (var item in notEnough)
+                {
+                    msg.AppendLine($"• {item.IngredientName}: cần {item.Quantity} {item.Unit}");
+                }
+                MessageBox.Show(msg.ToString(), "Thiếu nguyên liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             if (idBill == -1) // Nếu không có hóa đơn chưa thanh toán, tạo mới
             {
@@ -132,6 +144,7 @@ namespace App
                     ShowBill(table.ID);
                 }
             }
+            ShowLowStockWarning(); // Hiển thị cảnh báo kho nếu có nguyên liệu sắp hết
         }
 
         #region Method
@@ -403,7 +416,60 @@ namespace App
         {
             fImport f = new fImport();
             f.ShowDialog();
-
         }
+
+
+        private List<FoodIngredient> GetNotEnoughIngredients(int foodId, int count)
+        {
+            var requiredIngredients = FoodIngredientDAO.Instance.GetIngredientsByFoodId(foodId);
+            List<FoodIngredient> notEnough = new List<FoodIngredient>();
+
+            foreach (var usage in requiredIngredients)
+            {
+                Ingredient ingredient = IngredientDAO.Instance.GetIngredientByID(usage.IdIngredient);
+                decimal requiredAmount = usage.Quantity * count;
+
+                if (ingredient == null || ingredient.Quantity < requiredAmount)
+                {
+                    var clone = new FoodIngredient
+                    {
+                        IdFood = usage.IdFood,
+                        IdIngredient = usage.IdIngredient,
+                        IngredientName = usage.IngredientName,
+                        Unit = usage.Unit,
+                        Quantity = requiredAmount
+                    };
+                    notEnough.Add(clone);
+                }
+            }
+
+            return notEnough;
+        }
+
+
+
+        public static void ShowLowStockWarning()
+        {
+            var lowStockList = IngredientDAO.Instance.GetLowStockIngredients();
+            if (lowStockList.Count == 0) return;
+
+            StringBuilder messageBuilder = new StringBuilder();
+            messageBuilder.AppendLine("🔔 Các nguyên liệu sắp hết kho:\n");
+
+            foreach (var item in lowStockList)
+            {
+                messageBuilder.AppendLine($"• {item.IngredientName,-20} : {item.Quantity,8:0.###} {item.Unit}");
+            }
+
+            MessageBox.Show(
+                messageBuilder.ToString(),
+                "⚠️ Cảnh báo nguyên liệu",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
+        }
+
+
+
     }
 }

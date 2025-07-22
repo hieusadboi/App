@@ -70,6 +70,19 @@ namespace App.DAO
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
+        public List<Account> SearchAccountByUsername(string keyword)
+        {
+            List<Account> list = new List<Account>();
+            string query = "SELECT * FROM Account WHERE UserName LIKE @name";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { "%" + keyword + "%" });
+
+            foreach (DataRow row in data.Rows)
+            {
+                list.Add(new Account(row));
+            }
+
+            return list;
+        }
 
     }
 }
