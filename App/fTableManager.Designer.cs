@@ -96,8 +96,8 @@
             // 
             this.adminToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            this.adminToolStripMenuItem.Size = new System.Drawing.Size(78, 27);
-            this.adminToolStripMenuItem.Text = "Admin";
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(85, 27);
+            this.adminToolStripMenuItem.Text = "Quản lý";
             this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
             // 
             // thôngTinTàiKhoảnToolStripMenuItem
@@ -136,8 +136,8 @@
             // 
             this.nhậpNguyênLiệuToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nhậpNguyênLiệuToolStripMenuItem.Name = "nhậpNguyênLiệuToolStripMenuItem";
-            this.nhậpNguyênLiệuToolStripMenuItem.Size = new System.Drawing.Size(165, 27);
-            this.nhậpNguyênLiệuToolStripMenuItem.Text = "Nhập nguyên liệu";
+            this.nhậpNguyênLiệuToolStripMenuItem.Size = new System.Drawing.Size(172, 27);
+            this.nhậpNguyênLiệuToolStripMenuItem.Text = "Nhập Nguyên Liệu";
             this.nhậpNguyênLiệuToolStripMenuItem.Click += new System.EventHandler(this.nhậpNguyênLiệuToolStripMenuItem_Click);
             // 
             // panel2
@@ -163,7 +163,6 @@
             this.label1.Size = new System.Drawing.Size(309, 40);
             this.label1.TabIndex = 1;
             this.label1.Text = "Thông tin hóa đơn";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // lsvBill
             // 
@@ -303,7 +302,6 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(490, 46);
             this.panel5.TabIndex = 10;
-            this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
             // 
             // label4
             // 
@@ -534,7 +532,6 @@
         private System.Windows.Forms.Button ptnCheckOut;
         private System.Windows.Forms.ToolStripMenuItem thôngTinCáNhânToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updatethongtincanhan;
-        private System.Windows.Forms.ToolStripMenuItem nhậpNguyênLiệuToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBoxVipTables;
         private System.Windows.Forms.GroupBox groupBoxNormalTables;
@@ -555,5 +552,6 @@
         private System.Windows.Forms.TextBox txbtotalPrice;
         private System.Windows.Forms.Button btnPrintBill;
         private System.Windows.Forms.ToolStripMenuItem đăngXuấtToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nhậpNguyênLiệuToolStripMenuItem;
     }
 }

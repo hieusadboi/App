@@ -95,11 +95,6 @@ namespace App
             }
         }
 
-        //int Login(string userName, string password)
-        //{
-        //    return DAO.AccountDAO.Instance.Login(userName, password);
-        //}
-
         private void label3_Click(object sender, EventArgs e)
         {
 

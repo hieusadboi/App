@@ -59,6 +59,8 @@
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\FoodDAO.cs" />
     <Compile Include="DAO\FoodIngredientDAO.cs" />
+    <Compile Include="DAO\ImportDetailDAO.cs" />
+    <Compile Include="DAO\ImportReceiptDAO.cs" />
     <Compile Include="DAO\IngredientDAO.cs" />
     <Compile Include="DAO\MenuDAO.cs" />
     <Compile Include="DAO\StaffDAO.cs" />
@@ -70,6 +72,8 @@
     <Compile Include="DTO\Category.cs" />
     <Compile Include="DTO\Food.cs" />
     <Compile Include="DTO\FoodIngredient.cs" />
+    <Compile Include="DTO\ImportDetail.cs" />
+    <Compile Include="DTO\ImportReceipt.cs" />
     <Compile Include="DTO\Ingredient.cs" />
     <Compile Include="DTO\Menu.cs" />
     <Compile Include="DTO\Staff.cs" />
@@ -87,17 +91,17 @@
     <Compile Include="fAdmin.Designer.cs">
       <DependentUpon>fAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="fLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="fLogin.Designer.cs">
-      <DependentUpon>fLogin.cs</DependentUpon>
-    </Compile>
     <Compile Include="fImport.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="fImport.Designer.cs">
       <DependentUpon>fImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fLogin.Designer.cs">
+      <DependentUpon>fLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="fTableManager.cs">
       <SubType>Form</SubType>
@@ -121,11 +125,11 @@
     <EmbeddedResource Include="fAdmin.resx">
       <DependentUpon>fAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="fLogin.resx">
-      <DependentUpon>fLogin.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="fImport.resx">
       <DependentUpon>fImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fLogin.resx">
+      <DependentUpon>fLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fTableManager.resx">
       <DependentUpon>fTableManager.cs</DependentUpon>

@@ -31,49 +31,43 @@
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.panel75 = new System.Windows.Forms.Panel();
-            this.panel79 = new System.Windows.Forms.Panel();
-            this.comboBox12 = new System.Windows.Forms.ComboBox();
-            this.label38 = new System.Windows.Forms.Label();
-            this.panel76 = new System.Windows.Forms.Panel();
-            this.comboBox10 = new System.Windows.Forms.ComboBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.panel77 = new System.Windows.Forms.Panel();
-            this.comboBox11 = new System.Windows.Forms.ComboBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.panel78 = new System.Windows.Forms.Panel();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.panel62 = new System.Windows.Forms.Panel();
-            this.dtgvImportDetail = new System.Windows.Forms.DataGridView();
-            this.panel61 = new System.Windows.Forms.Panel();
-            this.btnShowImportDetail = new System.Windows.Forms.Button();
-            this.button30 = new System.Windows.Forms.Button();
-            this.button31 = new System.Windows.Forms.Button();
-            this.button32 = new System.Windows.Forms.Button();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.tpImport = new System.Windows.Forms.TabPage();
             this.panel74 = new System.Windows.Forms.Panel();
             this.textBox29 = new System.Windows.Forms.TextBox();
             this.button28 = new System.Windows.Forms.Button();
             this.panel66 = new System.Windows.Forms.Panel();
-            this.dtgvImport = new System.Windows.Forms.DataGridView();
+            this.dtgvImportDetailAdmin = new System.Windows.Forms.DataGridView();
+            this.dtgvImportReceipt = new System.Windows.Forms.DataGridView();
             this.panel65 = new System.Windows.Forms.Panel();
-            this.btnShowImportReceipt = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnAddImportReceipt = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
             this.panel59 = new System.Windows.Forms.Panel();
+            this.panel61 = new System.Windows.Forms.Panel();
+            this.cbUnit = new System.Windows.Forms.ComboBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.panel85 = new System.Windows.Forms.Panel();
+            this.nmGiaNhap = new System.Windows.Forms.NumericUpDown();
+            this.label53 = new System.Windows.Forms.Label();
+            this.panel86 = new System.Windows.Forms.Panel();
+            this.nmSoLuongNhap = new System.Windows.Forms.NumericUpDown();
+            this.label54 = new System.Windows.Forms.Label();
+            this.panel87 = new System.Windows.Forms.Panel();
+            this.cbmanguyenlieu = new System.Windows.Forms.ComboBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.panel88 = new System.Windows.Forms.Panel();
+            this.tbxMaNhapNguyenLieu = new System.Windows.Forms.TextBox();
+            this.label56 = new System.Windows.Forms.Label();
             this.panel60 = new System.Windows.Forms.Panel();
-            this.comboBox9 = new System.Windows.Forms.ComboBox();
+            this.txbTaiKhoanNhanVien = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.panel63 = new System.Windows.Forms.Panel();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
+            this.cbTenNhaCungCap = new System.Windows.Forms.ComboBox();
             this.label35 = new System.Windows.Forms.Label();
-            this.panel64 = new System.Windows.Forms.Panel();
-            this.textBox21 = new System.Windows.Forms.TextBox();
-            this.label36 = new System.Windows.Forms.Label();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.tpSupplier = new System.Windows.Forms.TabPage();
             this.panel73 = new System.Windows.Forms.Panel();
             this.textBox28 = new System.Windows.Forms.TextBox();
             this.button27 = new System.Windows.Forms.Button();
@@ -101,7 +95,7 @@
             this.btnDeleteSuplier = new System.Windows.Forms.Button();
             this.btnEditSuplier = new System.Windows.Forms.Button();
             this.btnAddSuplier = new System.Windows.Forms.Button();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tpStaff = new System.Windows.Forms.TabPage();
             this.panel72 = new System.Windows.Forms.Panel();
             this.textBox27 = new System.Windows.Forms.TextBox();
             this.button26 = new System.Windows.Forms.Button();
@@ -136,11 +130,13 @@
             this.panel40 = new System.Windows.Forms.Panel();
             this.txbIdStaff = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tpFoodIngredient = new System.Windows.Forms.TabPage();
             this.panel71 = new System.Windows.Forms.Panel();
             this.textBox26 = new System.Windows.Forms.TextBox();
             this.button25 = new System.Windows.Forms.Button();
             this.panel41 = new System.Windows.Forms.Panel();
+            this.label52 = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
             this.panel84 = new System.Windows.Forms.Panel();
             this.txbIdbingredient = new System.Windows.Forms.TextBox();
             this.label50 = new System.Windows.Forms.Label();
@@ -167,7 +163,7 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tpIngredient = new System.Windows.Forms.TabPage();
             this.panel70 = new System.Windows.Forms.Panel();
             this.textBox25 = new System.Windows.Forms.TextBox();
             this.button24 = new System.Windows.Forms.Button();
@@ -292,26 +288,25 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.dtgvDoanhThu = new System.Windows.Forms.DataGridView();
             this.table = new System.Windows.Forms.TabControl();
+            this.label34 = new System.Windows.Forms.Label();
             this.tabControl2.SuspendLayout();
-            this.tabPage8.SuspendLayout();
-            this.panel75.SuspendLayout();
-            this.panel79.SuspendLayout();
-            this.panel76.SuspendLayout();
-            this.panel77.SuspendLayout();
-            this.panel78.SuspendLayout();
-            this.panel62.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvImportDetail)).BeginInit();
-            this.panel61.SuspendLayout();
-            this.tabPage7.SuspendLayout();
+            this.tpImport.SuspendLayout();
             this.panel74.SuspendLayout();
             this.panel66.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvImport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvImportDetailAdmin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvImportReceipt)).BeginInit();
             this.panel65.SuspendLayout();
             this.panel59.SuspendLayout();
+            this.panel61.SuspendLayout();
+            this.panel85.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmGiaNhap)).BeginInit();
+            this.panel86.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmSoLuongNhap)).BeginInit();
+            this.panel87.SuspendLayout();
+            this.panel88.SuspendLayout();
             this.panel60.SuspendLayout();
             this.panel63.SuspendLayout();
-            this.panel64.SuspendLayout();
-            this.tabPage6.SuspendLayout();
+            this.tpSupplier.SuspendLayout();
             this.panel73.SuspendLayout();
             this.panel53.SuspendLayout();
             this.panel58.SuspendLayout();
@@ -322,7 +317,7 @@
             this.panel52.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvSuplier)).BeginInit();
             this.panel51.SuspendLayout();
-            this.tabPage5.SuspendLayout();
+            this.tpStaff.SuspendLayout();
             this.panel72.SuspendLayout();
             this.panel47.SuspendLayout();
             this.panel46.SuspendLayout();
@@ -335,7 +330,7 @@
             this.panel48.SuspendLayout();
             this.panel39.SuspendLayout();
             this.panel40.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tpFoodIngredient.SuspendLayout();
             this.panel71.SuspendLayout();
             this.panel41.SuspendLayout();
             this.panel84.SuspendLayout();
@@ -349,7 +344,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgvFoodIngredient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvFood1)).BeginInit();
             this.panel34.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tpIngredient.SuspendLayout();
             this.panel70.SuspendLayout();
             this.panel33.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvIngredient)).BeginInit();
@@ -439,246 +434,20 @@
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // tabPage8
+            // tpImport
             // 
-            this.tabPage8.Controls.Add(this.panel75);
-            this.tabPage8.Controls.Add(this.panel62);
-            this.tabPage8.Controls.Add(this.panel61);
-            this.tabPage8.Location = new System.Drawing.Point(4, 29);
-            this.tabPage8.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.tabPage8.Size = new System.Drawing.Size(1499, 745);
-            this.tabPage8.TabIndex = 10;
-            this.tabPage8.Text = "Chi tiết phiếu nhập";
-            this.tabPage8.UseVisualStyleBackColor = true;
-            // 
-            // panel75
-            // 
-            this.panel75.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel75.Controls.Add(this.panel79);
-            this.panel75.Controls.Add(this.panel76);
-            this.panel75.Controls.Add(this.panel77);
-            this.panel75.Controls.Add(this.panel78);
-            this.panel75.Location = new System.Drawing.Point(1063, 10);
-            this.panel75.Margin = new System.Windows.Forms.Padding(4);
-            this.panel75.Name = "panel75";
-            this.panel75.Size = new System.Drawing.Size(428, 729);
-            this.panel75.TabIndex = 17;
-            // 
-            // panel79
-            // 
-            this.panel79.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel79.Controls.Add(this.comboBox12);
-            this.panel79.Controls.Add(this.label38);
-            this.panel79.Location = new System.Drawing.Point(4, 204);
-            this.panel79.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.panel79.Name = "panel79";
-            this.panel79.Size = new System.Drawing.Size(417, 62);
-            this.panel79.TabIndex = 4;
-            // 
-            // comboBox12
-            // 
-            this.comboBox12.FormattingEnabled = true;
-            this.comboBox12.Location = new System.Drawing.Point(220, 18);
-            this.comboBox12.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox12.Name = "comboBox12";
-            this.comboBox12.Size = new System.Drawing.Size(187, 28);
-            this.comboBox12.TabIndex = 6;
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(0, 23);
-            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(49, 24);
-            this.label38.TabIndex = 0;
-            this.label38.Text = "Giá:";
-            // 
-            // panel76
-            // 
-            this.panel76.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel76.Controls.Add(this.comboBox10);
-            this.panel76.Controls.Add(this.label33);
-            this.panel76.Location = new System.Drawing.Point(4, 135);
-            this.panel76.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.panel76.Name = "panel76";
-            this.panel76.Size = new System.Drawing.Size(417, 62);
-            this.panel76.TabIndex = 3;
-            // 
-            // comboBox10
-            // 
-            this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Location = new System.Drawing.Point(220, 18);
-            this.comboBox10.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox10.Name = "comboBox10";
-            this.comboBox10.Size = new System.Drawing.Size(187, 28);
-            this.comboBox10.TabIndex = 6;
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(0, 23);
-            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(105, 24);
-            this.label33.TabIndex = 0;
-            this.label33.Text = "Số lượng:";
-            // 
-            // panel77
-            // 
-            this.panel77.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel77.Controls.Add(this.comboBox11);
-            this.panel77.Controls.Add(this.label34);
-            this.panel77.Location = new System.Drawing.Point(4, 68);
-            this.panel77.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.panel77.Name = "panel77";
-            this.panel77.Size = new System.Drawing.Size(417, 62);
-            this.panel77.TabIndex = 2;
-            // 
-            // comboBox11
-            // 
-            this.comboBox11.FormattingEnabled = true;
-            this.comboBox11.Location = new System.Drawing.Point(220, 18);
-            this.comboBox11.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox11.Name = "comboBox11";
-            this.comboBox11.Size = new System.Drawing.Size(187, 28);
-            this.comboBox11.TabIndex = 6;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(0, 23);
-            this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(160, 24);
-            this.label34.TabIndex = 0;
-            this.label34.Text = "Mã nguyên liệu:";
-            // 
-            // panel78
-            // 
-            this.panel78.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel78.Controls.Add(this.textBox17);
-            this.panel78.Controls.Add(this.label37);
-            this.panel78.Location = new System.Drawing.Point(4, 4);
-            this.panel78.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.panel78.Name = "panel78";
-            this.panel78.Size = new System.Drawing.Size(417, 60);
-            this.panel78.TabIndex = 1;
-            // 
-            // textBox17
-            // 
-            this.textBox17.Location = new System.Drawing.Point(239, 18);
-            this.textBox17.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(168, 27);
-            this.textBox17.TabIndex = 1;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(4, 22);
-            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(213, 24);
-            this.label37.TabIndex = 0;
-            this.label37.Text = "Mã nhập nguyên liệu:";
-            // 
-            // panel62
-            // 
-            this.panel62.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel62.Controls.Add(this.dtgvImportDetail);
-            this.panel62.Location = new System.Drawing.Point(7, 89);
-            this.panel62.Margin = new System.Windows.Forms.Padding(4);
-            this.panel62.Name = "panel62";
-            this.panel62.Size = new System.Drawing.Size(1048, 650);
-            this.panel62.TabIndex = 16;
-            // 
-            // dtgvImportDetail
-            // 
-            this.dtgvImportDetail.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtgvImportDetail.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dtgvImportDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvImportDetail.Location = new System.Drawing.Point(4, 4);
-            this.dtgvImportDetail.Margin = new System.Windows.Forms.Padding(4);
-            this.dtgvImportDetail.Name = "dtgvImportDetail";
-            this.dtgvImportDetail.RowHeadersWidth = 51;
-            this.dtgvImportDetail.Size = new System.Drawing.Size(1038, 640);
-            this.dtgvImportDetail.TabIndex = 0;
-            // 
-            // panel61
-            // 
-            this.panel61.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel61.Controls.Add(this.btnShowImportDetail);
-            this.panel61.Controls.Add(this.button30);
-            this.panel61.Controls.Add(this.button31);
-            this.panel61.Controls.Add(this.button32);
-            this.panel61.Location = new System.Drawing.Point(7, 10);
-            this.panel61.Margin = new System.Windows.Forms.Padding(4);
-            this.panel61.Name = "panel61";
-            this.panel61.Size = new System.Drawing.Size(1048, 75);
-            this.panel61.TabIndex = 15;
-            // 
-            // btnShowImportDetail
-            // 
-            this.btnShowImportDetail.Location = new System.Drawing.Point(428, 4);
-            this.btnShowImportDetail.Margin = new System.Windows.Forms.Padding(4);
-            this.btnShowImportDetail.Name = "btnShowImportDetail";
-            this.btnShowImportDetail.Size = new System.Drawing.Size(132, 68);
-            this.btnShowImportDetail.TabIndex = 3;
-            this.btnShowImportDetail.Text = "Tải lại";
-            this.btnShowImportDetail.UseVisualStyleBackColor = true;
-            this.btnShowImportDetail.Click += new System.EventHandler(this.btnShowImportDetail_Click);
-            // 
-            // button30
-            // 
-            this.button30.Location = new System.Drawing.Point(287, 4);
-            this.button30.Margin = new System.Windows.Forms.Padding(4);
-            this.button30.Name = "button30";
-            this.button30.Size = new System.Drawing.Size(132, 68);
-            this.button30.TabIndex = 2;
-            this.button30.Text = "Xóa";
-            this.button30.UseVisualStyleBackColor = true;
-            // 
-            // button31
-            // 
-            this.button31.Location = new System.Drawing.Point(145, 4);
-            this.button31.Margin = new System.Windows.Forms.Padding(4);
-            this.button31.Name = "button31";
-            this.button31.Size = new System.Drawing.Size(132, 68);
-            this.button31.TabIndex = 1;
-            this.button31.Text = "Sửa";
-            this.button31.UseVisualStyleBackColor = true;
-            // 
-            // button32
-            // 
-            this.button32.Location = new System.Drawing.Point(4, 4);
-            this.button32.Margin = new System.Windows.Forms.Padding(4);
-            this.button32.Name = "button32";
-            this.button32.Size = new System.Drawing.Size(132, 68);
-            this.button32.TabIndex = 0;
-            this.button32.Text = "Thêm";
-            this.button32.UseVisualStyleBackColor = true;
-            // 
-            // tabPage7
-            // 
-            this.tabPage7.Controls.Add(this.panel74);
-            this.tabPage7.Controls.Add(this.panel66);
-            this.tabPage7.Controls.Add(this.panel65);
-            this.tabPage7.Controls.Add(this.panel59);
-            this.tabPage7.Location = new System.Drawing.Point(4, 29);
-            this.tabPage7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.tabPage7.Size = new System.Drawing.Size(1499, 745);
-            this.tabPage7.TabIndex = 9;
-            this.tabPage7.Text = "Nhập nguyên liệu";
-            this.tabPage7.UseVisualStyleBackColor = true;
+            this.tpImport.Controls.Add(this.panel74);
+            this.tpImport.Controls.Add(this.panel66);
+            this.tpImport.Controls.Add(this.panel65);
+            this.tpImport.Controls.Add(this.panel59);
+            this.tpImport.Location = new System.Drawing.Point(4, 29);
+            this.tpImport.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.tpImport.Name = "tpImport";
+            this.tpImport.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.tpImport.Size = new System.Drawing.Size(1499, 745);
+            this.tpImport.TabIndex = 9;
+            this.tpImport.Text = "Nhập nguyên liệu";
+            this.tpImport.UseVisualStyleBackColor = true;
             // 
             // panel74
             // 
@@ -712,29 +481,46 @@
             // panel66
             // 
             this.panel66.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel66.Controls.Add(this.dtgvImport);
+            this.panel66.Controls.Add(this.dtgvImportDetailAdmin);
+            this.panel66.Controls.Add(this.dtgvImportReceipt);
             this.panel66.Location = new System.Drawing.Point(7, 94);
             this.panel66.Margin = new System.Windows.Forms.Padding(4);
             this.panel66.Name = "panel66";
             this.panel66.Size = new System.Drawing.Size(1038, 645);
             this.panel66.TabIndex = 15;
             // 
-            // dtgvImport
+            // dtgvImportDetailAdmin
             // 
-            this.dtgvImport.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtgvImport.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dtgvImport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvImport.Location = new System.Drawing.Point(4, 4);
-            this.dtgvImport.Margin = new System.Windows.Forms.Padding(4);
-            this.dtgvImport.Name = "dtgvImport";
-            this.dtgvImport.RowHeadersWidth = 51;
-            this.dtgvImport.Size = new System.Drawing.Size(1028, 635);
-            this.dtgvImport.TabIndex = 0;
+            this.dtgvImportDetailAdmin.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvImportDetailAdmin.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dtgvImportDetailAdmin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvImportDetailAdmin.Location = new System.Drawing.Point(504, 4);
+            this.dtgvImportDetailAdmin.Margin = new System.Windows.Forms.Padding(4);
+            this.dtgvImportDetailAdmin.Name = "dtgvImportDetailAdmin";
+            this.dtgvImportDetailAdmin.RowHeadersWidth = 51;
+            this.dtgvImportDetailAdmin.Size = new System.Drawing.Size(528, 635);
+            this.dtgvImportDetailAdmin.TabIndex = 1;
+            this.dtgvImportDetailAdmin.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvImportDetailAdmin_CellClick);
+            // 
+            // dtgvImportReceipt
+            // 
+            this.dtgvImportReceipt.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvImportReceipt.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dtgvImportReceipt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvImportReceipt.Location = new System.Drawing.Point(4, 4);
+            this.dtgvImportReceipt.Margin = new System.Windows.Forms.Padding(4);
+            this.dtgvImportReceipt.Name = "dtgvImportReceipt";
+            this.dtgvImportReceipt.RowHeadersWidth = 51;
+            this.dtgvImportReceipt.Size = new System.Drawing.Size(492, 635);
+            this.dtgvImportReceipt.TabIndex = 0;
+            this.dtgvImportReceipt.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvImportReceipt_CellClick);
             // 
             // panel65
             // 
             this.panel65.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel65.Controls.Add(this.btnShowImportReceipt);
+            this.panel65.Controls.Add(this.button1);
+            this.panel65.Controls.Add(this.button2);
+            this.panel65.Controls.Add(this.btnAddImportReceipt);
             this.panel65.Controls.Add(this.button18);
             this.panel65.Controls.Add(this.button19);
             this.panel65.Controls.Add(this.button20);
@@ -744,78 +530,290 @@
             this.panel65.Size = new System.Drawing.Size(1038, 75);
             this.panel65.TabIndex = 14;
             // 
-            // btnShowImportReceipt
+            // button1
             // 
-            this.btnShowImportReceipt.Location = new System.Drawing.Point(428, 4);
-            this.btnShowImportReceipt.Margin = new System.Windows.Forms.Padding(4);
-            this.btnShowImportReceipt.Name = "btnShowImportReceipt";
-            this.btnShowImportReceipt.Size = new System.Drawing.Size(132, 68);
-            this.btnShowImportReceipt.TabIndex = 3;
-            this.btnShowImportReceipt.Text = "Tải lại";
-            this.btnShowImportReceipt.UseVisualStyleBackColor = true;
-            this.btnShowImportReceipt.Click += new System.EventHandler(this.btnShowImportReceipt_Click);
+            this.button1.Location = new System.Drawing.Point(325, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(132, 68);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Tải lại dữ liệu";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(185, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(132, 68);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Xóa phiếu nhập";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btnDeleteReceipt_Click);
+            // 
+            // btnAddImportReceipt
+            // 
+            this.btnAddImportReceipt.Location = new System.Drawing.Point(45, 2);
+            this.btnAddImportReceipt.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddImportReceipt.Name = "btnAddImportReceipt";
+            this.btnAddImportReceipt.Size = new System.Drawing.Size(132, 68);
+            this.btnAddImportReceipt.TabIndex = 4;
+            this.btnAddImportReceipt.Text = "Tạo phiếu nhập";
+            this.btnAddImportReceipt.UseVisualStyleBackColor = true;
+            this.btnAddImportReceipt.Click += new System.EventHandler(this.btnAddReceipt_Click);
             // 
             // button18
             // 
-            this.button18.Location = new System.Drawing.Point(287, 4);
+            this.button18.Location = new System.Drawing.Point(845, 2);
             this.button18.Margin = new System.Windows.Forms.Padding(4);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(132, 68);
             this.button18.TabIndex = 2;
-            this.button18.Text = "Xóa";
+            this.button18.Text = "Xóa chi tiết phiếu nhập";
             this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.btnDeleteDetail_Click);
             // 
             // button19
             // 
-            this.button19.Location = new System.Drawing.Point(145, 4);
+            this.button19.Location = new System.Drawing.Point(703, 2);
             this.button19.Margin = new System.Windows.Forms.Padding(4);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(132, 68);
             this.button19.TabIndex = 1;
-            this.button19.Text = "Sửa";
+            this.button19.Text = "Sửa chi tiết phiếu nhập";
             this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.btnUpdateDetail_Click);
             // 
             // button20
             // 
-            this.button20.Location = new System.Drawing.Point(4, 4);
+            this.button20.Location = new System.Drawing.Point(562, 2);
             this.button20.Margin = new System.Windows.Forms.Padding(4);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(132, 68);
             this.button20.TabIndex = 0;
-            this.button20.Text = "Thêm";
+            this.button20.Text = "Thêm chi tiết phiếu nhập";
             this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.btnAddDetail_Click);
             // 
             // panel59
             // 
             this.panel59.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel59.Controls.Add(this.label34);
+            this.panel59.Controls.Add(this.panel61);
+            this.panel59.Controls.Add(this.panel85);
+            this.panel59.Controls.Add(this.panel86);
+            this.panel59.Controls.Add(this.panel87);
+            this.panel59.Controls.Add(this.panel88);
             this.panel59.Controls.Add(this.panel60);
             this.panel59.Controls.Add(this.panel63);
-            this.panel59.Controls.Add(this.panel64);
             this.panel59.Location = new System.Drawing.Point(1053, 94);
             this.panel59.Margin = new System.Windows.Forms.Padding(4);
             this.panel59.Name = "panel59";
             this.panel59.Size = new System.Drawing.Size(438, 645);
             this.panel59.TabIndex = 13;
             // 
+            // panel61
+            // 
+            this.panel61.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel61.Controls.Add(this.cbUnit);
+            this.panel61.Controls.Add(this.label33);
+            this.panel61.Location = new System.Drawing.Point(4, 444);
+            this.panel61.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel61.Name = "panel61";
+            this.panel61.Size = new System.Drawing.Size(428, 62);
+            this.panel61.TabIndex = 9;
+            // 
+            // cbUnit
+            // 
+            this.cbUnit.FormattingEnabled = true;
+            this.cbUnit.Location = new System.Drawing.Point(220, 18);
+            this.cbUnit.Margin = new System.Windows.Forms.Padding(4);
+            this.cbUnit.Name = "cbUnit";
+            this.cbUnit.Size = new System.Drawing.Size(194, 28);
+            this.cbUnit.TabIndex = 6;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(0, 23);
+            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(79, 24);
+            this.label33.TabIndex = 0;
+            this.label33.Text = "Đơn vị:";
+            // 
+            // panel85
+            // 
+            this.panel85.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel85.Controls.Add(this.nmGiaNhap);
+            this.panel85.Controls.Add(this.label53);
+            this.panel85.Location = new System.Drawing.Point(4, 579);
+            this.panel85.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel85.Name = "panel85";
+            this.panel85.Size = new System.Drawing.Size(428, 62);
+            this.panel85.TabIndex = 8;
+            // 
+            // nmGiaNhap
+            // 
+            this.nmGiaNhap.Location = new System.Drawing.Point(220, 20);
+            this.nmGiaNhap.Margin = new System.Windows.Forms.Padding(4);
+            this.nmGiaNhap.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.nmGiaNhap.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmGiaNhap.Name = "nmGiaNhap";
+            this.nmGiaNhap.Size = new System.Drawing.Size(194, 27);
+            this.nmGiaNhap.TabIndex = 2;
+            this.nmGiaNhap.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label53.Location = new System.Drawing.Point(0, 23);
+            this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(49, 24);
+            this.label53.TabIndex = 0;
+            this.label53.Text = "Giá:";
+            // 
+            // panel86
+            // 
+            this.panel86.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel86.Controls.Add(this.nmSoLuongNhap);
+            this.panel86.Controls.Add(this.label54);
+            this.panel86.Location = new System.Drawing.Point(4, 510);
+            this.panel86.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel86.Name = "panel86";
+            this.panel86.Size = new System.Drawing.Size(428, 62);
+            this.panel86.TabIndex = 7;
+            // 
+            // nmSoLuongNhap
+            // 
+            this.nmSoLuongNhap.Location = new System.Drawing.Point(220, 20);
+            this.nmSoLuongNhap.Margin = new System.Windows.Forms.Padding(4);
+            this.nmSoLuongNhap.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.nmSoLuongNhap.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmSoLuongNhap.Name = "nmSoLuongNhap";
+            this.nmSoLuongNhap.Size = new System.Drawing.Size(194, 27);
+            this.nmSoLuongNhap.TabIndex = 3;
+            this.nmSoLuongNhap.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.Location = new System.Drawing.Point(0, 23);
+            this.label54.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(105, 24);
+            this.label54.TabIndex = 0;
+            this.label54.Text = "Số lượng:";
+            // 
+            // panel87
+            // 
+            this.panel87.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel87.Controls.Add(this.cbmanguyenlieu);
+            this.panel87.Controls.Add(this.label55);
+            this.panel87.Location = new System.Drawing.Point(4, 378);
+            this.panel87.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel87.Name = "panel87";
+            this.panel87.Size = new System.Drawing.Size(428, 62);
+            this.panel87.TabIndex = 6;
+            // 
+            // cbmanguyenlieu
+            // 
+            this.cbmanguyenlieu.FormattingEnabled = true;
+            this.cbmanguyenlieu.Location = new System.Drawing.Point(220, 18);
+            this.cbmanguyenlieu.Margin = new System.Windows.Forms.Padding(4);
+            this.cbmanguyenlieu.Name = "cbmanguyenlieu";
+            this.cbmanguyenlieu.Size = new System.Drawing.Size(194, 28);
+            this.cbmanguyenlieu.TabIndex = 6;
+            this.cbmanguyenlieu.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.Location = new System.Drawing.Point(0, 23);
+            this.label55.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(168, 24);
+            this.label55.TabIndex = 0;
+            this.label55.Text = "Tên nguyên liệu:";
+            // 
+            // panel88
+            // 
+            this.panel88.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel88.Controls.Add(this.tbxMaNhapNguyenLieu);
+            this.panel88.Controls.Add(this.label56);
+            this.panel88.Location = new System.Drawing.Point(4, 84);
+            this.panel88.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel88.Name = "panel88";
+            this.panel88.Size = new System.Drawing.Size(428, 60);
+            this.panel88.TabIndex = 5;
+            // 
+            // tbxMaNhapNguyenLieu
+            // 
+            this.tbxMaNhapNguyenLieu.Location = new System.Drawing.Point(225, 18);
+            this.tbxMaNhapNguyenLieu.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.tbxMaNhapNguyenLieu.Name = "tbxMaNhapNguyenLieu";
+            this.tbxMaNhapNguyenLieu.Size = new System.Drawing.Size(189, 27);
+            this.tbxMaNhapNguyenLieu.TabIndex = 1;
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.Location = new System.Drawing.Point(4, 22);
+            this.label56.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(213, 24);
+            this.label56.TabIndex = 0;
+            this.label56.Text = "Mã nhập nguyên liệu:";
+            // 
             // panel60
             // 
             this.panel60.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel60.Controls.Add(this.comboBox9);
+            this.panel60.Controls.Add(this.txbTaiKhoanNhanVien);
             this.panel60.Controls.Add(this.label32);
-            this.panel60.Location = new System.Drawing.Point(4, 135);
+            this.panel60.Location = new System.Drawing.Point(4, 215);
             this.panel60.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel60.Name = "panel60";
-            this.panel60.Size = new System.Drawing.Size(417, 62);
+            this.panel60.Size = new System.Drawing.Size(428, 62);
             this.panel60.TabIndex = 3;
             // 
-            // comboBox9
+            // txbTaiKhoanNhanVien
             // 
-            this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Location = new System.Drawing.Point(220, 18);
-            this.comboBox9.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(187, 28);
-            this.comboBox9.TabIndex = 6;
+            this.txbTaiKhoanNhanVien.Location = new System.Drawing.Point(225, 20);
+            this.txbTaiKhoanNhanVien.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbTaiKhoanNhanVien.Name = "txbTaiKhoanNhanVien";
+            this.txbTaiKhoanNhanVien.ReadOnly = true;
+            this.txbTaiKhoanNhanVien.Size = new System.Drawing.Size(189, 27);
+            this.txbTaiKhoanNhanVien.TabIndex = 9;
             // 
             // label32
             // 
@@ -824,29 +822,29 @@
             this.label32.Location = new System.Drawing.Point(0, 23);
             this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(185, 24);
+            this.label32.Size = new System.Drawing.Size(117, 24);
             this.label32.TabIndex = 0;
-            this.label32.Text = "Mã nhân viên tạo: ";
+            this.label32.Text = "Nhân viên: ";
             // 
             // panel63
             // 
             this.panel63.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel63.Controls.Add(this.comboBox8);
+            this.panel63.Controls.Add(this.cbTenNhaCungCap);
             this.panel63.Controls.Add(this.label35);
-            this.panel63.Location = new System.Drawing.Point(4, 68);
+            this.panel63.Location = new System.Drawing.Point(4, 148);
             this.panel63.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel63.Name = "panel63";
-            this.panel63.Size = new System.Drawing.Size(417, 62);
+            this.panel63.Size = new System.Drawing.Size(428, 62);
             this.panel63.TabIndex = 2;
             // 
-            // comboBox8
+            // cbTenNhaCungCap
             // 
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Location = new System.Drawing.Point(220, 18);
-            this.comboBox8.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(187, 28);
-            this.comboBox8.TabIndex = 6;
+            this.cbTenNhaCungCap.FormattingEnabled = true;
+            this.cbTenNhaCungCap.Location = new System.Drawing.Point(225, 18);
+            this.cbTenNhaCungCap.Margin = new System.Windows.Forms.Padding(4);
+            this.cbTenNhaCungCap.Name = "cbTenNhaCungCap";
+            this.cbTenNhaCungCap.Size = new System.Drawing.Size(189, 28);
+            this.cbTenNhaCungCap.TabIndex = 6;
             // 
             // label35
             // 
@@ -859,50 +857,20 @@
             this.label35.TabIndex = 0;
             this.label35.Text = "Tên nhà cung cấp:";
             // 
-            // panel64
+            // tpSupplier
             // 
-            this.panel64.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel64.Controls.Add(this.textBox21);
-            this.panel64.Controls.Add(this.label36);
-            this.panel64.Location = new System.Drawing.Point(4, 4);
-            this.panel64.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.panel64.Name = "panel64";
-            this.panel64.Size = new System.Drawing.Size(417, 60);
-            this.panel64.TabIndex = 1;
-            // 
-            // textBox21
-            // 
-            this.textBox21.Location = new System.Drawing.Point(220, 18);
-            this.textBox21.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(187, 27);
-            this.textBox21.TabIndex = 1;
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(4, 22);
-            this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(213, 24);
-            this.label36.TabIndex = 0;
-            this.label36.Text = "Mã nhập nguyên liệu:";
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.panel73);
-            this.tabPage6.Controls.Add(this.panel53);
-            this.tabPage6.Controls.Add(this.panel52);
-            this.tabPage6.Controls.Add(this.panel51);
-            this.tabPage6.Location = new System.Drawing.Point(4, 29);
-            this.tabPage6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.tabPage6.Size = new System.Drawing.Size(1499, 745);
-            this.tabPage6.TabIndex = 8;
-            this.tabPage6.Text = "Nhà cung cấp";
-            this.tabPage6.UseVisualStyleBackColor = true;
+            this.tpSupplier.Controls.Add(this.panel73);
+            this.tpSupplier.Controls.Add(this.panel53);
+            this.tpSupplier.Controls.Add(this.panel52);
+            this.tpSupplier.Controls.Add(this.panel51);
+            this.tpSupplier.Location = new System.Drawing.Point(4, 29);
+            this.tpSupplier.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.tpSupplier.Name = "tpSupplier";
+            this.tpSupplier.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.tpSupplier.Size = new System.Drawing.Size(1499, 745);
+            this.tpSupplier.TabIndex = 8;
+            this.tpSupplier.Text = "Nhà cung cấp";
+            this.tpSupplier.UseVisualStyleBackColor = true;
             // 
             // panel73
             // 
@@ -1191,20 +1159,20 @@
             this.btnAddSuplier.UseVisualStyleBackColor = true;
             this.btnAddSuplier.Click += new System.EventHandler(this.btnAddSupplier_Click);
             // 
-            // tabPage5
+            // tpStaff
             // 
-            this.tabPage5.Controls.Add(this.panel72);
-            this.tabPage5.Controls.Add(this.panel47);
-            this.tabPage5.Controls.Add(this.panel46);
-            this.tabPage5.Controls.Add(this.panel37);
-            this.tabPage5.Location = new System.Drawing.Point(4, 29);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.tabPage5.Size = new System.Drawing.Size(1499, 745);
-            this.tabPage5.TabIndex = 7;
-            this.tabPage5.Text = "Thông tin nhân viên";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.tpStaff.Controls.Add(this.panel72);
+            this.tpStaff.Controls.Add(this.panel47);
+            this.tpStaff.Controls.Add(this.panel46);
+            this.tpStaff.Controls.Add(this.panel37);
+            this.tpStaff.Location = new System.Drawing.Point(4, 29);
+            this.tpStaff.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.tpStaff.Name = "tpStaff";
+            this.tpStaff.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.tpStaff.Size = new System.Drawing.Size(1499, 745);
+            this.tpStaff.TabIndex = 7;
+            this.tpStaff.Text = "Thông tin nhân viên";
+            this.tpStaff.UseVisualStyleBackColor = true;
             // 
             // panel72
             // 
@@ -1569,21 +1537,20 @@
             this.label19.TabIndex = 0;
             this.label19.Text = "Mã nhân viên:";
             // 
-            // tabPage2
+            // tpFoodIngredient
             // 
-            this.tabPage2.Controls.Add(this.panel71);
-            this.tabPage2.Controls.Add(this.panel41);
-            this.tabPage2.Controls.Add(this.panel35);
-            this.tabPage2.Controls.Add(this.panel34);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.tabPage2.Size = new System.Drawing.Size(1499, 745);
-            this.tabPage2.TabIndex = 6;
-            this.tabPage2.Text = "Định lượng";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            this.tpFoodIngredient.Controls.Add(this.panel71);
+            this.tpFoodIngredient.Controls.Add(this.panel41);
+            this.tpFoodIngredient.Controls.Add(this.panel35);
+            this.tpFoodIngredient.Controls.Add(this.panel34);
+            this.tpFoodIngredient.Location = new System.Drawing.Point(4, 29);
+            this.tpFoodIngredient.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.tpFoodIngredient.Name = "tpFoodIngredient";
+            this.tpFoodIngredient.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.tpFoodIngredient.Size = new System.Drawing.Size(1499, 745);
+            this.tpFoodIngredient.TabIndex = 6;
+            this.tpFoodIngredient.Text = "Định lượng";
+            this.tpFoodIngredient.UseVisualStyleBackColor = true;
             // 
             // panel71
             // 
@@ -1617,6 +1584,8 @@
             // panel41
             // 
             this.panel41.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel41.Controls.Add(this.label52);
+            this.panel41.Controls.Add(this.label51);
             this.panel41.Controls.Add(this.panel84);
             this.panel41.Controls.Add(this.panel83);
             this.panel41.Controls.Add(this.panel45);
@@ -1629,12 +1598,32 @@
             this.panel41.Size = new System.Drawing.Size(432, 645);
             this.panel41.TabIndex = 8;
             // 
+            // label52
+            // 
+            this.label52.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label52.Location = new System.Drawing.Point(54, 268);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(339, 36);
+            this.label52.TabIndex = 9;
+            this.label52.Text = "Thông tin nguyên liệu";
+            this.label52.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label51
+            // 
+            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label51.Location = new System.Drawing.Point(96, 23);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(263, 36);
+            this.label51.TabIndex = 8;
+            this.label51.Text = "Thông tin món ăn";
+            this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // panel84
             // 
             this.panel84.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel84.Controls.Add(this.txbIdbingredient);
             this.panel84.Controls.Add(this.label50);
-            this.panel84.Location = new System.Drawing.Point(4, 338);
+            this.panel84.Location = new System.Drawing.Point(4, 324);
             this.panel84.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel84.Name = "panel84";
             this.panel84.Size = new System.Drawing.Size(417, 50);
@@ -1664,7 +1653,7 @@
             this.panel83.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel83.Controls.Add(this.txbIdFoodIngredient);
             this.panel83.Controls.Add(this.label49);
-            this.panel83.Location = new System.Drawing.Point(4, 96);
+            this.panel83.Location = new System.Drawing.Point(4, 74);
             this.panel83.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel83.Name = "panel83";
             this.panel83.Size = new System.Drawing.Size(417, 50);
@@ -1694,7 +1683,7 @@
             this.panel45.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel45.Controls.Add(this.cbNameFoodIngredient);
             this.panel45.Controls.Add(this.label23);
-            this.panel45.Location = new System.Drawing.Point(4, 150);
+            this.panel45.Location = new System.Drawing.Point(4, 128);
             this.panel45.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel45.Name = "panel45";
             this.panel45.Size = new System.Drawing.Size(417, 62);
@@ -1725,7 +1714,7 @@
             this.panel42.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel42.Controls.Add(this.nmQuantityFoodIngredient);
             this.panel42.Controls.Add(this.label20);
-            this.panel42.Location = new System.Drawing.Point(4, 514);
+            this.panel42.Location = new System.Drawing.Point(4, 500);
             this.panel42.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel42.Name = "panel42";
             this.panel42.Size = new System.Drawing.Size(417, 58);
@@ -1770,7 +1759,7 @@
             this.panel43.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel43.Controls.Add(this.cbUnitIngredient1);
             this.panel43.Controls.Add(this.label21);
-            this.panel43.Location = new System.Drawing.Point(4, 459);
+            this.panel43.Location = new System.Drawing.Point(4, 445);
             this.panel43.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel43.Name = "panel43";
             this.panel43.Size = new System.Drawing.Size(417, 50);
@@ -1801,7 +1790,7 @@
             this.panel44.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel44.Controls.Add(this.cbNameIngredient);
             this.panel44.Controls.Add(this.label22);
-            this.panel44.Location = new System.Drawing.Point(4, 392);
+            this.panel44.Location = new System.Drawing.Point(4, 378);
             this.panel44.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel44.Name = "panel44";
             this.panel44.Size = new System.Drawing.Size(417, 62);
@@ -1921,20 +1910,20 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.btnAddFoodIngredient_Click);
             // 
-            // tabPage1
+            // tpIngredient
             // 
-            this.tabPage1.Controls.Add(this.panel70);
-            this.tabPage1.Controls.Add(this.panel33);
-            this.tabPage1.Controls.Add(this.panel32);
-            this.tabPage1.Controls.Add(this.panel23);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.tabPage1.Size = new System.Drawing.Size(1499, 745);
-            this.tabPage1.TabIndex = 5;
-            this.tabPage1.Text = "Nguyên liệu";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tpIngredient.Controls.Add(this.panel70);
+            this.tpIngredient.Controls.Add(this.panel33);
+            this.tpIngredient.Controls.Add(this.panel32);
+            this.tpIngredient.Controls.Add(this.panel23);
+            this.tpIngredient.Location = new System.Drawing.Point(4, 29);
+            this.tpIngredient.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.tpIngredient.Name = "tpIngredient";
+            this.tpIngredient.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.tpIngredient.Size = new System.Drawing.Size(1499, 745);
+            this.tpIngredient.TabIndex = 5;
+            this.tpIngredient.Text = "Nguyên liệu";
+            this.tpIngredient.UseVisualStyleBackColor = true;
             // 
             // panel70
             // 
@@ -2122,7 +2111,6 @@
             this.cbUnitIngredient.Name = "cbUnitIngredient";
             this.cbUnitIngredient.Size = new System.Drawing.Size(232, 28);
             this.cbUnitIngredient.TabIndex = 1;
-            this.cbUnitIngredient.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label12
             // 
@@ -2350,6 +2338,7 @@
             this.button33.TabIndex = 5;
             this.button33.Text = "Đặt lại mật khẩu";
             this.button33.UseVisualStyleBackColor = false;
+            this.button33.Click += new System.EventHandler(this.btnResetPassword_Click);
             // 
             // panel36
             // 
@@ -2554,7 +2543,6 @@
             this.panel19.Name = "panel19";
             this.panel19.Size = new System.Drawing.Size(413, 70);
             this.panel19.TabIndex = 3;
-            this.panel19.Paint += new System.Windows.Forms.PaintEventHandler(this.panel19_Paint);
             // 
             // txbTableName
             // 
@@ -2842,7 +2830,6 @@
             this.dtgvCategory.RowHeadersWidth = 51;
             this.dtgvCategory.Size = new System.Drawing.Size(1042, 633);
             this.dtgvCategory.TabIndex = 0;
-            this.dtgvCategory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvCategory_CellContentClick);
             // 
             // panel11
             // 
@@ -3194,7 +3181,6 @@
             this.tpBill.TabIndex = 0;
             this.tpBill.Text = "Doanh Thu";
             this.tpBill.UseVisualStyleBackColor = true;
-            this.tpBill.Click += new System.EventHandler(this.tpBill_Click);
             // 
             // panel2
             // 
@@ -3314,16 +3300,15 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.table.Controls.Add(this.tpBill);
-            this.table.Controls.Add(this.tpFood);
-            this.table.Controls.Add(this.tpFoodCategory);
             this.table.Controls.Add(this.tpTable);
+            this.table.Controls.Add(this.tpFoodCategory);
+            this.table.Controls.Add(this.tpFood);
             this.table.Controls.Add(this.tpAccount);
-            this.table.Controls.Add(this.tabPage1);
-            this.table.Controls.Add(this.tabPage2);
-            this.table.Controls.Add(this.tabPage5);
-            this.table.Controls.Add(this.tabPage6);
-            this.table.Controls.Add(this.tabPage7);
-            this.table.Controls.Add(this.tabPage8);
+            this.table.Controls.Add(this.tpStaff);
+            this.table.Controls.Add(this.tpIngredient);
+            this.table.Controls.Add(this.tpFoodIngredient);
+            this.table.Controls.Add(this.tpSupplier);
+            this.table.Controls.Add(this.tpImport);
             this.table.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.table.Location = new System.Drawing.Point(12, 17);
             this.table.Margin = new System.Windows.Forms.Padding(4);
@@ -3331,6 +3316,19 @@
             this.table.SelectedIndex = 0;
             this.table.Size = new System.Drawing.Size(1507, 778);
             this.table.TabIndex = 2;
+            // 
+            // label34
+            // 
+            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label34.Location = new System.Drawing.Point(34, 23);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(371, 36);
+            this.label34.TabIndex = 10;
+            this.label34.Text = "Thông tin phiếu nhập";
+            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // fAdmin
             // 
@@ -3345,33 +3343,31 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Admin";
             this.tabControl2.ResumeLayout(false);
-            this.tabPage8.ResumeLayout(false);
-            this.panel75.ResumeLayout(false);
-            this.panel79.ResumeLayout(false);
-            this.panel79.PerformLayout();
-            this.panel76.ResumeLayout(false);
-            this.panel76.PerformLayout();
-            this.panel77.ResumeLayout(false);
-            this.panel77.PerformLayout();
-            this.panel78.ResumeLayout(false);
-            this.panel78.PerformLayout();
-            this.panel62.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvImportDetail)).EndInit();
-            this.panel61.ResumeLayout(false);
-            this.tabPage7.ResumeLayout(false);
+            this.tpImport.ResumeLayout(false);
             this.panel74.ResumeLayout(false);
             this.panel74.PerformLayout();
             this.panel66.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvImport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvImportDetailAdmin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvImportReceipt)).EndInit();
             this.panel65.ResumeLayout(false);
             this.panel59.ResumeLayout(false);
+            this.panel61.ResumeLayout(false);
+            this.panel61.PerformLayout();
+            this.panel85.ResumeLayout(false);
+            this.panel85.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmGiaNhap)).EndInit();
+            this.panel86.ResumeLayout(false);
+            this.panel86.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmSoLuongNhap)).EndInit();
+            this.panel87.ResumeLayout(false);
+            this.panel87.PerformLayout();
+            this.panel88.ResumeLayout(false);
+            this.panel88.PerformLayout();
             this.panel60.ResumeLayout(false);
             this.panel60.PerformLayout();
             this.panel63.ResumeLayout(false);
             this.panel63.PerformLayout();
-            this.panel64.ResumeLayout(false);
-            this.panel64.PerformLayout();
-            this.tabPage6.ResumeLayout(false);
+            this.tpSupplier.ResumeLayout(false);
             this.panel73.ResumeLayout(false);
             this.panel73.PerformLayout();
             this.panel53.ResumeLayout(false);
@@ -3388,7 +3384,7 @@
             this.panel52.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvSuplier)).EndInit();
             this.panel51.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
+            this.tpStaff.ResumeLayout(false);
             this.panel72.ResumeLayout(false);
             this.panel72.PerformLayout();
             this.panel47.ResumeLayout(false);
@@ -3409,7 +3405,7 @@
             this.panel39.PerformLayout();
             this.panel40.ResumeLayout(false);
             this.panel40.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
+            this.tpFoodIngredient.ResumeLayout(false);
             this.panel71.ResumeLayout(false);
             this.panel71.PerformLayout();
             this.panel41.ResumeLayout(false);
@@ -3430,7 +3426,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgvFoodIngredient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvFood1)).EndInit();
             this.panel34.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.tpIngredient.ResumeLayout(false);
             this.panel70.ResumeLayout(false);
             this.panel70.PerformLayout();
             this.panel33.ResumeLayout(false);
@@ -3517,51 +3513,45 @@
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage8;
-        private System.Windows.Forms.Panel panel75;
-        private System.Windows.Forms.Panel panel79;
-        private System.Windows.Forms.ComboBox comboBox12;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Panel panel76;
-        private System.Windows.Forms.ComboBox comboBox10;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Panel panel77;
-        private System.Windows.Forms.ComboBox comboBox11;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Panel panel78;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Panel panel62;
-        private System.Windows.Forms.DataGridView dtgvImportDetail;
-        private System.Windows.Forms.Panel panel61;
-        private System.Windows.Forms.Button button30;
-        private System.Windows.Forms.Button button31;
-        private System.Windows.Forms.Button button32;
-        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.TabPage tpImport;
         private System.Windows.Forms.Panel panel74;
         private System.Windows.Forms.TextBox textBox29;
         private System.Windows.Forms.Button button28;
         private System.Windows.Forms.Panel panel66;
-        private System.Windows.Forms.DataGridView dtgvImport;
+        private System.Windows.Forms.DataGridView dtgvImportDetailAdmin;
+        private System.Windows.Forms.DataGridView dtgvImportReceipt;
         private System.Windows.Forms.Panel panel65;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAddImportReceipt;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Panel panel59;
+        private System.Windows.Forms.Panel panel85;
+        private System.Windows.Forms.NumericUpDown nmGiaNhap;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Panel panel86;
+        private System.Windows.Forms.NumericUpDown nmSoLuongNhap;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Panel panel87;
+        private System.Windows.Forms.ComboBox cbmanguyenlieu;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.Panel panel88;
+        private System.Windows.Forms.TextBox tbxMaNhapNguyenLieu;
+        private System.Windows.Forms.Label label56;
         private System.Windows.Forms.Panel panel60;
-        private System.Windows.Forms.ComboBox comboBox9;
+        private System.Windows.Forms.TextBox txbTaiKhoanNhanVien;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Panel panel63;
-        private System.Windows.Forms.ComboBox comboBox8;
+        private System.Windows.Forms.ComboBox cbTenNhaCungCap;
         private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.Panel panel64;
-        private System.Windows.Forms.TextBox textBox21;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TabPage tpSupplier;
         private System.Windows.Forms.Panel panel73;
         private System.Windows.Forms.TextBox textBox28;
         private System.Windows.Forms.Button button27;
         private System.Windows.Forms.Panel panel53;
+        private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Panel panel58;
         private System.Windows.Forms.TextBox txbAddress;
         private System.Windows.Forms.Label label31;
@@ -3580,20 +3570,27 @@
         private System.Windows.Forms.Panel panel52;
         private System.Windows.Forms.DataGridView dtgvSuplier;
         private System.Windows.Forms.Panel panel51;
+        private System.Windows.Forms.Button btnShowSuplier;
         private System.Windows.Forms.Button btnDeleteSuplier;
         private System.Windows.Forms.Button btnEditSuplier;
         private System.Windows.Forms.Button btnAddSuplier;
-        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tpStaff;
         private System.Windows.Forms.Panel panel72;
         private System.Windows.Forms.TextBox textBox27;
         private System.Windows.Forms.Button button26;
         private System.Windows.Forms.Panel panel47;
+        private System.Windows.Forms.Button btnShowStaff;
         private System.Windows.Forms.Button btnDeleteStaff;
         private System.Windows.Forms.Button btnUpdateStaff;
         private System.Windows.Forms.Button btnAddStaff;
         private System.Windows.Forms.Panel panel46;
         private System.Windows.Forms.DataGridView dtgvStaff;
         private System.Windows.Forms.Panel panel37;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Button btnLoadUnusedAccounts;
+        private System.Windows.Forms.Panel panel82;
+        private System.Windows.Forms.DateTimePicker dtpkBirthDateStaff;
+        private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Panel panel50;
         private System.Windows.Forms.ComboBox cbGender;
         private System.Windows.Forms.Label label26;
@@ -3607,15 +3604,24 @@
         private System.Windows.Forms.TextBox txbFullName;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Panel panel39;
+        private System.Windows.Forms.ComboBox cbAccountStaff;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Panel panel40;
         private System.Windows.Forms.TextBox txbIdStaff;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tpFoodIngredient;
         private System.Windows.Forms.Panel panel71;
         private System.Windows.Forms.TextBox textBox26;
         private System.Windows.Forms.Button button25;
         private System.Windows.Forms.Panel panel41;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.Panel panel84;
+        private System.Windows.Forms.TextBox txbIdbingredient;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Panel panel83;
+        private System.Windows.Forms.TextBox txbIdFoodIngredient;
+        private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Panel panel45;
         private System.Windows.Forms.ComboBox cbNameFoodIngredient;
         private System.Windows.Forms.Label label23;
@@ -3623,27 +3629,32 @@
         private System.Windows.Forms.NumericUpDown nmQuantityFoodIngredient;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Panel panel43;
+        private System.Windows.Forms.ComboBox cbUnitIngredient1;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Panel panel44;
         private System.Windows.Forms.ComboBox cbNameIngredient;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Panel panel35;
+        private System.Windows.Forms.DataGridView dtgvFoodIngredient;
         private System.Windows.Forms.DataGridView dtgvFood1;
         private System.Windows.Forms.Panel panel34;
+        private System.Windows.Forms.Button btnShowFoodIngredient;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tpIngredient;
         private System.Windows.Forms.Panel panel70;
         private System.Windows.Forms.TextBox textBox25;
         private System.Windows.Forms.Button button24;
         private System.Windows.Forms.Panel panel33;
         private System.Windows.Forms.DataGridView dtgvIngredient;
         private System.Windows.Forms.Panel panel32;
+        private System.Windows.Forms.Button btnShowIngredient;
         private System.Windows.Forms.Button btnDeleteIngredient;
         private System.Windows.Forms.Button btnEditIngredient;
         private System.Windows.Forms.Button btnAddIngredient;
         private System.Windows.Forms.Panel panel23;
+        private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Panel panel25;
         private System.Windows.Forms.NumericUpDown nmQuantity;
         private System.Windows.Forms.Label label10;
@@ -3663,9 +3674,11 @@
         private System.Windows.Forms.Panel panel28;
         private System.Windows.Forms.DataGridView dtgvAccount;
         private System.Windows.Forms.Panel panel27;
+        private System.Windows.Forms.Button btnShowAccount;
         private System.Windows.Forms.Button btnEditAccount;
         private System.Windows.Forms.Button btnAddAccount;
         private System.Windows.Forms.Panel panel22;
+        private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Button button33;
         private System.Windows.Forms.Panel panel36;
         private System.Windows.Forms.ComboBox cbIsActive;
@@ -3681,6 +3694,7 @@
         private System.Windows.Forms.TextBox textBox23;
         private System.Windows.Forms.Button button22;
         private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Panel panel21;
         private System.Windows.Forms.ComboBox cbTableStatus;
         private System.Windows.Forms.Label label9;
@@ -3693,6 +3707,7 @@
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.DataGridView dtgvTableFood;
         private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Button btnShowTable;
         private System.Windows.Forms.Button btnDeleteTable;
         private System.Windows.Forms.Button btnEditTable;
         private System.Windows.Forms.Button btnAddTable;
@@ -3701,6 +3716,7 @@
         private System.Windows.Forms.TextBox textBox22;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.TextBox txbCategoryName;
         private System.Windows.Forms.Label label6;
@@ -3710,11 +3726,13 @@
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.DataGridView dtgvCategory;
         private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Button btnShowCategory;
         private System.Windows.Forms.Button btnDeleteCategory;
         private System.Windows.Forms.Button btnEditCategory;
         private System.Windows.Forms.Button btnAddCategory;
         private System.Windows.Forms.TabPage tpFood;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.NumericUpDown nmPriceFood;
         private System.Windows.Forms.Label label4;
@@ -3731,6 +3749,7 @@
         private System.Windows.Forms.TextBox txbSearchFoodName;
         private System.Windows.Forms.Button btnSearchFood;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button btnShowFood;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEditFood;
         private System.Windows.Forms.Button btnAddFood;
@@ -3738,45 +3757,19 @@
         private System.Windows.Forms.DataGridView dtgvFood;
         private System.Windows.Forms.TabPage tpBill;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnXemDoanhThu;
-        private System.Windows.Forms.DateTimePicker dtpkToDate;
+        private System.Windows.Forms.Panel panel81;
         private System.Windows.Forms.DateTimePicker dtpkFromDate;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Panel panel80;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.DateTimePicker dtpkToDate;
+        private System.Windows.Forms.Button btnXemDoanhThu;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dtgvDoanhThu;
         private System.Windows.Forms.TabControl table;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.Panel panel80;
-        private System.Windows.Forms.Panel panel81;
-        private System.Windows.Forms.Button btnShowImportDetail;
-        private System.Windows.Forms.Button btnShowImportReceipt;
-        private System.Windows.Forms.Button btnShowSuplier;
-        private System.Windows.Forms.Button btnShowStaff;
-        private System.Windows.Forms.Button btnShowFoodIngredient;
-        private System.Windows.Forms.Button btnShowIngredient;
-        private System.Windows.Forms.Button btnShowAccount;
-        private System.Windows.Forms.Button btnShowTable;
-        private System.Windows.Forms.Button btnShowCategory;
-        private System.Windows.Forms.Button btnShowFood;
-        private System.Windows.Forms.Panel panel82;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.DateTimePicker dtpkBirthDateStaff;
-        private System.Windows.Forms.ComboBox cbAccountStaff;
-        private System.Windows.Forms.Button btnLoadUnusedAccounts;
-        private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.DataGridView dtgvFoodIngredient;
-        private System.Windows.Forms.Panel panel83;
-        private System.Windows.Forms.TextBox txbIdFoodIngredient;
-        private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.Panel panel84;
-        private System.Windows.Forms.TextBox txbIdbingredient;
-        private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.ComboBox cbUnitIngredient1;
+        private System.Windows.Forms.Panel panel61;
+        private System.Windows.Forms.ComboBox cbUnit;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label34;
     }
 }

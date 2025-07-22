@@ -30,6 +30,16 @@ namespace App.DAO
             return list;
         }
 
+        public int GetIdSupplierByName(string supplierName)
+        {
+            string query = "SELECT IdSupplier FROM Supplier WHERE SupplierName like @SupplierName";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { supplierName });
+            if (data.Rows.Count > 0)
+            {
+                return (int)data.Rows[0]["IdSupplier"];
+            }
+            return 1; 
+        }
         public bool InsertSupplier(Supplier supplier)
         {
             string query = "INSERT INTO Supplier (supplierName, phone, email, address) VALUES ( @supplierName , @phone , @email , @address )";

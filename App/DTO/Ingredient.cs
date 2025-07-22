@@ -35,4 +35,21 @@ namespace App.DTO
         public string Unit { get => unit; set => unit = value; }
         public decimal Quantity { get => quantity; set => quantity = value; }
     }
+
+        public class IngredientUnit
+        {
+            public int IdIngredient { get; set; }
+            public string Unit { get; set; }
+
+            public IngredientUnit(int idIngredient, string unit)
+            {
+                IdIngredient = idIngredient;
+                Unit = unit;
+            }
+
+            public override string ToString()
+            {
+                return Unit; // Hiển thị Unit trong ComboBox
+            }
+        }
 }

@@ -23,55 +23,57 @@ namespace App
         BindingSource ingredientList = new BindingSource();
         BindingSource staffList = new BindingSource();
         BindingSource supplierList = new BindingSource();
-        BindingSource foodList1 = new BindingSource(); // Binding cho FoodIngredient
+        BindingSource foodList1 = new BindingSource();
         BindingSource ingredientBinding = new BindingSource();
-
+        BindingSource receiptBindingSource = new BindingSource();
+        BindingSource detailBindingSource = new BindingSource();
 
         public fAdmin()
         {
             InitializeComponent();
-
             LoadALL();
         }
 
         void LoadALL()
         {
-            //dtgvAccount.DataSource = accountList;
+            LoadDoanhThu(DateTime.Today, DateTime.Now);
+
             LoadAccountList();
             AddAccountBinding();
 
-            //dtgvFood.DataSource = foodList;
             LoadFoodList();
             AddFoodBinding();
             LoadCategoryIntoComboBox(cbFoodCategory);
 
-            //dtgvCategory.DataSource = categoryList;
             LoadCategoryList();
             AddCategoryBinding();
 
-            //dtgvTableFood.DataSource = tableList;
             LoadTableFood();
             AddTableFoodBinding();
 
-            //dtgvIngredient.DataSource = ingredientList;
             LoadIngredient();
             AddIngredientBinding();
 
-            //dtgvStaff.DataSource = staffList;
             LoadStaff();
             AddBindingStaff();
 
             LoadFoodIngredient();
 
-            //dtgvSuplier.DataSource = supplierList;
             LoadSupplier();
             AddSupplierBinding();
 
-
-            LoadDoanhThu(DateTime.Now, DateTime.Now);
+            LoadImportReceiptAndDetail();
         }
 
-        // Load các danh sách từ fooddao
+
+        #region Tải DataGridView từ DAO
+        void LoadDoanhThu(DateTime fromDate, DateTime toDate)
+        {
+            //InitDoanhThuColumns();
+            string query = "EXEC DoanhThu @FromDate , @ToDate";
+            dtgvDoanhThu.DataSource = DataProvider.Instance.ExecuteQuery(query, new object[] { fromDate, toDate });
+        }
+
         void LoadFoodList()
         {
             foodList.DataSource = FoodDAO.Instance.GetListFood();
@@ -139,7 +141,22 @@ namespace App
             dtgvStaff.Columns["AccountUserName"].HeaderText = "Tên Tài Khoản";
         }
 
+        void LoadSupplier()
+        {
+            supplierList.DataSource = SupplierDAO.Instance.GetAllSuppliers();
+            dtgvSuplier.DataSource = supplierList;
 
+            dtgvSuplier.Columns["idSupplier"].HeaderText = "Mã Nhà Cung Cấp";
+            dtgvSuplier.Columns["supplierName"].HeaderText = "Tên Nhà Cung Cấp";
+            dtgvSuplier.Columns["phone"].HeaderText = "Số Điện Thoại";
+            dtgvSuplier.Columns["email"].HeaderText = "Email";
+            dtgvSuplier.Columns["address"].HeaderText = "Địa Chỉ";
+        }
+
+        #endregion
+
+
+        #region  Tải định lượng món ăn
         void LoadFoodIngredient()
         {
             // Load danh sách món ăn
@@ -172,9 +189,6 @@ namespace App
             // Binding nguyên liệu
             AddIngredientBinding1();
         }
-
-
-
 
         void LoadFoodIngredientDetail_ByCurrentSelection()
         {
@@ -230,35 +244,6 @@ namespace App
             }
         }
 
-        void LoadSupplier()
-        {
-            supplierList.DataSource = SupplierDAO.Instance.GetAllSuppliers();
-            dtgvSuplier.DataSource = supplierList;
-
-            dtgvSuplier.Columns["idSupplier"].HeaderText = "Mã Nhà Cung Cấp";
-            dtgvSuplier.Columns["supplierName"].HeaderText = "Tên Nhà Cung Cấp";
-            dtgvSuplier.Columns["phone"].HeaderText = "Số Điện Thoại";
-            dtgvSuplier.Columns["email"].HeaderText = "Email";
-            dtgvSuplier.Columns["address"].HeaderText = "Địa Chỉ";
-        }
-
-        //private void dtgvFood1_CellClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    LoadFoodIngredientDetail_ByCurrentSelection();
-        //    AddIngredientBinding1();
-        //}
-
-        //private void dtgvFood1_CellClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    if (e.RowIndex >= 0) // Ensure a valid row is selected
-        //    {
-        //        this.Validate(); // Synchronize bindings
-        //        MessageBox.Show($"Selected IdFood: {txbIdFoodIngredient.Text}"); // For debugging
-        //        LoadFoodIngredientDetail_ByCurrentSelection();
-        //        AddIngredientBinding1();
-        //    }
-        //}
-
         private void dtgvFood1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -269,160 +254,13 @@ namespace App
             }
         }
 
-
-        // Gọi một lần ở Form_Load hoặc khởi tạo
-        void InitDoanhThuColumns()
-        {
-            dtgvDoanhThu.Columns.Clear();
-            dtgvDoanhThu.AutoGenerateColumns = false;
-
-            dtgvDoanhThu.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Ngay",
-                HeaderText = "Ngày",
-                DataPropertyName = "Ngày",
-                Width = 160,
-                DefaultCellStyle = new DataGridViewCellStyle
-                {
-                    Font = new Font("Segoe UI", 10),
-                    Alignment = DataGridViewContentAlignment.MiddleLeft
-                }
-            });
-
-            dtgvDoanhThu.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Loai",
-                HeaderText = "Loại",
-                DataPropertyName = "Loại",
-                Width = 100,
-                DefaultCellStyle = new DataGridViewCellStyle
-                {
-                    Font = new Font("Segoe UI", 10),
-                    Alignment = DataGridViewContentAlignment.MiddleCenter
-                }
-            });
-
-            dtgvDoanhThu.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "TenHang",
-                HeaderText = "Tên Hàng",
-                DataPropertyName = "Tên Hàng",
-                Width = 250,
-                DefaultCellStyle = new DataGridViewCellStyle
-                {
-                    Font = new Font("Segoe UI", 10)
-                }
-            });
-
-            dtgvDoanhThu.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "SoLuong",
-                HeaderText = "Số Lượng",
-                DataPropertyName = "Số Lượng",
-                Width = 90,
-                DefaultCellStyle = new DataGridViewCellStyle
-                {
-                    Font = new Font("Segoe UI", 10),
-                    Alignment = DataGridViewContentAlignment.MiddleCenter
-                }
-            });
-
-            dtgvDoanhThu.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "DonGia",
-                HeaderText = "Đơn Giá",
-                DataPropertyName = "Đơn Giá",
-                Width = 100,
-                DefaultCellStyle = new DataGridViewCellStyle
-                {
-                    Font = new Font("Segoe UI", 10),
-                    Format = "N0",
-                    Alignment = DataGridViewContentAlignment.MiddleCenter
-                }
-            });
-
-            dtgvDoanhThu.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "ThanhTien",
-                HeaderText = "Thành Tiền",
-                DataPropertyName = "Thành Tiền",
-                Width = 120,
-                DefaultCellStyle = new DataGridViewCellStyle
-                {
-                    Font = new Font("Segoe UI", 10),
-                    Format = "N0",
-                    Alignment = DataGridViewContentAlignment.MiddleRight
-                }
-            });
-
-            dtgvDoanhThu.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "GhiChu",
-                HeaderText = "Ghi Chú",
-                DataPropertyName = "Ghi Chú",
-                Width = 650,
-                DefaultCellStyle = new DataGridViewCellStyle
-                {
-                    Font = new Font("Segoe UI", 10),
-                    Alignment = DataGridViewContentAlignment.MiddleLeft
-                }
-            });
-
-            // Font cho hàng tiêu đề (header): In đậm
-            dtgvDoanhThu.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            dtgvDoanhThu.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dtgvDoanhThu.EnableHeadersVisualStyles = false;
-        }
+        #endregion
 
 
-        void LoadDoanhThu(DateTime fromDate, DateTime toDate)
-        {
-            //InitDoanhThuColumns();
-            string query = "EXEC DoanhThu @FromDate , @ToDate";
-            dtgvDoanhThu.DataSource = DataProvider.Instance.ExecuteQuery(query, new object[] { fromDate, toDate });
-        }
-
-
-        void LoadNhapHang(DateTime fromDate, DateTime toDate)
-        {
-            string query = "EXEC GetThongKeNhapHang @FromDate , @ToDate";
-            dtgvDoanhThu.DataSource = DataProvider.Instance.ExecuteQuery(query, new object[] { fromDate, toDate });
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
+        #region các sự kiện click cho doanh thu và các nút reload lại dtgv
         private void btnXemDoanhThu_Click(object sender, EventArgs e)
         {
             LoadDoanhThu(dtpkFromDate.Value, dtpkToDate.Value);
-        }
-
-        private void btnXemNhapHang_Click(object sender, EventArgs e)
-        {
-            LoadNhapHang(dtpkFromDate.Value, dtpkToDate.Value);
-        }
-
-        private void dtgvCategory_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void tpBill_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel19_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void btnShowFood_Click(object sender, EventArgs e)
@@ -465,18 +303,10 @@ namespace App
             LoadSupplier();
         }
 
-        private void btnShowImportReceipt_Click(object sender, EventArgs e)
-        {
+        #endregion
 
-        }
 
-        private void btnShowImportDetail_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // Binding 
-
+        #region Binding Food, Category, Table, Account, Ingredient, Staff, Supplier
         void AddFoodBinding()
         {
             txbFoodID.DataBindings.Clear();
@@ -490,6 +320,29 @@ namespace App
 
             // Binding IDCategory với SelectedValue của ComboBox
             cbFoodCategory.DataBindings.Add(new Binding("SelectedValue", dtgvFood.DataSource, "IdCategory", true, DataSourceUpdateMode.Never));
+        }
+
+        // khi đổi chọn món ăn trong DataGridView, cập nhật Category tương ứng
+        public void txbFoodID_TextChanged(object sender, EventArgs e)
+        {
+            if (dtgvFood.SelectedCells.Count > 0)
+            {
+                int idCategory = (int)dtgvFood.SelectedCells[0].OwningRow.Cells["IdCategory"].Value;
+                Category category = CategoryDAO.Instance.GetCategoryById(idCategory);
+                cbFoodCategory.SelectedItem = category;
+
+                int index = -1;
+                int i = 0;
+                foreach (Category item in cbFoodCategory.Items)
+                {
+                    if (item.IdCategory == idCategory)
+                    {
+                        index = i;
+                        break;
+                    }
+                    i++;
+                }
+            }
         }
 
         void AddCategoryBinding()
@@ -542,22 +395,6 @@ namespace App
             cbIsActive.DataBindings.Add("SelectedIndex", dtgvAccount.DataSource, "isActive", true, DataSourceUpdateMode.Never);
         }
 
-        void AddIngredientBinding()
-        {
-            txbIdIngredient.DataBindings.Clear();
-            txbIngredientName.DataBindings.Clear();
-            // Lấy danh sách các đơn vị duy nhất từ Ingredient
-            List<string> units = IngredientDAO.Instance.GetAllUnits();
-
-            // Xóa & thêm lại danh sách đơn vị
-            cbUnitIngredient.Items.Clear();
-            cbUnitIngredient.Items.AddRange(units.ToArray()); nmQuantity.DataBindings.Clear();
-            txbIdIngredient.DataBindings.Add("Text", dtgvIngredient.DataSource, "idIngredient", true, DataSourceUpdateMode.Never);
-            txbIngredientName.DataBindings.Add("Text", dtgvIngredient.DataSource, "ingredientName", true, DataSourceUpdateMode.Never);
-            cbUnitIngredient.DataBindings.Add("SelectedItem", dtgvIngredient.DataSource, "unit", true, DataSourceUpdateMode.Never);
-            nmQuantity.DataBindings.Add("Value", dtgvIngredient.DataSource, "quantity", true, DataSourceUpdateMode.Never);
-        }
-
         void AddBindingStaff()
         {
             // Clear old bindings to avoid duplication errors
@@ -596,6 +433,41 @@ namespace App
             cbAccountStaff.DataBindings.Add("SelectedItem", dtgvStaff.DataSource, "AccountUserName", true, DataSourceUpdateMode.Never);
         }
 
+        void AddSupplierBinding()
+        {
+            txbIdSupplier.DataBindings.Clear();
+            txbSupplierName.DataBindings.Clear();
+            txbPhone.DataBindings.Clear();
+            txbEmail.DataBindings.Clear();
+            txbAddress.DataBindings.Clear();
+
+            txbIdSupplier.DataBindings.Add("Text", dtgvSuplier.DataSource, "idSupplier", true, DataSourceUpdateMode.Never);
+            txbSupplierName.DataBindings.Add("Text", dtgvSuplier.DataSource, "supplierName", true, DataSourceUpdateMode.Never);
+            txbPhone.DataBindings.Add("Text", dtgvSuplier.DataSource, "phone", true, DataSourceUpdateMode.Never);
+            txbEmail.DataBindings.Add("Text", dtgvSuplier.DataSource, "email", true, DataSourceUpdateMode.Never);
+            txbAddress.DataBindings.Add("Text", dtgvSuplier.DataSource, "address", true, DataSourceUpdateMode.Never);
+        }
+
+        void AddIngredientBinding()
+        {
+            txbIdIngredient.DataBindings.Clear();
+            txbIngredientName.DataBindings.Clear();
+            // Lấy danh sách các đơn vị duy nhất từ Ingredient
+            List<string> units = IngredientDAO.Instance.GetAllUnits();
+
+            // Xóa & thêm lại danh sách đơn vị
+            cbUnitIngredient.Items.Clear();
+            cbUnitIngredient.Items.AddRange(units.ToArray()); nmQuantity.DataBindings.Clear();
+            txbIdIngredient.DataBindings.Add("Text", dtgvIngredient.DataSource, "idIngredient", true, DataSourceUpdateMode.Never);
+            txbIngredientName.DataBindings.Add("Text", dtgvIngredient.DataSource, "ingredientName", true, DataSourceUpdateMode.Never);
+            cbUnitIngredient.DataBindings.Add("SelectedItem", dtgvIngredient.DataSource, "unit", true, DataSourceUpdateMode.Never);
+            nmQuantity.DataBindings.Add("Value", dtgvIngredient.DataSource, "quantity", true, DataSourceUpdateMode.Never);
+        }
+        #endregion
+
+
+        #region Binding định lượng nguyên liệu của món ăn
+        // cho định lượng nguyên liệu của món ăn (vào combobox tên món)
         void LoadFoodNameToComboBox()
         {
             List<Food> foodList = FoodDAO.Instance.GetListFood();
@@ -698,21 +570,6 @@ namespace App
             }
         }
 
-        void AddSupplierBinding()
-        {
-            txbIdSupplier.DataBindings.Clear();
-            txbSupplierName.DataBindings.Clear();
-            txbPhone.DataBindings.Clear();
-            txbEmail.DataBindings.Clear();
-            txbAddress.DataBindings.Clear();
-
-            txbIdSupplier.DataBindings.Add("Text", dtgvSuplier.DataSource, "idSupplier", true, DataSourceUpdateMode.Never);
-            txbSupplierName.DataBindings.Add("Text", dtgvSuplier.DataSource, "supplierName", true, DataSourceUpdateMode.Never);
-            txbPhone.DataBindings.Add("Text", dtgvSuplier.DataSource, "phone", true, DataSourceUpdateMode.Never);
-            txbEmail.DataBindings.Add("Text", dtgvSuplier.DataSource, "email", true, DataSourceUpdateMode.Never);
-            txbAddress.DataBindings.Add("Text", dtgvSuplier.DataSource, "address", true, DataSourceUpdateMode.Never);
-        }
-
         void LoadCategoryIntoComboBox(ComboBox cb)
         {
             cb.DataSource = CategoryDAO.Instance.GetListCategory();
@@ -720,29 +577,178 @@ namespace App
             cb.ValueMember = "IdCategory";      // dùng giá trị Id để binding
         }
 
+        #endregion
 
-        public void txbFoodID_TextChanged(object sender, EventArgs e)
+
+        #region Tải và binding phiếu nhập và chi tiết phiếu nhập
+        private void LoadImportReceiptAndDetail()
         {
-            if (dtgvFood.SelectedCells.Count > 0)
+            LoadReceiptList();
+            AddReceiptBinding();
+            LoadSupplierComboBox();
+            LoadUnitComboBox();
+            LoadIngredientComboBox();
+            if (dtgvImportReceipt.Rows.Count > 0)
             {
-                int idCategory = (int)dtgvFood.SelectedCells[0].OwningRow.Cells["IdCategory"].Value;
-                Category category = CategoryDAO.Instance.GetCategoryById(idCategory);
-                cbFoodCategory.SelectedItem = category;
+                dtgvImportReceipt.Rows[0].Selected = true;
+                LoadImportDetail_ByCurrentSelection();
+            }
+            else
+            {
+                detailBindingSource.DataSource = null;
+                dtgvImportDetailAdmin.DataSource = null;
+            }
+            AddDetailBinding();
+        }
 
-                int index = -1;
-                int i = 0;
-                foreach (Category item in cbFoodCategory.Items)
+        private void LoadReceiptList()
+        {
+            receiptBindingSource.DataSource = ImportReceiptDAO.Instance.GetAllReceipts();
+            dtgvImportReceipt.DataSource = receiptBindingSource;
+            dtgvImportReceipt.Columns["IdReceipt"].HeaderText = "Mã Phiếu Nhập";
+            dtgvImportReceipt.Columns["ImportDate"].HeaderText = "Ngày Nhập";
+            dtgvImportReceipt.Columns["ImportedBy"].HeaderText = "Nhân Viên Nhập";
+            dtgvImportReceipt.Columns["IdSupplier"].HeaderText = "Mã Nhà Cung Cấp";
+        }
+
+        private void AddReceiptBinding()
+        {
+            tbxMaNhapNguyenLieu.DataBindings.Clear();
+            txbTaiKhoanNhanVien.DataBindings.Clear();
+            cbTenNhaCungCap.DataBindings.Clear();
+
+            tbxMaNhapNguyenLieu.DataBindings.Add("Text", receiptBindingSource, "IdReceipt", true, DataSourceUpdateMode.Never);
+            txbTaiKhoanNhanVien.DataBindings.Add("Text", receiptBindingSource, "ImportedBy", true, DataSourceUpdateMode.Never);
+            cbTenNhaCungCap.DataBindings.Add("SelectedValue", receiptBindingSource, "IdSupplier", true, DataSourceUpdateMode.Never);
+        }
+
+        private void LoadSupplierComboBox()
+        {
+            List<Supplier> supplierList = SupplierDAO.Instance.GetAllSuppliers();
+            cbTenNhaCungCap.DataSource = supplierList;
+            cbTenNhaCungCap.DisplayMember = "SupplierName";
+            cbTenNhaCungCap.ValueMember = "IdSupplier";
+        }
+
+        private void LoadIngredientComboBox()
+        {
+            List<Ingredient> ingredientList = IngredientDAO.Instance.GetListIngredient();
+            cbmanguyenlieu.DataSource = ingredientList;
+            cbmanguyenlieu.DisplayMember = "IngredientName";
+            cbmanguyenlieu.ValueMember = "IdIngredient";
+        }
+
+        private void LoadUnitComboBox()
+        {
+            // Lấy danh sách đơn vị cùng IdIngredient từ Ingredient
+            List<IngredientUnit> units = IngredientDAO.Instance.GetUnitsWithId();
+            cbUnit.DataSource = null;
+            cbUnit.DataSource = units;
+            cbUnit.DisplayMember = "Unit"; // Hiển thị Unit
+            cbUnit.ValueMember = "IdIngredient"; // Lưu IdIngredient
+            cbUnit.SelectedIndex = -1;
+        }
+        private void LoadImportDetail_ByCurrentSelection()
+        {
+            if (!string.IsNullOrEmpty(tbxMaNhapNguyenLieu.Text) && int.TryParse(tbxMaNhapNguyenLieu.Text, out int idReceipt))
+            {
+                List<ImportDetail> detailList = ImportDetailDAO.Instance.GetDetailsByReceipt(idReceipt);
+                if (detailList != null && detailList.Count > 0)
                 {
-                    if (item.IdCategory == idCategory)
-                    {
-                        index = i;
-                        break;
-                    }
-                    i++;
+                    detailBindingSource.DataSource = detailList;
+                    dtgvImportDetailAdmin.DataSource = detailBindingSource;
+                    dtgvImportDetailAdmin.Columns["IdReceipt"].HeaderText = "Mã Phiếu Nhập";
+                    dtgvImportDetailAdmin.Columns["IdIngredient"].HeaderText = "Mã Nguyên Liệu";
+                    dtgvImportDetailAdmin.Columns["Quantity"].HeaderText = "Số Lượng";
+                    dtgvImportDetailAdmin.Columns["UnitPrice"].HeaderText = "Đơn Giá";
+                    dtgvImportDetailAdmin.Columns["IdReceipt"].Visible = false;
                 }
+                else
+                {
+                    dtgvImportDetailAdmin.Rows.Clear();
+                    dtgvImportDetailAdmin.Refresh();
+                    cbmanguyenlieu.SelectedIndex = -1;
+                    nmSoLuongNhap.Value = 1;
+                    cbUnit.SelectedIndex = -1; // Reset cbUnit
+                    nmGiaNhap.Value = 1;
+                    MessageBox.Show("Không có chi tiết phiếu nhập nào!", "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                detailBindingSource.DataSource = null;
+                dtgvImportDetailAdmin.DataSource = null;
+                dtgvImportDetailAdmin.Rows.Clear();
+                dtgvImportDetailAdmin.Refresh();
+                cbmanguyenlieu.SelectedIndex = -1;
+                cbUnit.SelectedIndex = -1; // Reset cbUnit
+                nmSoLuongNhap.Value = 1;
+                nmGiaNhap.Value = 1;
             }
         }
 
+        private void AddDetailBinding()
+        {
+            cbmanguyenlieu.DataBindings.Clear();
+            nmSoLuongNhap.DataBindings.Clear();
+            nmGiaNhap.DataBindings.Clear();
+            cbUnit.DataBindings.Clear(); // Loại bỏ binding tự động
+            if (detailBindingSource.DataSource != null && dtgvImportDetailAdmin.Rows.Count > 0 && dtgvImportDetailAdmin.SelectedRows.Count > 0)
+            {
+                try
+                {
+                    cbmanguyenlieu.DataBindings.Add("SelectedValue", detailBindingSource, "IdIngredient", true, DataSourceUpdateMode.Never);
+                    nmSoLuongNhap.DataBindings.Add("Value", detailBindingSource, "Quantity", true, DataSourceUpdateMode.Never);
+                    nmGiaNhap.DataBindings.Add("Value", detailBindingSource, "UnitPrice", true, DataSourceUpdateMode.Never);
+                    // Lấy IdIngredient từ hàng được chọn
+                    int selectedIndex = dtgvImportDetailAdmin.SelectedRows[0].Index;
+                    if (selectedIndex >= 0 && selectedIndex < detailBindingSource.Count)
+                    {
+                        ImportDetail detail = detailBindingSource[selectedIndex] as ImportDetail;
+                        if (detail != null && detail.IdIngredient > 0)
+                        {
+                            cbUnit.SelectedValue = detail.IdIngredient; // Set IdIngredient để hiển thị Unit
+                        }
+                        else
+                        {
+                            cbUnit.SelectedIndex = -1; // Reset nếu không có dữ liệu
+                        }
+                    }
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show($"Lỗi binding: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                cbUnit.SelectedIndex = -1; // Reset cbUnit khi không có hàng được chọn
+            }
+        }
+
+        private void dtgvImportReceipt_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                this.Validate();
+                LoadImportDetail_ByCurrentSelection();
+                AddDetailBinding();
+            }
+        }
+
+        private void dtgvImportDetailAdmin_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                this.Validate();
+                dtgvImportDetailAdmin.Rows[e.RowIndex].Selected = true;
+                AddDetailBinding();
+            }
+        }
+        #endregion
+
+
+        #region thêm sửa xóa món ăn
         private void btnAddFood_Click(object sender, EventArgs e)
         {
             this.Validate(); // hoặc gọi WriteValue() từng cái
@@ -803,20 +809,24 @@ namespace App
             {
                 if (FoodDAO.Instance.DeleteFood(idFood))
                 {
-                    MessageBox.Show("✅ Đã xóa món ăn thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Đã xóa món ăn thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadFoodList();
                 }
                 else
                 {
-                    MessageBox.Show("❌ Xóa món ăn thất bại. Vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Xóa món ăn thất bại. Vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("❎ Đã hủy thao tác xóa món ăn.", "Đã hủy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Đã hủy thao tác xóa món ăn.", "Đã hủy", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
+        #endregion
+
+
+        #region thêm sửa xóa danh mục món ăn
         private void btnAddCategory_Click(object sender, EventArgs e)
         {
             this.Validate(); // hoặc gọi WriteValue() từng cái
@@ -881,6 +891,10 @@ namespace App
             }
         }
 
+        #endregion
+
+
+        #region Thêm sửa xóa bàn
         private void btnAddTable_Click(object sender, EventArgs e)
         {
             this.Validate(); // hoặc gọi WriteValue() từng cái
@@ -943,6 +957,10 @@ namespace App
 
         }
 
+        #endregion
+
+
+        #region Thêm sửa reset mật khẩu tài khoản
         private void btnAddAccount_Click(object sender, EventArgs e)
         {
             string username = txbUserNameAccount.Text;
@@ -952,7 +970,7 @@ namespace App
             if (AccountDAO.Instance.InsertAccount(username, type, isActive))
             {
                 MessageBox.Show("Thêm tài khoản thành công!");
-                LoadAccountList(); // reload lại DataGridView
+                LoadAccountList();
             }
             else
             {
@@ -977,6 +995,28 @@ namespace App
             }
         }
 
+        private void btnResetPassword_Click(object sender, EventArgs e)
+        {
+            string username = txbUserNameAccount.Text;
+            if (string.IsNullOrEmpty(username))
+            {
+                MessageBox.Show("Vui lòng chọn tài khoản cần reset mật khẩu!");
+                return;
+            }
+            if (AccountDAO.Instance.ResetPassword(username))
+            {
+                MessageBox.Show("Đặt lại mật khẩu thành công! Mật khẩu mới là '123456'.");
+            }
+            else
+            {
+                MessageBox.Show("Đặt lại mật khẩu thất bại!");
+            }
+        }
+
+        #endregion
+
+
+        #region Thêm sửa xóa nguyên liệu
         private void btnAddIngredient_Click(object sender, EventArgs e)
         {
             string name = txbIngredientName.Text.Trim();
@@ -995,12 +1035,6 @@ namespace App
                 MessageBox.Show("Vui lòng chọn đơn vị!");
                 return;
             }
-
-            //if (quantity <= -1)
-            //{
-            //    MessageBox.Show("Số lượng phải lớn hơn 0!");
-            //    return;
-            //}
 
             if (IngredientDAO.Instance.InsertIngredient(name, unit, quantity))
             {
@@ -1071,6 +1105,10 @@ namespace App
         }
 
 
+        #endregion
+
+
+        #region Thêm sửa xóa nhân viên
         private void btnLoadUnusedAccounts_Click(object sender, EventArgs e)
         {
             UpdateAccountComboBox();
@@ -1182,7 +1220,7 @@ namespace App
                 {
                     MessageBox.Show("Đã xóa nhân viên thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadStaff();
-                    AddBindingStaff(); // Cập nhật binding sau khi xóa
+                    AddBindingStaff();
                 }
                 else
                 {
@@ -1196,6 +1234,10 @@ namespace App
         }
 
 
+        #endregion 
+
+
+        #region Thêm sửa xóa nhà cung cấp
         private void btnAddSupplier_Click(object sender, EventArgs e)
         {
             this.Validate();
@@ -1297,13 +1339,17 @@ namespace App
             }
         }
 
-        // thêm sửa xóa cho định lượng nguyên liệu của món ăn
+
+        #endregion
+
+
+        #region Thêm sửa xóa định lượng nguyên liệu của món ăn
         private void btnAddFoodIngredient_Click(object sender, EventArgs e)
         {
             this.Validate();
 
             int idFood = Convert.ToInt32(txbIdFoodIngredient.Text);
-            int idIngredient = Convert.ToInt32(txbIdbingredient.Text);  // sửa thiếu .Text
+            int idIngredient = Convert.ToInt32(txbIdbingredient.Text);
             if (!decimal.TryParse(nmQuantityFoodIngredient.Text, out decimal quantity))
             {
                 MessageBox.Show("Số lượng không hợp lệ!");
@@ -1380,30 +1426,220 @@ namespace App
         }
 
 
-        private void btnDeleteAllIngredients_Click(object sender, EventArgs e)
+        //private void btnDeleteAllIngredients_Click(object sender, EventArgs e)
+        //{
+        //    int idFood = Convert.ToInt32(txbIdFoodIngredient.Text);
+
+        //    DialogResult result = MessageBox.Show(
+        //        $"Bạn có chắc chắn muốn xóa tất cả nguyên liệu của món có mã: {idFood} không?\n\n" +
+        //        "Việc xóa sẽ dẫn đến mất toàn bộ thông tin về nguyên liệu của món này.",
+        //        "Xác nhận xóa tất cả nguyên liệu cho món ăn này!",
+        //        MessageBoxButtons.YesNo,
+        //        MessageBoxIcon.Warning
+        //    );
+
+        //    if (FoodIngredientDAO.Instance.DeleteAllIngredientsOfFood(idFood))
+        //    {
+        //        MessageBox.Show("Đã xóa toàn bộ nguyên liệu của món!");
+        //        LoadFoodIngredient();
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Không có nguyên liệu nào để xóa hoặc lỗi xảy ra.");
+        //    }
+        //}
+
+        #endregion
+
+
+        #region thêm sửa xóa phiếu nhập và chi tiết phiếu nhập
+        private void btnAddReceipt_Click(object sender, EventArgs e)
         {
-            int idFood = Convert.ToInt32(txbIdFoodIngredient.Text);
-
-            DialogResult result = MessageBox.Show(
-                $"Bạn có chắc chắn muốn xóa tất cả nguyên liệu của món có mã: {idFood} không?\n\n" +
-                "Việc xóa sẽ dẫn đến mất toàn bộ thông tin về nguyên liệu của món này.",
-                "Xác nhận xóa tất cả nguyên liệu cho món ăn này!",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning
-            );
-
-            if (FoodIngredientDAO.Instance.DeleteAllIngredientsOfFood(idFood))
+            try
             {
-                MessageBox.Show("Đã xóa toàn bộ nguyên liệu của món!");
-                LoadFoodIngredient();
+                if (string.IsNullOrEmpty(fLogin.LoggedInUserName))
+                {
+                    MessageBox.Show("Chưa đăng nhập!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                string supplierName = cbTenNhaCungCap.Text.Trim(); // Lấy tên nhà cung cấp từ ComboBox
+                int idSupplier = SupplierDAO.Instance.GetIdSupplierByName(supplierName);
+
+                if (string.IsNullOrEmpty(supplierName))
+                {
+                    MessageBox.Show("Vui lòng chọn nhà cung cấp hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                ImportReceipt receipt = new ImportReceipt
+                {
+                    ImportDate = DateTime.Now,
+                    ImportedBy = fLogin.LoggedInUserName,
+                    IdSupplier = idSupplier
+                };
+                int newId = ImportReceiptDAO.Instance.InsertReceipt(receipt);
+                if (newId > 0)
+                {
+                    MessageBox.Show("Thêm phiếu nhập thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadReceiptList();
+                }
+                else
+                    MessageBox.Show("Thêm phiếu nhập thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Không có nguyên liệu nào để xóa hoặc lỗi xảy ra.");
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        // Xóa phiếu nhập
+        private void btnDeleteReceipt_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(tbxMaNhapNguyenLieu.Text) || !int.TryParse(tbxMaNhapNguyenLieu.Text, out int idReceipt))
+            {
+                MessageBox.Show("Chọn phiếu nhập hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (MessageBox.Show("Xác nhận xóa phiếu nhập?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    if (ImportReceiptDAO.Instance.DeleteReceipt(idReceipt))
+                    {
+                        MessageBox.Show("Xóa phiếu nhập thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadReceiptList();
+                        LoadImportDetail_ByCurrentSelection();
+                    }
+                    else
+                        MessageBox.Show("Xóa phiếu nhập thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
 
+        // Thêm chi tiết phiếu nhập
+        private void btnAddDetail_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(tbxMaNhapNguyenLieu.Text) || !int.TryParse(tbxMaNhapNguyenLieu.Text, out int idReceipt))
+            {
+                MessageBox.Show("Chọn phiếu nhập hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (cbmanguyenlieu.SelectedValue == null || nmSoLuongNhap.Value <= 0 || nmGiaNhap.Value <= 0)
+            {
+                MessageBox.Show("Nhập đủ thông tin chi tiết!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            try
+            {
+                ImportDetail detail = new ImportDetail
+                {
+                    IdReceipt = idReceipt,
+                    IdIngredient = Convert.ToInt32(cbmanguyenlieu.SelectedValue),
+                    Quantity = nmSoLuongNhap.Value,
+                    UnitPrice = nmGiaNhap.Value
+                };
+                if (ImportDetailDAO.Instance.InsertDetail(detail))
+                {
+                    MessageBox.Show("Thêm chi tiết thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadImportDetail_ByCurrentSelection();
+                }
+                else
+                    MessageBox.Show("Thêm chi tiết thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        // Sửa chi tiết phiếu nhập
+        private void btnUpdateDetail_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(tbxMaNhapNguyenLieu.Text) || !int.TryParse(tbxMaNhapNguyenLieu.Text, out int idReceipt))
+            {
+                MessageBox.Show("Chọn phiếu nhập hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (cbmanguyenlieu.SelectedValue == null || nmSoLuongNhap.Value <= 0 || nmGiaNhap.Value <= 0)
+            {
+                MessageBox.Show("Nhập đủ thông tin chi tiết!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            try
+            {
+                ImportDetail detail = new ImportDetail
+                {
+                    IdReceipt = idReceipt,
+                    IdIngredient = Convert.ToInt32(cbmanguyenlieu.SelectedValue),
+                    Quantity = nmSoLuongNhap.Value,
+                    UnitPrice = nmGiaNhap.Value
+                };
+                if (ImportDetailDAO.Instance.UpdateDetail(detail))
+                {
+                    MessageBox.Show("Cập nhật chi tiết thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadImportDetail_ByCurrentSelection();
+                }
+                else
+                    MessageBox.Show("Cập nhật chi tiết thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Xóa chi tiết phiếu nhập
+        private void btnDeleteDetail_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(tbxMaNhapNguyenLieu.Text) || !int.TryParse(tbxMaNhapNguyenLieu.Text, out int idReceipt))
+            {
+                MessageBox.Show("Chọn phiếu nhập hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (dtgvImportDetailAdmin.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Chọn chi tiết để xóa!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            int idIngredient = Convert.ToInt32(dtgvImportDetailAdmin.SelectedRows[0].Cells["IdIngredient"].Value);
+            if (MessageBox.Show("Xác nhận xóa chi tiết?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    if (ImportDetailDAO.Instance.DeleteDetail(idReceipt, idIngredient))
+                    {
+                        MessageBox.Show("Xóa chi tiết thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadImportDetail_ByCurrentSelection();
+                    }
+                    else
+                        MessageBox.Show("Xóa chi tiết thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
+
+        private void SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbmanguyenlieu.SelectedValue != null && cbmanguyenlieu.SelectedValue is int idIngredient)
+            {
+                cbUnit.SelectedValue = idIngredient; // Cập nhật cbUnit dựa trên IdIngredient
+            }
+            else
+            {
+                cbUnit.SelectedIndex = -1; // Reset nếu không có giá trị hợp lệ
+            }
+        }
+
+        #endregion
     }
 }
+

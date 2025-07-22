@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 
 namespace App.DAO
 {
@@ -40,6 +41,24 @@ namespace App.DAO
             foreach (DataRow row in data.Rows)
             {
                 units.Add(row["unit"].ToString());
+            }
+            return units;
+        }
+
+        public List<IngredientUnit> GetUnitsWithId()
+        {
+            List<IngredientUnit> units = new List<IngredientUnit>();
+            string query = "SELECT DISTINCT IdIngredient, Unit FROM Ingredient WHERE Unit IS NOT NULL";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow row in data.Rows)
+            {
+                if (row["Unit"] != DBNull.Value)
+                {
+                    units.Add(new IngredientUnit(
+                        (int)row["IdIngredient"],
+                        row["Unit"].ToString()
+                    ));
+                }
             }
             return units;
         }

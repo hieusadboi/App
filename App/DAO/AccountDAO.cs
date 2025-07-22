@@ -64,6 +64,12 @@ namespace App.DAO
             return result > 0;
         }
 
+        public bool ResetPassword(string username) 
+        {
+            string query = $"UPDATE Account SET Password = N'123456' WHERE UserName = N'{username}'";
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
 
     }
 }
