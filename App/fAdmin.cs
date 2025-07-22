@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
@@ -586,7 +587,6 @@ namespace App
             LoadReceiptList();
             AddReceiptBinding();
             LoadSupplierComboBox();
-            LoadUnitComboBox();
             LoadIngredientComboBox();
             if (dtgvImportReceipt.Rows.Count > 0)
             {
@@ -597,6 +597,7 @@ namespace App
             {
                 detailBindingSource.DataSource = null;
                 dtgvImportDetailAdmin.DataSource = null;
+                txbTongChi.Text = "0"; // Reset tổng chi
             }
             AddDetailBinding();
         }
@@ -638,16 +639,6 @@ namespace App
             cbmanguyenlieu.ValueMember = "IdIngredient";
         }
 
-        private void LoadUnitComboBox()
-        {
-            // Lấy danh sách đơn vị cùng IdIngredient từ Ingredient
-            List<IngredientUnit> units = IngredientDAO.Instance.GetUnitsWithId();
-            cbUnit.DataSource = null;
-            cbUnit.DataSource = units;
-            cbUnit.DisplayMember = "Unit"; // Hiển thị Unit
-            cbUnit.ValueMember = "IdIngredient"; // Lưu IdIngredient
-            cbUnit.SelectedIndex = -1;
-        }
         private void LoadImportDetail_ByCurrentSelection()
         {
             if (!string.IsNullOrEmpty(tbxMaNhapNguyenLieu.Text) && int.TryParse(tbxMaNhapNguyenLieu.Text, out int idReceipt))
@@ -662,6 +653,9 @@ namespace App
                     dtgvImportDetailAdmin.Columns["Quantity"].HeaderText = "Số Lượng";
                     dtgvImportDetailAdmin.Columns["UnitPrice"].HeaderText = "Đơn Giá";
                     dtgvImportDetailAdmin.Columns["IdReceipt"].Visible = false;
+                    // Hiển thị tổng chi phí
+                    decimal totalCost = ImportDetailDAO.Instance.GetTotalCostByReceipt(idReceipt);
+                    txbTongChi.Text = totalCost.ToString("N0"); // Định dạng số không thập phân
                 }
                 else
                 {
@@ -669,8 +663,9 @@ namespace App
                     dtgvImportDetailAdmin.Refresh();
                     cbmanguyenlieu.SelectedIndex = -1;
                     nmSoLuongNhap.Value = 1;
-                    cbUnit.SelectedIndex = -1; // Reset cbUnit
+                    txbUnit.Text = string.Empty; // Clear unit text box
                     nmGiaNhap.Value = 1;
+                    txbTongChi.Text = "0"; // Reset tổng chi
                     MessageBox.Show("Không có chi tiết phiếu nhập nào!", "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -681,9 +676,10 @@ namespace App
                 dtgvImportDetailAdmin.Rows.Clear();
                 dtgvImportDetailAdmin.Refresh();
                 cbmanguyenlieu.SelectedIndex = -1;
-                cbUnit.SelectedIndex = -1; // Reset cbUnit
+                txbUnit.Text = string.Empty; // Clear unit text box
                 nmSoLuongNhap.Value = 1;
                 nmGiaNhap.Value = 1;
+                txbTongChi.Text = "0"; // Reset tổng chi
             }
         }
 
@@ -692,7 +688,8 @@ namespace App
             cbmanguyenlieu.DataBindings.Clear();
             nmSoLuongNhap.DataBindings.Clear();
             nmGiaNhap.DataBindings.Clear();
-            cbUnit.DataBindings.Clear(); // Loại bỏ binding tự động
+            txbUnit.DataBindings.Clear();
+
             if (detailBindingSource.DataSource != null && dtgvImportDetailAdmin.Rows.Count > 0 && dtgvImportDetailAdmin.SelectedRows.Count > 0)
             {
                 try
@@ -700,18 +697,19 @@ namespace App
                     cbmanguyenlieu.DataBindings.Add("SelectedValue", detailBindingSource, "IdIngredient", true, DataSourceUpdateMode.Never);
                     nmSoLuongNhap.DataBindings.Add("Value", detailBindingSource, "Quantity", true, DataSourceUpdateMode.Never);
                     nmGiaNhap.DataBindings.Add("Value", detailBindingSource, "UnitPrice", true, DataSourceUpdateMode.Never);
-                    // Lấy IdIngredient từ hàng được chọn
+
                     int selectedIndex = dtgvImportDetailAdmin.SelectedRows[0].Index;
                     if (selectedIndex >= 0 && selectedIndex < detailBindingSource.Count)
                     {
                         ImportDetail detail = detailBindingSource[selectedIndex] as ImportDetail;
                         if (detail != null && detail.IdIngredient > 0)
                         {
-                            cbUnit.SelectedValue = detail.IdIngredient; // Set IdIngredient để hiển thị Unit
+                            string unit = IngredientDAO.Instance.GetUnitByIdIngredient(detail.IdIngredient);
+                            txbUnit.Text = unit ?? "";
                         }
                         else
                         {
-                            cbUnit.SelectedIndex = -1; // Reset nếu không có dữ liệu
+                            txbUnit.Clear();
                         }
                     }
                 }
@@ -722,8 +720,9 @@ namespace App
             }
             else
             {
-                cbUnit.SelectedIndex = -1; // Reset cbUnit khi không có hàng được chọn
+                txbUnit.Clear();
             }
+
         }
 
         private void dtgvImportReceipt_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -753,6 +752,19 @@ namespace App
         {
             this.Validate(); // hoặc gọi WriteValue() từng cái
             string foodName = txbFoodName.Text;
+            if (string.IsNullOrWhiteSpace(foodName))
+            {
+                MessageBox.Show("Tên món ăn không được để trống!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var category = cbFoodCategory.SelectedItem as Category;
+            if (category == null || category.IdCategory == 0)
+            {
+                MessageBox.Show("Danh mục không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Giá trị mặc định khi danh mục không hợp lệ
+            }
+
             int idCategory = (cbFoodCategory.SelectedItem as Category).IdCategory;
             float price = (float)nmPriceFood.Value;
 
@@ -773,6 +785,19 @@ namespace App
 
             int idFood = Convert.ToInt32(txbFoodID.Text);
             string foodName = txbFoodName.Text;
+
+            if (string.IsNullOrWhiteSpace(foodName))
+            {
+                MessageBox.Show("Tên món ăn không được để trống!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var category = cbFoodCategory.SelectedItem as Category;
+            if (category == null || category.IdCategory == 0)
+            {
+                MessageBox.Show("Danh mục không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Giá trị mặc định khi danh mục không hợp lệ
+            }
             int idCategory = (cbFoodCategory.SelectedItem as Category).IdCategory;
             float price = (float)nmPriceFood.Value;
 
@@ -832,6 +857,11 @@ namespace App
             this.Validate(); // hoặc gọi WriteValue() từng cái
 
             string categoryName = txbCategoryName.Text;
+            if(categoryName == null)
+            {
+                MessageBox.Show("Tên danh mục không được để trống!");
+                return;
+            }
 
             if (CategoryDAO.Instance.InsertCategory(categoryName))
             {
@@ -850,6 +880,11 @@ namespace App
 
             int idCategory = Convert.ToInt32(txbIdCategory.Text);
             string categoryName = txbCategoryName.Text;
+            if (categoryName == null)
+            {
+                MessageBox.Show("Tên danh mục không thể trể trống!");
+                return;
+            }
             if (CategoryDAO.Instance.UpdateCategory(idCategory, categoryName))
             {
                 MessageBox.Show("Sửa doanh mục món ăn thành công!");
@@ -882,7 +917,7 @@ namespace App
                 if (success)
                 {
                     MessageBox.Show("Xóa danh mục thành công!");
-                    LoadCategoryList(); // Load lại danh sách danh mục nếu có
+                    LoadCategoryList(); 
                 }
                 else
                 {
@@ -931,7 +966,7 @@ namespace App
 
             if (string.IsNullOrEmpty(tableName) || string.IsNullOrEmpty(status))
             {
-                MessageBox.Show("Tên bàn và trạng thái không được để trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Tên bàn và trạng thái không được để trống hoặc trạng thái không đúng định dạng" + "!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -964,7 +999,22 @@ namespace App
         private void btnAddAccount_Click(object sender, EventArgs e)
         {
             string username = txbUserNameAccount.Text;
+            if( string.IsNullOrEmpty(username))
+            {
+                MessageBox.Show("Vui lòng nhập tên tài khoản!");
+                return;
+            }
+            if (AccountDAO.Instance.GetAccountByUsername(username)!=null)
+            {
+                MessageBox.Show("Tài khoản đã tồn tại trong hệ thống vui lòng chọn tài khoản khác!");
+                return;
+            }
             int type = cbTypeAccount.SelectedIndex; // 1: Admin, 0: Staff
+            if (type == -1)
+            {
+                MessageBox.Show("Vui lòng chọn đúng loại tài khoản!");
+                return;
+            }
             bool isActive = cbIsActive.SelectedIndex == 1; // True: 1, False: 0
 
             if (AccountDAO.Instance.InsertAccount(username, type, isActive))
@@ -981,7 +1031,17 @@ namespace App
         private void btnEditAccount_Click(object sender, EventArgs e)
         {
             string username = txbUserNameAccount.Text;
+            if (AccountDAO.Instance.GetAccountByUsername(username) == null)
+            {
+                MessageBox.Show("Tài khoản chưa tồn tại không thể sửa!");
+                return;
+            }
             int type = cbTypeAccount.SelectedIndex; // 1: Admin, 0: Staff
+            if (type == -1)
+            {
+                MessageBox.Show("Vui lòng chọn đúng loại tài khoản!");
+                return;
+            }
             bool isActive = cbIsActive.SelectedIndex == 1; // True: 1, False: 0
 
             if (AccountDAO.Instance.UpdateAccount(username, type, isActive))
@@ -998,6 +1058,11 @@ namespace App
         private void btnResetPassword_Click(object sender, EventArgs e)
         {
             string username = txbUserNameAccount.Text;
+            if (AccountDAO.Instance.GetAccountByUsername(username) == null)
+            {
+                MessageBox.Show("Tài khoản chưa tồn tại không thể đặt lại mật khẩu!");
+                return;
+            }
             if (string.IsNullOrEmpty(username))
             {
                 MessageBox.Show("Vui lòng chọn tài khoản cần reset mật khẩu!");
@@ -1139,14 +1204,17 @@ namespace App
             string phone = txbPhoneStaff.Text;
             string email = txbEmailStaff.Text;
             string accountUserName = cbAccountStaff.SelectedItem?.ToString();
-
-            // Kiểm tra các trường bắt buộc
+            
             if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(gender) || string.IsNullOrEmpty(accountUserName))
             {
                 MessageBox.Show("Họ và tên, giới tính, và tài khoản không được để trống!");
                 return;
             }
-
+            if(StaffDAO.Instance.isExitUserNameInStaff(accountUserName) == true)
+            {
+                MessageBox.Show("Tài khoản đã có nhân viên khác sở hữu! Không thể thêm cho nhân viên này");
+                return;
+            }            
             if (StaffDAO.Instance.InsertStaff(new Staff
             {
                 FullName = fullName,
@@ -1179,24 +1247,37 @@ namespace App
             string email = txbEmailStaff.Text;
             string accountUserName = cbAccountStaff.SelectedItem?.ToString();
 
-            if (StaffDAO.Instance.UpdateStaff(new Staff
+            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(gender) || string.IsNullOrEmpty(accountUserName))
             {
-                IdStaff = idStaff,
-                FullName = fullName,
-                Gender = gender,
-                BirthDate = birthDate,
-                Phone = phone,
-                Email = email,
-                AccountUserName = accountUserName
-            }))
-            {
-                MessageBox.Show("Sửa nhân viên thành công!");
-                LoadStaff();
-                AddBindingStaff(); // Cập nhật binding sau khi sửa
+                MessageBox.Show("Họ và tên, giới tính, và tài khoản không được để trống!");
+                return;
             }
-            else
+            if (StaffDAO.Instance.isExitUserNameInStaff(accountUserName, idStaff) == true)
             {
-                MessageBox.Show("Sửa nhân viên thất bại!");
+                MessageBox.Show("Tài khoản đã có nhân viên khác sở hữu! Không thể thêm cho nhân viên này");
+                return;
+            }
+            {
+
+                if (StaffDAO.Instance.UpdateStaffAdmin(new Staff
+                {
+                    IdStaff = idStaff,
+                    FullName = fullName,
+                    Gender = gender,
+                    BirthDate = birthDate,
+                    Phone = phone,
+                    Email = email,
+                    AccountUserName = accountUserName
+                }))
+                {
+                    MessageBox.Show("Sửa nhân viên thành công!");
+                    LoadStaff();
+                    AddBindingStaff(); // Cập nhật binding sau khi sửa
+                }
+                else
+                {
+                    MessageBox.Show("Sửa nhân viên thất bại!");
+                }
             }
         }
 
@@ -1238,6 +1319,20 @@ namespace App
 
 
         #region Thêm sửa xóa nhà cung cấp
+
+        // Hàm kiểm tra định dạng Email
+        private bool IsValidEmail(string email)
+        {
+            string emailPattern = @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
+            return Regex.IsMatch(email, emailPattern);
+        }
+
+        // Hàm kiểm tra định dạng Phone
+        private bool IsValidPhone(string phone)
+        {
+            string phonePattern = @"^\+?\d{9,15}$";
+            return Regex.IsMatch(phone, phonePattern);
+        }
         private void btnAddSupplier_Click(object sender, EventArgs e)
         {
             this.Validate();
@@ -1249,7 +1344,21 @@ namespace App
 
             if (string.IsNullOrEmpty(supplierName))
             {
-                MessageBox.Show("Tên nhà cung cấp không được để trống!");
+                MessageBox.Show("Tên nhà cung cấp không được để trống!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra định dạng Email nếu được nhập
+            if (!string.IsNullOrEmpty(email) && !IsValidEmail(email))
+            {
+                MessageBox.Show("Email không đúng định dạng! Vui lòng nhập email hợp lệ (ví dụ: example@domain.com).", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra định dạng Phone nếu được nhập
+            if (!string.IsNullOrEmpty(phone) && !IsValidPhone(phone))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ! Chỉ được chứa số và dấu '+' (nếu có).", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -1283,7 +1392,21 @@ namespace App
 
             if (string.IsNullOrEmpty(supplierName))
             {
-                MessageBox.Show("Tên nhà cung cấp không được để trống!");
+                MessageBox.Show("Tên nhà cung cấp không được để trống!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra định dạng Email nếu được nhập
+            if (!string.IsNullOrEmpty(email) && !IsValidEmail(email))
+            {
+                MessageBox.Show("Email không đúng định dạng! Vui lòng nhập email hợp lệ (ví dụ: example@domain.com).", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra định dạng Phone nếu được nhập
+            if (!string.IsNullOrEmpty(phone) && !IsValidPhone(phone))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ! Chỉ được chứa số và dấu '+' (nếu có).", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -1347,12 +1470,34 @@ namespace App
         private void btnAddFoodIngredient_Click(object sender, EventArgs e)
         {
             this.Validate();
-
-            int idFood = Convert.ToInt32(txbIdFoodIngredient.Text);
-            int idIngredient = Convert.ToInt32(txbIdbingredient.Text);
-            if (!decimal.TryParse(nmQuantityFoodIngredient.Text, out decimal quantity))
+            // Kiểm tra IdFood
+            if (string.IsNullOrWhiteSpace(txbIdFoodIngredient.Text))
             {
-                MessageBox.Show("Số lượng không hợp lệ!");
+                MessageBox.Show("Mã món ăn không được để trống!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!int.TryParse(txbIdFoodIngredient.Text, out int idFood))
+            {
+                MessageBox.Show("Mã món ăn không hợp lệ! Vui lòng nhập số nguyên.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra IdIngredient
+            if (string.IsNullOrWhiteSpace(txbIdbingredient.Text))
+            {
+                MessageBox.Show("Mã nguyên liệu không được để trống!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!int.TryParse(txbIdbingredient.Text, out int idIngredient))
+            {
+                MessageBox.Show("Mã nguyên liệu không hợp lệ! Vui lòng nhập số nguyên.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra Quantity
+            if (string.IsNullOrWhiteSpace(nmQuantityFoodIngredient.Text) || !decimal.TryParse(nmQuantityFoodIngredient.Text, out decimal quantity) || quantity <= 0)
+            {
+                MessageBox.Show("Số lượng không hợp lệ! Vui lòng nhập số lớn hơn 0.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -1378,12 +1523,33 @@ namespace App
         private void btnEditFoodIngredient_Click(object sender, EventArgs e)
         {
             this.Validate();
-
-            int idFood = Convert.ToInt32(txbIdFoodIngredient.Text);
-            int idIngredient = Convert.ToInt32(txbIdbingredient.Text);
-            if (!decimal.TryParse(nmQuantityFoodIngredient.Text, out decimal quantity))
+            if (string.IsNullOrWhiteSpace(txbIdFoodIngredient.Text))
             {
-                MessageBox.Show("Số lượng không hợp lệ!");
+                MessageBox.Show("Mã món ăn không được để trống!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!int.TryParse(txbIdFoodIngredient.Text, out int idFood))
+            {
+                MessageBox.Show("Mã món ăn không hợp lệ! Vui lòng nhập số nguyên.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra IdIngredient
+            if (string.IsNullOrWhiteSpace(txbIdbingredient.Text))
+            {
+                MessageBox.Show("Mã nguyên liệu không được để trống!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!int.TryParse(txbIdbingredient.Text, out int idIngredient))
+            {
+                MessageBox.Show("Mã nguyên liệu không hợp lệ! Vui lòng nhập số nguyên.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra Quantity
+            if (string.IsNullOrWhiteSpace(nmQuantityFoodIngredient.Text) || !decimal.TryParse(nmQuantityFoodIngredient.Text, out decimal quantity) || quantity <= 0)
+            {
+                MessageBox.Show("Số lượng không hợp lệ! Vui lòng nhập số lớn hơn 0.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -1410,9 +1576,28 @@ namespace App
         {
             if (MessageBox.Show("Bạn có chắc muốn xóa nguyên liệu này không?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.No)
                 return;
+            if (string.IsNullOrWhiteSpace(txbIdFoodIngredient.Text))
+            {
+                MessageBox.Show("Mã món ăn không được để trống!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!int.TryParse(txbIdFoodIngredient.Text, out int idFood))
+            {
+                MessageBox.Show("Mã món ăn không hợp lệ! Vui lòng nhập số nguyên.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            int idFood = Convert.ToInt32(txbIdFoodIngredient.Text);
-            int idIngredient = Convert.ToInt32(txbIdbingredient.Text);
+            // Kiểm tra IdIngredient
+            if (string.IsNullOrWhiteSpace(txbIdbingredient.Text))
+            {
+                MessageBox.Show("Mã nguyên liệu không được để trống!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!int.TryParse(txbIdbingredient.Text, out int idIngredient))
+            {
+                MessageBox.Show("Mã nguyên liệu không hợp lệ! Vui lòng nhập số nguyên.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             if (FoodIngredientDAO.Instance.DeleteFoodIngredient(idFood, idIngredient))
             {
@@ -1424,30 +1609,6 @@ namespace App
                 MessageBox.Show("Xóa thất bại!");
             }
         }
-
-
-        //private void btnDeleteAllIngredients_Click(object sender, EventArgs e)
-        //{
-        //    int idFood = Convert.ToInt32(txbIdFoodIngredient.Text);
-
-        //    DialogResult result = MessageBox.Show(
-        //        $"Bạn có chắc chắn muốn xóa tất cả nguyên liệu của món có mã: {idFood} không?\n\n" +
-        //        "Việc xóa sẽ dẫn đến mất toàn bộ thông tin về nguyên liệu của món này.",
-        //        "Xác nhận xóa tất cả nguyên liệu cho món ăn này!",
-        //        MessageBoxButtons.YesNo,
-        //        MessageBoxIcon.Warning
-        //    );
-
-        //    if (FoodIngredientDAO.Instance.DeleteAllIngredientsOfFood(idFood))
-        //    {
-        //        MessageBox.Show("Đã xóa toàn bộ nguyên liệu của món!");
-        //        LoadFoodIngredient();
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Không có nguyên liệu nào để xóa hoặc lỗi xảy ra.");
-        //    }
-        //}
 
         #endregion
 
@@ -1532,6 +1693,12 @@ namespace App
             if (cbmanguyenlieu.SelectedValue == null || nmSoLuongNhap.Value <= 0 || nmGiaNhap.Value <= 0)
             {
                 MessageBox.Show("Nhập đủ thông tin chi tiết!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            int idIngredient = Convert.ToInt32(cbmanguyenlieu.SelectedValue);
+            if (ImportDetailDAO.Instance.CheckDetailExists(idReceipt, idIngredient))
+            {
+                MessageBox.Show("Chi tiết đã tồn tại cho nguyên liệu này trong phiếu nhập!\nBạn có thể cập nhật thay vì thêm mới.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             try
@@ -1631,11 +1798,12 @@ namespace App
         {
             if (cbmanguyenlieu.SelectedValue != null && cbmanguyenlieu.SelectedValue is int idIngredient)
             {
-                cbUnit.SelectedValue = idIngredient; // Cập nhật cbUnit dựa trên IdIngredient
+                string unit = IngredientDAO.Instance.GetUnitByIdIngredient(idIngredient);
+                txbUnit.Text = unit ?? "";
             }
             else
             {
-                cbUnit.SelectedIndex = -1; // Reset nếu không có giá trị hợp lệ
+                txbUnit.Clear();
             }
         }
 

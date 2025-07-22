@@ -72,8 +72,12 @@
             this.button19 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
             this.panel59 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txbTongChi = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
             this.panel61 = new System.Windows.Forms.Panel();
-            this.cbUnit = new System.Windows.Forms.ComboBox();
             this.label33 = new System.Windows.Forms.Label();
             this.panel85 = new System.Windows.Forms.Panel();
             this.nmGiaNhap = new System.Windows.Forms.NumericUpDown();
@@ -93,11 +97,7 @@
             this.panel63 = new System.Windows.Forms.Panel();
             this.cbTenNhaCungCap = new System.Windows.Forms.ComboBox();
             this.label35 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.txbTongChi = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.txbUnit = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tpSupplier.SuspendLayout();
             this.panel73.SuspendLayout();
@@ -117,6 +117,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgvImportReceipt)).BeginInit();
             this.panel65.SuspendLayout();
             this.panel59.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panel61.SuspendLayout();
             this.panel85.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmGiaNhap)).BeginInit();
@@ -126,7 +127,6 @@
             this.panel88.SuspendLayout();
             this.panel60.SuspendLayout();
             this.panel63.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -135,7 +135,7 @@
             this.tabControl1.Controls.Add(this.tpImport);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1508, 784);
@@ -162,7 +162,7 @@
             this.panel73.Controls.Add(this.textBox28);
             this.panel73.Controls.Add(this.button27);
             this.panel73.Location = new System.Drawing.Point(1058, 7);
-            this.panel73.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel73.Margin = new System.Windows.Forms.Padding(4);
             this.panel73.Name = "panel73";
             this.panel73.Size = new System.Drawing.Size(433, 75);
             this.panel73.TabIndex = 13;
@@ -170,7 +170,7 @@
             // textBox28
             // 
             this.textBox28.Location = new System.Drawing.Point(28, 23);
-            this.textBox28.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox28.Margin = new System.Windows.Forms.Padding(4);
             this.textBox28.Name = "textBox28";
             this.textBox28.Size = new System.Drawing.Size(232, 30);
             this.textBox28.TabIndex = 5;
@@ -178,7 +178,7 @@
             // button27
             // 
             this.button27.Location = new System.Drawing.Point(287, 4);
-            this.button27.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button27.Margin = new System.Windows.Forms.Padding(4);
             this.button27.Name = "button27";
             this.button27.Size = new System.Drawing.Size(132, 68);
             this.button27.TabIndex = 4;
@@ -195,7 +195,7 @@
             this.panel53.Controls.Add(this.panel56);
             this.panel53.Controls.Add(this.panel57);
             this.panel53.Location = new System.Drawing.Point(1058, 94);
-            this.panel53.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel53.Margin = new System.Windows.Forms.Padding(4);
             this.panel53.Name = "panel53";
             this.panel53.Size = new System.Drawing.Size(433, 646);
             this.panel53.TabIndex = 12;
@@ -370,7 +370,7 @@
             this.panel52.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel52.Controls.Add(this.dtgvSuplier);
             this.panel52.Location = new System.Drawing.Point(7, 94);
-            this.panel52.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel52.Margin = new System.Windows.Forms.Padding(4);
             this.panel52.Name = "panel52";
             this.panel52.Size = new System.Drawing.Size(1043, 646);
             this.panel52.TabIndex = 11;
@@ -381,7 +381,7 @@
             this.dtgvSuplier.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dtgvSuplier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvSuplier.Location = new System.Drawing.Point(4, 4);
-            this.dtgvSuplier.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtgvSuplier.Margin = new System.Windows.Forms.Padding(4);
             this.dtgvSuplier.Name = "dtgvSuplier";
             this.dtgvSuplier.RowHeadersWidth = 51;
             this.dtgvSuplier.Size = new System.Drawing.Size(1033, 636);
@@ -395,7 +395,7 @@
             this.panel51.Controls.Add(this.btnEditSuplier);
             this.panel51.Controls.Add(this.btnAddSuplier);
             this.panel51.Location = new System.Drawing.Point(7, 7);
-            this.panel51.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel51.Margin = new System.Windows.Forms.Padding(4);
             this.panel51.Name = "panel51";
             this.panel51.Size = new System.Drawing.Size(1043, 75);
             this.panel51.TabIndex = 10;
@@ -403,7 +403,7 @@
             // btnShowSuplier
             // 
             this.btnShowSuplier.Location = new System.Drawing.Point(428, 4);
-            this.btnShowSuplier.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnShowSuplier.Margin = new System.Windows.Forms.Padding(4);
             this.btnShowSuplier.Name = "btnShowSuplier";
             this.btnShowSuplier.Size = new System.Drawing.Size(132, 68);
             this.btnShowSuplier.TabIndex = 3;
@@ -414,7 +414,7 @@
             // btnDeleteSuplier
             // 
             this.btnDeleteSuplier.Location = new System.Drawing.Point(287, 4);
-            this.btnDeleteSuplier.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDeleteSuplier.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteSuplier.Name = "btnDeleteSuplier";
             this.btnDeleteSuplier.Size = new System.Drawing.Size(132, 68);
             this.btnDeleteSuplier.TabIndex = 2;
@@ -425,7 +425,7 @@
             // btnEditSuplier
             // 
             this.btnEditSuplier.Location = new System.Drawing.Point(145, 4);
-            this.btnEditSuplier.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEditSuplier.Margin = new System.Windows.Forms.Padding(4);
             this.btnEditSuplier.Name = "btnEditSuplier";
             this.btnEditSuplier.Size = new System.Drawing.Size(132, 68);
             this.btnEditSuplier.TabIndex = 1;
@@ -436,7 +436,7 @@
             // btnAddSuplier
             // 
             this.btnAddSuplier.Location = new System.Drawing.Point(4, 4);
-            this.btnAddSuplier.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddSuplier.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddSuplier.Name = "btnAddSuplier";
             this.btnAddSuplier.Size = new System.Drawing.Size(132, 68);
             this.btnAddSuplier.TabIndex = 0;
@@ -624,25 +624,73 @@
             this.panel59.Size = new System.Drawing.Size(438, 645);
             this.panel59.TabIndex = 13;
             // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label2.Location = new System.Drawing.Point(7, 258);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(425, 36);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Thông tin nguyên liệu nhập";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.txbTongChi);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(4, 574);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(428, 62);
+            this.panel1.TabIndex = 12;
+            // 
+            // txbTongChi
+            // 
+            this.txbTongChi.Location = new System.Drawing.Point(225, 20);
+            this.txbTongChi.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbTongChi.Name = "txbTongChi";
+            this.txbTongChi.ReadOnly = true;
+            this.txbTongChi.Size = new System.Drawing.Size(189, 30);
+            this.txbTongChi.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(0, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 24);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Tổng chi:";
+            // 
+            // label34
+            // 
+            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label34.Location = new System.Drawing.Point(36, 4);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(371, 36);
+            this.label34.TabIndex = 11;
+            this.label34.Text = "Thông tin phiếu nhập";
+            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // panel61
             // 
             this.panel61.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel61.Controls.Add(this.cbUnit);
+            this.panel61.Controls.Add(this.txbUnit);
             this.panel61.Controls.Add(this.label33);
             this.panel61.Location = new System.Drawing.Point(4, 373);
             this.panel61.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel61.Name = "panel61";
             this.panel61.Size = new System.Drawing.Size(428, 62);
             this.panel61.TabIndex = 9;
-            // 
-            // cbUnit
-            // 
-            this.cbUnit.FormattingEnabled = true;
-            this.cbUnit.Location = new System.Drawing.Point(220, 18);
-            this.cbUnit.Margin = new System.Windows.Forms.Padding(4);
-            this.cbUnit.Name = "cbUnit";
-            this.cbUnit.Size = new System.Drawing.Size(194, 33);
-            this.cbUnit.TabIndex = 6;
             // 
             // label33
             // 
@@ -696,9 +744,9 @@
             this.label53.Location = new System.Drawing.Point(0, 23);
             this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(49, 24);
+            this.label53.Size = new System.Drawing.Size(91, 24);
             this.label53.TabIndex = 0;
-            this.label53.Text = "Giá:";
+            this.label53.Text = "Đơn giá:";
             // 
             // panel86
             // 
@@ -869,62 +917,14 @@
             this.label35.TabIndex = 0;
             this.label35.Text = "Tên nhà cung cấp:";
             // 
-            // label34
+            // txbUnit
             // 
-            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label34.Location = new System.Drawing.Point(36, 4);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(371, 36);
-            this.label34.TabIndex = 11;
-            this.label34.Text = "Thông tin phiếu nhập";
-            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.txbTongChi);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(4, 574);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(428, 62);
-            this.panel1.TabIndex = 12;
-            // 
-            // txbTongChi
-            // 
-            this.txbTongChi.Location = new System.Drawing.Point(225, 20);
-            this.txbTongChi.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.txbTongChi.Name = "txbTongChi";
-            this.txbTongChi.ReadOnly = true;
-            this.txbTongChi.Size = new System.Drawing.Size(189, 30);
-            this.txbTongChi.TabIndex = 9;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 23);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tổng chi:";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label2.Location = new System.Drawing.Point(7, 258);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(425, 36);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Thông tin nguyên liệu nhập";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.txbUnit.Location = new System.Drawing.Point(220, 19);
+            this.txbUnit.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbUnit.Name = "txbUnit";
+            this.txbUnit.ReadOnly = true;
+            this.txbUnit.Size = new System.Drawing.Size(189, 30);
+            this.txbUnit.TabIndex = 10;
             // 
             // fImport
             // 
@@ -933,7 +933,7 @@
             this.ClientSize = new System.Drawing.Size(1532, 808);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "fImport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fImport";
@@ -963,6 +963,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgvImportReceipt)).EndInit();
             this.panel65.ResumeLayout(false);
             this.panel59.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel61.ResumeLayout(false);
             this.panel61.PerformLayout();
             this.panel85.ResumeLayout(false);
@@ -979,8 +981,6 @@
             this.panel60.PerformLayout();
             this.panel63.ResumeLayout(false);
             this.panel63.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1032,7 +1032,6 @@
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Panel panel59;
         private System.Windows.Forms.Panel panel61;
-        private System.Windows.Forms.ComboBox cbUnit;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Panel panel85;
         private System.Windows.Forms.NumericUpDown nmGiaNhap;
@@ -1057,5 +1056,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txbUnit;
     }
 }

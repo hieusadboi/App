@@ -168,7 +168,6 @@ namespace App
             LoadReceiptList();
             AddReceiptBinding();
             LoadSupplierComboBox();
-            LoadUnitComboBox();
             LoadIngredientComboBox();
             if (dtgvImportReceipt.Rows.Count > 0)
             {
@@ -221,15 +220,6 @@ namespace App
             cbmanguyenlieu.ValueMember = "IdIngredient";
         }
 
-        private void LoadUnitComboBox()
-        {
-            List<IngredientUnit> units = IngredientDAO.Instance.GetUnitsWithId();
-            cbUnit.DataSource = null;
-            cbUnit.DataSource = units;
-            cbUnit.DisplayMember = "Unit";
-            cbUnit.ValueMember = "IdIngredient";
-            cbUnit.SelectedIndex = -1;
-        }
 
         private void LoadImportDetail_ByCurrentSelection()
         {
@@ -255,7 +245,7 @@ namespace App
                     dtgvImportDetailAdmin.Refresh();
                     cbmanguyenlieu.SelectedIndex = -1;
                     nmSoLuongNhap.Value = 1;
-                    cbUnit.SelectedIndex = -1;
+                    txbUnit.Text = string.Empty; // Clear unit text box
                     nmGiaNhap.Value = 1;
                     txbTongChi.Text = "0"; // Reset tổng chi
                     MessageBox.Show("Không có chi tiết phiếu nhập nào!", "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -268,7 +258,7 @@ namespace App
                 dtgvImportDetailAdmin.Rows.Clear();
                 dtgvImportDetailAdmin.Refresh();
                 cbmanguyenlieu.SelectedIndex = -1;
-                cbUnit.SelectedIndex = -1;
+                txbUnit.Text = string.Empty; // Clear unit text box
                 nmSoLuongNhap.Value = 1;
                 nmGiaNhap.Value = 1;
                 txbTongChi.Text = "0"; // Reset tổng chi
@@ -280,7 +270,8 @@ namespace App
             cbmanguyenlieu.DataBindings.Clear();
             nmSoLuongNhap.DataBindings.Clear();
             nmGiaNhap.DataBindings.Clear();
-            cbUnit.DataBindings.Clear();
+            txbUnit.DataBindings.Clear();
+
             if (detailBindingSource.DataSource != null && dtgvImportDetailAdmin.Rows.Count > 0 && dtgvImportDetailAdmin.SelectedRows.Count > 0)
             {
                 try
@@ -288,17 +279,19 @@ namespace App
                     cbmanguyenlieu.DataBindings.Add("SelectedValue", detailBindingSource, "IdIngredient", true, DataSourceUpdateMode.Never);
                     nmSoLuongNhap.DataBindings.Add("Value", detailBindingSource, "Quantity", true, DataSourceUpdateMode.Never);
                     nmGiaNhap.DataBindings.Add("Value", detailBindingSource, "UnitPrice", true, DataSourceUpdateMode.Never);
+
                     int selectedIndex = dtgvImportDetailAdmin.SelectedRows[0].Index;
                     if (selectedIndex >= 0 && selectedIndex < detailBindingSource.Count)
                     {
                         ImportDetail detail = detailBindingSource[selectedIndex] as ImportDetail;
                         if (detail != null && detail.IdIngredient > 0)
                         {
-                            cbUnit.SelectedValue = detail.IdIngredient;
+                            string unit = IngredientDAO.Instance.GetUnitByIdIngredient(detail.IdIngredient);
+                            txbUnit.Text = unit ?? "";
                         }
                         else
                         {
-                            cbUnit.SelectedIndex = -1;
+                            txbUnit.Clear();
                         }
                     }
                 }
@@ -309,8 +302,9 @@ namespace App
             }
             else
             {
-                cbUnit.SelectedIndex = -1;
+                txbUnit.Clear();
             }
+
         }
 
         private void dtgvImportReceipt_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -416,6 +410,13 @@ namespace App
                 MessageBox.Show("Nhập đủ thông tin chi tiết!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            int idIngredient = Convert.ToInt32(cbmanguyenlieu.SelectedValue);
+            if (ImportDetailDAO.Instance.CheckDetailExists(idReceipt, idIngredient))
+            {
+                MessageBox.Show("Chi tiết đã tồn tại cho nguyên liệu này trong phiếu nhập!\nBạn có thể cập nhật thay vì thêm mới.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             try
             {
                 ImportDetail detail = new ImportDetail
@@ -510,13 +511,16 @@ namespace App
         {
             if (cbmanguyenlieu.SelectedValue != null && cbmanguyenlieu.SelectedValue is int idIngredient)
             {
-                cbUnit.SelectedValue = idIngredient;
+                string unit = IngredientDAO.Instance.GetUnitByIdIngredient(idIngredient);
+                txbUnit.Text = unit ?? "";
             }
             else
             {
-                cbUnit.SelectedIndex = -1;
+                txbUnit.Clear();
             }
         }
+
+
         #endregion
     }
 }

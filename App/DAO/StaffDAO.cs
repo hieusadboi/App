@@ -45,7 +45,8 @@ namespace App.DAO
 
             return null;
         }
-
+        
+        // cho nhân viên tự đổi (không thể đổi account).admin dùng cái hàm khác 
         public bool UpdateStaff(Staff staff)
         {
             string query = "EXEC USP_UpdateStaff @fullName , @gender , @birthDate , @phone , @email , @accountUserName";
@@ -60,6 +61,20 @@ namespace App.DAO
             });
 
             return result > 0;
+        }
+
+        public bool isExitUserNameInStaff(string userName)
+        {
+            string query = "SELECT COUNT(*) FROM Staff WHERE accountUserName = @userName";
+            int count = (int)DataProvider.Instance.ExecuteScalar(query, new object[] { userName });
+            return count > 0;
+        }
+
+        public bool isExitUserNameInStaff(string accountUserName, int excludeIdStaff)
+        {
+            string query = "SELECT COUNT(*) FROM Staff WHERE accountUserName = @accountUserName AND idStaff != @excludeIdStaff";
+            int count = (int)DataProvider.Instance.ExecuteScalar(query, new object[] { accountUserName, excludeIdStaff });
+            return count > 0;
         }
 
         public List<string> GetAccountsWithoutStaff()
@@ -89,14 +104,37 @@ namespace App.DAO
         VALUES ( @fullName , @gender , @birthDate , @phone , @email , @accountUserName )";
             int result = DataProvider.Instance.ExecuteNonQuery(query, new object[]
             {
-        staff.FullName,
-        staff.Gender,
-        staff.BirthDate,
-        staff.Phone,
-        staff.Email,
-        staff.AccountUserName
+                staff.FullName,
+                staff.Gender,
+                staff.BirthDate,
+                staff.Phone,
+                staff.Email,
+                staff.AccountUserName
             });
 
+            return result > 0;
+        }
+
+        public bool UpdateStaffAdmin(Staff staff)
+        {
+            string query = @"
+        UPDATE Staff 
+        SET 
+             fullName = @fullName , gender = @gender , birthDate = @birthDate , phone = @phone , email = @email , accountUserName = @accountUserName 
+        WHERE idStaff = @idStaff";
+
+            object[] parameters = new object[]
+            {
+                staff.FullName,
+                staff.Gender,
+                staff.BirthDate,
+                staff.Phone,
+                staff.Email,
+                staff.AccountUserName,
+                staff.IdStaff
+            };
+
+            int result = DataProvider.Instance.ExecuteNonQuery(query, parameters);
             return result > 0;
         }
 

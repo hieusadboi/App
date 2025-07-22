@@ -32,16 +32,21 @@ namespace App.DAO
 
         public int InsertReceipt(ImportReceipt receipt)
         {
-            string query = "INSERT INTO ImportReceipt ( importDate, importedBy ) OUTPUT INSERTED.idReceipt VALUES ( @importDate , @importedBy )";
+            string query = "INSERT INTO ImportReceipt ( importDate , importedBy , idSupplier ) " +
+                           "OUTPUT INSERTED.idReceipt " +
+                           "VALUES ( @importDate , @importedBy , @idSupplier )";
+
             object[] parameters = new object[]
             {
-                receipt.ImportDate,
-                receipt.ImportedBy
+        receipt.ImportDate,
+        receipt.ImportedBy,
+        receipt.IdSupplier // thêm dòng này
             };
 
             object result = DataProvider.Instance.ExecuteScalar(query, parameters);
             return (int)result;
         }
+
 
         public bool UpdateReceipt(ImportReceipt receipt)
         {

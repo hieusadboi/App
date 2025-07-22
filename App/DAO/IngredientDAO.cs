@@ -69,6 +69,12 @@ namespace App.DAO
             object result = DataProvider.Instance.ExecuteScalar(query);
             return Convert.ToInt32(result) > 0;
         }
+        public string GetUnitByIdIngredient(int idIngredient)
+        {
+            string query = "SELECT unit FROM Ingredient WHERE IdIngredient = @IdIngredient";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { idIngredient });
+            return data.Rows.Count > 0 ? data.Rows[0]["unit"].ToString() : null;
+        }
 
 
         public bool InsertIngredient(string name, string unit, decimal quantity)

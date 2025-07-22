@@ -46,6 +46,12 @@ namespace App.DAO
 
             return list;
         }
+        public bool CheckDetailExists(int idReceipt, int idIngredient)
+        {
+            string query = "SELECT COUNT(*) FROM ImportDetail WHERE idReceipt = @idReceipt AND idIngredient = @idIngredient";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { idReceipt, idIngredient });
+            return Convert.ToInt32(result) > 0;
+        }
 
         public decimal GetTotalCostByReceipt(int idReceipt)
         {
