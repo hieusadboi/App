@@ -522,5 +522,48 @@ namespace App
 
 
         #endregion
+
+        private void btnSearchSupplier_Click(object sender, EventArgs e)
+        {
+            string name = txbSearchSupplier.Text.Trim();
+            dtgvSuplier.DataSource = SupplierDAO.Instance.SearchSupplier(name);
+            AddSupplierBinding(); // Binding lại sau khi gán DataSource
+        }
+
+        private void btnSearchReceipt_Click(object sender, EventArgs e)
+        {
+            string keyword = txbSearchReceipt.Text.Trim();
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                // Hiển thị lại toàn bộ nếu không nhập từ khóa
+                LoadReceiptList();
+            }
+            else
+            {
+                DataTable result = ImportReceiptDAO.Instance.SearchImportReceipt(keyword);
+                receiptBindingSource.DataSource = result;
+                dtgvImportReceipt.DataSource = receiptBindingSource;
+
+                if (dtgvImportReceipt.Rows.Count > 0)
+                {
+                    dtgvImportReceipt.Rows[0].Selected = true;
+                    LoadImportDetail_ByCurrentSelection(); // Load chi tiết phiếu nhập đầu tiên
+                }
+                else
+                {
+                    dtgvImportDetailAdmin.DataSource = null;
+                    txbTongChi.Text = "0";
+                }
+            }
+
+            AddReceiptBinding(); // Giữ binding sau khi search
+        }
+
+        private void btnShowImportReceiptANDDetail_Click(object sender, EventArgs e)
+        {
+            LoadImportReceiptAndDetail();
+            txbSearchReceipt.Clear();
+        }
     }
 }

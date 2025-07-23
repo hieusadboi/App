@@ -67,18 +67,51 @@ namespace App.DAO
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
-        
-        public List<Food> SearchFoodByName(string name)
+
+        public List<Food> SearchFood(string keyword)
         {
             List<Food> listFood = new List<Food>();
-            string query = "SELECT * FROM Food WHERE foodName LIKE N'%" + name + "%'";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-            foreach (DataRow item in data.Rows)
+
+            string query = @"
+        SELECT f.*
+        FROM Food AS f
+        JOIN FoodCategory AS c ON f.idCategory = c.idCategory
+        WHERE CONCAT(
+            ISNULL(f.foodName, ''), ' ',
+            ISNULL(f.idFood, ''), ' ',
+            ISNULL(f.price, ''), ' ',
+            ISNULL(f.idCategory, ''), ' ',
+            ISNULL(c.categoryName, '')
+        ) LIKE @keyword";
+
+            object[] parameters = new object[] { "%" + keyword + "%" };
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, parameters);
+
+            foreach (DataRow row in data.Rows)
             {
-                Food food = new Food(item);
+                Food food = new Food(row);
                 listFood.Add(food);
             }
+
             return listFood;
         }
+
+        public DataTable SearchFoodIngredient(string keyword)
+        {
+            string query = @"
+        SELECT f.IdFood, f.FoodName, f.Price, f.IdCategory, c.CategoryName
+        FROM Food f
+        JOIN FoodCategory c ON f.IdCategory = c.IdCategory
+        WHERE CONCAT(
+            ISNULL(CAST(f.IdFood AS NVARCHAR), ''), ' ',
+            ISNULL(f.FoodName, ''), ' ',
+            ISNULL(CAST(f.Price AS NVARCHAR), ''), ' ',
+            ISNULL(c.CategoryName, '')
+        ) LIKE @keyword";
+
+            object[] parameters = new object[] { "%" + keyword + "%" };
+            return DataProvider.Instance.ExecuteQuery(query, parameters);
+        }
+
     }
 }

@@ -168,11 +168,20 @@ namespace App.DAO
             return result > 0;
         }
 
-        public DataTable SearchIngredientByName(string name)
+        public DataTable SearchIngredient(string keyword)
         {
-            string query = "SELECT * FROM Ingredient WHERE ingredientName LIKE @name";
-            return DataProvider.Instance.ExecuteQuery(query, new object[] { "%" + name + "%" });
+            string query = @"
+        SELECT * FROM Ingredient
+        WHERE CONCAT(
+            ISNULL(CAST(idIngredient AS NVARCHAR), ''), ' ',
+            ISNULL(ingredientName, ''), ' ',
+            ISNULL(unit, ''), ' ',
+            ISNULL(CAST(quantity AS NVARCHAR), '')
+        ) LIKE @keyword";
+
+            return DataProvider.Instance.ExecuteQuery(query, new object[] { "%" + keyword + "%" });
         }
+
 
     }
 }

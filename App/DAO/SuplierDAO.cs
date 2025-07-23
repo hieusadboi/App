@@ -80,5 +80,31 @@ namespace App.DAO
             return result > 0;
         }
 
+        public List<Supplier> SearchSupplier(string keyword)
+        {
+            List<Supplier> list = new List<Supplier>();
+
+            string query = @"
+        SELECT * FROM Supplier
+        WHERE CONCAT(
+            ISNULL(CAST(idSupplier AS NVARCHAR), ''), ' ',
+            ISNULL(supplierName, ''), ' ',
+            ISNULL(phone, ''), ' ',
+            ISNULL(email, ''), ' ',
+            ISNULL(address, '')
+        ) LIKE @keyword";
+
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { "%" + keyword + "%" });
+
+            foreach (DataRow row in data.Rows)
+            {
+                list.Add(new Supplier(row));
+            }
+
+            return list;
+        }
+
+
+
     }
 }

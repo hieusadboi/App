@@ -33,7 +33,7 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tpImport = new System.Windows.Forms.TabPage();
             this.panel74 = new System.Windows.Forms.Panel();
-            this.textBox29 = new System.Windows.Forms.TextBox();
+            this.txbSearchReceipt = new System.Windows.Forms.TextBox();
             this.button28 = new System.Windows.Forms.Button();
             this.panel66 = new System.Windows.Forms.Panel();
             this.dtgvImportDetailAdmin = new System.Windows.Forms.DataGridView();
@@ -74,7 +74,7 @@
             this.label35 = new System.Windows.Forms.Label();
             this.tpSupplier = new System.Windows.Forms.TabPage();
             this.panel73 = new System.Windows.Forms.Panel();
-            this.textBox28 = new System.Windows.Forms.TextBox();
+            this.txbSearchSupplier = new System.Windows.Forms.TextBox();
             this.button27 = new System.Windows.Forms.Button();
             this.panel53 = new System.Windows.Forms.Panel();
             this.label48 = new System.Windows.Forms.Label();
@@ -137,7 +137,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.tpFoodIngredient = new System.Windows.Forms.TabPage();
             this.panel71 = new System.Windows.Forms.Panel();
-            this.textBox26 = new System.Windows.Forms.TextBox();
+            this.txbSearchFoodIngredient = new System.Windows.Forms.TextBox();
             this.button25 = new System.Windows.Forms.Button();
             this.panel41 = new System.Windows.Forms.Panel();
             this.label52 = new System.Windows.Forms.Label();
@@ -457,7 +457,7 @@
             // panel74
             // 
             this.panel74.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel74.Controls.Add(this.textBox29);
+            this.panel74.Controls.Add(this.txbSearchReceipt);
             this.panel74.Controls.Add(this.button28);
             this.panel74.Location = new System.Drawing.Point(1053, 8);
             this.panel74.Margin = new System.Windows.Forms.Padding(4);
@@ -465,13 +465,13 @@
             this.panel74.Size = new System.Drawing.Size(438, 75);
             this.panel74.TabIndex = 16;
             // 
-            // textBox29
+            // txbSearchReceipt
             // 
-            this.textBox29.Location = new System.Drawing.Point(28, 23);
-            this.textBox29.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox29.Name = "textBox29";
-            this.textBox29.Size = new System.Drawing.Size(232, 27);
-            this.textBox29.TabIndex = 5;
+            this.txbSearchReceipt.Location = new System.Drawing.Point(28, 23);
+            this.txbSearchReceipt.Margin = new System.Windows.Forms.Padding(4);
+            this.txbSearchReceipt.Name = "txbSearchReceipt";
+            this.txbSearchReceipt.Size = new System.Drawing.Size(232, 27);
+            this.txbSearchReceipt.TabIndex = 5;
             // 
             // button28
             // 
@@ -482,6 +482,7 @@
             this.button28.TabIndex = 4;
             this.button28.Text = "Tìm";
             this.button28.UseVisualStyleBackColor = true;
+            this.button28.Click += new System.EventHandler(this.btnSearchReceipt_Click);
             // 
             // panel66
             // 
@@ -544,6 +545,7 @@
             this.button1.TabIndex = 6;
             this.button1.Text = "Tải lại dữ liệu";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnShowImportReceiptANDDetail_Click);
             // 
             // button2
             // 
@@ -939,7 +941,7 @@
             // panel73
             // 
             this.panel73.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel73.Controls.Add(this.textBox28);
+            this.panel73.Controls.Add(this.txbSearchSupplier);
             this.panel73.Controls.Add(this.button27);
             this.panel73.Location = new System.Drawing.Point(1058, 7);
             this.panel73.Margin = new System.Windows.Forms.Padding(4);
@@ -947,13 +949,13 @@
             this.panel73.Size = new System.Drawing.Size(433, 75);
             this.panel73.TabIndex = 13;
             // 
-            // textBox28
+            // txbSearchSupplier
             // 
-            this.textBox28.Location = new System.Drawing.Point(28, 23);
-            this.textBox28.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox28.Name = "textBox28";
-            this.textBox28.Size = new System.Drawing.Size(232, 27);
-            this.textBox28.TabIndex = 5;
+            this.txbSearchSupplier.Location = new System.Drawing.Point(28, 23);
+            this.txbSearchSupplier.Margin = new System.Windows.Forms.Padding(4);
+            this.txbSearchSupplier.Name = "txbSearchSupplier";
+            this.txbSearchSupplier.Size = new System.Drawing.Size(232, 27);
+            this.txbSearchSupplier.TabIndex = 5;
             // 
             // button27
             // 
@@ -964,6 +966,7 @@
             this.button27.TabIndex = 4;
             this.button27.Text = "Tìm";
             this.button27.UseVisualStyleBackColor = true;
+            this.button27.Click += new System.EventHandler(this.btnSearchSupplier_Click);
             // 
             // panel53
             // 
@@ -1620,7 +1623,7 @@
             // panel71
             // 
             this.panel71.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel71.Controls.Add(this.textBox26);
+            this.panel71.Controls.Add(this.txbSearchFoodIngredient);
             this.panel71.Controls.Add(this.button25);
             this.panel71.Location = new System.Drawing.Point(1059, 7);
             this.panel71.Margin = new System.Windows.Forms.Padding(4);
@@ -1628,13 +1631,13 @@
             this.panel71.Size = new System.Drawing.Size(432, 75);
             this.panel71.TabIndex = 9;
             // 
-            // textBox26
+            // txbSearchFoodIngredient
             // 
-            this.textBox26.Location = new System.Drawing.Point(28, 23);
-            this.textBox26.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new System.Drawing.Size(232, 27);
-            this.textBox26.TabIndex = 5;
+            this.txbSearchFoodIngredient.Location = new System.Drawing.Point(28, 23);
+            this.txbSearchFoodIngredient.Margin = new System.Windows.Forms.Padding(4);
+            this.txbSearchFoodIngredient.Name = "txbSearchFoodIngredient";
+            this.txbSearchFoodIngredient.Size = new System.Drawing.Size(232, 27);
+            this.txbSearchFoodIngredient.TabIndex = 5;
             // 
             // button25
             // 
@@ -1645,6 +1648,7 @@
             this.button25.TabIndex = 4;
             this.button25.Text = "Tìm";
             this.button25.UseVisualStyleBackColor = true;
+            this.button25.Click += new System.EventHandler(this.btnSearchFoodIngredient_Click);
             // 
             // panel41
             // 
@@ -2541,7 +2545,7 @@
             this.btnFindTable.Name = "btnFindTable";
             this.btnFindTable.Size = new System.Drawing.Size(132, 68);
             this.btnFindTable.TabIndex = 4;
-            this.btnFindTable.Text = "Tìm theo tên bàn";
+            this.btnFindTable.Text = "Tìm";
             this.btnFindTable.UseVisualStyleBackColor = true;
             this.btnFindTable.Click += new System.EventHandler(this.btnFindTable_Click);
             // 
@@ -3575,7 +3579,7 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tpImport;
         private System.Windows.Forms.Panel panel74;
-        private System.Windows.Forms.TextBox textBox29;
+        private System.Windows.Forms.TextBox txbSearchReceipt;
         private System.Windows.Forms.Button button28;
         private System.Windows.Forms.Panel panel66;
         private System.Windows.Forms.DataGridView dtgvImportDetailAdmin;
@@ -3608,7 +3612,7 @@
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.TabPage tpSupplier;
         private System.Windows.Forms.Panel panel73;
-        private System.Windows.Forms.TextBox textBox28;
+        private System.Windows.Forms.TextBox txbSearchSupplier;
         private System.Windows.Forms.Button button27;
         private System.Windows.Forms.Panel panel53;
         private System.Windows.Forms.Label label48;
@@ -3671,7 +3675,7 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TabPage tpFoodIngredient;
         private System.Windows.Forms.Panel panel71;
-        private System.Windows.Forms.TextBox textBox26;
+        private System.Windows.Forms.TextBox txbSearchFoodIngredient;
         private System.Windows.Forms.Button button25;
         private System.Windows.Forms.Panel panel41;
         private System.Windows.Forms.Label label52;

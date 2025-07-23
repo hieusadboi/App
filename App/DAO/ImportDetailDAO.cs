@@ -105,5 +105,6 @@ namespace App.DAO
             int result = DataProvider.Instance.ExecuteNonQuery(query, parameters);
             return result > 0;
         }
+
     }
 }

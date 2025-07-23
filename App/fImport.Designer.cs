@@ -31,7 +31,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpSupplier = new System.Windows.Forms.TabPage();
             this.panel73 = new System.Windows.Forms.Panel();
-            this.textBox28 = new System.Windows.Forms.TextBox();
+            this.txbSearchSupplier = new System.Windows.Forms.TextBox();
             this.button27 = new System.Windows.Forms.Button();
             this.panel53 = new System.Windows.Forms.Panel();
             this.label48 = new System.Windows.Forms.Label();
@@ -59,7 +59,7 @@
             this.btnAddSuplier = new System.Windows.Forms.Button();
             this.tpImport = new System.Windows.Forms.TabPage();
             this.panel74 = new System.Windows.Forms.Panel();
-            this.textBox29 = new System.Windows.Forms.TextBox();
+            this.txbSearchReceipt = new System.Windows.Forms.TextBox();
             this.button28 = new System.Windows.Forms.Button();
             this.panel66 = new System.Windows.Forms.Panel();
             this.dtgvImportDetailAdmin = new System.Windows.Forms.DataGridView();
@@ -78,6 +78,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.panel61 = new System.Windows.Forms.Panel();
+            this.txbUnit = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
             this.panel85 = new System.Windows.Forms.Panel();
             this.nmGiaNhap = new System.Windows.Forms.NumericUpDown();
@@ -97,7 +98,6 @@
             this.panel63 = new System.Windows.Forms.Panel();
             this.cbTenNhaCungCap = new System.Windows.Forms.ComboBox();
             this.label35 = new System.Windows.Forms.Label();
-            this.txbUnit = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tpSupplier.SuspendLayout();
             this.panel73.SuspendLayout();
@@ -159,7 +159,7 @@
             // panel73
             // 
             this.panel73.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel73.Controls.Add(this.textBox28);
+            this.panel73.Controls.Add(this.txbSearchSupplier);
             this.panel73.Controls.Add(this.button27);
             this.panel73.Location = new System.Drawing.Point(1058, 7);
             this.panel73.Margin = new System.Windows.Forms.Padding(4);
@@ -167,13 +167,13 @@
             this.panel73.Size = new System.Drawing.Size(433, 75);
             this.panel73.TabIndex = 13;
             // 
-            // textBox28
+            // txbSearchSupplier
             // 
-            this.textBox28.Location = new System.Drawing.Point(28, 23);
-            this.textBox28.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox28.Name = "textBox28";
-            this.textBox28.Size = new System.Drawing.Size(232, 30);
-            this.textBox28.TabIndex = 5;
+            this.txbSearchSupplier.Location = new System.Drawing.Point(28, 23);
+            this.txbSearchSupplier.Margin = new System.Windows.Forms.Padding(4);
+            this.txbSearchSupplier.Name = "txbSearchSupplier";
+            this.txbSearchSupplier.Size = new System.Drawing.Size(232, 30);
+            this.txbSearchSupplier.TabIndex = 5;
             // 
             // button27
             // 
@@ -184,6 +184,7 @@
             this.button27.TabIndex = 4;
             this.button27.Text = "Tìm";
             this.button27.UseVisualStyleBackColor = true;
+            this.button27.Click += new System.EventHandler(this.btnSearchSupplier_Click);
             // 
             // panel53
             // 
@@ -462,7 +463,7 @@
             // panel74
             // 
             this.panel74.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel74.Controls.Add(this.textBox29);
+            this.panel74.Controls.Add(this.txbSearchReceipt);
             this.panel74.Controls.Add(this.button28);
             this.panel74.Location = new System.Drawing.Point(1053, 8);
             this.panel74.Margin = new System.Windows.Forms.Padding(4);
@@ -470,13 +471,13 @@
             this.panel74.Size = new System.Drawing.Size(438, 75);
             this.panel74.TabIndex = 16;
             // 
-            // textBox29
+            // txbSearchReceipt
             // 
-            this.textBox29.Location = new System.Drawing.Point(28, 23);
-            this.textBox29.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox29.Name = "textBox29";
-            this.textBox29.Size = new System.Drawing.Size(232, 30);
-            this.textBox29.TabIndex = 5;
+            this.txbSearchReceipt.Location = new System.Drawing.Point(28, 23);
+            this.txbSearchReceipt.Margin = new System.Windows.Forms.Padding(4);
+            this.txbSearchReceipt.Name = "txbSearchReceipt";
+            this.txbSearchReceipt.Size = new System.Drawing.Size(232, 30);
+            this.txbSearchReceipt.TabIndex = 5;
             // 
             // button28
             // 
@@ -487,6 +488,7 @@
             this.button28.TabIndex = 4;
             this.button28.Text = "Tìm";
             this.button28.UseVisualStyleBackColor = true;
+            this.button28.Click += new System.EventHandler(this.btnSearchReceipt_Click);
             // 
             // panel66
             // 
@@ -549,6 +551,7 @@
             this.button1.TabIndex = 6;
             this.button1.Text = "Tải lại dữ liệu";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnShowImportReceiptANDDetail_Click);
             // 
             // button2
             // 
@@ -691,6 +694,15 @@
             this.panel61.Name = "panel61";
             this.panel61.Size = new System.Drawing.Size(428, 62);
             this.panel61.TabIndex = 9;
+            // 
+            // txbUnit
+            // 
+            this.txbUnit.Location = new System.Drawing.Point(220, 19);
+            this.txbUnit.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txbUnit.Name = "txbUnit";
+            this.txbUnit.ReadOnly = true;
+            this.txbUnit.Size = new System.Drawing.Size(189, 30);
+            this.txbUnit.TabIndex = 10;
             // 
             // label33
             // 
@@ -917,15 +929,6 @@
             this.label35.TabIndex = 0;
             this.label35.Text = "Tên nhà cung cấp:";
             // 
-            // txbUnit
-            // 
-            this.txbUnit.Location = new System.Drawing.Point(220, 19);
-            this.txbUnit.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.txbUnit.Name = "txbUnit";
-            this.txbUnit.ReadOnly = true;
-            this.txbUnit.Size = new System.Drawing.Size(189, 30);
-            this.txbUnit.TabIndex = 10;
-            // 
             // fImport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -990,7 +993,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tpSupplier;
         private System.Windows.Forms.Panel panel73;
-        private System.Windows.Forms.TextBox textBox28;
+        private System.Windows.Forms.TextBox txbSearchSupplier;
         private System.Windows.Forms.Button button27;
         private System.Windows.Forms.Panel panel53;
         private System.Windows.Forms.Label label48;
@@ -1018,7 +1021,7 @@
         private System.Windows.Forms.Button btnAddSuplier;
         private System.Windows.Forms.TabPage tpImport;
         private System.Windows.Forms.Panel panel74;
-        private System.Windows.Forms.TextBox textBox29;
+        private System.Windows.Forms.TextBox txbSearchReceipt;
         private System.Windows.Forms.Button button28;
         private System.Windows.Forms.Panel panel66;
         private System.Windows.Forms.DataGridView dtgvImportDetailAdmin;

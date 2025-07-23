@@ -305,6 +305,11 @@ namespace App
             LoadSupplier();
         }
 
+        private void btnShowImportReceiptANDDetail_Click(object sender, EventArgs e)
+        {
+            LoadImportReceiptAndDetail();
+            txbSearchReceipt.Clear();
+        }
         #endregion
 
 
@@ -339,27 +344,64 @@ namespace App
 
 
         // khi đổi chọn món ăn trong DataGridView, cập nhật Category tương ứng
+        //public void txbFoodID_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (dtgvFood.SelectedCells.Count > 0)
+        //    {
+        //        int idCategory = (int)dtgvFood.SelectedCells[0].OwningRow.Cells["IdCategory"].Value;
+        //        Category category = CategoryDAO.Instance.GetCategoryById(idCategory);
+        //        cbFoodCategory.SelectedItem = category;
+
+        //        int index = -1;
+        //        int i = 0;
+        //        foreach (Category item in cbFoodCategory.Items)
+        //        {
+        //            if (item.IdCategory == idCategory)
+        //            {
+        //                index = i;
+        //                break;
+        //            }
+        //            i++;
+        //        }
+        //    }
+        //}
         public void txbFoodID_TextChanged(object sender, EventArgs e)
         {
-            if (dtgvFood.SelectedCells.Count > 0)
+            try
             {
-                int idCategory = (int)dtgvFood.SelectedCells[0].OwningRow.Cells["IdCategory"].Value;
+                if (dtgvFood.SelectedCells.Count == 0)
+                    return;
+
+                DataGridViewRow selectedRow = dtgvFood.SelectedCells[0].OwningRow;
+                if (selectedRow == null || selectedRow.Cells["IdCategory"].Value == null)
+                    return;
+
+                int idCategory;
+                if (!int.TryParse(selectedRow.Cells["IdCategory"].Value.ToString(), out idCategory))
+                    return;
+
                 Category category = CategoryDAO.Instance.GetCategoryById(idCategory);
+                if (category == null)
+                    return;
+
                 cbFoodCategory.SelectedItem = category;
 
-                int index = -1;
-                int i = 0;
-                foreach (Category item in cbFoodCategory.Items)
+                // Chỉ chọn nếu chưa đúng
+                for (int i = 0; i < cbFoodCategory.Items.Count; i++)
                 {
-                    if (item.IdCategory == idCategory)
+                    if (((Category)cbFoodCategory.Items[i]).IdCategory == idCategory)
                     {
-                        index = i;
+                        cbFoodCategory.SelectedIndex = i;
                         break;
                     }
-                    i++;
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi chọn danh mục: " + ex.Message);
+            }
         }
+
 
         //void AddCategoryBinding()
         //{
@@ -1908,7 +1950,7 @@ namespace App
             }
             else
             {
-                foodList.DataSource = FoodDAO.Instance.SearchFoodByName(keyword);
+                foodList.DataSource = FoodDAO.Instance.SearchFood(keyword);
             }
         }
 
@@ -1962,22 +2004,75 @@ namespace App
         private void btnSearchStaff_Click(object sender, EventArgs e)
         {
             string name = txbSearchStaff.Text.Trim();
-            dtgvStaff.DataSource = StaffDAO.Instance.SearchStaffByName(name);
+            dtgvStaff.DataSource = StaffDAO.Instance.SearchStaff(name);
             AddBindingStaff(); // cập nhật lại binding theo dữ liệu mới
         }
 
         private void btnSearchIngredient_Click(object sender, EventArgs e)
         {
             string name = txbSearchIngredient.Text.Trim();
-            dtgvIngredient.DataSource = IngredientDAO.Instance.SearchIngredientByName(name);
+            dtgvIngredient.DataSource = IngredientDAO.Instance.SearchIngredient(name);
             AddIngredientBinding(); // nếu bạn có binding thì nên cập nhật lại
         }
 
 
+        private void btnSearchFoodIngredient_Click(object sender, EventArgs e)
+        {
+            string keyword = txbSearchFoodIngredient.Text.Trim();
+            DataTable result = FoodDAO.Instance.SearchFoodIngredient(keyword);
+
+            dtgvFood1.DataSource = result;
+            dtgvFoodIngredient.DataSource = null;
+
+            // Reset control
+            txbIdFoodIngredient.Clear();
+            cbNameFoodIngredient.SelectedIndex = -1;
+
+            // GỌI LẠI BINDING
+            AddFoodBinding1();
+        }
+
+
+
+        private void btnSearchSupplier_Click(object sender, EventArgs e)
+        {
+            string name = txbSearchSupplier.Text.Trim();
+            dtgvSuplier.DataSource = SupplierDAO.Instance.SearchSupplier(name);
+            AddSupplierBinding(); // Binding lại sau khi gán DataSource
+        }
+
+        private void btnSearchReceipt_Click(object sender, EventArgs e)
+        {
+            string keyword = txbSearchReceipt.Text.Trim();
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                // Hiển thị lại toàn bộ nếu không nhập từ khóa
+                LoadReceiptList();
+            }
+            else
+            {
+                DataTable result = ImportReceiptDAO.Instance.SearchImportReceipt(keyword);
+                receiptBindingSource.DataSource = result;
+                dtgvImportReceipt.DataSource = receiptBindingSource;
+
+                if (dtgvImportReceipt.Rows.Count > 0)
+                {
+                    dtgvImportReceipt.Rows[0].Selected = true;
+                    LoadImportDetail_ByCurrentSelection(); // Load chi tiết phiếu nhập đầu tiên
+                }
+                else
+                {
+                    dtgvImportDetailAdmin.DataSource = null;
+                    txbTongChi.Text = "0";
+                }
+            }
+
+            AddReceiptBinding(); // Giữ binding sau khi search
+        }
+
 
         #endregion
-
-
 
     }
 }

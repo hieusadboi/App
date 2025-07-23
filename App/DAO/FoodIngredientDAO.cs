@@ -88,5 +88,7 @@ namespace App.DAO
             int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { idFood });
             return result > 0;
         }
+
+
     }
 }

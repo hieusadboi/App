@@ -145,11 +145,22 @@ namespace App.DAO
             return result > 0;
         }
 
-        public DataTable SearchStaffByName(string name)
+        public DataTable SearchStaff(string keyword)
         {
-            string query = "SELECT * FROM Staff WHERE fullName LIKE @name";
-            return DataProvider.Instance.ExecuteQuery(query, new object[] { "%" + name + "%" });
+            string query = @"
+                SELECT * FROM Staff 
+                WHERE CONCAT(
+                    ISNULL(fullName, ''), ' ',
+                    ISNULL(accountUserName, ''), ' ',
+                    ISNULL(phone, ''), ' ',
+                    ISNULL(email, ''), ' ',
+                    ISNULL(idStaff, ''), ' ',
+                    ISNULL(gender, '')
+                ) LIKE @keyword";
+            object[] parameters = new object[] { "%" + keyword + "%" };
+            return DataProvider.Instance.ExecuteQuery(query, parameters);
         }
+
 
 
     }

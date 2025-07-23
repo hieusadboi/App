@@ -70,5 +70,22 @@ namespace App.DAO
             int result = DataProvider.Instance.ExecuteNonQuery(query, parameters);
             return result > 0;
         }
+
+        public DataTable SearchImportReceipt(string keyword)
+        {
+            string query = @"
+        SELECT r.IdReceipt, r.ImportDate, r.ImportedBy, r.IdSupplier, s.SupplierName
+        FROM ImportReceipt r
+        JOIN Supplier s ON r.IdSupplier = s.IdSupplier
+        WHERE CONCAT(
+            ISNULL(CAST(r.IdReceipt AS NVARCHAR), ''), ' ',
+            ISNULL(r.ImportedBy, ''), ' ',
+            ISNULL(CAST(r.ImportDate AS NVARCHAR), ''), ' ',
+            ISNULL(s.SupplierName, '')
+        ) LIKE @keyword";
+
+            return DataProvider.Instance.ExecuteQuery(query, new object[] { "%" + keyword + "%" });
+        }
+
     }
 }
