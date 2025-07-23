@@ -1,4 +1,5 @@
-﻿using App.DTO;
+﻿using App.DAO;
+using App.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -95,14 +96,43 @@ namespace App
             }
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
+        //private void btnLogin_Click(object sender, EventArgs e)
+        //{
+        //    string userName = txbUser.Text;
+        //    string password = txbPass.Text;
+        //    int loginResult = AccountDAO.Instance.Login(userName, password);
 
-        }
+        //    switch (loginResult)
+        //    {
+        //        case 1:
+        //            LoggedInUserName = userName;
+        //            Account loginAccount = AccountDAO.Instance.GetAccountByUsername(userName);
+        //            fTableManager f = new fTableManager(loginAccount);
+        //            this.Hide();
+        //            f.ShowDialog();
+        //            this.Show();
+        //            break;
+        //        case 0:
+        //            MessageBox.Show("Tài khoản này đã bị vô hiệu hóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //            break;
+        //        case -1:
+        //            MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //            break;
+        //    }
+        //}
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
+
+
+        private void btnGenerateHash_Click(object sender, EventArgs e)
+        {
+            string password = "admin"; // Hoặc lấy từ TextBox
+            string hashed = BCrypt.Net.BCrypt.HashPassword(password);
+            System.Diagnostics.Debug.WriteLine($"Hashed Password: {hashed}");
+        }
+
     }
 }

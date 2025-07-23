@@ -2032,8 +2032,6 @@ namespace App
             AddFoodBinding1();
         }
 
-
-
         private void btnSearchSupplier_Click(object sender, EventArgs e)
         {
             string name = txbSearchSupplier.Text.Trim();

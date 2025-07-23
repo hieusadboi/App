@@ -165,6 +165,7 @@
             this.txbReEnterPass.Size = new System.Drawing.Size(412, 34);
             this.txbReEnterPass.TabIndex = 1;
             this.txbReEnterPass.TabStop = false;
+            this.txbReEnterPass.UseSystemPasswordChar = true;
             // 
             // label5
             // 

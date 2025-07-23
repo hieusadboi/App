@@ -2,9 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BCrypt.Net;
 
 namespace App.DAO
 {
@@ -17,17 +15,31 @@ namespace App.DAO
             private set { instance = value; }
         }
         private AccountDAO() { }
+
+        // ✅ Hàm hash mật khẩu
+        private string HashPassword(string password)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(password);
+        }
+
+        // ✅ Hàm kiểm tra mật khẩu
+        private bool VerifyPassword(string inputPassword, string hashedPassword)
+        {
+            return BCrypt.Net.BCrypt.Verify(inputPassword, hashedPassword);
+        }
+
+        /// <summary>
+        /// Login kiểm tra hash
+        /// </summary>
         public int Login(string username, string password)
         {
-            string query = "EXEC dbo.USP_Login @UserName , @Password";
-            var result = DataProvider.Instance.ExecuteQuery(query, new object[] { username, password });
+            Account acc = GetAccountByUsername(username);
+            if (acc == null) return -1; // Không tìm thấy tài khoản
 
-            if (result.Rows.Count > 0)
-            {
-                return Convert.ToInt32(result.Rows[0]["ResultCode"]);
-            }
+            if (!acc.Isactive) return 0; // Tài khoản bị khóa
 
-            return -99; // Lỗi không xác định
+            bool check = VerifyPassword(password, acc.Password);
+            return check ? 1 : -1; // 1: Đúng mật khẩu, -1: Sai mật khẩu
         }
 
         public Account GetAccountByUsername(string username)
@@ -38,38 +50,42 @@ namespace App.DAO
             {
                 return new Account(result.Rows[0]);
             }
-            return null; // Không tìm thấy tài khoản
+            return null;
         }
 
         public DataTable GetListAccount()
         {
             string query = "SELECT UserName ,Type , isActive FROM dbo.Account";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-            
-            return data;
+            return DataProvider.Instance.ExecuteQuery(query);
         }
 
+        /// <summary>
+        /// Thêm tài khoản mới với mật khẩu mặc định "123456" (hash)
+        /// </summary>
         public bool InsertAccount(string username, int type, bool isActive)
         {
-            string query = $"INSERT INTO Account (UserName, Type, isActive) " +
-                           $"VALUES (N'{username}', {type}, {(isActive ? 1 : 0)})";
-            int result = DataProvider.Instance.ExecuteNonQuery(query);
-            return result > 0;
+            string hashedPassword = HashPassword("123456"); // Mật khẩu mặc định
+            string query = $"INSERT INTO Account (UserName, PassWord, Type, isActive) " +
+                           $"VALUES (N'{username}', N'{hashedPassword}', {type}, {(isActive ? 1 : 0)})";
+            return DataProvider.Instance.ExecuteNonQuery(query) > 0;
         }
 
         public bool UpdateAccount(string username, int type, bool isActive)
         {
             string query = $"UPDATE Account SET Type = {type}, isActive = {(isActive ? 1 : 0)} WHERE UserName = N'{username}'";
-            int result = DataProvider.Instance.ExecuteNonQuery(query);
-            return result > 0;
+            return DataProvider.Instance.ExecuteNonQuery(query) > 0;
         }
 
-        public bool ResetPassword(string username) 
+        /// <summary>
+        /// Reset mật khẩu về mặc định "123456" (hash)
+        /// </summary>
+        public bool ResetPassword(string username)
         {
-            string query = $"UPDATE Account SET Password = N'123456' WHERE UserName = N'{username}'";
-            int result = DataProvider.Instance.ExecuteNonQuery(query);
-            return result > 0;
+            string hashedPassword = HashPassword("123456");
+            string query = $"UPDATE Account SET PassWord = N'{hashedPassword}' WHERE UserName = N'{username}'";
+            return DataProvider.Instance.ExecuteNonQuery(query) > 0;
         }
+
         public List<Account> SearchAccountByUsername(string keyword)
         {
             List<Account> list = new List<Account>();
@@ -82,6 +98,22 @@ namespace App.DAO
             }
 
             return list;
+        }
+
+        public bool UpdatePassword(string username, string oldPassword, string newPassword)
+        {
+            string query = "SELECT * FROM Account WHERE userName = @username";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { username });
+
+            if (data.Rows.Count == 0) return false;
+
+            string hashedPassword = data.Rows[0]["password"].ToString();
+            if (!VerifyPassword(oldPassword, hashedPassword)) return false; // sai mật khẩu cũ
+
+            string newHashedPassword = HashPassword(newPassword);
+            string updateQuery = "UPDATE Account SET password = @password WHERE userName = @username";
+            int result = DataProvider.Instance.ExecuteNonQuery(updateQuery, new object[] { newHashedPassword, username });
+            return result > 0;
         }
 
     }
