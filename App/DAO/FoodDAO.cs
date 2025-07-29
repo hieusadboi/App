@@ -113,5 +113,27 @@ namespace App.DAO
             return DataProvider.Instance.ExecuteQuery(query, parameters);
         }
 
+        public int GetFoodIdByName(string foodName)
+        {
+            string query = "SELECT idFood FROM Food WHERE foodName = @foodName";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { foodName });
+
+            if (result != null)
+                return Convert.ToInt32(result);
+            return -1; // Trả về -1 nếu không tìm thấy
+        }
+
+        public Food GetFoodById(int idFood)
+        {
+            string query = "SELECT * FROM Food WHERE idFood = @idFood";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { idFood });
+
+            if (data.Rows.Count > 0)
+                return new Food(data.Rows[0]);
+
+            return null;
+        }
+
+
     }
 }

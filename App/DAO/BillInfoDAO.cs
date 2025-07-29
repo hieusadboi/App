@@ -40,5 +40,12 @@ namespace App.DAO
                 new object[] { idBill, idFood, count }
             );
         }
+
+        public void DeleteFoodFromBill(int idBill, int idFood)
+        {
+            string query = "DELETE FROM BillInfo WHERE idBill = @idBill AND idFood = @idFood";
+            DataProvider.Instance.ExecuteNonQuery(query, new object[] { idBill, idFood });
+        }
+
     }
 }

@@ -40,6 +40,7 @@ namespace App
             this.LoginAccount = acc;
             LoadTable();
             LoadCategoryList(0); // Load danh mục ban đầu
+            SetupContextMenu();
         }
 
         void changeAccount(int type)
@@ -76,7 +77,7 @@ namespace App
             if (notEnough.Count > 0)
             {
                 StringBuilder msg = new StringBuilder();
-                msg.AppendLine("❌ Không đủ nguyên liệu để chế biến:");
+                msg.AppendLine("Không đủ nguyên liệu để chế biến:");
                 foreach (var item in notEnough)
                 {
                     msg.AppendLine($"• {item.IngredientName}: cần {item.Quantity} {item.Unit}");
@@ -129,6 +130,14 @@ namespace App
                             totalPrice += float.Parse(item.SubItems[3].Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
                         }
                     }
+
+                    if (table.Name.ToLower().Contains("vip"))
+                    {
+                        totalPrice += 20000;
+                    }
+
+                    // Hiển thị tổng tiền
+                    txbtotalPrice.Text = totalPrice.ToString("c");
 
                     bool userWantsPrint = MessageBox.Show("Bạn có muốn in hóa đơn không?", "In hóa đơn", MessageBoxButtons.YesNo) == DialogResult.Yes;
 
@@ -305,6 +314,12 @@ namespace App
                 lsvBill.Items.Add(lsvItem);
             }
 
+            Table table = TableDAO.Instance.GetTableByID(id);
+            if (table != null && table.Name.ToLower().Contains("vip"))
+            {
+                totalPrice += 20000; // Cộng thêm 20.000 VND
+            }
+
             txbtotalPrice.Text = totalPrice.ToString("c", culture); // Hiển thị tổng giá tiền theo định dạng tiền tệ
         }
 
@@ -454,7 +469,7 @@ namespace App
             if (lowStockList.Count == 0) return;
 
             StringBuilder messageBuilder = new StringBuilder();
-            messageBuilder.AppendLine("🔔 Các nguyên liệu sắp hết kho:\n");
+            messageBuilder.AppendLine("Các nguyên liệu sắp hết kho:\n");
 
             foreach (var item in lowStockList)
             {
@@ -463,10 +478,83 @@ namespace App
 
             MessageBox.Show(
                 messageBuilder.ToString(),
-                "⚠️ Cảnh báo nguyên liệu",
+                "Cảnh báo nguyên liệu",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Warning
             );
+        }
+
+
+        private void DeleteItem_Click(object sender, EventArgs e)
+        {
+            if (lsvBill.SelectedItems.Count > 0)
+            {
+                // Lấy tên món từ dòng được chọn
+                string foodName = lsvBill.SelectedItems[0].Text;
+
+                // Lấy thông tin hóa đơn hiện tại
+                Table table = lsvBill.Tag as Table;
+                if (table == null) return;
+
+                int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
+                int idFood = FoodDAO.Instance.GetFoodIdByName(foodName);
+
+                // Xác nhận trước khi xóa
+                if (MessageBox.Show($"Bạn có chắc muốn xóa món '{foodName}'?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    BillInfoDAO.Instance.DeleteFoodFromBill(idBill, idFood);
+
+                    // Hiển thị lại bill sau khi xóa
+                    ShowBill(table.ID);
+                }
+            }
+        }
+
+        private void SetupContextMenu()
+        {
+            // Tạo ContextMenuStrip
+            ContextMenuStrip contextMenu = new ContextMenuStrip();
+
+            // Tạo mục "Xóa món"
+            ToolStripMenuItem deleteItem = new ToolStripMenuItem("Xóa món");
+            deleteItem.Click += DeleteItem_Click;
+
+            // Thêm vào menu
+            contextMenu.Items.Add(deleteItem);
+
+            // Gắn menu cho ListView
+            lsvBill.ContextMenuStrip = contextMenu;
+        }
+
+
+        private void lsvBill_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lsvBill.SelectedItems.Count == 0)
+                return;
+
+            ListViewItem selectedItem = lsvBill.SelectedItems[0];
+
+            string selectedFoodName = selectedItem.SubItems[0].Text; // Tên món
+            int selectedCount = int.Parse(selectedItem.SubItems[1].Text); // Số lượng
+
+            // Binding số lượng
+            nmFoodCount.Value = selectedCount;
+
+            // Tìm idFood từ tên món
+            int foodId = FoodDAO.Instance.GetFoodIdByName(selectedFoodName);
+            if (foodId == -1)
+                return;
+
+            // Lấy thông tin Food từ ID
+            Food food = FoodDAO.Instance.GetFoodById(foodId);
+            if (food == null)
+                return;
+
+            // Binding ComboBox Food
+            cbFood.SelectedItem = cbFood.Items.Cast<Food>().FirstOrDefault(f => f.IdFood == food.IdFood);
+
+            // Binding ComboBox Category
+            cbCategory.SelectedItem = cbCategory.Items.Cast<Category>().FirstOrDefault(c => c.IdCategory == food.IdCategory);
         }
 
 
