@@ -293,6 +293,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.dtgvDoanhThu = new System.Windows.Forms.DataGridView();
             this.table = new System.Windows.Forms.TabControl();
+            this.dtgvChiTiet = new System.Windows.Forms.DataGridView();
+            this.btnShowFoodHot = new System.Windows.Forms.Button();
+            this.txbSearchDoanhThu = new System.Windows.Forms.TextBox();
+            this.btnSearchDoanhThu = new System.Windows.Forms.Button();
             this.tabControl2.SuspendLayout();
             this.tpImport.SuspendLayout();
             this.panel74.SuspendLayout();
@@ -404,6 +408,7 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvDoanhThu)).BeginInit();
             this.table.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvChiTiet)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl2
@@ -3260,6 +3265,9 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btnSearchDoanhThu);
+            this.panel2.Controls.Add(this.txbSearchDoanhThu);
+            this.panel2.Controls.Add(this.btnShowFoodHot);
             this.panel2.Controls.Add(this.panel81);
             this.panel2.Controls.Add(this.panel80);
             this.panel2.Controls.Add(this.btnXemDoanhThu);
@@ -3275,7 +3283,7 @@
             this.panel81.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel81.Controls.Add(this.dtpkFromDate);
             this.panel81.Controls.Add(this.label39);
-            this.panel81.Location = new System.Drawing.Point(41, 20);
+            this.panel81.Location = new System.Drawing.Point(4, 20);
             this.panel81.Margin = new System.Windows.Forms.Padding(4);
             this.panel81.Name = "panel81";
             this.panel81.Size = new System.Drawing.Size(438, 70);
@@ -3305,7 +3313,7 @@
             this.panel80.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel80.Controls.Add(this.label40);
             this.panel80.Controls.Add(this.dtpkToDate);
-            this.panel80.Location = new System.Drawing.Point(601, 20);
+            this.panel80.Location = new System.Drawing.Point(450, 20);
             this.panel80.Margin = new System.Windows.Forms.Padding(4);
             this.panel80.Name = "panel80";
             this.panel80.Size = new System.Drawing.Size(438, 70);
@@ -3335,10 +3343,10 @@
             // 
             this.btnXemDoanhThu.BackColor = System.Drawing.Color.LightYellow;
             this.btnXemDoanhThu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnXemDoanhThu.Location = new System.Drawing.Point(1239, 20);
+            this.btnXemDoanhThu.Location = new System.Drawing.Point(896, 20);
             this.btnXemDoanhThu.Margin = new System.Windows.Forms.Padding(4);
             this.btnXemDoanhThu.Name = "btnXemDoanhThu";
-            this.btnXemDoanhThu.Size = new System.Drawing.Size(175, 70);
+            this.btnXemDoanhThu.Size = new System.Drawing.Size(108, 70);
             this.btnXemDoanhThu.TabIndex = 2;
             this.btnXemDoanhThu.Text = "Thống kê doanh thu";
             this.btnXemDoanhThu.UseVisualStyleBackColor = false;
@@ -3347,6 +3355,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.dtgvChiTiet);
             this.panel1.Controls.Add(this.dtgvDoanhThu);
             this.panel1.Location = new System.Drawing.Point(8, 118);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
@@ -3366,8 +3375,9 @@
             this.dtgvDoanhThu.Margin = new System.Windows.Forms.Padding(4);
             this.dtgvDoanhThu.Name = "dtgvDoanhThu";
             this.dtgvDoanhThu.RowHeadersWidth = 51;
-            this.dtgvDoanhThu.Size = new System.Drawing.Size(1473, 609);
+            this.dtgvDoanhThu.Size = new System.Drawing.Size(1473, 360);
             this.dtgvDoanhThu.TabIndex = 0;
+            this.dtgvDoanhThu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvDoanhThu_CellClick);
             // 
             // table
             // 
@@ -3391,6 +3401,54 @@
             this.table.SelectedIndex = 0;
             this.table.Size = new System.Drawing.Size(1507, 778);
             this.table.TabIndex = 2;
+            // 
+            // dtgvChiTiet
+            // 
+            this.dtgvChiTiet.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvChiTiet.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dtgvChiTiet.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.dtgvChiTiet.ColumnHeadersHeight = 29;
+            this.dtgvChiTiet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dtgvChiTiet.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.dtgvChiTiet.Location = new System.Drawing.Point(4, 372);
+            this.dtgvChiTiet.Margin = new System.Windows.Forms.Padding(4);
+            this.dtgvChiTiet.Name = "dtgvChiTiet";
+            this.dtgvChiTiet.RowHeadersWidth = 51;
+            this.dtgvChiTiet.Size = new System.Drawing.Size(1473, 241);
+            this.dtgvChiTiet.TabIndex = 1;
+            // 
+            // btnShowFoodHot
+            // 
+            this.btnShowFoodHot.BackColor = System.Drawing.Color.LightYellow;
+            this.btnShowFoodHot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnShowFoodHot.Location = new System.Drawing.Point(1012, 20);
+            this.btnShowFoodHot.Margin = new System.Windows.Forms.Padding(4);
+            this.btnShowFoodHot.Name = "btnShowFoodHot";
+            this.btnShowFoodHot.Size = new System.Drawing.Size(107, 70);
+            this.btnShowFoodHot.TabIndex = 7;
+            this.btnShowFoodHot.Text = "Thống kê bán chạy";
+            this.btnShowFoodHot.UseVisualStyleBackColor = false;
+            this.btnShowFoodHot.Click += new System.EventHandler(this.btnShowFoodHot_Click);
+            // 
+            // txbSearchDoanhThu
+            // 
+            this.txbSearchDoanhThu.Location = new System.Drawing.Point(1152, 45);
+            this.txbSearchDoanhThu.Name = "txbSearchDoanhThu";
+            this.txbSearchDoanhThu.Size = new System.Drawing.Size(208, 28);
+            this.txbSearchDoanhThu.TabIndex = 8;
+            // 
+            // btnSearchDoanhThu
+            // 
+            this.btnSearchDoanhThu.BackColor = System.Drawing.Color.LightYellow;
+            this.btnSearchDoanhThu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSearchDoanhThu.Location = new System.Drawing.Point(1367, 20);
+            this.btnSearchDoanhThu.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSearchDoanhThu.Name = "btnSearchDoanhThu";
+            this.btnSearchDoanhThu.Size = new System.Drawing.Size(107, 70);
+            this.btnSearchDoanhThu.TabIndex = 9;
+            this.btnSearchDoanhThu.Text = "Tìm";
+            this.btnSearchDoanhThu.UseVisualStyleBackColor = false;
+            this.btnSearchDoanhThu.Click += new System.EventHandler(this.btnSearchDoanhThu_Click);
             // 
             // fAdmin
             // 
@@ -3562,6 +3620,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgvFood)).EndInit();
             this.tpBill.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel81.ResumeLayout(false);
             this.panel81.PerformLayout();
             this.panel80.ResumeLayout(false);
@@ -3569,6 +3628,7 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvDoanhThu)).EndInit();
             this.table.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvChiTiet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3839,5 +3899,9 @@
         private System.Windows.Forms.TextBox txbTongChi;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.TextBox txbUnit;
+        private System.Windows.Forms.DataGridView dtgvChiTiet;
+        private System.Windows.Forms.Button btnShowFoodHot;
+        private System.Windows.Forms.Button btnSearchDoanhThu;
+        private System.Windows.Forms.TextBox txbSearchDoanhThu;
     }
 }

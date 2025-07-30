@@ -71,8 +71,39 @@ namespace App
         void LoadDoanhThu(DateTime fromDate, DateTime toDate)
         {
             //InitDoanhThuColumns();
-            string query = "EXEC DoanhThu @FromDate , @ToDate";
+            string query = "EXEC DoanhThu @FromDate , @ToDate ";
             dtgvDoanhThu.DataSource = DataProvider.Instance.ExecuteQuery(query, new object[] { fromDate, toDate });
+        }
+    
+        void LoadChiTiet(object id, string loai)
+        {
+            DataTable data;
+
+            if (loai == "Thu") // Bill
+            {
+                string query = "EXEC GetBillDetails @BillID ";
+                data = DataProvider.Instance.ExecuteQuery(query, new object[] { id });
+            }
+            else if (loai == "Chi") // Phiếu nhập
+            {
+                string query = "EXEC GetImportDetails @ReceiptID ";
+                data = DataProvider.Instance.ExecuteQuery(query, new object[] { id });
+            }
+            else
+            {
+                dtgvChiTiet.DataSource = null;
+                return;
+            }
+
+            dtgvChiTiet.DataSource = data;
+        }
+
+        void loadFoodHot(DateTime fromDate, DateTime toDate)
+        {
+            DataTable data;
+            string query = "EXEC MonAnBanChay @fromDate , @toDate ";
+            data = DataProvider.Instance.ExecuteQuery(query, new object[] { fromDate, toDate });
+            dtgvDoanhThu.DataSource = data;
         }
 
         void LoadFoodList()
@@ -265,6 +296,36 @@ namespace App
             LoadDoanhThu(dtpkFromDate.Value, dtpkToDate.Value);
         }
 
+        private void dtgvDoanhThu_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            try
+            {
+                string loai = dtgvDoanhThu.Rows[e.RowIndex].Cells["Loại"].Value.ToString();
+                string id = dtgvDoanhThu.Rows[e.RowIndex].Cells["Mã HĐ/PN"].Value.ToString();
+
+                // Nếu là tổng kết thì bỏ qua
+                if (loai == "Tổng kết" || string.IsNullOrEmpty(id))
+                {
+                    dtgvChiTiet.DataSource = null;
+                    return;
+                }
+
+                LoadChiTiet(id, loai);
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+
+        }
+
+        private void btnShowFoodHot_Click(object sender, EventArgs e)
+        {
+            loadFoodHot(dtpkFromDate.Value, dtpkToDate.Value);
+        }
+
+
         private void btnShowFood_Click(object sender, EventArgs e)
         {
             LoadFoodList();
@@ -310,6 +371,8 @@ namespace App
             LoadImportReceiptAndDetail();
             txbSearchReceipt.Clear();
         }
+
+
         #endregion
 
 
@@ -1910,6 +1973,115 @@ namespace App
 
         #region Các chức năng tìm kiếm
 
+        void SearchDoanhThuMultiKeyword(string keyword)
+        {
+            string originalKeyword = keyword.Trim();
+            DateTime parsedDate;
+            DateTime today = DateTime.Today;
+
+            // Thử parse với văn hóa Việt Nam
+            if (DateTime.TryParseExact(keyword,
+                new string[] { "hh:mm tt", "hh:mm", "HH:mm" },
+                new System.Globalization.CultureInfo("vi-VN"),
+                System.Globalization.DateTimeStyles.None, out parsedDate))
+            {
+                keyword = parsedDate.ToString("HH:mm"); // đổi sang dạng 24h
+            }
+
+            // Kiểm tra nếu người dùng nhập khoảng thời gian (dùng '-' hoặc 'đến')
+            if (originalKeyword.Contains("-") || originalKeyword.ToLower().Contains("đến"))
+            {
+                // Tách 2 phần
+                char[] delimiters = { '-', 'đ', 'ế', 'n' }; // để tách "đến" hoặc "-"
+                string[] parts = originalKeyword.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+
+                if (parts.Length == 2)
+                {
+                    DateTime fromDate, toDate;
+
+                    if (DateTime.TryParse(parts[0].Trim(), out fromDate) && DateTime.TryParse(parts[1].Trim(), out toDate))
+                    {
+                        // Gọi proc tìm khoảng
+                        string rangeQuery = "EXEC SearchDoanhThuByDateRange @FromDate, @ToDate";
+                        DataTable rangeData = DataProvider.Instance.ExecuteQuery(rangeQuery, new object[] { fromDate, toDate });
+                        dtgvDoanhThu.DataSource = rangeData;
+                        return; // Dừng ở đây nếu là tìm khoảng
+                    }
+                }
+            }
+
+            // Nếu là ngày + giờ
+            string[] formatsWithTime = { "dd/MM/yyyy HH:mm", "dd/MM HH:mm", "HH:mm" };
+
+            if (DateTime.TryParseExact(originalKeyword, formatsWithTime, null, System.Globalization.DateTimeStyles.None, out parsedDate))
+            {
+                if (originalKeyword.Contains("/") && originalKeyword.Contains(":")) // có ngày và giờ
+                {
+                    if (originalKeyword.Split('/').Length == 2) // thiếu năm
+                    {
+                        parsedDate = new DateTime(today.Year, parsedDate.Month, parsedDate.Day, parsedDate.Hour, parsedDate.Minute, 0);
+                    }
+                }
+                keyword = parsedDate.ToString("yyyy-MM-dd HH:mm");
+            }
+            else
+            {
+                // Xử lý các định dạng không có giờ
+                if (DateTime.TryParseExact(originalKeyword, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out parsedDate))
+                {
+                    keyword = parsedDate.ToString("yyyy-MM-dd");
+                }
+                else if (DateTime.TryParseExact(originalKeyword, "dd/MM", null, System.Globalization.DateTimeStyles.None, out parsedDate))
+                {
+                    parsedDate = new DateTime(today.Year, parsedDate.Month, parsedDate.Day);
+                    keyword = parsedDate.ToString("yyyy-MM-dd");
+                }
+                else if (DateTime.TryParseExact(originalKeyword, "MM/yyyy", null, System.Globalization.DateTimeStyles.None, out parsedDate))
+                {
+                    keyword = parsedDate.ToString("yyyy-MM");
+                }
+                else if (DateTime.TryParseExact(originalKeyword, "yyyy", null, System.Globalization.DateTimeStyles.None, out parsedDate))
+                {
+                    keyword = parsedDate.Year.ToString();
+                }
+                else
+                {
+                    // Không phải ngày giờ → giữ nguyên
+                    keyword = originalKeyword;
+                }
+            }
+
+            // Gọi proc tìm kiếm gần đúng
+            string query = "EXEC SearchDoanhThuByKeyword @Keyword";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { keyword });
+            dtgvDoanhThu.DataSource = data;
+
+            // Highlight từ khóa trong DataGridView
+            HighlightKeywordInGrid(dtgvDoanhThu, originalKeyword);
+        }
+
+        // Hàm highlight từ khóa trong DataGridView
+        void HighlightKeywordInGrid(DataGridView grid, string keyword)
+        {
+            foreach (DataGridViewRow row in grid.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Value != null && cell.Value.ToString().IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        cell.Style.BackColor = Color.Yellow;
+                    }
+                    else
+                    {
+                        cell.Style.BackColor = Color.White;
+                    }
+                }
+            }
+        }
+
+
+
+
         private void btnFindTable_Click(object sender, EventArgs e)
         {
             string keyword = txbSearchTable.Text.Trim();
@@ -2070,8 +2242,28 @@ namespace App
         }
 
 
+
         #endregion
 
+        private void btnSearchDoanhThu_Click(object sender, EventArgs e)
+        {
+            string Key = txbSearchDoanhThu.Text.Trim();
+            if (string.IsNullOrEmpty(Key))
+            {
+                LoadDoanhThu(DateTime.Today, DateTime.Now); // Hiển thị lại toàn bộ doanh thu nếu không có từ khóa
+            }
+            else
+            {
+                try
+                {
+                    SearchDoanhThuMultiKeyword(Key); // Tìm kiếm theo từ khóa
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi tìm kiếm doanh thu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }
 
