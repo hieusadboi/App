@@ -67,8 +67,20 @@ namespace App
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string userName = txbUser.Text;
-            string password = txbPass.Text;
+            //string userName = txbUser.Text;
+            //string password = txbPass.Text;
+            string userName = txbUser.Text?.Trim();
+            string password = txbPass.Text?.Trim();
+            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show(
+                    "Vui lòng nhập đầy đủ thông tin.",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
             int loginResult = DAO.AccountDAO.Instance.Login(userName, password);
 
             switch (loginResult)

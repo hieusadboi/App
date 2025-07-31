@@ -196,7 +196,7 @@
             this.tpAccount = new System.Windows.Forms.TabPage();
             this.panel69 = new System.Windows.Forms.Panel();
             this.txbSearchAccount = new System.Windows.Forms.TextBox();
-            this.button23 = new System.Windows.Forms.Button();
+            this.btnSearchAccount = new System.Windows.Forms.Button();
             this.panel28 = new System.Windows.Forms.Panel();
             this.dtgvAccount = new System.Windows.Forms.DataGridView();
             this.panel27 = new System.Windows.Forms.Panel();
@@ -1708,6 +1708,7 @@
             this.txbIdbingredient.Location = new System.Drawing.Point(180, 14);
             this.txbIdbingredient.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txbIdbingredient.Name = "txbIdbingredient";
+            this.txbIdbingredient.ReadOnly = true;
             this.txbIdbingredient.Size = new System.Drawing.Size(219, 27);
             this.txbIdbingredient.TabIndex = 2;
             // 
@@ -1738,6 +1739,7 @@
             this.txbIdFoodIngredient.Location = new System.Drawing.Point(180, 14);
             this.txbIdFoodIngredient.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txbIdFoodIngredient.Name = "txbIdFoodIngredient";
+            this.txbIdFoodIngredient.ReadOnly = true;
             this.txbIdFoodIngredient.Size = new System.Drawing.Size(219, 27);
             this.txbIdFoodIngredient.TabIndex = 2;
             // 
@@ -2279,7 +2281,7 @@
             this.panel69.BackColor = System.Drawing.Color.Transparent;
             this.panel69.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel69.Controls.Add(this.txbSearchAccount);
-            this.panel69.Controls.Add(this.button23);
+            this.panel69.Controls.Add(this.btnSearchAccount);
             this.panel69.Location = new System.Drawing.Point(1068, 7);
             this.panel69.Margin = new System.Windows.Forms.Padding(4);
             this.panel69.Name = "panel69";
@@ -2294,16 +2296,16 @@
             this.txbSearchAccount.Size = new System.Drawing.Size(232, 27);
             this.txbSearchAccount.TabIndex = 5;
             // 
-            // button23
+            // btnSearchAccount
             // 
-            this.button23.Location = new System.Drawing.Point(282, 2);
-            this.button23.Margin = new System.Windows.Forms.Padding(4);
-            this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(132, 68);
-            this.button23.TabIndex = 4;
-            this.button23.Text = "Tìm";
-            this.button23.UseVisualStyleBackColor = true;
-            this.button23.Click += new System.EventHandler(this.btnSearchAccount_Click);
+            this.btnSearchAccount.Location = new System.Drawing.Point(282, 2);
+            this.btnSearchAccount.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSearchAccount.Name = "btnSearchAccount";
+            this.btnSearchAccount.Size = new System.Drawing.Size(132, 68);
+            this.btnSearchAccount.TabIndex = 4;
+            this.btnSearchAccount.Text = "Tìm";
+            this.btnSearchAccount.UseVisualStyleBackColor = true;
+            this.btnSearchAccount.Click += new System.EventHandler(this.btnSearchAccount_Click);
             // 
             // panel28
             // 
@@ -3794,7 +3796,7 @@
         private System.Windows.Forms.TabPage tpAccount;
         private System.Windows.Forms.Panel panel69;
         private System.Windows.Forms.TextBox txbSearchAccount;
-        private System.Windows.Forms.Button button23;
+        private System.Windows.Forms.Button btnSearchAccount;
         private System.Windows.Forms.Panel panel28;
         private System.Windows.Forms.DataGridView dtgvAccount;
         private System.Windows.Forms.Panel panel27;

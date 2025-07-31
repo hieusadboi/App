@@ -536,6 +536,9 @@ namespace App
             cbIsActive.Items.Clear();
             cbIsActive.Items.Add("Không khả dụng"); // 0
             cbIsActive.Items.Add("Khả dụng");       // 1
+            cbIsActive.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbTypeAccount.DropDownStyle = ComboBoxStyle.DropDownList;
+
         }
 
 
@@ -1366,17 +1369,25 @@ namespace App
             string phone = txbPhoneStaff.Text;
             string email = txbEmailStaff.Text;
             string accountUserName = cbAccountStaff.SelectedItem?.ToString();
-            
-            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(gender) || string.IsNullOrEmpty(accountUserName))
+
+            // Kiểm tra bắt buộc
+            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(gender))
             {
-                MessageBox.Show("Họ và tên, giới tính, và tài khoản không được để trống!");
+                MessageBox.Show("Họ và tên hoặc giới tính không được để trống!");
                 return;
             }
-            if(StaffDAO.Instance.isExitUserNameInStaff(accountUserName) == true)
+
+            // Chỉ kiểm tra trùng tài khoản nếu accountUserName có giá trị
+            if (!string.IsNullOrEmpty(accountUserName))
             {
-                MessageBox.Show("Tài khoản đã có nhân viên khác sở hữu! Không thể thêm cho nhân viên này");
-                return;
-            }            
+                if (StaffDAO.Instance.isExitUserNameInStaff(accountUserName))
+                {
+                    MessageBox.Show("Tài khoản đã có nhân viên khác sở hữu! Không thể thêm cho nhân viên này");
+                    return;
+                }
+            }
+
+            // Thực hiện thêm nhân viên
             if (StaffDAO.Instance.InsertStaff(new Staff
             {
                 FullName = fullName,
@@ -1384,7 +1395,7 @@ namespace App
                 BirthDate = birthDate,
                 Phone = phone,
                 Email = email,
-                AccountUserName = accountUserName
+                AccountUserName = string.IsNullOrEmpty(accountUserName) ? null : accountUserName
             }))
             {
                 MessageBox.Show("Thêm nhân viên thành công!");
@@ -1397,9 +1408,10 @@ namespace App
             }
         }
 
+
         private void btnUpdateStaff_Click_1(object sender, EventArgs e)
         {
-            this.Validate(); // Đảm bảo dữ liệu được đồng bộ từ binding
+            this.Validate(); // Đồng bộ binding
 
             int idStaff = Convert.ToInt32(txbIdStaff.Text);
             string fullName = txbFullName.Text;
@@ -1409,37 +1421,42 @@ namespace App
             string email = txbEmailStaff.Text;
             string accountUserName = cbAccountStaff.SelectedItem?.ToString();
 
-            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(gender) || string.IsNullOrEmpty(accountUserName))
+            // Kiểm tra bắt buộc (không cần bắt buộc accountUserName)
+            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(gender))
             {
-                MessageBox.Show("Họ và tên, giới tính, và tài khoản không được để trống!");
+                MessageBox.Show("Họ và tên hoặc giới tính không được để trống!");
                 return;
             }
-            if (StaffDAO.Instance.isExitUserNameInStaff(accountUserName, idStaff) == true)
-            {
-                MessageBox.Show("Tài khoản đã có nhân viên khác sở hữu! Không thể thêm cho nhân viên này");
-                return;
-            }
-            {
 
-                if (StaffDAO.Instance.UpdateStaffAdmin(new Staff
+            // Chỉ kiểm tra trùng tài khoản nếu accountUserName có giá trị
+            if (!string.IsNullOrEmpty(accountUserName))
+            {
+                if (StaffDAO.Instance.isExitUserNameInStaff(accountUserName, idStaff))
                 {
-                    IdStaff = idStaff,
-                    FullName = fullName,
-                    Gender = gender,
-                    BirthDate = birthDate,
-                    Phone = phone,
-                    Email = email,
-                    AccountUserName = accountUserName
-                }))
-                {
-                    MessageBox.Show("Sửa nhân viên thành công!");
-                    LoadStaff();
-                    AddBindingStaff(); // Cập nhật binding sau khi sửa
+                    MessageBox.Show("Tài khoản đã có nhân viên khác sở hữu! Không thể cập nhật.");
+                    return;
                 }
-                else
-                {
-                    MessageBox.Show("Sửa nhân viên thất bại!");
-                }
+            }
+
+            // Gọi DAO update
+            if (StaffDAO.Instance.UpdateStaffAdmin(new Staff
+            {
+                IdStaff = idStaff,
+                FullName = fullName,
+                Gender = gender,
+                BirthDate = birthDate,
+                Phone = phone,
+                Email = email,
+                AccountUserName = string.IsNullOrEmpty(accountUserName) ? null : accountUserName
+            }))
+            {
+                MessageBox.Show("Sửa nhân viên thành công!");
+                LoadStaff();
+                AddBindingStaff();
+            }
+            else
+            {
+                MessageBox.Show("Sửa nhân viên thất bại!");
             }
         }
 

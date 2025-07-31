@@ -93,15 +93,36 @@ namespace App.DAO
             return list;
         }
 
+        //public bool InsertStaff(Staff staff)
+        //{
+        //    // Check nếu tài khoản đã có staff thì không cho thêm
+        //    if (GetStaffByAccount(staff.AccountUserName) != null)
+        //        return false;
+
+        //    string query = @"
+        //INSERT INTO Staff ( fullName , gender , birthDate , phone , email , accountUserName )
+        //VALUES ( @fullName , @gender , @birthDate , @phone , @email , @accountUserName )";
+        //    int result = DataProvider.Instance.ExecuteNonQuery(query, new object[]
+        //    {
+        //        staff.FullName,
+        //        staff.Gender,
+        //        staff.BirthDate,
+        //        staff.Phone,
+        //        staff.Email,
+        //        staff.AccountUserName
+        //    });
+
+        //    return result > 0;
+        //}
+
         public bool InsertStaff(Staff staff)
         {
-            // Check nếu tài khoản đã có staff thì không cho thêm
-            if (GetStaffByAccount(staff.AccountUserName) != null)
-                return false;
-
             string query = @"
-        INSERT INTO Staff ( fullName , gender , birthDate , phone , email , accountUserName )
-        VALUES ( @fullName , @gender , @birthDate , @phone , @email , @accountUserName )";
+                INSERT INTO Staff ( fullName , gender , birthDate , phone , email , accountUserName )
+                VALUES ( @fullName , @gender , @birthDate , @phone , @email , @accountUserName )";
+
+            object accountParam = (string.IsNullOrEmpty(staff.AccountUserName)) ? DBNull.Value : (object)staff.AccountUserName;
+
             int result = DataProvider.Instance.ExecuteNonQuery(query, new object[]
             {
                 staff.FullName,
@@ -109,11 +130,12 @@ namespace App.DAO
                 staff.BirthDate,
                 staff.Phone,
                 staff.Email,
-                staff.AccountUserName
+                accountParam
             });
 
             return result > 0;
         }
+
 
         public bool UpdateStaffAdmin(Staff staff)
         {

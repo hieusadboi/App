@@ -34,9 +34,7 @@ namespace App.DAO
             foreach (DataRow item in data.Rows)
             {
                 Table table = new Table(item);
-                // Chỉ lấy bàn nếu tên không phải là "Mang về"
-                if (table.Name != "Mang về")
-                    tableList.Add(table);
+                tableList.Add(table);
             }
 
             return tableList;
