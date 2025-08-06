@@ -47,21 +47,21 @@ namespace App.DAO
         }
         
         // cho nhân viên tự đổi (không thể đổi account).admin dùng cái hàm khác 
-        public bool UpdateStaff(Staff staff)
-        {
-            string query = "EXEC USP_UpdateStaff @fullName , @gender , @birthDate , @phone , @email , @accountUserName";
-            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[]
-            {
-                staff.FullName,
-                staff.Gender,
-                staff.BirthDate,
-                staff.Phone,
-                staff.Email,
-                staff.AccountUserName
-            });
+        //public bool UpdateStaff(Staff staff)
+        //{
+        //    string query = "EXEC USP_UpdateStaff @fullName , @gender , @birthDate , @phone , @email , @accountUserName";
+        //    int result = DataProvider.Instance.ExecuteNonQuery(query, new object[]
+        //    {
+        //        staff.FullName,
+        //        staff.Gender,
+        //        staff.BirthDate,
+        //        staff.Phone,
+        //        staff.Email,
+        //        staff.AccountUserName
+        //    });
 
-            return result > 0;
-        }
+        //    return result > 0;
+        //}
 
         public bool isExitUserNameInStaff(string userName)
         {
@@ -82,7 +82,7 @@ namespace App.DAO
             string query = @"
         SELECT UserName 
         FROM Account 
-        WHERE UserName NOT IN (SELECT accountUserName FROM Staff)";
+        WHERE UserName NOT IN ( SELECT accountUserName FROM Staff WHERE accountUserName IS NOT NULL )";
 
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             List<string> list = new List<string>();
@@ -136,14 +136,54 @@ namespace App.DAO
             return result > 0;
         }
 
+        //public bool UpdateStaffAdmin(Staff staff)
+        //{
+        //    string query = @"
+        //UPDATE Staff 
+        //SET 
+        //     fullName = @fullName , gender = @gender , birthDate = @birthDate , phone = @phone , email = @email , accountUserName = @accountUserName 
+        //WHERE idStaff = @idStaff ";
+
+        //    object[] parameters = new object[]
+        //    {
+        //        staff.FullName,
+        //        staff.Gender,
+        //        staff.BirthDate,
+        //        staff.Phone,
+        //        staff.Email,
+        //        staff.AccountUserName,
+        //        staff.IdStaff
+        //    };
+
+        //    int result = DataProvider.Instance.ExecuteNonQuery(query, parameters);
+        //    return result > 0;
+        //}
+
+        public bool IsAccountAvailableForStaff(string username)
+        {
+            string query = @"
+                            SELECT COUNT(*) 
+                            FROM Account a
+                            LEFT JOIN Staff s ON a.UserName = s.accountUserName
+                            WHERE a.UserName = @UserName AND s.accountUserName IS NULL";
+
+            object[] parameters = { username };
+            int count = (int)DataProvider.Instance.ExecuteScalar(query, parameters);
+            return count > 0;
+        }
 
         public bool UpdateStaffAdmin(Staff staff)
         {
             string query = @"
-        UPDATE Staff 
-        SET 
-             fullName = @fullName , gender = @gender , birthDate = @birthDate , phone = @phone , email = @email , accountUserName = @accountUserName 
-        WHERE idStaff = @idStaff";
+                            UPDATE Staff 
+                            SET 
+                                fullName = @fullName , 
+                                gender = @gender , 
+                                birthDate = @birthDate , 
+                                phone = @phone , 
+                                email = @email , 
+                                accountUserName = @accountUserName 
+                            WHERE idStaff = @idStaff ";
 
             object[] parameters = new object[]
             {
@@ -152,7 +192,7 @@ namespace App.DAO
                 staff.BirthDate,
                 staff.Phone,
                 staff.Email,
-                staff.AccountUserName,
+                staff.AccountUserName ?? (object)DBNull.Value, // ✅ Chuyển null sang DBNull
                 staff.IdStaff
             };
 

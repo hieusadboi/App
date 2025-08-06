@@ -350,6 +350,7 @@ namespace App
             List<Category> listCategory = CategoryDAO.Instance.GetListCategory();
             cbCategory.DataSource = listCategory;
             cbCategory.DisplayMember = "CategoryName"; // Hiển thị tên danh mục
+            cbCategory.DropDownStyle = ComboBoxStyle.DropDownList; // Chỉ cho chọn, không nhập
         }
 
         void LoadFoodListByCategoryID(int id)
@@ -357,6 +358,7 @@ namespace App
             List<Food> listFood = FoodDAO.Instance.GetListFoodByCategoryID(id);
             cbFood.DataSource = listFood;
             cbFood.DisplayMember = "foodName"; // Hiển thị tên món ăn
+            cbFood.DropDownStyle = ComboBoxStyle.DropDownList; // Chỉ cho chọn, không nhập
         }
 
         #endregion
@@ -373,12 +375,6 @@ namespace App
             fAdmin f = new fAdmin();
             f.ShowDialog();
         }
-
-        //private void nhậpNguyênLiệuToolStripMenuItem_Click_1(object sender, EventArgs e)
-        //{
-        //    fImport f = new fImport();
-        //    f.ShowDialog();
-        //}
 
         #endregion
 

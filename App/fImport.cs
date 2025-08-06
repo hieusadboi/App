@@ -198,6 +198,7 @@ namespace App
             tbxMaNhapNguyenLieu.DataBindings.Clear();
             txbTaiKhoanNhanVien.DataBindings.Clear();
             cbTenNhaCungCap.DataBindings.Clear();
+            cbTenNhaCungCap.DropDownStyle = ComboBoxStyle.DropDownList;
 
             tbxMaNhapNguyenLieu.DataBindings.Add("Text", receiptBindingSource, "IdReceipt", true, DataSourceUpdateMode.Never);
             txbTaiKhoanNhanVien.DataBindings.Add("Text", receiptBindingSource, "ImportedBy", true, DataSourceUpdateMode.Never);
@@ -210,6 +211,7 @@ namespace App
             cbTenNhaCungCap.DataSource = supplierList;
             cbTenNhaCungCap.DisplayMember = "SupplierName";
             cbTenNhaCungCap.ValueMember = "IdSupplier";
+            cbTenNhaCungCap.DropDownStyle = ComboBoxStyle.DropDownList; 
         }
 
         private void LoadIngredientComboBox()
@@ -218,6 +220,7 @@ namespace App
             cbmanguyenlieu.DataSource = ingredientList;
             cbmanguyenlieu.DisplayMember = "IngredientName";
             cbmanguyenlieu.ValueMember = "IdIngredient";
+            cbmanguyenlieu.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
 

@@ -45,6 +45,15 @@ namespace App.DAO
             return DataProvider.Instance.ExecuteQuery(query, new object[] { idFood });
         }
 
+        public bool CheckIngredientExists(int idFood, int idIngredient)
+        {
+            string query = "SELECT COUNT(*) FROM FoodIngredient WHERE IdFood = @idFood AND IdIngredient = @idIngredient";
+            object[] parameters = { idFood, idIngredient };
+            int count = (int)DataProvider.Instance.ExecuteScalar(query, parameters);
+            return count > 0;
+        }
+
+
         public bool InsertFoodIngredient(FoodIngredient fi)
         {
             string query = "INSERT INTO FoodIngredient (idFood, idIngredient, quantity) VALUES ( @idFood , @idIngredient , @quantity )";

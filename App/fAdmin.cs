@@ -403,6 +403,7 @@ namespace App
             txbFoodName.DataBindings.Add("Text", foodList, "FoodName", true, DataSourceUpdateMode.Never);
             nmPriceFood.DataBindings.Add("Value", foodList, "Price", true, DataSourceUpdateMode.Never);
             cbFoodCategory.DataBindings.Add("SelectedValue", foodList, "IdCategory", true, DataSourceUpdateMode.Never);
+            cbFoodCategory.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
 
@@ -495,6 +496,7 @@ namespace App
             // Gán sẵn danh sách trạng thái nếu cần
             cbTableStatus.Items.Add("Trống");
             cbTableStatus.Items.Add("Có Người");
+            cbTableStatus.DropDownStyle = ComboBoxStyle.DropDownList;
 
             // Binding vào SelectedItem để không bị lỗi
             cbTableStatus.DataBindings.Add("SelectedItem", dtgvTableFood.DataSource, "status", true, DataSourceUpdateMode.Never);
@@ -557,6 +559,7 @@ namespace App
             cbGender.Items.Clear();
             cbGender.Items.Add("Nam");
             cbGender.Items.Add("Nữ");
+            cbGender.DropDownStyle = ComboBoxStyle.DropDownList;
 
             // Khởi tạo danh sách item cho cbAccountStaff từ bảng Account
             cbAccountStaff.Items.Clear();
@@ -641,6 +644,7 @@ namespace App
 
             cbNameFoodIngredient.DisplayMember = "FoodName"; // Tên hiển thị
             cbNameFoodIngredient.ValueMember = "IdFood";     // Giá trị thực tế
+            cbNameFoodIngredient.DropDownStyle = ComboBoxStyle.DropDownList; // Chỉ cho chọn trong danh sách
         }
 
         // cho định lượng nguyên liệu của món ăn
@@ -673,6 +677,7 @@ namespace App
             cbNameIngredient.DataSource = ingredientList;
             cbNameIngredient.DisplayMember = "IngredientName";
             cbNameIngredient.ValueMember = "IdIngredient";
+            cbNameIngredient.DropDownStyle = ComboBoxStyle.DropDownList;
 
             List<string> units = IngredientDAO.Instance.GetAllUnits();
             cbUnitIngredient1.Items.AddRange(units.ToArray());
@@ -794,6 +799,7 @@ namespace App
             cbTenNhaCungCap.DataSource = supplierList;
             cbTenNhaCungCap.DisplayMember = "SupplierName";
             cbTenNhaCungCap.ValueMember = "IdSupplier";
+            cbTenNhaCungCap.DropDownStyle = ComboBoxStyle.DropDownList; 
         }
 
         private void LoadIngredientComboBox()
@@ -802,6 +808,7 @@ namespace App
             cbmanguyenlieu.DataSource = ingredientList;
             cbmanguyenlieu.DisplayMember = "IngredientName";
             cbmanguyenlieu.ValueMember = "IdIngredient";
+            cbmanguyenlieu.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void LoadImportDetail_ByCurrentSelection()
@@ -1428,6 +1435,17 @@ namespace App
                 return;
             }
 
+            if (!string.IsNullOrEmpty(cbAccountStaff.Text?.Trim()))
+            {
+                if (!StaffDAO.Instance.IsAccountAvailableForStaff(cbAccountStaff.Text?.Trim()))
+                {
+                    MessageBox.Show("Tài khoản này không khả dụng (không tồn tại hoặc đã được gán cho nhân viên khác)!",
+                        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+            MessageBox.Show($"DEBUG: accountUserName = {cbAccountStaff.Text?.Trim()}");
+
             // Chỉ kiểm tra trùng tài khoản nếu accountUserName có giá trị
             if (!string.IsNullOrEmpty(accountUserName))
             {
@@ -1679,6 +1697,11 @@ namespace App
                 MessageBox.Show("Số lượng không hợp lệ! Vui lòng nhập số lớn hơn 0.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (FoodIngredientDAO.Instance.CheckIngredientExists(idFood, idIngredient))
+            {
+                MessageBox.Show("Nguyên liệu này đã tồn tại trong món ăn này!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             var foodIngredient = new FoodIngredient
             {
@@ -1732,6 +1755,13 @@ namespace App
                 return;
             }
 
+            // Kiểm tra nguyên liệu có tồn tại trong định lượng món ăn chưa
+            if (!FoodIngredientDAO.Instance.CheckIngredientExists(idFood, idIngredient))
+            {
+                MessageBox.Show("Nguyên liệu này chưa có trong món ăn, không thể sửa!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var foodIngredient = new FoodIngredient
             {
                 IdFood = idFood,
@@ -1775,6 +1805,12 @@ namespace App
             if (!int.TryParse(txbIdbingredient.Text, out int idIngredient))
             {
                 MessageBox.Show("Mã nguyên liệu không hợp lệ! Vui lòng nhập số nguyên.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!FoodIngredientDAO.Instance.CheckIngredientExists(idFood, idIngredient))
+            {
+                MessageBox.Show("Nguyên liệu này chưa có trong món ăn, không thể xóa!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

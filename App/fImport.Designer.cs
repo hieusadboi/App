@@ -653,11 +653,11 @@
             // 
             // txbTongChi
             // 
-            this.txbTongChi.Location = new System.Drawing.Point(225, 20);
+            this.txbTongChi.Location = new System.Drawing.Point(220, 20);
             this.txbTongChi.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txbTongChi.Name = "txbTongChi";
             this.txbTongChi.ReadOnly = true;
-            this.txbTongChi.Size = new System.Drawing.Size(189, 30);
+            this.txbTongChi.Size = new System.Drawing.Size(194, 30);
             this.txbTongChi.TabIndex = 9;
             // 
             // label1
@@ -850,10 +850,10 @@
             // 
             // tbxMaNhapNguyenLieu
             // 
-            this.tbxMaNhapNguyenLieu.Location = new System.Drawing.Point(225, 18);
+            this.tbxMaNhapNguyenLieu.Location = new System.Drawing.Point(166, 18);
             this.tbxMaNhapNguyenLieu.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tbxMaNhapNguyenLieu.Name = "tbxMaNhapNguyenLieu";
-            this.tbxMaNhapNguyenLieu.Size = new System.Drawing.Size(189, 30);
+            this.tbxMaNhapNguyenLieu.Size = new System.Drawing.Size(248, 30);
             this.tbxMaNhapNguyenLieu.TabIndex = 1;
             // 
             // label56
@@ -863,9 +863,9 @@
             this.label56.Location = new System.Drawing.Point(4, 22);
             this.label56.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(213, 24);
+            this.label56.Size = new System.Drawing.Size(45, 24);
             this.label56.TabIndex = 0;
-            this.label56.Text = "Mã nhập nguyên liệu:";
+            this.label56.Text = "Mã:";
             // 
             // panel60
             // 
@@ -880,11 +880,11 @@
             // 
             // txbTaiKhoanNhanVien
             // 
-            this.txbTaiKhoanNhanVien.Location = new System.Drawing.Point(225, 20);
+            this.txbTaiKhoanNhanVien.Location = new System.Drawing.Point(166, 20);
             this.txbTaiKhoanNhanVien.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txbTaiKhoanNhanVien.Name = "txbTaiKhoanNhanVien";
             this.txbTaiKhoanNhanVien.ReadOnly = true;
-            this.txbTaiKhoanNhanVien.Size = new System.Drawing.Size(189, 30);
+            this.txbTaiKhoanNhanVien.Size = new System.Drawing.Size(248, 30);
             this.txbTaiKhoanNhanVien.TabIndex = 9;
             // 
             // label32
@@ -912,10 +912,10 @@
             // cbTenNhaCungCap
             // 
             this.cbTenNhaCungCap.FormattingEnabled = true;
-            this.cbTenNhaCungCap.Location = new System.Drawing.Point(225, 18);
+            this.cbTenNhaCungCap.Location = new System.Drawing.Point(166, 18);
             this.cbTenNhaCungCap.Margin = new System.Windows.Forms.Padding(4);
             this.cbTenNhaCungCap.Name = "cbTenNhaCungCap";
-            this.cbTenNhaCungCap.Size = new System.Drawing.Size(189, 33);
+            this.cbTenNhaCungCap.Size = new System.Drawing.Size(248, 33);
             this.cbTenNhaCungCap.TabIndex = 6;
             // 
             // label35
@@ -925,9 +925,9 @@
             this.label35.Location = new System.Drawing.Point(0, 23);
             this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(187, 24);
+            this.label35.Size = new System.Drawing.Size(147, 24);
             this.label35.TabIndex = 0;
-            this.label35.Text = "Tên nhà cung cấp:";
+            this.label35.Text = "Nhà cung cấp:";
             // 
             // fImport
             // 
