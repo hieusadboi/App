@@ -412,11 +412,27 @@ namespace App
             MessageBox.Show("Đã tạo hóa đơn tạm.", "Thông báo");
         }
 
+        //private void updatethongtincanhan_Click(object sender, EventArgs e)
+        //{
+        //    Infomation f = new Infomation(LoginAccount.Username);
+        //    f.ShowDialog();
+        //}
+
         private void updatethongtincanhan_Click(object sender, EventArgs e)
         {
-            Infomation f = new Infomation(LoginAccount.Username);
-            f.ShowDialog();
+            Staff staff = StaffDAO.Instance.GetStaffByAccount(LoginAccount.Username);
+
+            if (staff != null)
+            {
+                Infomation f = new Infomation(LoginAccount.Username);
+                f.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Tài khoản này chưa được gán với nhân viên nào!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
+
 
         private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
         {

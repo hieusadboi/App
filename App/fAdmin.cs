@@ -1378,9 +1378,9 @@ namespace App
             string accountUserName = cbAccountStaff.SelectedItem?.ToString();
 
             // Kiểm tra bắt buộc
-            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(gender))
+            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(gender) || string.IsNullOrEmpty(accountUserName))
             {
-                MessageBox.Show("Họ và tên hoặc giới tính không được để trống!");
+                MessageBox.Show("Họ tên hoặc giới tính hoặc tài khoảng không được để trống!");
                 return;
             }
 
@@ -1428,13 +1428,6 @@ namespace App
             string email = txbEmailStaff.Text;
             string accountUserName = cbAccountStaff.SelectedItem?.ToString();
 
-            // Kiểm tra bắt buộc (không cần bắt buộc accountUserName)
-            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(gender))
-            {
-                MessageBox.Show("Họ và tên hoặc giới tính không được để trống!");
-                return;
-            }
-
             if (!string.IsNullOrEmpty(cbAccountStaff.Text?.Trim()))
             {
                 if (!StaffDAO.Instance.IsAccountAvailableForStaff(cbAccountStaff.Text?.Trim()))
@@ -1444,7 +1437,13 @@ namespace App
                     return;
                 }
             }
-            MessageBox.Show($"DEBUG: accountUserName = {cbAccountStaff.Text?.Trim()}");
+
+            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(gender) || string.IsNullOrEmpty(accountUserName))
+            {
+                MessageBox.Show("Họ tên hoặc giới tính hoặc tài khoảng không được để trống!");
+                return;
+            }
+            //MessageBox.Show($"DEBUG: accountUserName = {cbAccountStaff.Text?.Trim()}");
 
             // Chỉ kiểm tra trùng tài khoản nếu accountUserName có giá trị
             if (!string.IsNullOrEmpty(accountUserName))
